@@ -1,0 +1,184 @@
+﻿Przygotowac jakikolwiek template - GOTOWE
+Przygotowac klasy bazy danych
+Zrobic migracje
+Zrobic API
+Dodać logowanie
+Główna akcja aplikacji?:
+1. Klient musi się zalogować by móc kupić bilet.
+2. Klient wybiera seans
+	a. klient wybiera film
+	b. klient wybiera mozliwe godziny
+	c. klient wybiera mozliwe miejsca
+3. klient przechodzi do koszyka
+4. po zatwierdzeniu koszyka przechozdi do menu platnosci
+5. klient placi.
+6. Klientowi pokazuje sie bilet oraz osobno rachunek (dwa pdf-y powinny wyskoczyc)
+7. klient ma mozliwosc podgladu biletu.
+	Nie na MVP - mozliwosc rezerwacji zamiast kupowania, mozliwosc reklamacji (zwrotu biletu przed seansem), edycji biletu.
+
+Dodatkowe rzeczy
+
+
+
+Mobilna:
+Podglad biletu, mozliwosc anulowania biletu, mozliwosc zrealizowania rezerwacji
+
+Co potrzebuje, zeby wykonac cala glowna akcje?
+1. Koszyk
+2. Film - mozliwosc wyboru filmu, czyli zarowno Klasa Film jak i wybieranie konketnego filmu na UI.
+3. Sala - zeby wybrac miejsce na sali, zyli Klasa Sala oraz wybieranie miejsca na UI.
+4. Miejsce - konkretne miejsce na sali, czyli Klasa miejsce oraz wyswietlanie go na UI.
+5. Logowanie - by klient sie zalogowal, czyli Identity.
+6. Godziny seansu - Harmonogram, by moc wybrac ktory seans wybieramy (ma to wplyw zarowno na sale jak i na wybor miejsca) czyli Klasa Harmonogram i wybor z combo boxa(lub listy godzin) seansu na UI.
+7. Platnosci - by klient mog zaplacic, czyli jakas wtyczka z zaplata.
+8. Generowanie biletu i paragonu. - by wysiwetlic mu raport z transakcji, czyli jakas wtyczka z transakcji plus zapisywanie transakcji.
+
+
+
+
+Przygotowac jakikolwiek template - GOTOWE
+Dodać logowanie - GOTOWE
+Przygotowac klasy bazy danych - glownie film, sala, miejsce, harmonogram, tabele zwiazane z platnosciami(moze byc pozniej)
+Zrobic migracje - GOTOWE
+Dodawanie obsluge filmow (tez od strony admina) i wyswietlanie dostepnych filmow na UI.
+Dodawanie obsluge sal
+Zrobic API - wpozniejszym terminie - bede na biezaco dodawal wraz z kolejnymi elementami.
+
+
+Dodalem Identity, wchodzi mi na strone, ale nie pobiera mojego layoutu.
+Teraz musze to naprawic, moze skopiowac w nowe miejsce moj layout?
+Dodatkowo musze sprawdzic czy to wszystko dziala. ZROBIONE
+
+Identity przygotowane, bierze odpowiedni layout. Moze przygotuje inny layout dla koszyka, ale watpie. Raczej wykorzystam ten sam.
+Teraz musze przeniesc wiekszosc ze strony layout do Index. ZROBIONE
+Potem wybranie odpowiedniego filmu. ZROBIONE
+
+Teraz musze dodac przycisk Wybierz do selecta ZROBIONE
+Potem musze zrobic podstrone z wyborem dnia oraz godzina seansu - musze zrobic polaczenie miedzy filmem a seansami oraz musze dolozyc sale z miejscami
+Musze dorobic wyswietlanie tych seansow w UI i wybor seansu.
+	Sciezka happy path od wybrania filmu do kupna dam do osobnego controllera.
+Potem wybor miejsc jak na stronach kinowych.
+//
+
+Na ten moment jest zrobiona strona tytulowa - jako tako. Musze ja lepiej sformatowac (chociazby select jest kiepsko zrobiony).
+Zrobione zostalo strona tytulowa dla MovieController, ale definitywnie brakuje tu formatowania. Trzeba dorobic.
+Dorobione zostala Akcja do wyswietlenia Movies z Screeningami dla konretnej daty. Teraz trzeba dorobic widok oraz przykladowe dane screeningow.
+ZROBIONE //
+
+Zastanowic sie trzeba tez nad mozliwymi nullpointexception w tym wypadku.
+Musze tez dorobic wyswietlanie screeningow na stronie index w MovieController - ma wyswietlac maksymalnie 3, moze cztery filmy na dzis (jakas topka).
+Pozniej ma byc przycisk do przekierowania do wykazu wszystkich dostepnych filmow (z screeningami na dany dzien). 
+//
+
+Mam zroboiny widok screeninga jednego i widok screeningow do wyboru na dany dzien.
+Teraz musze dorobic pobieranie informacji z widoku screeninga z checkboxow, by miec dane do biletu.
+Jak to zrobie to wroce do mozliwosci wyboru filmu a pozniej jego screeningow na przestrzeni nastepnych dwoch tygodni/jednego tygodnia. ZROBIONE
+
+MUSZE PAMIETAC, BY NA KONCU SPRAWDZIC I DOROBIC BAD PATH'Y GDY NIE MAM DANYCH LUB GDY JEST JAKIS BLAD.
+to bedzie potrzebne szczegolnie w momencie jak bede musial okreslic ktore dane do ktorych rzeczy mam konieczne do wprowadzania.
+
+//
+
+Skonczylem dodawac glowne metody koszyka oraz podstawowy widok Index. Niestety musze popraiwc HttpContext ustawianie, bo najwidoczniej cos jest zle ustawione tutaj.
+Musze dodac dodawanie elementu do koszyka jak sie wybierze z DetailsOfChoice.
+ZROBIONE
+
+Potem musze dodac generowanie fakturki i biletu.
+Musze tez dodawac Ticket/Bilet do bazy danych.
+
+
+MOZE DOBRY POMYSL TO NAPISAC WSTEPNE SEEDY DO BAZY DANEJ. TO MOZE BYC POMOCNE PRZY PRZENOSZENIU PROJEKTU.
+
+//
+
+Poprawilem SessionId, w koncu dziala.
+Teraz musze dodac potwierdzenie zaplaty i dodawanie do bazy danych.
+Bedziemy pracowac z InvoiceSDK do tworzenia paragonu i generowania pdf.
+Sprobuje to ogarnac teraz wraz z dodawaniem biletu do bazy danych.
+Na bilecie mam miec Invoice dolaczone w omdelu. Musze zmienic typ invoice w bazie danych, by mial invoiceNumber jako GUID.
+Wtedy jego uzyje do stworzenia polaczenia z invoice dla bazy danych.
+Potem platnosc
+
+
+//
+
+Poprawienie przyciksu - SHOW MORE MOVIES FOR TODAY - w Movies
+Generowanie biletu
+
+// 
+
+Generowanie biletu
+Dodanie paska bocznego wyswietlanego po zalogowaniu sie na konto admina - beda tu pozycje typowo adminowskie.
+Dodanie intranetu - kilka pierwszych obiektow z operacjami CRUD.
+
+Wszystko potrzebne do biletu - najpierw klasy slownikowe.
+
+////////////
+
+Powoli dodaje template z klas slownikowych - zrobiony jest kontroler.
+Na podstawie AgeRatingu teraz tworze widoki ogolne. Jak na razie index jest w miare ogarniety, chociaz zobacze jeszcze z kolejnoscia kolumn.
+Kontynuuje prace nad podstrona Create - musze dodac rozroznanie typow wprowadzania danych na stronie
+- kiedy typ boolowski (wtedy na przyklad dam checkboxa), kiedy typ stringowy (na przyklad imie)
+Pozniej przejde do kolejnych.
+
+///
+Create zrobiony, teraz kolejne
+
+///
+Edit zrobiony
+Details rowniez razem z delete.
+
+Przetestowane
+Musze poprawic wyswietlanie pozycji checked/unchecked na Indexie (pojawia sie True albo puste pole :/ )
+
+Teraz dodam inne controllery i zobacze jak to dziala.
+//
+Inne Modele slownikowe dzialaja bez zarzutu.
+
+Zaczalem tworzyc dla Movies w Adminie - zaczalem modyfikowac template dla Create'a, by zawieral Select Boxy.
+Nie wiem jeszcze czy bedzie lepiej robic generyczny czy tutaj juz robic po prostu specifyczny - wciskac ViewBagi do selectow.
+
+///
+
+Mam ogarniete templaty dla bardziej skomplikowanych typow. Mam gotowe caly CRUD strony dla Movie model.
+Musze jeszcze zobaczyc jak dodawac listy do konkretnych typow, np. jak miec mozliwosc wyboru kilku MovieKeywords dla danego Movie.
+Ale to pozniej sie zobaczy.
+
+Teraz musze ogarnac widoki dla pozostalych modeli w CinemaMovie.
+
+///
+
+
+Ogarnalem jak na razie Coupon, MovieAdmin, MovieReview i Screen controllery z widokami.
+Przy okazji zwrocilem uwage na problem przy usuwaniu rekordow - wywolywany jest blad przy nadwyezaniu wlasciwosci klucza obcego.
+Nie moge usunac Sali/Screena jezeli jest jakis screening z tym screenem juz w bazie danych. Musze pomyslec jak rozwiazac sprawe, by bledna strona sie nie pojawiala.
+
+
+KONIECZNA MODYFIKACJA
+Przy liscie screeningSeats wyswietla sie name - ono powinno miec name danego Movie. Wiec musze na name od screeninga najpierw naniesc name Movie
+a potem to przeniesc na screeningSeats.
+
+
+jEZELI MASZ PROBLEM Z PACKAGE'AMI PRZY GENEROWANIU PRZY UZYCIU TEMPLATOW
+(NP NOWYCH CONTROLLEROW), TO ZROB UPDATE PACKAGOW DO NAJNOWSZYCH WERSJI.
+
+/////////////////////////////
+
+Prawdopodobnie musze zrezygnowac z View Templatu dla Screeninga, by moc wyswietlic nazwe screeninga. Chociaz w sumie nie wiem czy to jest potrzebne dla Screeninga. Pomyslimy...
+
+
+User jest domyslna tabela tworzona w ramach IdentityDBContext.
+Teraz wg mnie najlepiej bedzie, jak klienci beda mogli sie zarejestrowac, natomiast pracownicy musza byc stworzeni w bazie danych
+Dzieki temu moge Client'a polaczyc z userem by dziedziczyl po nim.
+
+
+////////////////////
+
+Plany na najblizsze sesje:
+1. Ogarnac polaczenie Client'a z Userem. 
+	Musze potraktowac Clienta jako Usera z Identity. Natomiast pracownika/admina jako zwyklego usera
+2. ogarnac Role w identity, by zablokowac strone admina tylko dla zalogowanych adminow
+3. Miec ogarniete wszystkie klasy zwiazane z tworzeniem ticketu.
+	Pewnie musze tu ogarnac rowniez
+
+

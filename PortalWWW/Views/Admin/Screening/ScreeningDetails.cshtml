@@ -1,0 +1,15 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.Screening;
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(screening => screening.Movie)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(screening => screening.Movie.Name)
+</dd>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(screening => screening.Screen)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(screening => screening.Screen.Name)
+</dd>

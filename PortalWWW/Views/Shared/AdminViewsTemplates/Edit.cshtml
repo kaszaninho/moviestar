@@ -1,0 +1,55 @@
+﻿@using static PortalWWW.Helpers.GenericCheck;
+@model dynamic
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Type entityType = ViewData["type"] as Type;
+    string partialViewName = (string)ViewData["PartialViewName"];
+    var properties = entityType.GetProperties();
+    string id = "Id";
+    string createdAt = "CreatedAt";
+}
+
+<h1>Edit</h1>
+
+<h4>@entityType.Name</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="@id" type="hidden" class="form-control" ) />
+            <input asp-for="@createdAt" type="hidden" class="form-control") value="@Model.CreatedAt"/>
+            @foreach (var prop in properties)
+            {
+                if (IsGenericCollection(prop.PropertyType)) continue;
+                if (!ShouldShowPropertyOnCreate(prop.Name)) continue;
+                if (IsId(prop.Name)) continue;
+                if (IsTypeOfBaseDatatable(prop.PropertyType)) continue;
+                <div class="form-group">
+                    <label for="@prop.Name" class="control-label">@prop.Name</label>
+                    <input id="@prop.Name" name="@prop.Name" @TextTypeBasedOnPropertyType(prop.PropertyType) value="@prop.GetValue(Model)"/>
+                    <span asp-validation-for="@prop.Name" class="text-danger"></span>
+                </div>
+            }
+
+            @if (partialViewName != null)
+            {
+                @await Html.PartialAsync(partialViewName)
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

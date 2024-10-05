@@ -1,0 +1,27 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.Movie;
+
+    <div class="form-group">
+        <label asp-for="AgeRating" class="control-label"></label>
+        <select asp-for="AgeRatingId" class="form-control" asp-items="ViewBag.AgeRating"></select>
+        <span asp-validation-for="AgeRatingId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Country" class="control-label"></label>
+        <select asp-for="CountryId" class="form-control" asp-items="ViewBag.Country"></select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Genre" class="control-label"></label>
+        <select asp-for="GenreId" class="form-control" asp-items="ViewBag.Genre"></select>
+        <span asp-validation-for="GenreId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MovieFormat" class="control-label"></label>
+        <select asp-for="MovieFormatId" class="form-control" asp-items="ViewBag.MovieFormat"></select>
+        <span asp-validation-for="MovieFormatId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MovieProductionCompany" class="control-label"></label>
+        <select asp-for="MovieProductionCompanyId" class="form-control" asp-items="ViewBag.MovieProductionCompany"></select>
+        <span asp-validation-for="MovieProductionCompanyId" class="text-danger"></span>
+    </div>

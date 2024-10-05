@@ -1,0 +1,32 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.Movie;
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(movie => movie.AgeRating)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(movie => movie.AgeRating.Name)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(movie => movie.Country)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(movie => movie.Country.Name)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(movie => movie.Genre)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(movie => movie.Genre.Name)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(movie => movie.MovieFormat)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(movie => movie.MovieFormat.Name)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(movie => movie.MovieProductionCompany)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(movie => movie.MovieProductionCompany.Name)
+</dd>

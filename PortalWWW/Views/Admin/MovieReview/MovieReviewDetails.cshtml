@@ -1,0 +1,8 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.MovieReview;
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(movieReview => movieReview.Movie)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(movieReview => movieReview.Movie.Name)
+</dd>

@@ -1,0 +1,56 @@
+﻿@using System.Linq;
+@using DatabaseAPI.Models.DictionaryModels;
+@using static PortalWWW.Helpers.GenericCheck;
+@model dynamic
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Type entityType = ViewData["type"] as Type;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New @entityType.Name</a>
+</p>
+<table class="table table-striped table-bordered table-hover table-sm table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            @foreach (var prop in entityType.GetProperties())
+            {
+                if (IsGenericCollection(prop.PropertyType)) continue;
+                if (IsId(prop.Name)) continue;
+                <th>@prop.Name</th>
+            }
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                @foreach (var prop in entityType.GetProperties())
+                {
+                    if (IsGenericCollection(prop.PropertyType)) continue;
+                    if (IsId(prop.Name)) continue;
+                    if (IsTypeOfBaseDatatable(prop.PropertyType))
+                    {
+                        <td>@GetNameFromPropertyOfObject(prop, item)</td>
+                    }
+                    else
+                    {
+                        <td>@prop.GetValue(item, null)</td>
+                    }
+                }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

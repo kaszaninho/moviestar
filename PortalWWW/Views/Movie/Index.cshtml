@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+@section Scripts
+{
+    <!-- Include jQuery and jQuery UI libraries at the top -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+            crossorigin="anonymous"></script>
+    <!-- JavaScript code to initialize datepicker -->
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+}
+
+<div class="cointainer">
+    <div class="latest-news">
+        <form asp-controller="Movie" asp-action="ChooseMovieBasedOnDate" method="post">
+            <label class="form-label" for="movieSelect">Select a Movie:</label>
+            <input type="text" id="datepicker" name="selectedDate">
+            <button type="submit" class="btn btn-toolbar m-2 border-white">Choose a date</button>
+        </form>
+    </div>
+</div>
+
+@* Choice of top 3 movies
+    I'll need to change to pick not the first 3 added movies, but top 3 movies based on some order
+ *@
+<div class="cointainer">
+    @await Component.InvokeAsync("ChooseAMovieComponent")
+</div>
+
+
+
+

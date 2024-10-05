@@ -1,0 +1,28 @@
+﻿@using DatabaseAPI.Models.CinemaMovie;
+
+
+@{
+    ViewData["Title"] = "Details";
+    var screeningSeats = ViewBag.CheckboxValues;
+}
+
+<div>
+    <p>Details</p>
+    <p>Screening ID: @ViewData["ScreeningId"]</p>
+    <p>Movie Name: @ViewData["MovieName"]</p>
+    <p>Date: @ViewData["Date"]</p>
+</div>
+
+<div class="container">
+    @for (int i = 0; i < screeningSeats.Length; i++)
+    {
+        <p>@screeningSeats[i]</p>
+    }
+</div>
+<form asp-controller="Cart" asp-action="AddToCart" method="post">
+    @for (var i = 0; i < screeningSeats.Length; i++)
+    {
+        <input type="hidden" name="screeningSeats[@i]" value="@screeningSeats[i]" />
+    }
+<button type="submit" class="btn btn-toolbar m-2 border-white">Add to cart</button>
+</form>

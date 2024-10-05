@@ -1,0 +1,35 @@
+﻿@using DatabaseAPI.Models.CinemaMovie;
+@model IEnumerable<DatabaseAPI.Models.CinemaMovie.ScreeningSeat>
+
+@{
+    ViewData["Title"] = "Seats";
+}
+
+<div class="container">
+    <h1>Seat Selection</h1>
+    <div class="screen"></div>
+    <div class="container">
+        <ol class="seats">
+            <form asp-controller="Movie" asp-action="DetailsOfChoice" method="post">
+                @foreach (var seat in Model)
+                {
+                    @if (seat.IsTaken.HasValue && seat.IsTaken.Value)
+                    {
+                    <li class="seat" alt="Seat Taken">
+                        <input type="checkbox" disabled id="@seat.Name">
+                        <label for="@seat.Name">@seat.Name</label>
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="seat" alt="Seat Taken">
+                        <input type="checkbox" name="checkboxValues" value="@seat.Id" id="@seat.Name">
+                        <label for="@seat.Name">@seat.Name</label>
+                    </li>
+                    }
+                }
+                <button type="submit" class="btn btn-outline-dark" />
+            </form>
+        </ol>
+    </div>
+</div>

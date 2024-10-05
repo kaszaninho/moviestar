@@ -1,0 +1,45 @@
+﻿@model PortalWWW.Models.CartInformation
+
+
+@{
+    ViewData["Title"] = "Payment Choice";
+}
+
+<div class="container">
+    <div class="container">
+        <p>Cart Details</p>
+         <div class="container">
+            @foreach (var element in Model.CartElements)
+            {
+                <div class="col-md-6 d-flex card">
+                    <div class="card-header">
+                        <p>@element.ScreeningSeat.Screening.Movie.Name</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Duration - @element.ScreeningSeat.Screening.Movie.Duration</p>
+                        <p>Date - @element.ScreeningSeat.Screening.StartDate.Value.ToString("dd:MM:yyyy")</p>
+                        <p>Start - @element.ScreeningSeat.Screening.StartDate.Value.ToString("HH:mm")</p>
+                        <p>End - @element.ScreeningSeat.Screening.EndDate.Value.ToString("HH:mm")</p>
+                        <p>Seat - @element.ScreeningSeat.Name</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <p>Total Price: @Model.PriceTotal zł</p>
+        </div>
+    <p>Choose Payment</p>
+    <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
+    <label>
+        <input type="radio" name="paymentType" value="creditCard"> Credit Card
+    </label><br>
+    <label>
+        <input type="radio" name="paymentType" value="paypal"> PayPal
+    </label><br>
+    <label>
+        <input type="radio" name="paymentType" value="bankTransfer"> Bank Transfer
+        </label><br>
+        <button type="submit" class="btn btn-toolbar m-2 border-white">Go to payment</button>
+    </form>
+</div>
+    

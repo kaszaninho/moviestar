@@ -1,0 +1,221 @@
+﻿body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgba(242,221,208);
+    color: #333; /* Dark gray font color */
+}
+
+.content-center {
+    position: center;
+    padding: 20px;
+    background-color: #F2BBAE; /* Adjust opacity as needed */
+    margin: auto;
+    width: 60%;
+    border-radius: 10px;
+}
+
+/* pogo photo in the nav bar*/
+.logo-photo {
+    max-width: 30%;
+    height: auto;
+}
+
+/* Navbar background color */
+.navbar {
+    background-color: rgba(242,221,208); /* Semi-transparent cold orange background for navbar */
+}
+
+/* Navbar brand color */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Navbar link color */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    color: #333; /* Dark gray font color */
+}
+
+/* Hero section styles */
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+    .hero h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: #333; /* Dark gray font color */
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #333; /* Dark gray font color */
+    }
+
+/* Search bar styles */
+.search-bar {
+    background-color: rgba(255, 165, 0, 0.5); /* Semi-transparent cold orange background for search bar */
+    padding: 20px;
+    border-radius: 10px;
+    width: max-content;
+}
+
+/* Featured movies section styles */
+.featured-movies {
+    background-color: rgba(242,221,208); /* Semi-transparent black background for featured movies section */
+    color: #333; /* Dark gray font color */
+    padding: 50px 0;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+    .featured-movies h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #333; /* Dark gray font color */
+    }
+
+    .featured-movies .card {
+        background-color: rgba(255, 165, 0, 0.1); /* Semi-transparent cold orange background for movie cards */
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .featured-movies .card-title {
+        font-size: 1.5rem;
+        color: #333; /* Dark gray font color */
+    }
+
+/* Select bar section styles */
+.select-bar {
+    background-color: rgba(242,221,208, 1);
+    padding: 50px 0;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.left-div, .right-div {
+    float: left;
+    width: 40%; /* Adjust as needed */
+}
+
+
+
+/* Latest news section styles */
+.latest-news {
+    background-color: rgba(242,221,208, 1); /* Semi-transparent white background for latest news section */
+    padding: 50px 0;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+    .latest-news h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #333; /* Dark gray font color */
+    }
+
+    .latest-news .card {
+        background-color: transparent;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .latest-news .card-title {
+        font-size: 1.5rem;
+        color: #333; /* Dark gray font color */
+    }
+
+/* Footer styles */
+.footer { /* Semi-transparent black background for footer */
+    color: #fff; /* White color */
+    padding: 30px 0;
+    text-align: center;
+}
+
+/* Adjust margin for smaller screens */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+    }
+}
+
+.vw-75 {
+    width: 75vw !important;
+}
+
+.vw-50 {
+    width: 50vw !important;
+}
+
+.screen {
+    margin: 20px auto;
+    width: 50vw;
+    background: white;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    height: 50px;
+}
+
+.screen-ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar {
+    width: fit-content;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.seats {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.seat {
+    display: flex;
+    flex: 0;
+    padding: 5px;
+    position: relative;
+}
+
+    .seat label {
+        display: block;
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bolder;
+        padding: 5px 0;
+        border-radius: 5px;
+        background: white;
+        color: black;
+    }
+
+        .seat label:hover {
+            cursor: pointer;
+            box-shadow: 0 0 0px 2px teal;
+        }
+
+    .seat input[type=checkbox] {
+        position: absolute;
+    }
+
+    .seat input[type=checkbox]:checked + label {
+        background: green;
+    }
+
+    .seat input[type=checkbox]:disabled + label {
+        background: gray;
+    }

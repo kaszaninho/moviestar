@@ -1,0 +1,38 @@
+﻿@using DatabaseAPI.Models.CinemaMovie;
+
+@{
+    ViewData["Title"] = "Screenings";
+}
+
+@{
+    var movies = ViewBag.Movies;
+    Dictionary<Movie, List<Screening>> movieWithScreenings = ViewBag.MoviesWithScreenings;
+}
+
+<h4>@DateTime.Now.ToShortDateString()</h4>
+
+<div class="container">
+    @foreach (var movie in movieWithScreenings.Keys)
+    {
+        <div class="col-md-6 d-flex card">
+            <div class="card-header">
+                <label>@movie.Name</label>
+            </div>
+            <div class="card-body">
+                @foreach (var screening in movieWithScreenings.GetValueOrDefault(movie))
+                {
+                    <form asp-controller="Movie" asp-action="ChooseSeat" asp-route-screeningId="@screening.Id">
+                        <button class="btn-dark btn m-2">@screening.StartDate.Value.ToString("HH:mm")</button>
+                    </form>
+                }
+            </div>
+        </div>
+    }
+
+
+
+    <!--
+    There will be list of the movies with screenings on this date
+
+    -->
+</div>

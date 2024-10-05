@@ -1,0 +1,8 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.ScreeningSeat;
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(screeningSeat => screeningSeat.Screening)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(screeningSeat => screeningSeat.Screening.Movie.Name)
+</dd>

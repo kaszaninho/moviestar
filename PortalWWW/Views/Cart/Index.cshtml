@@ -1,0 +1,42 @@
+﻿@model PortalWWW.Models.CartInformation
+
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="container">
+    <p>The cart</p>
+</div>
+<div class="container">
+    @if (Model.CartElements.Count() == 0)
+    {
+        <p>The cart is empty! Please find some nice movie first.</p>
+    }
+    else
+    {
+        <div class="container">
+            @foreach (var element in Model.CartElements)
+            {
+                <div class="col-md-6 d-flex card">
+                    <div class="card-header">
+                        <p>@element.ScreeningSeat.Screening.Movie.Name</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Duration - @element.ScreeningSeat.Screening.Movie.Duration</p>
+                        <p>Date - @element.ScreeningSeat.Screening.StartDate.Value.ToString("dd:MM:yyyy")</p>
+                        <p>Start - @element.ScreeningSeat.Screening.StartDate.Value.ToString("HH:mm")</p>
+                        <p>End - @element.ScreeningSeat.Screening.EndDate.Value.ToString("HH:mm")</p>
+                        <p>Seat - @element.ScreeningSeat.Name</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <p>Total Price: @Model.PriceTotal zł</p>
+
+        <form asp-controller="Cart" asp-action="ChoosePayment" method="post">
+            <button type="submit" class="btn btn-outline-dark">Go to payment</button>
+        </form>
+    }
+</div>
