@@ -8,9 +8,7 @@
 <section class="hero">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 d-flex align-items-center">
-                <img class="img-fluid" src="~/css/photos/LOGO.png" />
-            </div>
+ 
             <div class="col-md-6 align-items-center">
                 <h2>Welcome to MovieStar Cinema</h2>
                 <p>Discover the latest movies and book your tickets now!</p>
@@ -19,9 +17,9 @@
     </div>
 </section>
 
-<section class="latest-news">
-    <label class="form-label" for="movieSelect">Select a Movie:</label>
+<section class="latest-news" style="text-align:center">   
     <form asp-area="Movie" asp-page="">
+        <label class="form-label" for="movieSelect"><b>Select a Movie:</b></label>
         <select id="movieSelect" name="movieSelect" class="user-select-auto">
             <option value="">-- Select a Movie --</option>
             @foreach (var movie in Model)
@@ -29,10 +27,10 @@
                 <option value="@movie.Id">@movie.Name</option>
             }
         </select>
-        <button class="btn btn-toolbar m-2 border-white">Choose a date</button>
+        <button class="btn btn text-white bg_red rounded-0 border-0">Choose a date</button>
     </form>
 </section>
-
+<br><br>
 <section id="carouselSection" class="align-content-center m-1">
     <div class="container">
         <div class="row">
