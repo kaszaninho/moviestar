@@ -41,7 +41,7 @@
         </nav>
     </header>
     <div class="container">
-        <div class="sidebar">
+        <div class="sidebar overflow-auto">
             <div class="sidebar-header">
                 <h2>My Sidebar</h2>
             </div>
@@ -162,36 +162,37 @@
             @await RenderSectionAsync("Scripts", required: false)
             @await RenderSectionAsync("AdditionalContent", required: false)
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Ensure all submenus are hidden by default
-                var submenus = document.querySelectorAll('.submenu');
-                submenus.forEach(function (submenu) {
-                    submenu.style.display = 'none';
-                });
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ensure all submenus are hidden by default
+            var submenus = document.querySelectorAll('.submenu');
+            submenus.forEach(function (submenu) {
+                submenu.style.display = 'none';
+            });
 
-                var menuItems = document.querySelectorAll('.menu-item.has-submenu > a');
+            var menuItems = document.querySelectorAll('.menu-item.has-submenu > a');
 
-                menuItems.forEach(function (item) {
-                    item.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        var parent = this.parentElement;
-                        console.log('Clicked on:', parent);
+            menuItems.forEach(function (item) {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var parent = this.parentElement;
+                    console.log('Clicked on:', parent);
 
-                        // Toggle the active class
-                        parent.classList.toggle('active');
-                        console.log('Active class toggled.');
+                    // Toggle the active class
+                    parent.classList.toggle('active');
+                    console.log('Active class toggled.');
 
-                        // Find the direct child submenu and toggle its display
-                        var submenu = parent.querySelector(':scope > .submenu');
-                        if (submenu) {
-                            console.log('Found submenu:', submenu);
-                            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-                            console.log('Submenu display toggled to:', submenu.style.display);
-                        }
-                    });
+                    // Find the direct child submenu and toggle its display
+                    var submenu = parent.querySelector(':scope > .submenu');
+                    if (submenu) {
+                        console.log('Found submenu:', submenu);
+                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                        console.log('Submenu display toggled to:', submenu.style.display);
+                    }
                 });
             });
-        </script>
+        });
+    </script>
 </body>
 </html>

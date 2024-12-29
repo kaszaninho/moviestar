@@ -1,4 +1,4 @@
-﻿using DatabaseAPI.Models.CinemaMovie;
+﻿using DatabaseAPI.Models.Helpers;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 
@@ -6,7 +6,7 @@ namespace BusinessLogic
 {
     public static class TicketGenerator
     {
-        public static void GenerateTicket(Ticket ticket)
+        public static void GenerateTicket(TicketInvoiceModel ticket)
         {
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();

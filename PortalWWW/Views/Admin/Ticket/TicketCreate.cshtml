@@ -1,0 +1,13 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.Ticket;
+
+<div class="form-group">
+    <label asp-for="ScreeningSeat" class="control-label"></label>
+    <select asp-for="ScreeningSeatId" class="form-control" asp-items="ViewBag.ScreeningSeat"></select>
+    <span asp-validation-for="ScreeningSeatId" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Invoice" class="control-label"></label>
+    <select asp-for="InvoiceId" class="form-control" asp-items="ViewBag.Invoice"></select>
+    <span asp-validation-for="InvoiceId" class="text-danger"></span>
+</div>

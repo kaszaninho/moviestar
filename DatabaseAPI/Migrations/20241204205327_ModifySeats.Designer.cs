@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Portal.Data.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20241204205327_ModifySeats")]
+    partial class ModifySeats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("AwardMovie", (string)null);
+                    b.ToTable("AwardMovie");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.CartElement", b =>
@@ -65,7 +68,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("ScreeningSeatId");
 
-                    b.ToTable("CartElement", (string)null);
+                    b.ToTable("CartElement");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Coupon", b =>
@@ -107,7 +110,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Coupon", (string)null);
+                    b.ToTable("Coupon");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", b =>
@@ -135,7 +138,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Award", (string)null);
+                    b.ToTable("Award");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Languages", b =>
@@ -163,7 +166,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages", (string)null);
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieFormat", b =>
@@ -191,7 +194,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieFormat", (string)null);
+                    b.ToTable("MovieFormat");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieKeywords", b =>
@@ -219,7 +222,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieKeywords", (string)null);
+                    b.ToTable("MovieKeywords");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieProductionCompany", b =>
@@ -247,7 +250,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieProductionCompany", (string)null);
+                    b.ToTable("MovieProductionCompany");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Subtitles", b =>
@@ -275,7 +278,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subtitles", (string)null);
+                    b.ToTable("Subtitles");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Movie", b =>
@@ -339,7 +342,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Movie", (string)null);
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.MovieReview", b =>
@@ -381,7 +384,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieReview", (string)null);
+                    b.ToTable("MovieReview");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Reservations", b =>
@@ -433,7 +436,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reservations", (string)null);
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Screen", b =>
@@ -464,7 +467,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Screen", (string)null);
+                    b.ToTable("Screen");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Screening", b =>
@@ -508,7 +511,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("ScreenId");
 
-                    b.ToTable("Screening", (string)null);
+                    b.ToTable("Screening");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.ScreeningSeat", b =>
@@ -549,7 +552,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("SeatId");
 
-                    b.ToTable("ScreeningSeat", (string)null);
+                    b.ToTable("ScreeningSeat");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Seat", b =>
@@ -588,7 +591,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("ScreenId");
 
-                    b.ToTable("Seat", (string)null);
+                    b.ToTable("Seat");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Ticket", b =>
@@ -614,8 +617,23 @@ namespace Portal.Data.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("MovieName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RoomNumber")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ScreeningSeatId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("seatCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -623,7 +641,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("ScreeningSeatId");
 
-                    b.ToTable("Ticket", (string)null);
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CoffeeShop.DictionaryModels.TypeOfElementOfMenu", b =>
@@ -651,7 +669,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfElementOfMenu", (string)null);
+                    b.ToTable("TypeOfElementOfMenu");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CoffeeShop.ELementOfMenu", b =>
@@ -687,7 +705,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("TypeOfElementOfMenuId");
 
-                    b.ToTable("ELementOfMenu", (string)null);
+                    b.ToTable("ELementOfMenu");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.AgeRating", b =>
@@ -715,7 +733,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AgeRating", (string)null);
+                    b.ToTable("AgeRating");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.Country", b =>
@@ -743,7 +761,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Country", (string)null);
+                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.Genre", b =>
@@ -771,7 +789,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genre", (string)null);
+                    b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Address", b =>
@@ -822,7 +840,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.BankAccount", b =>
@@ -861,7 +879,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BankAccount", (string)null);
+                    b.ToTable("BankAccount");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.DictionaryModels.PaymentMethod", b =>
@@ -889,7 +907,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentMethod", (string)null);
+                    b.ToTable("PaymentMethod");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.DictionaryModels.WorkPosition", b =>
@@ -917,7 +935,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkPosition", (string)null);
+                    b.ToTable("WorkPosition");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Invoice", b =>
@@ -961,7 +979,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Invoice", (string)null);
+                    b.ToTable("Invoice");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.OpeningHour", b =>
@@ -998,7 +1016,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OpeningHour", (string)null);
+                    b.ToTable("OpeningHour");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Photo", b =>
@@ -1034,7 +1052,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("DirectorId");
 
-                    b.ToTable("Photo", (string)null);
+                    b.ToTable("Photo");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.WorkSchedule", b =>
@@ -1080,7 +1098,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkSchedule", (string)null);
+                    b.ToTable("WorkSchedule");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.Actor", b =>
@@ -1142,7 +1160,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Actor", (string)null);
+                    b.ToTable("Actor");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.Director", b =>
@@ -1199,7 +1217,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Director", (string)null);
+                    b.ToTable("Director");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.UserLevel", b =>
@@ -1230,7 +1248,7 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserLevel", (string)null);
+                    b.ToTable("UserLevel");
                 });
 
             modelBuilder.Entity("LanguagesMovie", b =>
@@ -1245,7 +1263,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("LanguagesMovie", (string)null);
+                    b.ToTable("LanguagesMovie");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1467,7 +1485,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("MovieMovieKeywords", (string)null);
+                    b.ToTable("MovieMovieKeywords");
                 });
 
             modelBuilder.Entity("MovieSubtitles", b =>
@@ -1482,7 +1500,7 @@ namespace Portal.Data.Migrations
 
                     b.HasIndex("SubtitlesId");
 
-                    b.ToTable("MovieSubtitles", (string)null);
+                    b.ToTable("MovieSubtitles");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.User", b =>

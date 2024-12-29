@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
+using DatabaseAPI.Models.Helpers;
 using InvoiceSdk.Models;
 using InvoiceSdk.Models.Payments;
 using InvoiceSdk.Renderer;
@@ -8,8 +9,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PortalWWW.Models;
-using QuestPDF.Fluent;
-using System.IO.Compression;
 
 namespace PortalWWW.Controllers
 {
@@ -35,9 +34,9 @@ namespace PortalWWW.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Cart()
+        public ActionResult Cart()
         {
-            this.HttpContext.Session.Clear();
+            HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
 
@@ -74,6 +73,7 @@ namespace PortalWWW.Controllers
             //save db
 
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
+            var userId = this.dbContext.User.First(x => x.Email == this.HttpContext.User.Identity.Name).Id;
             var cartInformation = new CartInformation
             {
                 CartElements = await cartBusinessLogic.GetCartElements(),
@@ -85,7 +85,7 @@ namespace PortalWWW.Controllers
                 Number = new Random().Next(0, int.MaxValue),
                 InvoiceCurrency = new InvoiceCurrencySymbol(InvoiceCurrency.Euro),
                 Status = InvoiceStatus.Paid,
-                SellerAddress = BusinessLogic.InvoiceGenerator.generateAddressForCinema(),
+                SellerAddress = InvoiceGenerator.generateAddressForCinema(),
                 CustomerAddress = InvoiceGenerator.generateAddressForCustomer("1", "1", "1", "1", "1", "1")
             };
             var dbInvoice = new DatabaseAPI.Models.General.Invoice
@@ -93,32 +93,40 @@ namespace PortalWWW.Controllers
                 InvoiceId = invoice.Id,
                 CreatedAt = DateTime.Now,
                 ModifiedAt = DateTime.Now,
-                IsActive = true
+                IsActive = true,
+                Sum = cartInformation.PriceTotal,
+                PaymentMethodId = paymentMethod,
+                UserId = userId
             };
             var itemsOnInvoice = new List<InvoiceItem>();
             foreach (var element in cartInformation.CartElements)
             {
-                var ticket = new Ticket()
+                var ticketInvoice = new TicketInvoiceModel()
                 {
+                    Id = element.Id,
                     MovieName = element.ScreeningSeat.Screening.Movie.Name,
                     seatCode = element.ScreeningSeat.Name,
                     RoomNumber = element.ScreeningSeat.Screening.Screen.RoomNumber,
                     StartDate = element.ScreeningSeat.Screening.StartDate,
-                    Invoice = dbInvoice
-
                 };
-                TicketGenerator.GenerateTicket(ticket);
+                var ticket = new Ticket()
+                {
+                    ScreeningSeat = element.ScreeningSeat,
+                    ScreeningSeatId = element.ScreeningSeatId,
+                    Invoice = dbInvoice
+                };
+                TicketGenerator.GenerateTicket(ticketInvoice);
                 dbContext.Ticket.Add(ticket);
                 dbContext.ScreeningSeat.First(item => item.Id == element.ScreeningSeat.Id).IsTaken = true;
-                if(itemsOnInvoice.Exists(item => item.Name == ticket.MovieName))
+                if(itemsOnInvoice.Exists(item => item.Name == ticketInvoice.MovieName))
                 {
-                    itemsOnInvoice.First(item => item.Name == ticket.MovieName).Quantity++;
+                    itemsOnInvoice.First(item => item.Name == ticketInvoice.MovieName).Quantity++;
                 }
                 else
                 {
                     itemsOnInvoice.Add(new InvoiceItem()
                     {
-                        Name = ticket.MovieName,
+                        Name = ticketInvoice.MovieName,
                         InvoiceId = invoice.Id,
                         Quantity = 1,
                         UnitPriceWithoutVat = element.ScreeningSeat.Screening.Movie.TicketPrice ?? Decimal.Zero,
@@ -133,8 +141,9 @@ namespace PortalWWW.Controllers
                 InvoiceGenerator.generatePayment(invoice.Id, itemsOnInvoice.Sum(item => item.Quantity * item.UnitPriceWithoutVat))
             };
             IInvoiceRenderer renderer = new InvoiceRenderer();
-            renderer.RenderInvoice(invoice, BusinessLogic.InvoiceGenerator.generateConfiguration()).Generate();
+            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Generate();
             // "C:/Users/pre12/Desktop/Invoice" + new Random().Next(100) + ".pdf"
+            await cartBusinessLogic.ClearCart(cartInformation.CartElements.ToArray());
             return RedirectToAction("Cart");
         }
 

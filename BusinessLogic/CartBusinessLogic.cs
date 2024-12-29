@@ -45,6 +45,12 @@ namespace BusinessLogic
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task ClearCart(CartElement[] elements)
+        {
+            dbContext.CartElement.RemoveRange(elements);
+            await dbContext.SaveChangesAsync();
+        }
+
         // I need to add logic to check if ticket was taken.
         public void AddToCart(ScreeningSeat screeningSeat)
         {

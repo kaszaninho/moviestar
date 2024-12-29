@@ -2,10 +2,7 @@
 
 namespace DatabaseAPI.Models.CinemaMovie
 {
-    /*
-     * TODO: USUNAC
-     * Do USUNIECIA
-     */
+
     public class Seat : DictionaryTable
     {
         public int? Row { get; set; }

@@ -12,6 +12,29 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
         }
 
+        override public async Task<IActionResult> Create(Screening entity)
+        {
+            var movie = await repository.GetDbSet<Movie>().Where(x => x.Id == entity.MovieId)
+                .FirstAsync();
+            var screen = await repository.GetDbSet<Screen>().Where(x => x.Id == entity.ScreenId)
+                .Include(x => x.Seats)
+                .FirstAsync();
+            entity.EndDate = entity.StartDate.Value.AddMinutes(movie.Duration.Value);
+            List<ScreeningSeat> screeningSeats = new List<ScreeningSeat>();
+            foreach (var item in screen.Seats)
+            {
+                screeningSeats.Add(new ScreeningSeat
+                {
+                    IsTaken = false,
+                    IsActive = true,
+                    Screening = entity,
+                    Seat = item,
+                    Name = item.Name
+                });
+            }
+            entity.ScreeningSeats = screeningSeats;
+            return await base.Create(entity);
+        }
         override public async Task<IActionResult> Index()
         {
             var entities = await repository.getDbSet()

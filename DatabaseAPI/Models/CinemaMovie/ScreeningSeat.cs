@@ -5,6 +5,8 @@ namespace DatabaseAPI.Models.CinemaMovie
     public class ScreeningSeat : DictionaryTable
     {
         // taken from seat - row letter / number in row - it'll be Name for a ScreeningSeat
+        public int? SeatId { get; set; }
+        public Seat? Seat { get; set; }
         public int? ScreeningId { get; set; }
         public Screening? Screening { get; set; }
         public bool? IsTaken { get; set; }

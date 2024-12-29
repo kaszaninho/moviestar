@@ -180,5 +180,21 @@ Plany na najblizsze sesje:
 2. ogarnac Role w identity, by zablokowac strone admina tylko dla zalogowanych adminow
 3. Miec ogarniete wszystkie klasy zwiazane z tworzeniem ticketu.
 	Pewnie musze tu ogarnac rowniez
+4. Miec utworzona pelna sciezke tworzenia wszystkiego zwiazanego z kupieniem biletu - dodanie filmu, stworzenie sali, dodanie seansu, 
+dodanie harmonogramu, odtworzenie siedzisk z biletami, dodanie Stripe'a na koniec jako metode platnosci (lub ewentualnie mocking tego)
+oraz móc przejsc cala sciezke kupna biletow
+5. Miec ogarniete wyswietlanie sie siedzisk poprawnie
 
+///
+
+1., 2. zrobione
+Jezeli chodzi o 3. i 4. to mam zrobione dodawanie screening, movie i screen.
+Teraz musze sie zajac dodaniem seat'ow i je polaczyc z konkretnym screenem.
+
+Plan jest taki - jak dodaje screen, to automatycznie dodawane sa seaty defaultowe dla niego (moze okolo 50 seatow?)
+Nastepnie, jak tworzone jest Screening (polaczenie screenu i movie), to:
+1. wybierany jest czas rozpoczeia - czas zakonczenia jest wyliczany automatycznie z czasu filmu
+2. automatycznie tworzone sa screening seaty z polaczonych defaultowych seatow do screenu.
+3. Uzywam screeningSeatow do oznaczania zajetych miejsc na poszczegolny seans
+4. Seaty sa defaultowa baza dla nowych seansow dla danej sali.
 

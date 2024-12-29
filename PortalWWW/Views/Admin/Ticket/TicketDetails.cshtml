@@ -1,0 +1,21 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.Ticket;
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(ticket => ticket.ScreeningSeat)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(ticket => ticket.ScreeningSeat.Name)
+</dd>
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(ticket => ticket.ScreeningSeat.Screening.Movie)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(ticket => ticket.ScreeningSeat.Screening.Movie.Name)
+</dd>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(ticket => ticket.Invoice)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(ticket => ticket.InvoiceId)
+</dd>
