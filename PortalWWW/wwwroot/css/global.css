@@ -10,7 +10,36 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
     max-height: 50px; /* Dostosuj rozmiar logo, jeœli potrzebne */
 }
 
- 
+input[type="date"] {
+    background-color: #f8f9fa; /* Jasne t³o */
+    border: 1px solid #ced4da; /* Szare obramowanie */
+    border-radius: 5px; /* Zaokr¹glone rogi */
+    padding: 10px; /* Wewnêtrzny odstêp */
+    font-size: 16px; /* Rozmiar czcionki */
+}
+.flatpickr-input {
+    background-color: #1e1e1e; /* Match the dark theme of your form */
+    color: #fff; /* Text color for better readability */
+    border: 1px solid #333; /* Border to match the form styling */
+    border-radius: 0.25rem; /* Match Bootstrap's default input style */
+    padding: 0.75rem; /* Consistent padding with other form fields */
+}
+
+.flatpickr-calendar {
+    background-color: #2e2e2e; /* Dark background for the calendar popup */
+    color: #fff;
+}
+
+    .flatpickr-calendar .day {
+        color: #fff;
+        border-radius: 0.25rem;
+    }
+
+        .flatpickr-calendar .day:hover,
+        .flatpickr-calendar .selected {
+            background-color: #007bff; /* Bootstrap primary color */
+            color: #fff;
+        }
 
 /* Pasek wyszukiwania */
 .custom-search-bar {

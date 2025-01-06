@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
+@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
 
 @{
     ViewData["Title"] = "Movies";
@@ -23,11 +23,12 @@
 }
 
 <div class="cointainer">
-    <div class="latest-news">
+    <div class="latest-news" style="text-align:center">
+       
         <form asp-controller="Movie" asp-action="ChooseMovieBasedOnDate" method="post">
-            <label class="form-label" for="movieSelect">Select a Movie:</label>
+            <label class="form-label" for="movieSelect">Select a Date for the Movie:</label>
             <input type="text" id="datepicker" name="selectedDate">
-            <button type="submit" class="btn btn-toolbar m-2 border-white">Choose a date</button>
+            <button type="submit" class="btn text-white bg_red rounded-0 border-0">Choose a date</button>
         </form>
     </div>
 </div>
