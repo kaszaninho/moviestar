@@ -6,15 +6,18 @@ Author URI: https://www.templateonweb.com/
 Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
 */
 /* Stylizacja logo */
+.h2 {
+color: white;
+}
 .logo-photo {
-    max-height: 50px; /* Dostosuj rozmiar logo, jeœli potrzebne */
+    max-height: 50px; /* Dostosuj rozmiar logo, jeï¿½li potrzebne */
 }
 
 input[type="date"] {
-    background-color: #f8f9fa; /* Jasne t³o */
+    background-color: #f8f9fa; /* Jasne tï¿½o */
     border: 1px solid #ced4da; /* Szare obramowanie */
-    border-radius: 5px; /* Zaokr¹glone rogi */
-    padding: 10px; /* Wewnêtrzny odstêp */
+    border-radius: 5px; /* Zaokrï¿½glone rogi */
+    padding: 10px; /* Wewnï¿½trzny odstï¿½p */
     font-size: 16px; /* Rozmiar czcionki */
 }
 .flatpickr-input {
@@ -44,12 +47,12 @@ input[type="date"] {
 /* Pasek wyszukiwania */
 .custom-search-bar {
     flex-grow: 1;
-    max-width: 400px; /* Ustaw maksymaln¹ szerokoœæ, aby zajmowa³ wiêcej miejsca */
-    margin-left: auto; /* Wyrównanie po prawej stronie */
+    max-width: 400px; /* Ustaw maksymalnï¿½ szerokoï¿½ï¿½, aby zajmowaï¿½ wiï¿½cej miejsca */
+    margin-left: auto; /* Wyrï¿½wnanie po prawej stronie */
 }
 
 .search-input {
-    width: 100%; /* Ustawia pe³n¹ szerokoœæ pola wyszukiwania */
+    width: 100%; /* Ustawia peï¿½nï¿½ szerokoï¿½ï¿½ pola wyszukiwania */
     color: white;
     padding: 0.5rem;
     font-size: 1rem;

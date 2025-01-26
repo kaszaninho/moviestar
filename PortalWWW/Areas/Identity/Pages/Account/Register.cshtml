@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model RegisterModel
 
 <div class="container mt-5">
@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="card shadow-lg border-0" style="background-color: #191a1d;">
                 <div class="card-body p-5">
-                    <h2 class="card-title text-center mb-4">Register</h2>
+                    <h2 class="card-title text-center mb-4" style="color:white" ;>Register</h2>
 
 
                     <form id="registerForm" method="post">
@@ -91,11 +91,11 @@
                             </div>
                         </div><br />
                         <button type="submit" class="btn btn-primary btn-lg w-100" id="registerSubmit" disabled>Sign up</button>
-                        <br></br>
+                        <br> 
                     </form>
 
                     <section>
-                        <h3 class="text-center">Use another service to register.</h3>
+                        <h3 class="text-center" style="color:white" ;>Use another service to register.</h3>
                         <hr />
                         @{
                             if ((Model.ExternalLogins?.Count ?? 0) == 0)

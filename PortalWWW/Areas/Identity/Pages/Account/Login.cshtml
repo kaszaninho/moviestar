@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model LoginModel
 
 @{
@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="card shadow-lg border-0" style="background-color: #191a1d;">
                 <div class="card-body p-5">
-                    <h2 class="card-title text-center mb-4">Login</h2>
+                    <h2 class="card-title text-center mb-4" style="color:white";>Login</h2>
                     <section>
                         <form id="account" method="post">
                             <hr />
@@ -51,7 +51,7 @@
                 <div class="container mt-5">
                     <div class="row justify-content-center">
                         <section>
-                            <h3>Use another service to log in.</h3>
+                            <h3 style="color:white" ;>Use another service to log in.</h3>
                             <hr />
                             @{
                                 if ((Model.ExternalLogins?.Count ?? 0) == 0)

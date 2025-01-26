@@ -1,4 +1,4 @@
-﻿@using DatabaseAPI.Models.CinemaMovie;
+@using DatabaseAPI.Models.CinemaMovie;
 @model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>;
 
 
@@ -64,7 +64,16 @@
         });
     });
 </script>
+<section class="hero">
+    <div class="container">
+        <div class="row">
 
+            <div class="col-md-6 align-items-center">
+                <h2>Screenings</h2>
+             </div>
+        </div>
+    </div>
+</section>
 <div class="container">
     <div class="row">
         <button type="submit" id="ShowMoviesList" class="btn btn-toolbar m-2 border-white">Show Movies</button>
