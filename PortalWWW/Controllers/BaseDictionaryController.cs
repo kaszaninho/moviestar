@@ -24,6 +24,13 @@ namespace PortalWWW.Controllers
             return View(entities.ToList());
         }
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<T> something = repository.GetEntityList().ToList();
+            return Json(new { data = something });
+        }
+
         virtual public async Task<IActionResult> Details(int id)
         {
             var entity = await repository.FindEntityAsync(id);

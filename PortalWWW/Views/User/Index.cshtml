@@ -1,0 +1,87 @@
+﻿@using System.Linq;
+@using DatabaseAPI.Models.DictionaryModels;
+@using static PortalWWW.Helpers.GenericCheck;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Register">Create New User</a>
+</p>
+
+<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <script>
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
+        function loadDataTable() {
+            dataTable = $('#tblData').DataTable({
+                "ajax": { url: '/user/getall' },
+                "columns": [
+                    { "data": "firstName" },
+                    { "data": "lastName" },
+                    { "data": "dateOfBirth" },
+                    { "data": "role" },
+                    {
+                        data: { id: 'id', lockoutEnd: "lockoutEnd" },
+                        "render": function (data) {
+                            var today = new Date().getTime();
+                            var lockout = new Date(data.lockoutEnd).getTime();
+                            if (lockout > today) {
+                                var str = `<a onClick=LockUnlock('${data.id}')  class="btn btn-success" style="width:80px" > Unlock </a>`
+                            }
+                            else {
+                                var str = `<a onClick=LockUnlock('${data.id}')   class="btn btn-danger" style="width:80px" > Lock </a>`
+                            }
+                            return `<div class="test-center" style="width:350px"> ${str} <a href="/user/rolemanagement?id=${data.id}"  class="btn btn-primary" > Roles </a> <a href="/user/delete?id=${data.id}"  class="btn btn-primary"> Delete </a>  <a href="/user/details?id=${data.id}"
+                                                    class="btn btn-primary"> Details </a> </div>`
+                        }
+                    }
+                ]
+            })
+        }
+    </script>
+    <script>
+        function LockUnlock(id) {
+            $.ajax({
+                type: "POST",
+                url: 'User/LockUnlock',
+                data: JSON.stringify(id),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.success) {
+                        toastr.success(data.message);
+                        dataTable.ajax.reload();
+                    }
+                }
+            })
+        }
+    </script>
+
+}@*
+                            return `<a asp-action="Edit" asp-route-id=${data}> Edit</a> |
+<a asp-action="Details" asp-route-id=${data}> Details</a> | <a asp-action="Delete" asp-route-id=${data}>Delete</a>` *@
+

@@ -1,4 +1,5 @@
 using DatabaseAPI.Data;
+using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -31,6 +32,7 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseAPIContext>()
     .AddDefaultTokenProviders()
+    .AddUserManager<UserManager<IdentityUser>>()
     .AddRoles<IdentityRole>();
 
 builder.Services.AddRazorPages();
