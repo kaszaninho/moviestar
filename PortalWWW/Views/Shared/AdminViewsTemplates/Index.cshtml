@@ -7,6 +7,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     Type entityType = ViewData["type"] as Type;
+    string entityEndpoint = ViewData["entityEndpoint"] != null ? ViewData["entityEndpoint"].ToString() : entityType.Name.ToLower();
     // Get the list of columns, excluding collections and Id fields
     var columnList = entityType.GetProperties()
         .Where(prop => !IsGenericCollection(prop.PropertyType))
@@ -46,7 +47,7 @@
     <script>
         function loadDataTable() {
             const myArray = @Html.Raw(Json.Serialize(columnList));
-            const modelType = "@entityType.Name.ToLower()";
+            const modelType = "@entityEndpoint";
             expectedpayload = [];
 
             myArray.forEach((item, index) => {

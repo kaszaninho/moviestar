@@ -147,9 +147,14 @@ namespace PortalWWW.Areas.Identity.Pages.Account
 
             [Display(Name = "Country")]
             public int CountryId { get; set; }
+
+
+            [Display(Name = "Role")]
+            public string RoleName { get; set; }
         }
 
         public List<SelectListItem> Countries { get; set; }
+        public List<SelectListItem> RoleList { get; set; }
 
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -177,10 +182,10 @@ namespace PortalWWW.Areas.Identity.Pages.Account
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None); 
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.MiddleName = Input.MiddleName; 
+                user.MiddleName = Input.MiddleName;
                 user.DateOfBirth = DateTime.ParseExact(Input.DateOfBirth, DATE_FORMAT, null).Date;
                 user.Address = address;
                 user.UserLevelId = dbContext.UserLevel.First(x => x.Name.Equals("1")).Id;
@@ -189,11 +194,19 @@ namespace PortalWWW.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    var clientRole = await _roleManager.FindByNameAsync("Client");
+                    var role = await _roleManager.FindByNameAsync(Input.RoleName);
 
-                    if (clientRole != null)
+                    if (role != null)
                     {
-                        IdentityResult roleresult = await _userManager.AddToRoleAsync(user, clientRole.Name);
+                        IdentityResult roleresult = await _userManager.AddToRoleAsync(user, role.Name);
+                    }
+                    else
+                    {
+                        var clientRole = await _roleManager.FindByNameAsync("Client");
+                        if (clientRole != null)
+                        {
+                            IdentityResult roleresult = await _userManager.AddToRoleAsync(user, clientRole.Name);
+                        }
                     }
 
                     _logger.LogInformation("User created a new account with password.");
@@ -216,7 +229,14 @@ namespace PortalWWW.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole("Admin"))
+                        {
+                            TempData["success"] = "New user created successfully";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -228,7 +248,8 @@ namespace PortalWWW.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
 
             // Load the select list
-            Countries = dbContext.Country.Select(country => new SelectListItem { Value = country.Id + "", Text = country.Name }).ToList();          
+            Countries = dbContext.Country.Select(country => new SelectListItem { Value = country.Id + "", Text = country.Name }).ToList();
+            RoleList = dbContext.Roles.Select(role => new SelectListItem { Value = role.Name.ToString(), Text = role.Name }).ToList();
             return Page();
         }
 
