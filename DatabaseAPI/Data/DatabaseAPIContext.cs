@@ -2,6 +2,7 @@
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.CoffeeShop;
 using DatabaseAPI.Models.CoffeeShop.DictionaryModels;
+using DatabaseAPI.Models.CRM;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.General.DictionaryModels;
@@ -54,6 +55,7 @@ namespace DatabaseAPI.Data
         public DbSet<Invoice>? Invoice { get; set; }
         public DbSet<ScreeningSeat>? ScreeningSeat { get; set;}
         public DbSet<CartElement>? CartElement { get; set; }
+        public DbSet<Website>? Website { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
