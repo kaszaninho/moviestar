@@ -1,4 +1,4 @@
-﻿@using DatabaseAPI.Models.CinemaMovie;
+@using DatabaseAPI.Models.CinemaMovie;
 @model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>;
 
 
@@ -64,57 +64,48 @@
         });
     });
 </script>
+<section class="hero">
+    <div class="container">
+        <div class="row">
 
-<div class="container">
-    <div class="row">
-        <button type="submit" id="ShowMoviesList" class="btn btn-toolbar m-2 border-white">Show Movies</button>
-        <button type="submit" id="ShowScreeningsList" class="btn btn-toolbar m-2 border-white">Choose a screening</button>
-    </div>
-    <div id="ShowScreeningsDiv" class="container" style="display: none;">
-        <section class="latest-news">
-            <div class="row">
-                <section>
-                    <label class="form-label" for="movieSelect">Select a Movie:</label>
-                    <select id="movieSelect" name="movieSelect" class="user-select-auto">
-                        <option value="">-- Select a Movie --</option>
-                        @foreach (var movie in Model)
-                        {
-                            <option value="@movie.Id">@movie.Name</option>
-                        }
-                    </select>
-                </section>
-                <section>
-                    <label class="form-label" for="dateSelect">Select a Date:</label>
-                    <input type="text" id="datepicker" name="dateSelect">
-                </section>
-            </div>
-        </section>
-        <div id="screeningsContainer" class="container" style="display: none;">
-            <!-- Content to show screenings for the chosen movie -->
+            <div class="col-md-6 align-items-center">
+                <h2>Screenings</h2>
+             </div>
         </div>
     </div>
-    <div id="ShowMoviesDiv" class="container" style="display: none;">
-        <div class="container">
-            @foreach (var movie in Model)
-            {
-                <div class="col-md-6 d-flex card">
-                    <div class="card-header">
-                        <p>@movie.Name</p>
-                    </div>
-                    <div class="card-body">
-                        <p>@movie.Description</p>
-                        <p>Duration - @movie.Duration</p>
-                        <div id="screeningsContainerForEachMovie" class="container">
-                            @foreach (var screening in movie.Screenings)
-                            {
-                                <form asp-controller="Movie" asp-action="ChooseSeat" asp-route-screeningId="@screening.Id">
-                                    <button class="btn-dark btn m-2">@screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")</button>
-                                </form>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
+</section>
+<div class="container mt-4 mb-4">
+     <div class="row">
+        <button type="submit" id="ShowMoviesList" class="btn btn-outline-info btn-sm me-3 mb-2">Show Movies</button>
+        <button type="submit" id="ShowScreeningsList" class="btn btn-outline-info btn-sm mb-2">Choose a screening</button>
     </div>
 </div>
+
+<div id="ShowMoviesDiv" class="container mt-3" style="display: none;">
+    <div class="container">
+        @foreach (var movie in Model)
+        {
+            <div class="col-md-6 d-flex card mt-3">
+                <div class="card-header">
+                    <p class="text-dark"><strong>@movie.Name</strong></p>
+                </div>
+                <div class="card-body">
+                    <p class="text-dark">@movie.Description</p>
+                    <p class="text-dark">Duration - @movie.Duration</p> <!-- Zmieniony kolor tekstu -->
+                    <div id="screeningsContainerForEachMovie" class="container">
+                        @foreach (var screening in movie.Screenings)
+                        {
+                            <form asp-controller="Movie" asp-action="ChooseSeat" asp-route-screeningId="@screening.Id">
+                                <button class="btn btn-info btn-sm mb-2">
+                                    @screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<br> 

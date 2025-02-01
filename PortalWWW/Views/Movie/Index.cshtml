@@ -1,7 +1,8 @@
-﻿@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
+@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
 
 @{
     ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts
 {
@@ -16,21 +17,36 @@
             crossorigin="anonymous"></script>
     <!-- JavaScript code to initialize datepicker -->
     <script>
-        $(function () {
-            $("#datepicker").datepicker();
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#datepicker", {
+                dateFormat: "d/m/Y", // Adjust the format to your locale
+                defaultDate: new Date(), // Optional: set a default date
+                allowInput: true,      // Allow manual input if desired
+            });
         });
     </script>
 }
+<section class="hero">
+    <div class="container">
+        <div class="row">
 
-<div class="cointainer">
-    <div class="latest-news">
-        <form asp-controller="Movie" asp-action="ChooseMovieBasedOnDate" method="post">
-            <label class="form-label" for="movieSelect">Select a Movie:</label>
-            <input type="text" id="datepicker" name="selectedDate">
-            <button type="submit" class="btn btn-toolbar m-2 border-white">Choose a date</button>
+            <div class="col-md-6 align-items-center">
+                <h2>Movies played on Date</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="latest-news text-center">
+        <form asp-controller="Movie" asp-action="ChooseMovieBasedOnDate" method="post"
+              class="d-flex align-items-center justify-content-center gap-2">
+            <label class="custom-label" for="datepicker">Select a Date for the Movie:</label>
+            <input type="text" id="datepicker" name="selectedDate" style="background-color: white; height:40px;">
+            <button type="submit" class="btn custom-button">Choose a date</button>
         </form>
     </div>
 </div>
+
 
 @* Choice of top 3 movies
     I'll need to change to pick not the first 3 added movies, but top 3 movies based on some order

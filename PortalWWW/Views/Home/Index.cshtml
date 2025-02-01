@@ -8,9 +8,7 @@
 <section class="hero">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 d-flex align-items-center">
-                <img class="img-fluid" src="~/css/photos/LOGO.png" />
-            </div>
+ 
             <div class="col-md-6 align-items-center">
                 <h2>Welcome to MovieStar Cinema</h2>
                 <p>Discover the latest movies and book your tickets now!</p>
@@ -19,105 +17,1016 @@
     </div>
 </section>
 
-<section class="latest-news">
-    <label class="form-label" for="movieSelect">Select a Movie:</label>
-    <form asp-area="Movie" asp-page="">
-        <select id="movieSelect" name="movieSelect" class="user-select-auto">
-            <option value="">-- Select a Movie --</option>
-            @foreach (var movie in Model)
-            {
-                <option value="@movie.Id">@movie.Name</option>
-            }
-        </select>
-        <button class="btn btn-toolbar m-2 border-white">Choose a date</button>
-    </form>
+<section class="latest-news text-center">
+	<form asp-area="Movie" asp-page="" class="d-flex align-items-center justify-content-center gap-2">
+		<label class="custom-label" for="movieSelect">Select a Date:</label>
+
+		<select id="movieSelect" name="movieSelect" class="form-select custom-select">
+			<option value="">-- Select a Movie --</option>
+			@foreach (var movie in Model)
+			{
+				<option value="@movie.Id">@movie.Name</option>
+			}
+		</select>
+
+		<button class="btn custom-button">Select</button>
+	</form>
 </section>
 
-<section id="carouselSection" class="align-content-center m-1">
-    <div class="container">
-        <div class="row">
-            <div class="container col-md-6 d-flex justify-content-center align-items-center text-center">
-                <h3>Latest added movies to the cinema</h3>
-            </div>
-            <div class="col-md-6 d-flex justify-content-center">
-                <div id="carouselExampleIndicators" class="carousel slide col-md-6" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://via.placeholder.com/200x300?text=Movie+1" class="d-block" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/200x300?text=Movie+2" class="d-block" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/200x300?text=Movie+3" class="d-block" alt="...">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+<br><br>
+<!-- Sekcja karuzeli -->
+<section id="center" class="center_home">
+	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="img/1.png" class="d-block w-100" alt="Slide 1">
+				<div class="carousel-caption d-md-block">
+					<h1 class="font_60">Killing dead man</h1>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="img/2.png" class="d-block w-100" alt="Slide 2">
+				<div class="carousel-caption d-md-block">
+					<h1 class="font_60">Shadow Strike</h1>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="img/3.png" class="d-block w-100" alt="Slide 3">
+				<div class="carousel-caption d-md-block">
+					<h1 class="font_60">Whispers in the Dark</h1>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
 </section>
 
-<section class="featured-movies">
-    <div class="container">
-        <h2>Featured Movies</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Movie 1</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Movie 2</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Movie 3</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+ 
 
-<section class="latest-news">
-    <div class="container">
-        <h2>Latest News</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special Screening Event</h5>
-                        <p class="card-text">Join us for a special screening of the latest blockbuster. Get your tickets now!</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Add more news cards here -->
-        </div>
-    </div>
-</section>
+<!-- Add more news cards here -->
 
+ 		<section id="stream" class="pb-5 pt-4">
+		<div class="container">
+			<div class="row trend_1">
+				 
+				<div class="col-md-6 col-6">
+					<div class="trend_1r text-end">
+						<h6 class="mb-0"><a class="button" href="#"> View All</a></h6>
+					</div>
+				</div>
+			</div>
+ 
+
+			<div class="row trend_2 mt-4">
+				<div id="carouselExampleCaptions4" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+						<button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+					</div>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<div class="trend_2i row">
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/4.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										 
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/5.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">The Last Goodbye</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/6.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">Oops! Wrong Wedding</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/7.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">Bulletproof Vengeance</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/8.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">A Life Unwritten</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="trend_2i row">
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/9.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">My Crazy Boss</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/10.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">Silent Screams</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/11.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">Crossroads of Fate</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/12.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">The Clumsy Detective</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="col">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+												<a href="#"><img src="img/13.png" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+										<h5><a class="col_red" href="#">Beyond the Rift</a></h5>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">2 Views</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+	</div>
+
+ 	</section>
+	 
+	 
+
+@*That is the palce we are expcting big carusel *@
+
+ <section id="popular" class="pt-4 pb-5 bg_grey">
+		<div class="container">
+			<div class="row trend_1">
+				<div class="col-md-12">
+					<div class="trend_1l">
+						<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Latest  <span class="col_red">News</span></h4>
+					</div>
+				</div>
+			</div>
+			<div class="row popular_1 mt-4">
+				<ul class="nav nav-tabs  border-0 mb-0">
+					<li class="nav-item">
+						<a href="#home" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+							<span class="d-md-block">JUST ARRIVED</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+							<span class="d-md-block">BEST SELLER</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+							<span class="d-md-block">TV SHOWS</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#settings_o" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+							<span class="d-md-block">FREE MOVIES</span>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="popular_2 row mt-4">
+				<div class="tab-content">
+					<div class="tab-pane active" id="home">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/18.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="#">Semp Porta</a></h5>
+											<h6>Horror, Thriller</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 49m</span></h6>
+										<p>Deep in the heart of a forgotten forest lies The Cursed Hollow, a place whispered about in fearful legends. When a group of thrill-seekers stumbles upon its eerie, abandoned bridge, they unknowingly awaken an ancient darkness. Strange symbols appear on the trees, ghostly figures emerge from the mist, and the past refuses to stay buried.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/19.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Stormbreakers</a></h5>
+											<h6>Si-Fi, Epic</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 2h 29m</span></h6>
+										<p>In a war that transcends time, elite warriors from different eras—futuristic soldiers, medieval knights, and ancient warriors—clash in an all-out battle for control of history itself. As a rogue faction manipulates the time stream, a small team of rebels must travel through different timelines to restore balance before the past, present, and future collapse into chaos.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/20.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Chrono Wars</a></h5>
+											<h6>Si-Fi, Thriller</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 59m</span></h6>
+										<p>When a powerful time anomaly disrupts history, warriors from different eras—advanced cyber-soldiers, samurai, and Roman legions—are thrown into an epic war across time. As reality begins to fracture, a resistance force must navigate shifting timelines, battling enemies from the past and future to prevent total annihilation. .</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/14.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Love, Lies & Lattes</a></h5>
+											<h6>Love, Comedy</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 48m</span></h6>
+										<p>In a cozy, dimly lit café, secrets brew as hot as the coffee. When a charming writer falls for a mysterious woman, their romance ignites with passion, but hidden truths threaten to spill over. As desires intensify and betrayals unravel, love becomes a dangerous game where pleasure and deception go hand in hand.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="profile">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/15.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Rogue Assassins</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 49m</span></h6>
+										<p>When a team of elite assassins is betrayed by their own organization, they become the most wanted fugitives in the world. Hunted by their former allies and a ruthless government task force, they must uncover the truth behind the conspiracy that turned them into targets. As bullets fly and alliances are shattered, their only mission now is survival—and revenge.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/16.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="#">Eget Diam</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 2h 29m</span></h6>
+										<p>On a distant, war-torn planet, humanity’s final colony stands on the brink of extinction. As an alien force closes in and supplies dwindle, a small band of survivors must fight to protect their last refuge. With time running out and no reinforcements in sight, they must make a choice—flee into the unknown or make a last stand against impossible odds.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/17.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="#">Quis Sem</a></h5>
+											<h6>Comedy, Drama</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 59m</span></h6>
+										<p>When a struggling musician and a lost dreamer cross paths under a sky full of falling stars, their lives change forever. As they navigate love, heartbreak, and the pursuit of their dreams, fate constantly pulls them together and tears them apart. With time running out and choices to be made, they must decide whether to chase the stars or let them fade away.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/21.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Bloodline Vendetta</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 48m</span></h6>
+										<p>When a former agent uncovers a dark secret about his family, he embarks on a path of brutal revenge.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="settings">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/22.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Steel Phantom </a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 49m</span></h6>
+										<p>
+											A mysterious mercenary with cybernetic abilities takes justice into his own hands.
+										</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div> 
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/23.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Shadow Protocol</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 2h 29m</span></h6>
+										<p>A race against time to stop a global conspiracy and reveal the truth</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/24.png
+" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Void Hunters</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 59m</span></h6>
+										<p>A group of explorers ventures into a forgotten galaxy and discovers a threat that could destroy the universe.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/25.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">Omega Rift</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 48m</span></h6>
+										<p>A groundbreaking artificial intelligence experiment leads to the opening of a portal to another dimension.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="tab-pane" id="settings_o">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/18.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+										<h5><a class="col_red" href="#">The Cursed Hollow</a></h5>
+											<h6>Horror</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 49m</span></h6>
+										<p>Hidden deep within an ancient forest lies The Cursed Hollow, a place shrouded in mystery and fear. When a group of friends dares to explore its abandoned ruins, they unknowingly awaken a dark force that has been waiting for centuries. Strange symbols appear, whispers echo through the trees, and one by one, they begin to disappear</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/19.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="#">Stormbreakers</a></h5>
+											<h6>Si-Fi, Thriller</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 2h 29m</span></h6>
+										<p>When an elite team of storm chasers uncovers a secret government experiment manipulating the weather, they find themselves in the eye of the deadliest storm ever created. As hurricanes, lightning storms, and tidal waves rage across the world, the team must race against time to shut down the technology before nature’s fury becomes unstoppable</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+													<a href="#"><img src="img/20.png" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="#">Quis Sem</a></h5>
+											<h6>Action, Si-Fi</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 59m</span></h6>
+										<p>When a rogue faction disrupts the time stream, warriors from different eras—cybernetic soldiers, medieval knights, and ancient warlords—are thrown into an all-out war across history. As the past collides with the future, a team of time guardians must restore balance before reality shatters.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="img/21.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+												<ul>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-link col_red"></i></a></li>
+													<li class="d-inline-block"><a href="#"><i class="fa fa-search col_red"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="#">Ipsum Lorem</a></h5>
+											<h6>Action, Thriller</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : 2022 <span class="ms-2">Runtime: 1h 48m</span></h6>
+											<p>Four waves of increasingly deadly alien attacks have left most of  ruin. Cassie is on the run, desperately trying to save her younger brother.</p>
+											<h6 class="mb-0"><a class="button" href="#"> More Info - Trailer</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+ 
+
+	<section id="play">
+		<div class="play_m clearfix">
+			<div class="container">
+				<div class="row trend_1">
+					<div class="col-md-12">
+						<div class="trend_1l">
+							<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Top   <span class="col_red">10 Playlist</span></h4>
+						</div>
+					</div>
+				</div>
+				<div class="play1 row mt-4 bg_grey pt-3 pb-3">
+					<div class="col-md-9">
+						<div class="play1l">
+							<div class="grid clearfix">
+								<figure class="effect-jazz mb-0">
+								<a href="#"><img src="img/2.png" class="w-100" height="450" alt="abc"></a>
+								</figure>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 ps-0">
+						<div class="play1r">
+							<div class="play1ri">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/4.png" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/5.png" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/6.png" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/7.png" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/8.png" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/9.png" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="play2 row mt-4">
+					<div class="col-md-4 p-0">
+						<div class="play2l">
+							<div class="grid clearfix">
+								<figure class="effect-jazz mb-0">
+									<a href="#"><img src="img/31.jpg" height="515" class="w-100" alt="abc"></a>
+								</figure>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8 p-0">
+						<div class="play2r  bg_grey p-4">
+							<h5>
+								<span class="col_red">BEST MOVIE OF THE MONTH :</span> LIAM NEESON <span class="col_red">BLACKLIGHT</span><br>
+								THEY’RE GONNA NEED MORE MEN
+							</h5>
+							<h5 class="mt-3">Thriller</h5>
+							<hr class="line">
+							<p class="mt-3">A humble businessman with a buried past seeks justice when his daughter is killed in an act of terrorism. A cat-and-mouse conflict ensues with a government official, whose past may hold clues to the killers' identities.</p>
+							<div class="play2ri row mt-4">
+								<div class="col-md-6">
+									<div class="play2ril">
+										<h6 class="fw-normal">
+											Running Time: <span class="pull-right">1 hr 50 min</span>
+										</h6>
+										<hr class="hr_1">
+										<h6 class="fw-normal">
+											Genre: <span class="pull-right">Action, Thriller</span>
+										</h6>
+										<hr class="hr_1">
+										<h6 class="fw-normal">
+											Director: <span class="pull-right">Eget Nulla</span>
+										</h6>
+										<hr class="hr_1">
+										<h6 class="fw-normal">
+											Stars: <span class="pull-right">Semp Port, Dapibus Diam</span>
+										</h6>
+										<hr class="hr_1">
+										<h6 class="fw-normal">
+											Release Date: <span class="pull-right">2023</span>
+										</h6>
+										<hr class="hr_1 mb-0">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="play2rir">
+										<h6 class="fw-normal">Imdb - 9.2</h6>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width: 92%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<h6 class="fw-normal mt-3">Semper - 7.3</h6>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width: 73%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<h6 class="fw-normal mt-3">Dapibus - 9.0</h6>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<h6 class="fw-normal mt-3">Ipsum - 8.3</h6>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width: 83%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<h6 class="fw-normal mt-3">Lorem - 7.9</h6>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width: 79%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>  
