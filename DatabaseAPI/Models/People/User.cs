@@ -2,6 +2,7 @@
 using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.General;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DatabaseAPI.Models.People
 {
@@ -18,5 +19,7 @@ namespace DatabaseAPI.Models.People
         public int UserProgressToNextLevel { get; set; }
         public List<Movie> FavouriteMovies { get; set; }
         public List<Actor> FavouriteActors { get; set; }
+        [NotMapped]
+        public string Role { get; set; }
     }
 }

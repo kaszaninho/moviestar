@@ -1,0 +1,95 @@
+﻿@using PortalWWW.Helpers
+@using static PortalWWW.Helpers.GenericCheck;
+@model DatabaseAPI.Models.People.User;
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Model.FirstName @Model.LastName</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.MiddleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.MiddleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.DateOfBirth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Role)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Email)
+        </dd>
+        <p>Address</p>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Address.StreetName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Address.StreetName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Address.HouseNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Address.HouseNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Address.ApartmentNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Address.ApartmentNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Address.EirCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Address.EirCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Address.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Address.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(user => user.Address.Country.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(user => user.Address.Country.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

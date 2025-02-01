@@ -198,3 +198,7 @@ Nastepnie, jak tworzone jest Screening (polaczenie screenu i movie), to:
 3. Uzywam screeningSeatow do oznaczania zajetych miejsc na poszczegolny seans
 4. Seaty sa defaultowa baza dla nowych seansow dla danej sali.
 
+{
+    "DatabaseAPIContext": "Server=KASZOLANDIA\\LOCALDATABASE;Database=MovieStarDatabase;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true",
+    "DatabaseAPIContextConnection": "Server=(localdb)\\mssqllocaldb;Database=PortalWWW;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }

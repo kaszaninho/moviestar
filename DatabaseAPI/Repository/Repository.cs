@@ -26,6 +26,11 @@ namespace DatabaseAPI.Repository
             return await dbSet.ToListAsync();
         }
 
+        public IEnumerable<T> GetEntityList()
+        {
+            return dbSet.ToList();
+        }
+
         public async Task<int> AddEntityAsync(T entity)
         {
             entity.ModifiedAt = DateTime.Now;

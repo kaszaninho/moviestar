@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MovieStar Cinema</title>
+    <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/css/custom_style.css" rel="stylesheet">
+    <link href="/css/sibebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/css/global.css" rel="stylesheet">
@@ -90,7 +95,35 @@
                         </ul>
                     </div>
                 </li>
-                <!-- Logout -->
+
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <i class="fas fa-user"></i> People
+                    </a>
+                    <ul class="submenu">
+                        <li class="menu-item has-submenu">
+                            <a href="#">Dictionary Models</a>
+                            <ul class="submenu">
+                            </ul>
+                        </li>
+                        <li class="menu-item has-submenu">
+                            <a href="#">Compound Models</a>
+                            <ul class="submenu">
+                                <li><a asp-controller="Actor" asp-action="Index">Actors</a></li>
+                                <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                                <li><a asp-controller="Invoice" asp-action="Index">Invoices</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <i class="fas fa-cog"></i> Cinema
+                    </a>
+                    <ul class="submenu">
+                    </ul>
+                </li>
                 <li>
                     <a href="#" class="d-block text-decoration-none py-2 px-3 text-light">
                         <i class="fas fa-sign-out-alt me-2"></i> Logout
@@ -98,9 +131,16 @@
                 </li>
             </ul>
         </div>
+            <partial name="_Notification" />
         <!-- Content -->
         <div class="content flex-grow-1">
             @RenderBody()
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            @await RenderSectionAsync("AdditionalContent", required: false)
         </div>
     </div>
 

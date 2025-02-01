@@ -24,6 +24,13 @@ namespace PortalWWW.Controllers
             return View(entities.ToList());
         }
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<T> entities = repository.GetEntityList().ToList();
+            return Json(new { data = entities });
+        }
+
         virtual public async Task<IActionResult> Details(int id)
         {
             var entity = await repository.FindEntityAsync(id);
@@ -36,6 +43,8 @@ namespace PortalWWW.Controllers
         [HttpPost]
         virtual public async Task<IActionResult> Create(T entity)
         {
+            entity.CreatedAt = DateTime.Now;
+            entity.ModifiedAt = DateTime.Now;
             await repository.AddEntityAsync(entity);
             return RedirectToAction("Index");
         }
@@ -66,6 +75,7 @@ namespace PortalWWW.Controllers
                 ViewData["type"] = typeof(T);
                 return View(entity);
             }
+            entity.ModifiedAt = DateTime.Now;
             await repository.UpdateEntityAsync(entity);
             return RedirectToAction(nameof(Index));
         }

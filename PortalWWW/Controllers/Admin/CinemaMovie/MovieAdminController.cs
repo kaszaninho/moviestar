@@ -17,15 +17,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
 
         override public async Task<IActionResult> Index()
         {
-            var entities = await repository.getDbSet()
-                .Include(movie => movie.AgeRating)
-                .Include(movie => movie.Country)
-                .Include(movie => movie.Genre)
-                .Include(movie => movie.MovieFormat)
-                .Include(movie => movie.MovieProductionCompany)
-                .ToListAsync();
             ViewData["type"] = typeof(Movie);
-            return View(entities);
+            ViewData["entityEndpoint"] = "movieadmin";
+            return View();
         }
 
 

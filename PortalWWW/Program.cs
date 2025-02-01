@@ -1,4 +1,5 @@
 using DatabaseAPI.Data;
+using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -15,6 +16,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<RazorViewEngineOptions>(options =>
 {
     options.ViewLocationFormats.Add("/Views/Shared/AdminViewsTemplates/{0}.cshtml"); 
+    options.ViewLocationFormats.Add("/Views/Shared/CMSViewsTemplates/{0}.cshtml"); 
     foreach (var directory in Directory.GetDirectories("Views/Admin", "*", SearchOption.AllDirectories))
     {
         options.ViewLocationFormats.Add(directory.Replace("\\", "/") + "/{0}.cshtml");
@@ -31,6 +33,7 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseAPIContext>()
     .AddDefaultTokenProviders()
+    .AddUserManager<UserManager<IdentityUser>>()
     .AddRoles<IdentityRole>();
 
 builder.Services.AddRazorPages();

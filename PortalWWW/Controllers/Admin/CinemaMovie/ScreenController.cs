@@ -29,7 +29,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                         NumberInRow = j,
                         Row = letter,
                         Screen = screen,
-                        Name = letter.ToString() + j
+                        Name = letter.ToString() + j,
+                        CreatedAt = DateTime.Now,
+                        ModifiedAt = DateTime.Now
                     });
                 }
                 letter++;
