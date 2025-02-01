@@ -69,7 +69,85 @@ bottom:0;
     color: #d9534f;
 }
 
-/*********************center_home_end****************/
+/*********************custom select ****************/
+/* Styl dla etykiety (label) */
+.custom-label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.custom-input {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+    /* Styl dla placeholderów - czarny tekst */
+    .custom-input::placeholder {
+        color: black !important;
+        opacity: 1; /* Pe³na widocznoœæ placeholdera */
+    }
+
+    /* Dla przegl¹darek opartych na WebKit (Chrome, Safari) */
+    .custom-input::-webkit-input-placeholder {
+        color: black !important;
+        opacity: 1;
+    }
+
+    /* Dla przegl¹darek opartych na Mozilla (Firefox) */
+    .custom-input::-moz-placeholder {
+        color: black !important;
+        opacity: 1;
+    }
+
+    /* Dla przegl¹darek Microsoft Edge */
+    .custom-input:-ms-input-placeholder {
+        color: black !important;
+        opacity: 1;
+    }
+
+    /* Styl dla focus na input */
+    .custom-input:focus {
+        background-color: white;
+        color: black;
+        border: 2px solid #007bff; /* Bootstrapowy niebieski */
+        outline: none;
+    }
+    /* Styl dla select */
+    .custom-input select {
+        background-color: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+/* Styl dla select (rozwijanego menu) */
+.custom-select {
+    width: 200px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    color: black;
+}
+.custom-select option {
+    color: black; /* Tekst opcji jest czarny */
+    background-color: white; /* T³o opcji */
+}
+
+/* Zmiana koloru zaznaczonej opcji */
+.custom-select option:checked {
+    background-color: azure !important; /* Kolor t³a dla zaznaczonej opcji */
+    color: black !important; /* Tekst pozostaje czarny */
+}
+/* Styl dla przycisku */
+.custom-button {
+    background-color: #d10000;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    padding: 0 15px;
+    color: white;
+}
 
 /*********************trend****************/
 #trend{
