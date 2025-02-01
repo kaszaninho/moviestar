@@ -1,90 +1,61 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MovieStar Cinema</title>
-    <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="/css/custom_style.css" rel="stylesheet">
+
+
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/global.css" rel="stylesheet">
+    <link href="~/css/index.css" rel="stylesheet" asp-append-version="true">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-
 </head>
-<body>
 
-    <!-- ======= Top Bar ======= -->
-    <section id="topbar" class="d-flex align-items-center" style="background-color: lightblue">
-        @await Component.InvokeAsync("TopbarComponent")
-    </section>
-    <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <img class="logo-photo" src="~/css/photos/LOGO.png" />
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <form method="get">
-                                <button asp-controller="Home" asp-action="Index" type="submit" class="btn btn-toolbar">Home</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <form method="get">
-                                <button asp-controller="Movie" asp-action="Index" type="submit" class="btn btn-toolbar">Screenings</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <form method="get">
-                                <button asp-controller="Movie" asp-action="ShowScreeningsForMovie" asp-route-id="0" type="submit" class="btn btn-toolbar">Movies</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <form method="get">
-                                <button asp-controller="Cart" asp-action="Index" type="submit" class="btn btn-toolbar">Cart</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <form method="get">
-                                <button asp-controller="Admin" asp-action="Index" type="submit" class="btn btn-toolbar">Admin</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        <partial name="_LoginPartial" />
-                    </ul>
-                </div>
-                <div class="search-bar vw-50">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search movies by title, genre, or actor" aria-label="Search movies" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="content-center">
+<body>
+    @*Navigation*@
+    @await Component.InvokeAsync("NavigationComponent")
+    @RenderBody()
+    @*Footer*@
+    @await Component.InvokeAsync("FooterComponent")
         <partial name="_Notification" />
 
-                @RenderBody()
+    <script>
+        window.onscroll = function () { myFunction() };
 
+        var navbar_sticky = document.getElementById("navbar_sticky");
+        var sticky = navbar_sticky.offsetTop;
+        var navbar_height = document.querySelector('.navbar').offsetHeight;
 
-                <footer class="footer">
-                    <div class="container">
-                        <p>&copy; 2024 MovieStar Cinema. All rights reserved.</p>
-                    </div>
-                </footer>
+        function myFunction() {
+            if (window.pageYOffset >= sticky + navbar_height) {
+                navbar_sticky.classList.add("sticky")
+                document.body.style.paddingTop = navbar_height + 'px';
+            } else {
+                navbar_sticky.classList.remove("sticky");
+                document.body.style.paddingTop = '0'
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-                @await RenderSectionAsync("Scripts", required: false)
-            </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
+
 </html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
