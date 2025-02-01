@@ -15,77 +15,63 @@
 
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Email" />
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.Email" class="custom-input form-control" autocomplete="username" aria-required="true" placeholder="Email" />
                                             <span asp-validation-for="Input.Email" class="text-danger"></span>
                                         </div>
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.Password" class="custom-input form-control autocomplete="new-password" aria-required="true" placeholder="Password" />
                                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                                            <input asp-for="Input.ConfirmPassword" class="custom-input form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
                                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input asp-for="Input.FirstName" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.FirstName">First Name</label>
+                                            <input asp-for="Input.FirstName" class="custom-input form-control" autocomplete="name"  aria-required="true" placeholder="Name" />
                                             <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                                         </div>
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.MiddleName" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.MiddleName">Middle Name</label>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.MiddleName" class="custom-input form-control" autocomplete="middle name" aria-required="true" placeholder="Middle Name" />
                                             <span asp-validation-for="Input.MiddleName" class="text-danger"></span>
                                         </div>
 
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.LastName" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.LastName">Last Name</label>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.LastName" class="custom-input form-control" autocomplete="last name" aria-required="true" placeholder="Last Name" />
                                             <span asp-validation-for="Input.LastName" class="text-danger"></span>
                                         </div>
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.DateOfBirth" type="text" id="datepicker" class="form-control" placeholder="Select your date of birth">
-                                            <label asp-for="Input.DateOfBirth">Date of Birth</label>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.DateOfBirth" type="text" id="datepicker" class="custom-input form-control" placeholder="Select your date of birth">
                                             <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
                                         </div>
 
                                         <div class="form-floating mb-3">
-                                            <input asp-for="Input.StreetName" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.StreetName">Street Name</label>
+                                            <input asp-for="Input.StreetName" class="custom-input form-control" aria-required="true" placeholder="Street" />
                                             <span asp-validation-for="Input.StreetName" class="text-danger"></span>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input asp-for="Input.HouseNumber" type="number" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.HouseNumber">House Number</label>
+                                            <input asp-for="Input.HouseNumber" type="number" class="custom-input form-control" aria-required="true" placeholder="House Number"/>
                                             <span asp-validation-for="Input.HouseNumber" class="text-danger"></span>
                                         </div>
 
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.ApartmentNumber" type="number" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.ApartmentNumber">Apartment Number</label>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.ApartmentNumber" type="number" class="custom-input form-control" aria-required="true" placeholder="Apt Number" />
                                             <span asp-validation-for="Input.ApartmentNumber" class="text-danger"></span>
                                         </div>
-                                        <div class="form-floating mb-3 position-relative">
-                                            <input asp-for="Input.EirCode" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.EirCode">EirCode</label>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.EirCode" class="custom-input form-control" aria-required="true" placeholder="Eir Code" />
                                             <span asp-validation-for="Input.EirCode" class="text-danger"></span>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input asp-for="Input.City" class="form-control" aria-required="true" />
-                                            <label asp-for="Input.City">City</label>
+                                            <input asp-for="Input.City" class="custom-input form-control" aria-required="true" placeholder="City" />
                                             <span asp-validation-for="Input.City" class="text-danger"></span>
                                         </div>
-
                                         <div class="form-floating mb-3">
-
-                                            <label asp-for="Input.CountryId" class="control-label">Country</label>
-                                            <select asp-for="Input.CountryId" class="form-control" asp-items="Model.Countries"></select>
+                                            <select asp-for="Input.CountryId" class="custom-input form-control" asp-items="Model.Countries">
+                                                <option value="">-- Country --</option>
+                                            </select>
                                             <span asp-validation-for="Input.CountryId" class="text-danger"></span>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +79,7 @@
                         <button type="submit" class="btn btn-primary btn-lg w-100" id="registerSubmit" disabled>Sign up</button>
                         <br> 
                     </form>
-
+                    <br>
                     <section>
                         <h3 class="text-center" style="color:white" ;>Use another service to register.</h3>
                         <hr />
@@ -146,6 +132,7 @@
                     });
         });
     </script>
+   
 }
 <partial name="_ValidationScriptsPartial" />
-}
+ 

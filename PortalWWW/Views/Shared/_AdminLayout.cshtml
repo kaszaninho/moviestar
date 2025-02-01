@@ -14,9 +14,96 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 </head>
+
 <body>
     @*Navigation*@
     @await Component.InvokeAsync("AdminNavigationComponent")
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar bg-dark text-light vh-100">
+            <div class="sidebar-header py-3 px-4 border-bottom border-secondary">
+                <h2 class="fs-4">My Sidebar</h2>
+            </div>
+            <ul class="list-unstyled sidebar-menu">
+                <li>
+                    <a href="#" class="d-block text-decoration-none py-2 px-3 text-light">
+                        <i class="fas fa-home me-2"></i> Home
+                    </a>
+                </li>
+                <!-- Movies Section -->
+                <li>
+                    <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#moviesMenu" role="button" aria-expanded="false" aria-controls="moviesMenu">
+                        <i class="fas fa-film me-2"></i> Movies
+                    </a>
+                    <div class="collapse" id="moviesMenu">
+                        <ul class="list-unstyled ps-4">
+                            <!-- Dictionary Models -->
+                            <li>
+                                <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#dictionaryModels" role="button" aria-expanded="false" aria-controls="dictionaryModels">
+                                    Dictionary Models
+                                </a>
+                                <div class="collapse" id="dictionaryModels">
+                                    <ul class="list-unstyled ps-4">
+                                        <li><a href="#" class="text-decoration-none py-2 px-3 text-light">Countries</a></li>
+                                        <li><a href="#" class="text-decoration-none py-2 px-3 text-light">Genres</a></li>
+                                        <li><a href="#" class="text-decoration-none py-2 px-3 text-light">Languages</a></li>
+                                        <!-- Add more items as needed -->
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- Compound Models -->
+                            <li>
+                                <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#compoundModels" role="button" aria-expanded="false" aria-controls="compoundModels">
+                                    Compound Models
+                                </a>
+                                <div class="collapse" id="compoundModels">
+                                    <ul class="list-unstyled ps-4">
+                                        <li><a href="#" class="text-decoration-none py-2 px-3 text-light">Movies</a></li>
+                                        <li><a href="#" class="text-decoration-none py-2 px-3 text-light">Coupons</a></li>
+                                        <!-- Add more items as needed -->
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- General Section -->
+                <li>
+                    <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#generalMenu" role="button" aria-expanded="false" aria-controls="generalMenu">
+                        <i class="fas fa-cogs me-2"></i> General
+                    </a>
+                    <div class="collapse" id="generalMenu">
+                        <ul class="list-unstyled ps-4">
+                            <li>
+                                <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#generalDictionaryModels" role="button" aria-expanded="false" aria-controls="generalDictionaryModels">
+                                    Dictionary Models
+                                </a>
+                                <div class="collapse" id="generalDictionaryModels">
+                                    <ul class="list-unstyled ps-4">
+                                        <li><a href="#" class="text-decoration-none py-2 px-3 text-light">Payment Methods</a></li>
+                                        <!-- Add more items as needed -->
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- Add other general submenus -->
+                        </ul>
+                    </div>
+                </li>
+                <!-- Logout -->
+                <li>
+                    <a href="#" class="d-block text-decoration-none py-2 px-3 text-light">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Content -->
+        <div class="content flex-grow-1">
+            @RenderBody()
+        </div>
+    </div>
+
     @RenderBody()
     @*Footer*@
     @await Component.InvokeAsync("FooterComponent")
@@ -50,110 +137,3 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
- 
-   @*  <div class="container">
-        <div class="sidebar overflow-auto">
-            <div class="sidebar-header">
-                <h2>My Sidebar</h2>
-            </div>
-            <ul class="sidebar-menu">
-                <li>
-                    <a href="#" class="menu-item">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="menu-item has-submenu">
-                    <a href="#">
-                        <i class="fas fa-user"></i> Movies
-                    </a>
-
-                    <ul class="submenu">
-                        <li class="menu-item has-submenu">
-                            <a href="#">Dictionary Models</a>
-                            <ul class="submenu">
-                                <li><a asp-controller="Country" asp-action="Index">Countries</a></li>
-                                <li><a asp-controller="Genre" asp-action="Index">Genres</a></li>
-                                <li><a asp-controller="Languages" asp-action="Index">Languages</a></li>
-                                <li><a asp-controller="MovieFormat" asp-action="Index">Movie Formats</a></li>
-                                <li><a asp-controller="MovieKeywords" asp-action="Index">Movie Keywords</a></li>
-                                <li><a asp-controller="MovieProductionCompany" asp-action="Index">Movie Production Companies</a></li>
-                                <li><a asp-controller="AgeRating" asp-action="Index">Age Ratings</a></li>
-                                <li><a asp-controller="Subtitles" asp-action="Index">Subtitles</a></li>
-                                <li><a asp-controller="Award" asp-action="Index">Awards</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item has-submenu">
-                            <a href="#">Compound Models</a>
-                            <ul class="submenu">
-                                <li><a asp-controller="MovieAdmin" asp-action="Index">Movies</a></li>
-                                <li><a asp-controller="Coupon" asp-action="Index">Coupons</a></li>
-                                <li><a asp-controller="MovieReview" asp-action="Index">Movie Reviews</a></li>
-                                <li><a asp-controller="Screen" asp-action="Index">Screens</a></li>
-                                <li><a asp-controller="Screening" asp-action="Index">Screenings</a></li>
-                                <li><a asp-controller="ScreeningSeat" asp-action="Index">Screening Seats</a></li>
-                                <li><a asp-controller="Seat" asp-action="Index">Seats</a></li>
-                                <li><a asp-controller="Ticket" asp-action="Index">Tickets</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="menu-item has-submenu">
-                    <a href="#">
-                        <i class="fas fa-user"></i> General
-                    </a>
-                    <ul class="submenu">
-                        <li class="menu-item has-submenu">
-                            <a href="#">Dictionary Models</a>
-                            <ul class="submenu">
-                                <li><a asp-controller="PaymentMethod" asp-action="Index">Payment Methods</a></li>
-                                <li><a asp-controller="WorkPosition" asp-action="Index">Work Positions</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item has-submenu">
-                            <a href="#">Compound Models</a>
-                            <ul class="submenu">
-                                <li><a asp-controller="Address" asp-action="Index">Addresses</a></li>
-                                <li><a asp-controller="BankAccount" asp-action="Index">Bank Accounts</a></li>
-                                <li><a asp-controller="Invoice" asp-action="Index">Invoices</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="menu-item has-submenu">
-                    <a href="#">
-                        <i class="fas fa-user"></i> People
-                    </a>
-                    <ul class="submenu">
-                        <li class="menu-item has-submenu">
-                            <a href="#">Dictionary Models</a>
-                            <ul class="submenu">
-                            </ul>
-                        </li>
-                        <li class="menu-item has-submenu">
-                            <a href="#">Compound Models</a>
-                            <ul class="submenu">
-                                <li><a asp-controller="Actor" asp-action="Index">Actors</a></li>
-                                <li><a asp-controller="User" asp-action="Index">Users</a></li>
-                                <li><a asp-controller="Invoice" asp-action="Index">Invoices</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="menu-item has-submenu">
-                    <a href="#">
-                        <i class="fas fa-cog"></i> Cinema
-                    </a>
-                    <ul class="submenu">
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="menu-item">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </li>
-            </ul>
-        </div> *@
-       
