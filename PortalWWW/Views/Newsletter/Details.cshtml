@@ -1,6 +1,6 @@
 ﻿@using PortalWWW.Helpers
 @using static PortalWWW.Helpers.GenericCheck;
-@model DatabaseAPI.Models.CMS.Website;
+@model DatabaseAPI.Models.CMS.Newsletter;
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,27 +9,33 @@
 <h1>Details</h1>
 
 <div>
-    <h4>@Model.TitleName</h4>
+    <h4>@Model.Name</h4>
     <hr />
     <dl class="row">
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(website => website.TitleName)
+            @Html.DisplayNameFor(item => item.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(website => website.TitleName)
+            @Html.DisplayFor(item => item.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(website => website.Description)
+            @Html.DisplayNameFor(item => item.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(website => website.Description)
+            @Html.DisplayFor(item => item.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(website => website.Content)
+            @Html.DisplayNameFor(item => item.Content)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(website => website.Content)
+            @Html.DisplayFor(item => item.Content)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(item => item.Position)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(item => item.Position)
         </dd>
     </dl>
 </div>

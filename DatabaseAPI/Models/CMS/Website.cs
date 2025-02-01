@@ -1,4 +1,4 @@
-﻿namespace DatabaseAPI.Models.CRM
+﻿namespace DatabaseAPI.Models.CMS
 {
     //class with generic websites
     public class Website

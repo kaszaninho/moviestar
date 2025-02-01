@@ -1,0 +1,7 @@
+﻿@model IEnumerable<DatabaseAPI.Models.CMS.Website>
+<div class="container d-flex justify-content-center justify-content-md-between">
+    @foreach (var item in Model)
+    {
+        @Html.Raw(item.Content)
+    }
+</div>

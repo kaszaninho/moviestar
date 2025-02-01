@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PortalWWW.Controllers.Admin.Website
+namespace PortalWWW.Controllers.Admin.CMS
 {
     public class WebsiteController : Controller
     {
@@ -24,7 +24,7 @@ namespace PortalWWW.Controllers.Admin.Website
         }
 
         [HttpPost]
-        public IActionResult Create(DatabaseAPI.Models.CRM.Website page)
+        public IActionResult Create(DatabaseAPI.Models.CMS.Website page)
         {
             context.Website.Add(page);
             context.SaveChanges();
@@ -32,7 +32,7 @@ namespace PortalWWW.Controllers.Admin.Website
         }
 
         [HttpPost]
-        public IActionResult Edit(DatabaseAPI.Models.CRM.Website page)
+        public IActionResult Edit(DatabaseAPI.Models.CMS.Website page)
         {
             context.Website.Update(page);
             context.SaveChanges();

@@ -1,8 +1,8 @@
 ﻿using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
+using DatabaseAPI.Models.CMS;
 using DatabaseAPI.Models.CoffeeShop;
 using DatabaseAPI.Models.CoffeeShop.DictionaryModels;
-using DatabaseAPI.Models.CRM;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.General.DictionaryModels;
@@ -56,6 +56,11 @@ namespace DatabaseAPI.Data
         public DbSet<ScreeningSeat>? ScreeningSeat { get; set;}
         public DbSet<CartElement>? CartElement { get; set; }
         public DbSet<Website>? Website { get; set; }
+        public DbSet<ContactInformation>? ContactInformation { get; set; }
+        public DbSet<Navbar>? Navbar { get; set; }
+        public DbSet<Newsletter>? Newsletter { get; set; }
+        public DbSet<Topbar>? Topbar { get; set; }
+        public DbSet<UsefulLink>? UsefulLink { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
