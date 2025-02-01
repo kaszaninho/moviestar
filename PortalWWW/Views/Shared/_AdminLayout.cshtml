@@ -6,12 +6,11 @@
     <title>MovieStar Cinema</title>
     <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="/css/custom_style.css" rel="stylesheet">
-    <link href="/css/sibebar.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/css/global.css" rel="stylesheet">
+     <link href="~/css/global.css" rel="stylesheet">
     <link href="~/css/index.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -135,11 +134,7 @@
         <!-- Content -->
         <div class="content flex-grow-1">
             @RenderBody()
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
             @await RenderSectionAsync("AdditionalContent", required: false)
         </div>
     </div>
@@ -148,6 +143,14 @@
     @*Footer*@
     @await Component.InvokeAsync("FooterComponent")
 
+   
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
     <script>
         window.onscroll = function () { myFunction() };
 
@@ -169,11 +172,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-
-</body>
-
-</html>
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 }
