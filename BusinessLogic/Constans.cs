@@ -17,6 +17,8 @@ namespace BusinessLogic
         public static string PaymentStatus_Pending = "Pending";
         public static string PaymentStatus_Rejected = "Rejected";
 
+        public static string[] PaymentStatuses = [PaymentStatus_Approved, PaymentStatus_Pending, PaymentStatus_Rejected];
+
         // Order Status constans
         public static string OrderStatus_Retrieved = "Retrieved";
         public static string OrderStatus_Reserved = "Reserved";

@@ -34,7 +34,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("AwardMovie");
+                    b.ToTable("AwardMovie", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.ContactInformation", b =>
@@ -69,7 +69,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactInformation");
+                    b.ToTable("ContactInformation", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Navbar", b =>
@@ -108,7 +108,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Navbar");
+                    b.ToTable("Navbar", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Newsletter", b =>
@@ -143,7 +143,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Newsletter");
+                    b.ToTable("Newsletter", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Topbar", b =>
@@ -178,7 +178,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Topbar");
+                    b.ToTable("Topbar", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.UsefulLink", b =>
@@ -217,7 +217,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UsefulLink");
+                    b.ToTable("UsefulLink", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Website", b =>
@@ -242,7 +242,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Website");
+                    b.ToTable("Website", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.CartElement", b =>
@@ -273,7 +273,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("ScreeningSeatId");
 
-                    b.ToTable("CartElement");
+                    b.ToTable("CartElement", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Coupon", b =>
@@ -315,7 +315,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Coupon");
+                    b.ToTable("Coupon", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", b =>
@@ -343,7 +343,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Award");
+                    b.ToTable("Award", (string)null);
 
                     b.HasData(
                         new
@@ -391,7 +391,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages");
+                    b.ToTable("Languages", (string)null);
 
                     b.HasData(
                         new
@@ -448,7 +448,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieFormat");
+                    b.ToTable("MovieFormat", (string)null);
 
                     b.HasData(
                         new
@@ -496,7 +496,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieKeywords");
+                    b.ToTable("MovieKeywords", (string)null);
 
                     b.HasData(
                         new
@@ -553,7 +553,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieProductionCompany");
+                    b.ToTable("MovieProductionCompany", (string)null);
 
                     b.HasData(
                         new
@@ -610,7 +610,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subtitles");
+                    b.ToTable("Subtitles", (string)null);
 
                     b.HasData(
                         new
@@ -703,7 +703,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movie", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.MovieReview", b =>
@@ -745,7 +745,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieReview");
+                    b.ToTable("MovieReview", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Reservations", b =>
@@ -797,7 +797,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Reservations", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Screen", b =>
@@ -828,7 +828,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Screen");
+                    b.ToTable("Screen", (string)null);
 
                     b.HasData(
                         new
@@ -904,7 +904,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("ScreenId");
 
-                    b.ToTable("Screening");
+                    b.ToTable("Screening", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.ScreeningSeat", b =>
@@ -945,7 +945,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("SeatId");
 
-                    b.ToTable("ScreeningSeat");
+                    b.ToTable("ScreeningSeat", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Seat", b =>
@@ -984,7 +984,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("ScreenId");
 
-                    b.ToTable("Seat");
+                    b.ToTable("Seat", (string)null);
 
                     b.HasData(
                         new
@@ -1345,7 +1345,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("ScreeningSeatId");
 
-                    b.ToTable("Ticket");
+                    b.ToTable("Ticket", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CoffeeShop.DictionaryModels.TypeOfElementOfMenu", b =>
@@ -1373,7 +1373,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfElementOfMenu");
+                    b.ToTable("TypeOfElementOfMenu", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CoffeeShop.ELementOfMenu", b =>
@@ -1409,7 +1409,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("TypeOfElementOfMenuId");
 
-                    b.ToTable("ELementOfMenu");
+                    b.ToTable("ELementOfMenu", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.AgeRating", b =>
@@ -1437,7 +1437,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AgeRating");
+                    b.ToTable("AgeRating", (string)null);
 
                     b.HasData(
                         new
@@ -1494,7 +1494,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Country");
+                    b.ToTable("Country", (string)null);
 
                     b.HasData(
                         new
@@ -1551,7 +1551,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genre");
+                    b.ToTable("Genre", (string)null);
 
                     b.HasData(
                         new
@@ -1631,7 +1631,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.BankAccount", b =>
@@ -1670,7 +1670,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BankAccount");
+                    b.ToTable("BankAccount", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.DictionaryModels.PaymentMethod", b =>
@@ -1698,7 +1698,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentMethod");
+                    b.ToTable("PaymentMethod", (string)null);
 
                     b.HasData(
                         new
@@ -1755,7 +1755,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkPosition");
+                    b.ToTable("WorkPosition", (string)null);
 
                     b.HasData(
                         new
@@ -1840,7 +1840,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Invoice");
+                    b.ToTable("Invoice", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.OpeningHour", b =>
@@ -1877,7 +1877,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OpeningHour");
+                    b.ToTable("OpeningHour", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Photo", b =>
@@ -1913,7 +1913,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("DirectorId");
 
-                    b.ToTable("Photo");
+                    b.ToTable("Photo", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.WorkSchedule", b =>
@@ -1959,7 +1959,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkSchedule");
+                    b.ToTable("WorkSchedule", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.Actor", b =>
@@ -2021,7 +2021,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Actor");
+                    b.ToTable("Actor", (string)null);
 
                     b.HasData(
                         new
@@ -2119,7 +2119,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Director");
+                    b.ToTable("Director", (string)null);
 
                     b.HasData(
                         new
@@ -2178,7 +2178,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserLevel");
+                    b.ToTable("UserLevel", (string)null);
 
                     b.HasData(
                         new
@@ -2215,7 +2215,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("LanguagesMovie");
+                    b.ToTable("LanguagesMovie", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -2437,7 +2437,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("MovieMovieKeywords");
+                    b.ToTable("MovieMovieKeywords", (string)null);
                 });
 
             modelBuilder.Entity("MovieSubtitles", b =>
@@ -2452,7 +2452,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasIndex("SubtitlesId");
 
-                    b.ToTable("MovieSubtitles");
+                    b.ToTable("MovieSubtitles", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.User", b =>

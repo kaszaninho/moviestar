@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Chart";
+    var totalSum = ViewData["totalSum"] ?? 0;
+}
+<div class="container datepicker-controls">
+    <form asp-action="IncomeGenerator" asp-controller="Report">
+        <div class="form-group">
+            <label class="control-label">Start Date</label>
+            <input type="date" name="start" />
+            <label class="control-label">End Date</label>
+            <input type="date" name="end" />
+            <input type="submit" value="Choose dates" class="btn btn-primary black white-text" />
+        </div>
+    </form>
+
+    <div class="container md">
+        Total sum from this period: @totalSum PLN.
+    </div>
+</div>
+<div class="container md">
+    <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chartData = @Html.Raw(Json.Serialize(Model));
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

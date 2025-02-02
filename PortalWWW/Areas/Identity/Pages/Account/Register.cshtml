@@ -85,9 +85,9 @@ else
                                         @if (User.IsInRole("Admin"))
                                         {
                                             <div class="form-group">
-                                                <label asp-for="Input.RoleName" class="control-label">Country</label>
+                                                <label asp-for="Input.RoleName" class="control-label">Role</label>
                                                 <select asp-for="Input.RoleName" class="form-control" asp-items="Model.RoleList">
-                                                    <option value="">-- Country --</option>
+                                                    <option value="">-- Role --</option>
                                                 </select>
                                                 <span asp-validation-for="Input.RoleName" class="text-danger"></span>
                                             </div>
