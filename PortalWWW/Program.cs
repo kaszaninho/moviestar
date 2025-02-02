@@ -1,3 +1,4 @@
+using BusinessLogic;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PortalWWW.Helpers;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,8 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
 var connectionString = builder.Configuration.GetConnectionString("DatabaseAPIContext") ?? throw new InvalidOperationException("Connection string 'DatabaseAPIContext' not found.");
 builder.Services.AddDbContext<DatabaseAPIContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IEmailSender, EmailSender>();
@@ -97,6 +101,8 @@ using (var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 app.UseRouting();
 

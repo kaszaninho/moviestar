@@ -112,7 +112,8 @@ namespace DatabaseAPI.Data
                 );
             builder.Entity<PaymentMethod>().HasData(
                 new PaymentMethod { Id = 1, CreatedAt = DateTime.Now, ModifiedAt = DateTime.Now, IsActive = true, Description = "Cash", Name = "Cash" },
-                new PaymentMethod { Id = 2, CreatedAt = DateTime.Now, ModifiedAt = DateTime.Now, IsActive = true, Description = "Credit Card", Name = "Credit Card" }
+                new PaymentMethod { Id = 2, CreatedAt = DateTime.Now, ModifiedAt = DateTime.Now, IsActive = true, Description = "Credit Card", Name = "Credit Card" },
+                new PaymentMethod { Id = 3, CreatedAt = DateTime.Now, ModifiedAt = DateTime.Now, IsActive = true, Description = "Stripe", Name = "Stripe" }
                 );
             builder.Entity<WorkPosition>().HasData(
                 new WorkPosition { Id = 1, CreatedAt = DateTime.Now, ModifiedAt = DateTime.Now, IsActive = true, Description = "General Assistant", Name = "General Assistant" },

@@ -31,8 +31,7 @@
         </div>
     <p>Choose Payment</p>
     <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
-
-        <select asp-for="@Model.PaymentMethod" class="form-control" asp-items="ViewBag.PaymentMethods">
+        <select class="form-control" name="paymentMethodId" asp-items="ViewBag.PaymentMethods">
             <option value="">-- Payment Method --</option>
         </select>
         <button type="submit" class="btn btn-toolbar m-2 border-white">Go to payment</button>
