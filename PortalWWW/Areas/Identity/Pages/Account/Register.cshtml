@@ -86,7 +86,9 @@ else
                                         {
                                             <div class="form-group">
                                                 <label asp-for="Input.RoleName" class="control-label">Country</label>
-                                                <select asp-for="Input.RoleName" class="form-control" asp-items="Model.RoleList"></select>
+                                                <select asp-for="Input.RoleName" class="form-control" asp-items="Model.RoleList">
+                                                    <option value="">-- Country --</option>
+                                                </select>
                                                 <span asp-validation-for="Input.RoleName" class="text-danger"></span>
                                             </div>
                                         }
@@ -96,7 +98,7 @@ else
                         </div><br />
 
 
-                        <button type="submit" class="btn btn-primary btn-lg w-100" id="registerSubmit" disabled>Sign up</button>
+                        <button type="submit" class="btn btn-primary btn-lg w-100" id="registerSubmit">Sign up</button>
                         <br>
                     </form>
                     <br>
@@ -153,7 +155,7 @@ else
                 defaultDate: new Date(), // Optional: set a default date
                 allowInput: true,      // Allow manual input if desired
             });
-                });
+        });
     </script>
 
 }

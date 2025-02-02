@@ -7,6 +7,7 @@ using InvoiceSdk.Models.Payments;
 using InvoiceSdk.Renderer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PortalWWW.Models;
 
@@ -61,6 +62,12 @@ namespace PortalWWW.Controllers
                 CartElements = await cartBusinessLogic.GetCartElements(),
                 PriceTotal = await cartBusinessLogic.CalculateSum()
             };
+            var listForBag = dbContext.PaymentMethod.Select(method => new
+            {
+                method.Id,
+                method.Name
+            }).ToList();
+            ViewBag.PaymentMethods = new SelectList(listForBag, "Id", "Name");
             return View(cartInformation);
         }
 

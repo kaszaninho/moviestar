@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PortalWWW.Areas.Identity.Pages.Account
 {
@@ -194,7 +195,7 @@ namespace PortalWWW.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    var role = await _roleManager.FindByNameAsync(Input.RoleName);
+                    var role = Input.RoleName == null ? null : await _roleManager.FindByNameAsync(Input.RoleName);
 
                     if (role != null)
                     {
