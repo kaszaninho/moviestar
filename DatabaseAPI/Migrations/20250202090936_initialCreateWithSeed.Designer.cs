@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Portal.Data.Migrations
+namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    [Migration("20240302151535_NextMigration")]
-    partial class NextMigration
+    [Migration("20250202090936_initialCreateWithSeed")]
+    partial class initialCreateWithSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -38,6 +38,214 @@ namespace Portal.Data.Migrations
                     b.HasIndex("MoviesId");
 
                     b.ToTable("AwardMovie");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.ContactInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactInformation");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.Navbar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Navbar");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.Newsletter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Newsletter");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.Topbar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Topbar");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.UsefulLink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UsefulLink");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.Website", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Website");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.CartElement", b =>
@@ -139,6 +347,26 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Award");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1402),
+                            Description = "Grammy",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1406),
+                            Name = "Grammy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1409),
+                            Description = "Oscar",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1411),
+                            Name = "Oscar"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Languages", b =>
@@ -167,6 +395,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1525),
+                            Description = "Polish",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1527),
+                            Name = "Polish"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1530),
+                            Description = "English",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1531),
+                            Name = "English"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1535),
+                            Description = "Danish",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1537),
+                            Name = "Danish"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieFormat", b =>
@@ -195,6 +452,26 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MovieFormat");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1562),
+                            Description = "4:3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1564),
+                            Name = "4:3"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1567),
+                            Description = "16:9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1569),
+                            Name = "16:9"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieKeywords", b =>
@@ -223,6 +500,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MovieKeywords");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1604),
+                            Description = "Superb",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1607),
+                            Name = "Superb"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1609),
+                            Description = "Extra",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1611),
+                            Name = "Extra"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1614),
+                            Description = "Magic",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1616),
+                            Name = "Magic"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieProductionCompany", b =>
@@ -251,6 +557,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MovieProductionCompany");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1642),
+                            Description = "Warner Bros",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1644),
+                            Name = "Warner Bros"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1647),
+                            Description = "KOJAK",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1649),
+                            Name = "KOJAK"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1651),
+                            Description = "Netflix",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1653),
+                            Name = "Netflix"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Subtitles", b =>
@@ -279,6 +614,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subtitles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1681),
+                            Description = "Polish",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1683),
+                            Name = "Polish"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1686),
+                            Description = "English",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1688),
+                            Name = "English"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1690),
+                            Description = "Danish",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1692),
+                            Name = "Danish"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Movie", b =>
@@ -290,9 +654,6 @@ namespace Portal.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AgeRatingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CountryId")
@@ -328,11 +689,12 @@ namespace Portal.Data.Migrations
                     b.Property<decimal?>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AgeRatingId");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("CountryId");
 
@@ -341,6 +703,8 @@ namespace Portal.Data.Migrations
                     b.HasIndex("MovieFormatId");
 
                     b.HasIndex("MovieProductionCompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Movie");
                 });
@@ -395,9 +759,6 @@ namespace Portal.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -428,13 +789,16 @@ namespace Portal.Data.Migrations
                     b.Property<int?>("SeatId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ClientId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ScreeningId");
 
                     b.HasIndex("SeatId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -468,6 +832,38 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Screen");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1914),
+                            Description = "ŻABA",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1916),
+                            Name = "ŻABA",
+                            RoomNumber = 12
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1920),
+                            Description = "KROWA",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1922),
+                            Name = "KROWA",
+                            RoomNumber = 23
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1924),
+                            Description = "MILKY WAY",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1926),
+                            Name = "MILKY WAY",
+                            RoomNumber = 34
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Screening", b =>
@@ -543,9 +939,14 @@ namespace Portal.Data.Migrations
                     b.Property<int?>("ScreeningId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SeatId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ScreeningId");
+
+                    b.HasIndex("SeatId");
 
                     b.ToTable("ScreeningSeat");
                 });
@@ -587,6 +988,332 @@ namespace Portal.Data.Migrations
                     b.HasIndex("ScreenId");
 
                     b.ToTable("Seat");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1953),
+                            Description = "1/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1956),
+                            Name = "1/1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1960),
+                            Description = "1/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1962),
+                            Name = "1/2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1965),
+                            Description = "1/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1967),
+                            Name = "1/3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1970),
+                            Description = "2/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1972),
+                            Name = "2/1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1975),
+                            Description = "2/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1977),
+                            Name = "2/2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1980),
+                            Description = "2/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1982),
+                            Name = "2/3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1985),
+                            Description = "3/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1987),
+                            Name = "3/1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1990),
+                            Description = "3/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1992),
+                            Name = "3/2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1996),
+                            Description = "3/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1998),
+                            Name = "3/3",
+                            NumberInRow = 3,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2001),
+                            Description = "1/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2002),
+                            Name = "1/1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2006),
+                            Description = "1/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2007),
+                            Name = "1/2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2010),
+                            Description = "1/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2012),
+                            Name = "1/3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2015),
+                            Description = "2/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2017),
+                            Name = "2/1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2020),
+                            Description = "2/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2022),
+                            Name = "2/2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2025),
+                            Description = "2/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2026),
+                            Name = "2/3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2029),
+                            Description = "3/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2031),
+                            Name = "3/1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2035),
+                            Description = "3/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2037),
+                            Name = "3/2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2040),
+                            Description = "3/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2042),
+                            Name = "3/3",
+                            NumberInRow = 3,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2045),
+                            Description = "1/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2047),
+                            Name = "1/1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2050),
+                            Description = "1/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2052),
+                            Name = "1/2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2055),
+                            Description = "1/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2056),
+                            Name = "1/3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2060),
+                            Description = "2/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2061),
+                            Name = "2/1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2064),
+                            Description = "2/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2066),
+                            Name = "2/2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2069),
+                            Description = "2/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2071),
+                            Name = "2/3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2074),
+                            Description = "3/1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2076),
+                            Name = "3/1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2079),
+                            Description = "3/2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2081),
+                            Name = "3/2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2084),
+                            Description = "3/3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2086),
+                            Name = "3/3",
+                            NumberInRow = 3,
+                            Row = 3,
+                            ScreenId = 3
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Ticket", b =>
@@ -596,9 +1323,6 @@ namespace Portal.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClientName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -615,21 +1339,14 @@ namespace Portal.Data.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MovieName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("RoomNumber")
+                    b.Property<int?>("ScreeningSeatId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("seatCode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("InvoiceId1");
+
+                    b.HasIndex("ScreeningSeatId");
 
                     b.ToTable("Ticket");
                 });
@@ -724,6 +1441,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AgeRating");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1157),
+                            Description = "+12",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1210),
+                            Name = "+12"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1214),
+                            Description = "+15",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1216),
+                            Name = "+15"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1219),
+                            Description = "+18",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1221),
+                            Name = "+18"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.Country", b =>
@@ -752,6 +1498,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Country");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1445),
+                            Description = "Poland",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1447),
+                            Name = "Poland"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1450),
+                            Description = "USA",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1452),
+                            Name = "USA"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1455),
+                            Description = "Germany",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1457),
+                            Name = "Germany"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.Genre", b =>
@@ -780,6 +1555,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genre");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1485),
+                            Description = "Action",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1488),
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1491),
+                            Description = "Romance",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1492),
+                            Name = "Romance"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1495),
+                            Description = "Drama",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1497),
+                            Name = "Drama"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Address", b =>
@@ -898,6 +1702,26 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PaymentMethod");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1727),
+                            Description = "Cash",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1729),
+                            Name = "Cash"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1732),
+                            Description = "Credit Card",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1733),
+                            Name = "Credit Card"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.DictionaryModels.WorkPosition", b =>
@@ -926,6 +1750,35 @@ namespace Portal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WorkPosition");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1761),
+                            Description = "General Assistant",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1763),
+                            Name = "General Assistant"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1766),
+                            Description = "Floor Manager",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1768),
+                            Name = "Floor Manager"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1771),
+                            Description = "Cleaner",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1772),
+                            Name = "Cleaner"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Invoice", b =>
@@ -935,9 +1788,6 @@ namespace Portal.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -963,11 +1813,14 @@ namespace Portal.Data.Migrations
                     b.Property<decimal?>("Sum")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.HasIndex("PaymentMethodId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Invoice");
                 });
@@ -1062,9 +1915,6 @@ namespace Portal.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("EndHour")
                         .HasColumnType("int");
 
@@ -1091,8 +1941,6 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
                     b.ToTable("WorkSchedule");
                 });
 
@@ -1105,9 +1953,6 @@ namespace Portal.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AwardId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("CountryId")
@@ -1145,131 +1990,61 @@ namespace Portal.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AwardId");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("CountryId");
 
                     b.HasIndex("MovieId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Actor");
-                });
 
-            modelBuilder.Entity("DatabaseAPI.Models.People.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClientLevelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClientProgressToNextLevel")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("ClientLevelId");
-
-                    b.ToTable("Client");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.ClientLevel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PointsToNextLevel")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClientLevel");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.DictionaryModels.EmployeeLevel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmployeeLevel");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1803),
+                            DateOfBirth = new DateTime(1994, 11, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1811),
+                            Description = "Jerzy Puławski",
+                            FirstName = "Jerzy",
+                            IsActive = true,
+                            LastName = "Puławski",
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1805),
+                            Name = "Jerzy Puławski"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1816),
+                            DateOfBirth = new DateTime(1994, 11, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1821),
+                            Description = "John Longue",
+                            FirstName = "John",
+                            IsActive = true,
+                            LastName = "Longue",
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1818),
+                            Name = "John Longue"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1823),
+                            DateOfBirth = new DateTime(2004, 9, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1828),
+                            Description = "Anna Kobiela",
+                            FirstName = "Anna",
+                            IsActive = true,
+                            LastName = "Kobiela",
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1825),
+                            Name = "Anna Kobiela"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.Director", b =>
@@ -1327,9 +2102,37 @@ namespace Portal.Data.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Director");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1867),
+                            DateOfBirth = new DateTime(1974, 11, 25, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1874),
+                            Description = "Mariusz Puławski",
+                            FirstName = "Mariusz",
+                            IsActive = true,
+                            LastName = "Puławski",
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1869),
+                            Name = "Mariusz Puławski"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1879),
+                            DateOfBirth = new DateTime(1965, 3, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1883),
+                            Description = "John Mingue",
+                            FirstName = "John",
+                            IsActive = true,
+                            LastName = "Mingue",
+                            ModifiedAt = new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1880),
+                            Name = "John Mingue"
+                        });
                 });
 
-            modelBuilder.Entity("DatabaseAPI.Models.People.Employee", b =>
+            modelBuilder.Entity("DatabaseAPI.Models.People.UserLevel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1337,37 +2140,14 @@ namespace Portal.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BankAccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeLevelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -1375,23 +2155,12 @@ namespace Portal.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Wages")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("WorkPositionId")
+                    b.Property<int>("PointsToNextLevel")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("BankAccountId");
-
-                    b.HasIndex("EmployeeLevelId");
-
-                    b.HasIndex("WorkPositionId");
-
-                    b.ToTable("Employee");
+                    b.ToTable("UserLevel");
                 });
 
             modelBuilder.Entity("LanguagesMovie", b =>
@@ -1473,6 +2242,11 @@ namespace Portal.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -1524,6 +2298,10 @@ namespace Portal.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -1554,12 +2332,10 @@ namespace Portal.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -1596,12 +2372,10 @@ namespace Portal.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -1641,6 +2415,40 @@ namespace Portal.Data.Migrations
                     b.ToTable("MovieSubtitles");
                 });
 
+            modelBuilder.Entity("DatabaseAPI.Models.People.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserLevelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserProgressToNextLevel")
+                        .HasColumnType("int");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("UserLevelId");
+
+                    b.HasDiscriminator().HasValue("User");
+                });
+
             modelBuilder.Entity("AwardMovie", b =>
                 {
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", null)
@@ -1673,10 +2481,6 @@ namespace Portal.Data.Migrations
                         .WithMany("Movies")
                         .HasForeignKey("AgeRatingId");
 
-                    b.HasOne("DatabaseAPI.Models.People.Client", null)
-                        .WithMany("FavouriteMovies")
-                        .HasForeignKey("ClientId");
-
                     b.HasOne("DatabaseAPI.Models.DictionaryModels.Country", "Country")
                         .WithMany("Movies")
                         .HasForeignKey("CountryId");
@@ -1692,6 +2496,10 @@ namespace Portal.Data.Migrations
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieProductionCompany", "MovieProductionCompany")
                         .WithMany("Movies")
                         .HasForeignKey("MovieProductionCompanyId");
+
+                    b.HasOne("DatabaseAPI.Models.People.User", null)
+                        .WithMany("FavouriteMovies")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("AgeRating");
 
@@ -1715,10 +2523,6 @@ namespace Portal.Data.Migrations
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Reservations", b =>
                 {
-                    b.HasOne("DatabaseAPI.Models.People.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Screening", "Screening")
                         .WithMany()
                         .HasForeignKey("ScreeningId");
@@ -1727,11 +2531,15 @@ namespace Portal.Data.Migrations
                         .WithMany()
                         .HasForeignKey("SeatId");
 
-                    b.Navigation("Client");
+                    b.HasOne("DatabaseAPI.Models.People.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Screening");
 
                     b.Navigation("Seat");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Screening", b =>
@@ -1755,7 +2563,13 @@ namespace Portal.Data.Migrations
                         .WithMany("ScreeningSeats")
                         .HasForeignKey("ScreeningId");
 
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Seat", "Seat")
+                        .WithMany()
+                        .HasForeignKey("SeatId");
+
                     b.Navigation("Screening");
+
+                    b.Navigation("Seat");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Seat", b =>
@@ -1773,7 +2587,13 @@ namespace Portal.Data.Migrations
                         .WithMany("Tickets")
                         .HasForeignKey("InvoiceId1");
 
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.ScreeningSeat", "ScreeningSeat")
+                        .WithMany()
+                        .HasForeignKey("ScreeningSeatId");
+
                     b.Navigation("Invoice");
+
+                    b.Navigation("ScreeningSeat");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CoffeeShop.ELementOfMenu", b =>
@@ -1800,17 +2620,17 @@ namespace Portal.Data.Migrations
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Invoice", b =>
                 {
-                    b.HasOne("DatabaseAPI.Models.People.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
                     b.HasOne("DatabaseAPI.Models.General.DictionaryModels.PaymentMethod", "PaymentMethod")
                         .WithMany("Invoices")
                         .HasForeignKey("PaymentMethodId");
 
-                    b.Navigation("Client");
+                    b.HasOne("DatabaseAPI.Models.People.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("PaymentMethod");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Photo", b =>
@@ -1824,26 +2644,11 @@ namespace Portal.Data.Migrations
                         .HasForeignKey("DirectorId");
                 });
 
-            modelBuilder.Entity("DatabaseAPI.Models.General.WorkSchedule", b =>
-                {
-                    b.HasOne("DatabaseAPI.Models.People.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("DatabaseAPI.Models.People.Actor", b =>
                 {
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", null)
                         .WithMany("Actors")
                         .HasForeignKey("AwardId");
-
-                    b.HasOne("DatabaseAPI.Models.People.Client", null)
-                        .WithMany("FavouriteActors")
-                        .HasForeignKey("ClientId");
 
                     b.HasOne("DatabaseAPI.Models.DictionaryModels.Country", "Country")
                         .WithMany("Actors")
@@ -1855,26 +2660,11 @@ namespace Portal.Data.Migrations
                         .WithMany("Actors")
                         .HasForeignKey("MovieId");
 
+                    b.HasOne("DatabaseAPI.Models.People.User", null)
+                        .WithMany("FavouriteActors")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.Client", b =>
-                {
-                    b.HasOne("DatabaseAPI.Models.General.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatabaseAPI.Models.People.ClientLevel", "ClientLevel")
-                        .WithMany("Clients")
-                        .HasForeignKey("ClientLevelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-
-                    b.Navigation("ClientLevel");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.People.Director", b =>
@@ -1894,37 +2684,6 @@ namespace Portal.Data.Migrations
                         .HasForeignKey("MovieId");
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.Employee", b =>
-                {
-                    b.HasOne("DatabaseAPI.Models.General.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatabaseAPI.Models.General.BankAccount", "BankAccount")
-                        .WithMany()
-                        .HasForeignKey("BankAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatabaseAPI.Models.People.DictionaryModels.EmployeeLevel", "EmployeeLevel")
-                        .WithMany("Employees")
-                        .HasForeignKey("EmployeeLevelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatabaseAPI.Models.General.DictionaryModels.WorkPosition", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("WorkPositionId");
-
-                    b.Navigation("Address");
-
-                    b.Navigation("BankAccount");
-
-                    b.Navigation("EmployeeLevel");
                 });
 
             modelBuilder.Entity("LanguagesMovie", b =>
@@ -2023,6 +2782,25 @@ namespace Portal.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DatabaseAPI.Models.People.User", b =>
+                {
+                    b.HasOne("DatabaseAPI.Models.General.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseAPI.Models.People.UserLevel", "UserLevel")
+                        .WithMany("Users")
+                        .HasForeignKey("UserLevelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("UserLevel");
+                });
+
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", b =>
                 {
                     b.Navigation("Actors");
@@ -2090,11 +2868,6 @@ namespace Portal.Data.Migrations
                     b.Navigation("Invoices");
                 });
 
-            modelBuilder.Entity("DatabaseAPI.Models.General.DictionaryModels.WorkPosition", b =>
-                {
-                    b.Navigation("Employees");
-                });
-
             modelBuilder.Entity("DatabaseAPI.Models.General.Invoice", b =>
                 {
                     b.Navigation("Tickets");
@@ -2105,26 +2878,21 @@ namespace Portal.Data.Migrations
                     b.Navigation("Photos");
                 });
 
-            modelBuilder.Entity("DatabaseAPI.Models.People.Client", b =>
+            modelBuilder.Entity("DatabaseAPI.Models.People.Director", b =>
+                {
+                    b.Navigation("Photos");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.People.UserLevel", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DatabaseAPI.Models.People.User", b =>
                 {
                     b.Navigation("FavouriteActors");
 
                     b.Navigation("FavouriteMovies");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.ClientLevel", b =>
-                {
-                    b.Navigation("Clients");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.DictionaryModels.EmployeeLevel", b =>
-                {
-                    b.Navigation("Employees");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.People.Director", b =>
-                {
-                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

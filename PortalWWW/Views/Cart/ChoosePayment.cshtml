@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Payment Choice";
+    
 }
 
 <div class="container">
@@ -30,15 +31,10 @@
         </div>
     <p>Choose Payment</p>
     <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
-    <label>
-        <input type="radio" name="paymentType" value="creditCard"> Credit Card
-    </label><br>
-    <label>
-        <input type="radio" name="paymentType" value="paypal"> PayPal
-    </label><br>
-    <label>
-        <input type="radio" name="paymentType" value="bankTransfer"> Bank Transfer
-        </label><br>
+
+        <select asp-for="@Model.PaymentMethod" class="form-control" asp-items="ViewBag.PaymentMethods">
+            <option value="">-- Payment Method --</option>
+        </select>
         <button type="submit" class="btn btn-toolbar m-2 border-white">Go to payment</button>
     </form>
 </div>

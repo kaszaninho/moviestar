@@ -24,10 +24,121 @@
 <body>
     @*Navigation*@
     @await Component.InvokeAsync("NavigationComponent")
-    @RenderBody()
+    @*Sidebar*@
+    <div class="d-flex">
+        @if (User.IsInRole("Admin"))
+        {
+
+            <div class="sidebar bg-dark text-light vh-100">
+                <div class="sidebar-header py-3 px-4 border-bottom border-secondary">
+                    <h2 class="fs-4">My Sidebar</h2>
+                </div>
+                <ul class="list-unstyled sidebar-menu">
+                    <li>
+                        <a href="#" class="d-block text-decoration-none py-2 px-3 text-light">
+                            <i class="fas fa-home me-2"></i> Home
+                        </a>
+                    </li>
+                    <!-- Movies Section -->
+                    <li>
+                        <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#moviesMenu" role="button" aria-expanded="false" aria-controls="moviesMenu">
+                            <i class="fas fa-film me-2"></i> Movies
+                        </a>
+                        <div class="collapse" id="moviesMenu">
+                            <ul class="list-unstyled ps-4">
+                                <li><a asp-controller="Country" asp-action="Index">Countries</a></li>
+                                <li><a asp-controller="Genre" asp-action="Index">Genres</a></li>
+                                <li><a asp-controller="Language" asp-action="Index">Languages</a></li>
+                                <li><a asp-controller="MovieAdmin" asp-action="Index">Movies</a></li>
+                                <li><a asp-controller="Coupon" asp-action="Index">Coupons</a></li>
+                                <li><a asp-controller="MovieFormat" asp-action="Index">Movie Formats</a></li>
+                                <li><a asp-controller="MovieKeywords" asp-action="Index">Movie Keywords</a></li>
+                                <li><a asp-controller="MovieProductionCompany" asp-action="Index">Movie Production Companies</a></li>
+                                <li><a asp-controller="Subtitles" asp-action="Index">Subtitles</a></li>
+                                <li><a asp-controller="Coupon" asp-action="Index">Coupons</a></li>
+                                <li><a asp-controller="MovieReview" asp-action="Index">Movie Reviews</a></li>
+                                <li><a asp-controller="Screen" asp-action="Index">Screens</a></li>
+                                <li><a asp-controller="Screening" asp-action="Index">Screenings</a></li>
+                                <li><a asp-controller="ScreeningSeat" asp-action="Index">Screening Seats</a></li>
+                                <li><a asp-controller="Seat" asp-action="Index">Seats</a></li>
+                                <li><a asp-controller="Ticket" asp-action="Index">Tickets</a></li>
+                                <!-- Add more items as needed -->
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- General Section -->
+                    <li>
+                        <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#generalMenu" role="button" aria-expanded="false" aria-controls="generalMenu">
+                            <i class="fas fa-cogs me-2"></i> General
+                        </a>
+                        <div class="collapse" id="generalMenu">
+                            <ul class="list-unstyled ps-4">
+                                <li><a asp-controller="PaymentMethod" asp-action="Index">Payment Methods</a></li>
+                                <li><a asp-controller="WorkPosition" asp-action="Index">Work Positions</a></li>
+                                <li><a asp-controller="Address" asp-action="Index">Addresses</a></li>
+                                <li><a asp-controller="BankAccount" asp-action="Index">Bank Accounts</a></li>
+                                <li><a asp-controller="Invoice" asp-action="Index">Invoices</a></li>
+                                <!-- Add more items as needed -->
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="menu-item has-submenu">
+                        <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#peopleMenu" role="button" aria-expanded="false" aria-controls="peopleMenu">
+                            <i class="fas fa-user"></i> People
+                        </a>
+                        <div class="collapse" id="peopleMenu">
+                            <ul class="list-unstyled ps-4">
+                                <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="menu-item has-submenu">
+                        <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#cinemaMenu" role="button" aria-expanded="false" aria-controls="cinemaMenu">
+                            <i class="fas fa-cog"></i> CMS
+                        </a>
+                        <div class="collapse" id="cinemaMenu">
+                            <ul class="list-unstyled ps-4">
+                                <li><a asp-controller="ContactInformation" asp-action="Index">Contact Informations</a></li>
+                                <li><a asp-controller="Navbar" asp-action="Index">Navbar</a></li>
+                                <li><a asp-controller="Newsletter" asp-action="Index">Newsletter</a></li>
+                                <li><a asp-controller="Topbar" asp-action="Index">Topbar</a></li>
+                                <li><a asp-controller="UsefulLink" asp-action="Index">Useful Links</a></li>
+                                <li><a asp-controller="Website" asp-action="Index">Website</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="menu-item has-submenu">
+                        <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#reportMenu" role="button" aria-expanded="false" aria-controls="reportMenu">
+                            <i class="fas fa-cog"></i> Reports
+                        </a>
+                        <div class="collapse" id="reportMenu">
+                            <ul class="list-unstyled ps-4">
+                                <li><a asp-controller="Report" asp-action="MoviesGenerator">Movies and Genres</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })href="#" class="d-block text-decoration-none py-2 px-3 text-light">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+        <div class="content flex-grow-1">
+            @RenderBody()
+
+            @await RenderSectionAsync("AdditionalContent", required: false)
+        </div>
+
+    </div>
     @*Footer*@
     @await Component.InvokeAsync("FooterComponent")
-        <partial name="_Notification" />
+    <partial name="_Notification" />
 
     <script>
         window.onscroll = function () { myFunction() };

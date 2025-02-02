@@ -17,19 +17,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-0 d-flex justify-content-center">
                             <li class="nav-item">
-                                <a asp-controller="Home" asp-action="Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "active" : "")">Home</a>
+                                <a asp-controller="Home" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Home" ? "active" : "")">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Movie" asp-action="Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Movie" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">Screenings</a>
+                                <a asp-controller="Movie" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Movie" && ViewContext?.RouteData?.Values["action"]?.ToString() == "Index" ? "active" : "")">Screenings</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Movie" asp-action="ShowScreeningsForMovie" asp-route-id="0" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Movie" && ViewContext.RouteData.Values["action"].ToString() == "ShowScreeningsForMovie" ? "active" : "")">Movies</a>
+                                <a asp-controller="Movie" asp-action="ShowScreeningsForMovie" asp-route-id="0" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Movie" && ViewContext?.RouteData?.Values["action"]?.ToString() == "ShowScreeningsForMovie" ? "active" : "")">Movies</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Cart" asp-action="Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Cart" ? "active" : "")">Cart</a>
+                                <a asp-controller="Cart" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Cart" ? "active" : "")">Cart</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Admin" asp-action="Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Admin" ? "active" : "")">Admin</a>
+                                <a asp-controller="Admin" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Admin" ? "active" : "")">Admin</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Contact</a>
@@ -40,25 +40,25 @@
                 </div>
             </div>
         </div>
-      <div class="row w-100 mb-3">
-    <div class="col-12 d-flex justify-content-center">
-        <div class="search-bar custom-search-bar">
-            <form>
-                <div class="input-group">
-                    <input type="text" class="form-control text-white" 
-                           placeholder="Search ..." 
-                           aria-label="Search movies"
-                           style="background-color: black; height: 45px; border-radius: 25px; border: none;">
+        <div class="row w-100 mb-3">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="search-bar custom-search-bar">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control text-white"
+                                   placeholder="Search ..."
+                                   aria-label="Search movies"
+                                   style="background-color: black; height: 45px; border-radius: 25px; border: none;">
 
-                    <button class="btn text-white" type="button"
-                            style="background-color: #d10000; height: 45px; border-radius: 25px; border: none; padding: 0 20px; margin-left: 8px;">
-                        Search
-                    </button>
+                            <button class="btn text-white" type="button"
+                                    style="background-color: #d10000; height: 45px; border-radius: 25px; border: none; padding: 0 20px; margin-left: 8px;">
+                                Search
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
 
 
