@@ -102,7 +102,7 @@ namespace PortalWWW.Controllers.Admin.Report
             for (int i = 0; i < paymentMethods.Count; i++)
             {
                 paymentMethodsCount.Add(invoices.Where(inv => inv.PaymentMethod == paymentMethods[i]).Count());
-                paymentMethodsSum.Add(invoices.Where(inv => inv.PaymentMethod == paymentMethods[i]).Sum(inv => inv.Sum));
+                paymentMethodsSum.Add(invoices.Where(inv => inv.PaymentMethod == paymentMethods[i]).Sum(inv => inv.TotalSum));
                 labels.Add(paymentMethods[i].Name);
             }
 
@@ -188,7 +188,7 @@ namespace PortalWWW.Controllers.Admin.Report
                                                  o.CreatedAt,
                                                  o.OrderStatus,
                                                  o.PaymentStatus,
-                                                 o.Sum
+                                                 o.TotalSum
                                              }).ToList();
 
                         // Convert the data to DataTable
@@ -255,7 +255,7 @@ namespace PortalWWW.Controllers.Admin.Report
                                                  o.CreatedAt,
                                                  o.OrderStatus,
                                                  o.PaymentStatus,
-                                                 o.Sum
+                                                 o.TotalSum
                                              }).ToList();
 
             // Ensure the directory for reports exists
@@ -320,7 +320,7 @@ namespace PortalWWW.Controllers.Admin.Report
                     row.Cells[2].Paragraphs[0].Append(invoice.CreatedAt.ToString());
                     row.Cells[3].Paragraphs[0].Append(invoice.PaymentStatus);
                     row.Cells[4].Paragraphs[0].Append(invoice.OrderStatus);
-                    row.Cells[5].Paragraphs[0].Append(invoice.Sum.ToString());
+                    row.Cells[5].Paragraphs[0].Append(invoice.TotalSum.ToString());
                 }
 
                 // Save the generated document as a .docx file

@@ -10,9 +10,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml.ConditionalFormatting.Contracts;
 using PortalWWW.Models;
+using ServiceStack;
 using Stripe;
 using Stripe.Checkout;
+using InvoiceItem = InvoiceSdk.Models.InvoiceItem;
+using static PortalWWW.Helpers.StripeHelper;
 
 namespace PortalWWW.Controllers
 {
@@ -56,6 +60,31 @@ namespace PortalWWW.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddCoupon(string couponName)
+        {
+            if (!couponName.IsNullOrEmpty())
+            {
+                var coupon = dbContext.Coupon.Where(item => item.Name == couponName).ToList();
+                if (coupon.Any())
+                {
+                    CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
+                    var couponVal = cartBusinessLogic.CheckCoupon();
+                    if (couponVal == null)
+                    {
+                        dbContext.CartElement.Add(new CartElement
+                        {
+                            Coupon = coupon.FirstOrDefault(),
+                            SessionId = cartBusinessLogic.GetSessionId()
+                        });
+                        dbContext.SaveChanges();
+                    }
+                }
+            }
+            return RedirectToAction("ChoosePayment");
+        }
+
         [Authorize]
         public async Task<ActionResult> ChoosePayment()
         {
@@ -63,8 +92,13 @@ namespace PortalWWW.Controllers
             var cartInformation = new CartInformation
             {
                 CartElements = await cartBusinessLogic.GetCartElements(),
-                PriceTotal = await cartBusinessLogic.CalculateSum()
+                PriceTotal = await cartBusinessLogic.CalculateSum(),
+                Coupon = cartBusinessLogic.CheckCoupon()
             };
+            if (cartInformation.Coupon != null)
+            {
+                cartInformation.CouponDiscount = (decimal)cartInformation.Coupon.Discount / 100 * cartInformation.PriceTotal;
+            }
             var listForBag = dbContext.PaymentMethod.Select(method => new
             {
                 method.Id,
@@ -76,22 +110,26 @@ namespace PortalWWW.Controllers
 
         public async Task<IActionResult> OrderConfirmed(Guid invoiceId)
         {
-            var invoice = dbContext.Invoice.Include(inv => inv.PaymentMethod).First(inv => inv.InvoiceId == invoiceId);
-            var service = new SessionService();
-            Session session = service.Get(invoice.StripeSessionId);
-            if (session.PaymentStatus.ToLower() == "paid")
+            var invoice = dbContext.Invoice.Include(inv => inv.PaymentMethod).Include(inv => inv.Coupon).First(inv => inv.InvoiceId == invoiceId);
+            if (invoice.PaymentMethod.Name == "Stripe")
             {
-                UpdateStripePaymentID(invoiceId, session.Id, session.PaymentIntentId);
-                UpdateStatus(invoiceId, Constans.OrderStatus_Retrieved, Constans.PaymentStatus_Approved);
-                dbContext.SaveChanges();
+                var service = new SessionService();
+                Session session = service.Get(invoice.StripeSessionId);
+                if (session.PaymentStatus.ToLower() == "paid")
+                {
+                    UpdateStripePaymentID(invoiceId, session.Id, session.PaymentIntentId);
+                    UpdateStatus(invoiceId, Constans.OrderStatus_Retrieved, Constans.PaymentStatus_Approved);
+                    dbContext.SaveChanges();
+                }
             }
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
             var cartInformation = new CartInformation
             {
                 CartElements = await cartBusinessLogic.GetCartElements(),
-                PriceTotal = await cartBusinessLogic.CalculateSum()
+                PriceTotal = await cartBusinessLogic.CalculateSum(),
             };
             await cartBusinessLogic.ClearCart(cartInformation.CartElements.ToArray());
+            await cartBusinessLogic.ClearCoupon(invoice.CouponId);
             HttpContext.Session.Clear();
             return View(invoice);
         }
@@ -111,19 +149,24 @@ namespace PortalWWW.Controllers
             //save db
 
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
-            var userId = this.dbContext.User.First(x => x.Email == this.HttpContext.User.Identity.Name).Id;
+            var user = this.dbContext.User.Include(u => u.Address).ThenInclude(u => u.Country).First(x => x.Email == this.HttpContext.User.Identity.Name);
+            var userId = user.Id;
             var cartInformation = new CartInformation
             {
                 CartElements = await cartBusinessLogic.GetCartElements(),
-                PriceTotal = await cartBusinessLogic.CalculateSum()
+                PriceTotal = await cartBusinessLogic.CalculateSum(),
+                Coupon = cartBusinessLogic.CheckCoupon()
             };
             var invoice = new InvoiceSdk.Models.Invoice()
             {
                 Id = Guid.NewGuid(),
                 Number = new Random().Next(0, int.MaxValue),
                 InvoiceCurrency = new InvoiceCurrencySymbol(InvoiceCurrency.Euro),
+                DueAt = DateTime.Now.AddDays(7),
+                IssuedAt = DateTime.Now,
                 SellerAddress = InvoiceGenerator.generateAddressForCinema(),
-                CustomerAddress = InvoiceGenerator.generateAddressForCustomer("1", "1", "1", "1", "1", "1")
+                CustomerAddress = InvoiceGenerator.generateAddressForCustomer(user.Address.StreetName + " " + user.Address.HouseNumber,
+                user.Address.Country.Name, user.Address.City, user.Address.EirCode, user.PhoneNumber)
             };
             var dbInvoice = new DatabaseAPI.Models.General.Invoice
             {
@@ -131,7 +174,7 @@ namespace PortalWWW.Controllers
                 CreatedAt = DateTime.Now,
                 ModifiedAt = DateTime.Now,
                 IsActive = true,
-                Sum = cartInformation.PriceTotal,
+                TicketSum = cartInformation.PriceTotal,
                 PaymentMethodId = paymentMethodId,
                 UserId = userId
             };
@@ -153,7 +196,7 @@ namespace PortalWWW.Controllers
             }
 
 
-            var itemsOnInvoice = new List<InvoiceSdk.Models.InvoiceItem>();
+            var itemsOnInvoice = new List<InvoiceItem>();
             foreach (var element in cartInformation.CartElements)
             {
                 var ticketInvoice = new TicketInvoiceModel()
@@ -179,7 +222,7 @@ namespace PortalWWW.Controllers
                 }
                 else
                 {
-                    itemsOnInvoice.Add(new InvoiceSdk.Models.InvoiceItem()
+                    itemsOnInvoice.Add(new InvoiceItem()
                     {
                         Name = ticketInvoice.MovieName,
                         InvoiceId = invoice.Id,
@@ -189,12 +232,30 @@ namespace PortalWWW.Controllers
                     });
                 }
             }
-            dbContext.Add(dbInvoice);
+            if (cartInformation.Coupon != null)
+            {
+                dbInvoice.Coupon = cartInformation.Coupon;
+                dbInvoice.CouponDiscount = dbInvoice.TicketSum * ((decimal)dbInvoice.Coupon.Discount / 100);
+                dbInvoice.TotalSum = dbInvoice.TicketSum - dbInvoice.CouponDiscount;
+                itemsOnInvoice.Add(new InvoiceItem
+                {
+                    Name = $"Coupon discount - {dbInvoice.Coupon.Name}",
+                    InvoiceId = invoice.Id,
+                    UnitPriceWithoutVat = -dbInvoice.CouponDiscount ?? Decimal.Zero,
+                    VatPercentage = 23,
+                    Quantity = 1
+                });
+            }
+            else
+            {
+                dbInvoice.TotalSum = dbInvoice.TicketSum;
+            }
+            await dbContext.AddAsync(dbInvoice);
             await dbContext.SaveChangesAsync();
             invoice.Items = itemsOnInvoice;
             invoice.Payments = new List<Payment>()
             {
-                InvoiceGenerator.generatePayment(invoice.Id, itemsOnInvoice.Sum(item => item.Quantity * item.UnitPriceWithoutVat))
+                InvoiceGenerator.generatePayment(invoice.Id, itemsOnInvoice.Sum(item => item.Quantity * item.UnitPriceWithoutVat), paymentMethod.Name)
             };
 
             if (paymentMethod != null && paymentMethod.Name == "Stripe")
@@ -212,6 +273,7 @@ namespace PortalWWW.Controllers
 
                 foreach (var item in itemsOnInvoice)
                 {
+                    if (item.Name.StartsWith("Coupon")) continue;
                     var sessionLineItem = new SessionLineItemOptions
                     {
                         PriceData = new SessionLineItemPriceDataOptions
@@ -227,6 +289,15 @@ namespace PortalWWW.Controllers
                     };
                     options.LineItems.Add(sessionLineItem);
                 }
+                //check if discount applies
+                if (cartInformation.Coupon != null)
+                {
+                    var discount = CheckCoupon(cartInformation.Coupon);
+                    if (discount != null && discount.Count > 0)
+                    {
+                        options.Discounts = discount;
+                    }
+                }
 
 
                 var service = new SessionService();
@@ -240,7 +311,8 @@ namespace PortalWWW.Controllers
 
 
             IInvoiceRenderer renderer = new InvoiceRenderer();
-            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Generate();
+            string path = "wwwroot//reports//Invoice" + new Random().Next(100) + ".pdf";
+            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Save(path);
             // "C:/Users/pre12/Desktop/Invoice" + new Random().Next(100) + ".pdf"
             return RedirectToAction("OrderConfirmed", new { invoiceId = dbInvoice.InvoiceId });
         }

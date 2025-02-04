@@ -26,5 +26,9 @@ namespace BusinessLogic
         public static string OrderStatus_Rejected = "Rejected";
         public static string OrderStatus_Cancelled = "Cancelled";
         public static string OrderStatus_Refunded = "Refunded";
+
+        // Stripe Coupons IDs
+        public static string Stripe_Coupon_MOVIE5_id = "HRao2Wzn";
+        public static string Stripe_Coupon_MOVIE20_id = "HLdbkBDK";
     }
 }
