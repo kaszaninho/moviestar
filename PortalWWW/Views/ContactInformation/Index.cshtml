@@ -5,39 +5,49 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!-- Importowanie stylów DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New Contact Information element</a>
-</p>
-
-<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
-    <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Title Name</th>
-            <th>Description</th>
-            <th>Position</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Contact Information</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-success m-2 custom-btn">
+                <i class="bi bi-plus-circle"></i> Add Contact Information
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title Name</th>
+                    <th>Description</th>
+                    <th>Position</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 
 @section Scripts
 {
+    <!-- Importowanie jQuery i DataTables -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
     <script>
         $(document).ready(function () {
             loadDataTable();
         });
 
         function loadDataTable() {
-            dataTable = $('#tblData').DataTable({
+            $('#tblData').DataTable({
                 "ajax": { url: '/ContactInformation/getall' },
                 "columns": [
                     { "data": "id" },
@@ -45,17 +55,33 @@
                     { "data": "description" },
                     { "data": "position" },
                     {
-                        data: 'id',
+                        "data": "id",
                         "render": function (data) {
-                            return `<div class="test-center" >
-                                            <a href="/ContactInformation/delete?id=${data}" class="btn btn-primary"> Delete </a>
-                                                            <a href="/ContactInformation/details?id=${data}" class="btn btn-primary"> Details </a>
-                                                            <a href="/ContactInformation/edit?id=${data}" class="btn btn-primary"> Edit </a>
-                                            </div>`
+                            return `<div class="text-center">
+                                        <a href="/ContactInformation/delete?id=${data}" class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                        <a href="/ContactInformation/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
+                                        <a href="/ContactInformation/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
+                                   </div>`;
                         }
                     }
-                ]
-            })
+                ],
+                "language": {
+                    "paginate": {
+                        "previous": "Previous",
+                        "next": "Next"
+                    },
+                    "lengthMenu": "Show _MENU_ entries",
+                    "zeroRecords": "No matching records found",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "infoEmpty": "No entries available",
+                    "search": "Search:"
+                },
+                "paging": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
         }
     </script>
 }
