@@ -18,7 +18,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<RazorViewEngineOptions>(options =>
 {
     options.ViewLocationFormats.Add("/Views/Shared/AdminViewsTemplates/{0}.cshtml"); 
-    options.ViewLocationFormats.Add("/Views/Shared/CMSViewsTemplates/{0}.cshtml"); 
     foreach (var directory in Directory.GetDirectories("Views/Admin", "*", SearchOption.AllDirectories))
     {
         options.ViewLocationFormats.Add(directory.Replace("\\", "/") + "/{0}.cshtml");
