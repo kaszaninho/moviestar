@@ -365,4 +365,67 @@ min-height:515px;
 
  }
 
+.custom-table {
+    background-color: #343a40 !important; /* Ciemnoszary kolor t³a */
+    color: #ffffff !important; /* Bia³y tekst */
+    font-size: 18px !important; /* Powiêkszona czcionka */
+}
 
+    /* Stylizacja nag³ówków tabeli */
+    .custom-table thead {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        font-size: 18px !important; /* Powiêkszona czcionka */
+    }
+
+    /* Stylizacja komórek tabeli */
+    .custom-table th,
+    .custom-table td {
+        border-color: #6c757d !important;
+        color: #ffffff !important;
+        font-size: 18px !important; /* Powiêkszona czcionka */
+    }
+
+    /* Stylizacja naprzemiennych wierszy */
+    .custom-table tbody tr:nth-child(odd) {
+        background-color: #343a40 !important; /* Ciemnoszary kolor */
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #3d4247 !important; /* Jaœniejszy szary kolor */
+    }
+
+    /* Dodatkowa stylizacja wierszy dla hover */
+    .custom-table tbody tr:hover {
+        background-color: #495057 !important; /* Jeszcze jaœniejszy szary dla efektu hover */
+    }
+
+/* Stylizacja elementów interfejsu DataTables */
+.dataTables_wrapper {
+    color: #ffffff !important;
+    font-size: 18px !important; /* Powiêkszona czcionka */
+}
+
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+        color: #ffffff !important;
+        font-size: 18px !important; /* Powiêkszona czcionka */
+    }
+
+    /* Stylizacja pól formularza DataTables */
+    .dataTables_wrapper select,
+    .dataTables_wrapper input {
+        background-color: #343a40 !important;
+        color: #ffffff !important;
+        border: 1px solid #6c757d !important;
+        font-size: 18px !important; /* Powiêkszona czcionka */
+    }
+
+/* Stylizacja wiêkszych przycisków */
+.custom-btn {
+    font-size: 18px !important; /* Powiêkszona czcionka dla przycisków */
+    padding: 6px 14px !important; /* Wiêksze przyciski */
+}
+ 
