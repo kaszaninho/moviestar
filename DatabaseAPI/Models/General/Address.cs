@@ -17,6 +17,7 @@ namespace DatabaseAPI.Models.General
         public string City { get; set; }
         public Country? Country { get; set; }
         public int CountryId { get; set; }
+        public ICollection<OpeningHour> OpeningHour { get; set; }
 
     }
 }
