@@ -1,6 +1,7 @@
 ﻿using DatabaseAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ServiceStack;
 
 namespace PortalWWW.Controllers.Components
 {
