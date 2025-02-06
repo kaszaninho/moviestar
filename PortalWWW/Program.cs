@@ -17,7 +17,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<RazorViewEngineOptions>(options =>
 {
-    options.ViewLocationFormats.Add("/Views/Shared/AdminViewsTemplates/{0}.cshtml"); 
+    options.ViewLocationFormats.Add("/Views/Shared/AdminViewsTemplates/{0}.cshtml");
     foreach (var directory in Directory.GetDirectories("Views/Admin", "*", SearchOption.AllDirectories))
     {
         options.ViewLocationFormats.Add(directory.Replace("\\", "/") + "/{0}.cshtml");
@@ -95,7 +95,7 @@ if (!app.Environment.IsDevelopment())
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    await CreateRoles(services);  // Ensure roles exist
+    await CreateRolesAndAdmin(services);  // Ensure roles exist
 }
 
 app.UseHttpsRedirection();
@@ -118,17 +118,75 @@ app.MapRazorPages();
 
 app.Run();
 
-async Task CreateRoles(IServiceProvider serviceProvider)
+async Task CreateRolesAndAdmin(IServiceProvider serviceProvider)
 {
     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var dbContext = serviceProvider.GetRequiredService<DatabaseAPIContext>();
 
     string[] roleNames = { "Admin", "Client" };
-    foreach (var roleName in roleNames)
+    if (!roleManager.RoleExistsAsync(Constans.Role_Admin).GetAwaiter().GetResult())
     {
-        var roleExist = await roleManager.RoleExistsAsync(roleName);
-        if (!roleExist)
+        roleManager.CreateAsync(new IdentityRole("Client")).GetAwaiter().GetResult();
+        roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
+
+        //if roles are not created, then we will create admin user as well
+        var country = await dbContext.Country.FirstOrDefaultAsync(item => item.Name == "Poland");
+        if (country == null)
         {
-            await roleManager.CreateAsync(new IdentityRole(roleName));
+            await dbContext.Country.AddAsync(new DatabaseAPI.Models.DictionaryModels.Country { CreatedAt = DateTime.Now, ModifiedAt = DateTime.Now, Name = "Poland", IsActive = true });
+            await dbContext.SaveChangesAsync();
+            country = await dbContext.Country.FirstOrDefaultAsync(item => item.Name == "Poland");
+        }
+
+        var address = new DatabaseAPI.Models.General.Address()
+        {
+            StreetName = "Broniewskiego",
+            City = "Nowy S¹cz",
+            HouseNumber = 12,
+            ApartmentNumber = 8,
+            EirCode = "33-300",
+            Country = country
+        };
+
+        var userLevel = await dbContext.UserLevel.FirstOrDefaultAsync();
+        if (userLevel == null)
+        {
+            await dbContext.UserLevel.AddAsync(new UserLevel
+            {
+                Id = 1,
+                CreatedAt = new DateTime(2025, 2, 2),
+                ModifiedAt = new DateTime(2025, 2, 2),
+                IsActive = true,
+                Description = "Level 1",
+                Name = "1",
+                PointsToNextLevel = 10
+            });
+            await dbContext.SaveChangesAsync();
+            userLevel = await dbContext.UserLevel.FirstOrDefaultAsync();
+        }
+        userManager.CreateAsync(new User()
+        {
+            UserName = "admin@admin.pl",
+            Email = "admin@admin.pl",
+            FirstName = "Bartosz",
+            LastName = " Szortab",
+            PhoneNumber = "505404393",
+            Address = address,
+            UserLevel = userLevel
+        }, "Admin9#").GetAwaiter().GetResult();
+
+
+        User user = dbContext.User.FirstOrDefault(u => u.Email == "admin@admin.pl");
+        userManager.AddToRoleAsync(user, Constans.Role_Admin).GetAwaiter().GetResult();
+
+        foreach (var roleName in roleNames)
+        {
+            var roleExist = await roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
         }
     }
 }

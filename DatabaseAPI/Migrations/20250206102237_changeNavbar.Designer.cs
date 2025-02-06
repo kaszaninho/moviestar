@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    [Migration("20250202091743_seedUserLevel")]
-    partial class seedUserLevel
+    [Migration("20250206102237_changeNavbar")]
+    partial class changeNavbar
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,8 +83,14 @@ namespace DatabaseAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Content")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -95,10 +101,6 @@ namespace DatabaseAPI.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -256,6 +258,9 @@ namespace DatabaseAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CouponId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -265,7 +270,7 @@ namespace DatabaseAPI.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ScreeningSeatId")
+                    b.Property<int?>("ScreeningSeatId")
                         .HasColumnType("int");
 
                     b.Property<string>("SessionId")
@@ -273,6 +278,8 @@ namespace DatabaseAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CouponId");
 
                     b.HasIndex("ScreeningSeatId");
 
@@ -286,10 +293,6 @@ namespace DatabaseAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CouponNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -306,15 +309,8 @@ namespace DatabaseAPI.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MovieOrCafeUsage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UsedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -352,19 +348,19 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4898),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Grammy",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4901),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Grammy"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4905),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oscar",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4906),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Oscar"
                         });
                 });
@@ -400,28 +396,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5035),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Polish",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5038),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Polish"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5040),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "English",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5042),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "English"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5046),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Danish",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5048),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Danish"
                         });
                 });
@@ -457,19 +453,19 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5074),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "4:3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5076),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "4:3"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5079),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "16:9",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5081),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "16:9"
                         });
                 });
@@ -505,28 +501,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5113),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Superb",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5115),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Superb"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5118),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Extra",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5120),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Extra"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5123),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Magic",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5124),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Magic"
                         });
                 });
@@ -562,28 +558,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5151),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Warner Bros",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5153),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Warner Bros"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5156),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "KOJAK",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5157),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "KOJAK"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5160),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Netflix",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5162),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Netflix"
                         });
                 });
@@ -619,28 +615,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5189),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Polish",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5192),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Polish"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5195),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "English",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5197),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "English"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5200),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Danish",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5201),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Danish"
                         });
                 });
@@ -837,30 +833,30 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5445),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "ŻABA",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5448),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "ŻABA",
                             RoomNumber = 12
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5452),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "KROWA",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5455),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "KROWA",
                             RoomNumber = 23
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5458),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "MILKY WAY",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5459),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "MILKY WAY",
                             RoomNumber = 34
                         });
@@ -993,10 +989,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5487),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5489),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/1",
                             NumberInRow = 1,
                             Row = 1,
@@ -1005,10 +1001,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5494),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5496),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/2",
                             NumberInRow = 2,
                             Row = 1,
@@ -1017,10 +1013,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5499),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5501),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/3",
                             NumberInRow = 3,
                             Row = 1,
@@ -1029,10 +1025,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5504),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5506),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/1",
                             NumberInRow = 1,
                             Row = 2,
@@ -1041,10 +1037,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5509),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5511),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/2",
                             NumberInRow = 2,
                             Row = 2,
@@ -1053,10 +1049,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5514),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5516),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/3",
                             NumberInRow = 3,
                             Row = 2,
@@ -1065,10 +1061,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5521),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5522),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/1",
                             NumberInRow = 1,
                             Row = 3,
@@ -1077,10 +1073,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5526),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5528),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/2",
                             NumberInRow = 2,
                             Row = 3,
@@ -1089,10 +1085,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5531),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5533),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/3",
                             NumberInRow = 3,
                             Row = 3,
@@ -1101,10 +1097,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5536),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5538),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/1",
                             NumberInRow = 1,
                             Row = 1,
@@ -1113,10 +1109,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5541),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5543),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/2",
                             NumberInRow = 2,
                             Row = 1,
@@ -1125,10 +1121,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5546),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5548),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/3",
                             NumberInRow = 3,
                             Row = 1,
@@ -1137,10 +1133,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5551),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5553),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/1",
                             NumberInRow = 1,
                             Row = 2,
@@ -1149,10 +1145,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5556),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5558),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/2",
                             NumberInRow = 2,
                             Row = 2,
@@ -1161,10 +1157,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5562),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5564),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/3",
                             NumberInRow = 3,
                             Row = 2,
@@ -1173,10 +1169,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5567),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5569),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/1",
                             NumberInRow = 1,
                             Row = 3,
@@ -1185,10 +1181,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5572),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5574),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/2",
                             NumberInRow = 2,
                             Row = 3,
@@ -1197,10 +1193,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5588),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5590),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/3",
                             NumberInRow = 3,
                             Row = 3,
@@ -1209,10 +1205,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5594),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5596),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/1",
                             NumberInRow = 1,
                             Row = 1,
@@ -1221,10 +1217,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5599),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5601),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/2",
                             NumberInRow = 2,
                             Row = 1,
@@ -1233,10 +1229,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5604),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5606),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "1/3",
                             NumberInRow = 3,
                             Row = 1,
@@ -1245,10 +1241,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5610),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5611),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/1",
                             NumberInRow = 1,
                             Row = 2,
@@ -1257,10 +1253,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5614),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5616),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/2",
                             NumberInRow = 2,
                             Row = 2,
@@ -1269,10 +1265,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5619),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5621),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2/3",
                             NumberInRow = 3,
                             Row = 2,
@@ -1281,10 +1277,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5624),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5626),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/1",
                             NumberInRow = 1,
                             Row = 3,
@@ -1293,10 +1289,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5629),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5631),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/2",
                             NumberInRow = 2,
                             Row = 3,
@@ -1305,10 +1301,10 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5634),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "3/3",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5636),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3/3",
                             NumberInRow = 3,
                             Row = 3,
@@ -1446,28 +1442,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4640),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "+12",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4691),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "+12"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4696),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "+15",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4698),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "+15"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4702),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "+18",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4704),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "+18"
                         });
                 });
@@ -1503,28 +1499,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4941),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Poland",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4943),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Poland"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4946),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "USA",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4948),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "USA"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4951),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Germany",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4952),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Germany"
                         });
                 });
@@ -1560,28 +1556,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4983),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Action",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4986),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Action"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4989),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Romance",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4991),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Romance"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4993),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Drama",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(4995),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Drama"
                         });
                 });
@@ -1707,20 +1703,29 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5230),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cash",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5232),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Cash"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5237),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Credit Card",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5239),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Credit Card"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Stripe",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Stripe"
                         });
                 });
 
@@ -1755,28 +1760,28 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5266),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "General Assistant",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5268),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "General Assistant"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5271),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Floor Manager",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5273),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Floor Manager"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5276),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cleaner",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5278),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Cleaner"
                         });
                 });
@@ -1789,13 +1794,19 @@ namespace DatabaseAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal?>("CouponDiscount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("CouponId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("InvoiceId")
+                    b.Property<Guid>("InvoiceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool?>("IsActive")
@@ -1807,16 +1818,33 @@ namespace DatabaseAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("PaymentMethodId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Sum")
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StripePaymentIntentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StripeSessionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("TicketSum")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("TotalSum")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CouponId");
 
                     b.HasIndex("PaymentMethodId");
 
@@ -2010,39 +2038,39 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 1,
                             CountryId = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5342),
-                            DateOfBirth = new DateTime(1994, 11, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5348),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Jerzy Puławski",
                             FirstName = "Jerzy",
                             IsActive = true,
                             LastName = "Puławski",
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5344),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jerzy Puławski"
                         },
                         new
                         {
                             Id = 2,
                             CountryId = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5357),
-                            DateOfBirth = new DateTime(1994, 11, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5362),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "John Longue",
                             FirstName = "John",
                             IsActive = true,
                             LastName = "Longue",
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5359),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "John Longue"
                         },
                         new
                         {
                             Id = 3,
                             CountryId = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5364),
-                            DateOfBirth = new DateTime(2004, 9, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5369),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2004, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Anna Kobiela",
                             FirstName = "Anna",
                             IsActive = true,
                             LastName = "Kobiela",
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5366),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Anna Kobiela"
                         });
                 });
@@ -2108,26 +2136,26 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 1,
                             CountryId = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5400),
-                            DateOfBirth = new DateTime(1974, 11, 25, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5406),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1974, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mariusz Puławski",
                             FirstName = "Mariusz",
                             IsActive = true,
                             LastName = "Puławski",
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5402),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Mariusz Puławski"
                         },
                         new
                         {
                             Id = 2,
                             CountryId = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5411),
-                            DateOfBirth = new DateTime(1965, 3, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5416),
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1965, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "John Mingue",
                             FirstName = "John",
                             IsActive = true,
                             LastName = "Mingue",
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5413),
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "John Mingue"
                         });
                 });
@@ -2166,21 +2194,21 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5306),
-                            Description = "Lvl1",
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Level 1",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5308),
-                            Name = "Lvl1",
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "1",
                             PointsToNextLevel = 10
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5312),
-                            Description = "Lvl2",
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Level 2",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 10, 17, 42, 115, DateTimeKind.Local).AddTicks(5315),
-                            Name = "Lvl2",
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "2",
                             PointsToNextLevel = 50
                         });
                 });
@@ -2488,11 +2516,15 @@ namespace DatabaseAPI.Migrations
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.CartElement", b =>
                 {
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Coupon", "Coupon")
+                        .WithMany()
+                        .HasForeignKey("CouponId");
+
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.ScreeningSeat", "ScreeningSeat")
                         .WithMany()
-                        .HasForeignKey("ScreeningSeatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ScreeningSeatId");
+
+                    b.Navigation("Coupon");
 
                     b.Navigation("ScreeningSeat");
                 });
@@ -2642,13 +2674,19 @@ namespace DatabaseAPI.Migrations
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Invoice", b =>
                 {
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Coupon", "Coupon")
+                        .WithMany()
+                        .HasForeignKey("CouponId");
+
                     b.HasOne("DatabaseAPI.Models.General.DictionaryModels.PaymentMethod", "PaymentMethod")
-                        .WithMany("Invoices")
+                        .WithMany()
                         .HasForeignKey("PaymentMethodId");
 
                     b.HasOne("DatabaseAPI.Models.People.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Coupon");
 
                     b.Navigation("PaymentMethod");
 
@@ -2883,11 +2921,6 @@ namespace DatabaseAPI.Migrations
             modelBuilder.Entity("DatabaseAPI.Models.DictionaryModels.Genre", b =>
                 {
                     b.Navigation("Movies");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.General.DictionaryModels.PaymentMethod", b =>
-                {
-                    b.Navigation("Invoices");
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Invoice", b =>

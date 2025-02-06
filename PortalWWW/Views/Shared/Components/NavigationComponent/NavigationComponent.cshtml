@@ -16,27 +16,7 @@
                 <div class="col-12">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-0 d-flex justify-content-center">
-                            <li class="nav-item">
-                                <a asp-controller="Home" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Home" ? "active" : "")">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Home" asp-action="InvoiceReportForUser" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Home" ? "active" : "")">Invoices</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Movie" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Movie" && ViewContext?.RouteData?.Values["action"]?.ToString() == "Index" ? "active" : "")">Screenings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Movie" asp-action="ShowScreeningsForMovie" asp-route-id="0" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Movie" && ViewContext?.RouteData?.Values["action"]?.ToString() == "ShowScreeningsForMovie" ? "active" : "")">Movies</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Cart" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Cart" ? "active" : "")">Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Admin" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Admin" ? "active" : "")">Admin</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Contact</a>
-                            </li>
+                            @await Component.InvokeAsync("NavbarComponent")
                             <partial name="_LoginPartial" />
                         </ul>
                     </div>

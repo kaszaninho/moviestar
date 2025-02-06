@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreateWithSeed : Migration
+    public partial class initialOneagain : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -123,10 +123,7 @@ namespace DatabaseAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UsedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CouponNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
-                    MovieOrCafeUsage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -699,10 +696,17 @@ namespace DatabaseAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InvoiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    InvoiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PaymentMethodId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Sum = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TicketSum = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StripeSessionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StripePaymentIntentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CouponId = table.Column<int>(type: "int", nullable: true),
+                    CouponDiscount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TotalSum = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -716,6 +720,11 @@ namespace DatabaseAPI.Migrations
                         name: "FK_Invoice_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Invoice_Coupon_CouponId",
+                        column: x => x.CouponId,
+                        principalTable: "Coupon",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Invoice_PaymentMethod_PaymentMethodId",
@@ -1121,7 +1130,8 @@ namespace DatabaseAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SessionId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ScreeningSeatId = table.Column<int>(type: "int", nullable: false),
+                    ScreeningSeatId = table.Column<int>(type: "int", nullable: true),
+                    CouponId = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -1130,11 +1140,15 @@ namespace DatabaseAPI.Migrations
                 {
                     table.PrimaryKey("PK_CartElement", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_CartElement_Coupon_CouponId",
+                        column: x => x.CouponId,
+                        principalTable: "Coupon",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_CartElement_ScreeningSeat_ScreeningSeatId",
                         column: x => x.ScreeningSeatId,
                         principalTable: "ScreeningSeat",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1170,9 +1184,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1157), "+12", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1210), "+12" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1214), "+15", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1216), "+15" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1219), "+18", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1221), "+18" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "+12", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "+12" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "+15", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "+15" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "+18", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "+18" }
                 });
 
             migrationBuilder.InsertData(
@@ -1180,8 +1194,8 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1402), "Grammy", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1406), "Grammy" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1409), "Oscar", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1411), "Oscar" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grammy", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grammy" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Oscar", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Oscar" }
                 });
 
             migrationBuilder.InsertData(
@@ -1189,9 +1203,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1445), "Poland", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1447), "Poland" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1450), "USA", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1452), "USA" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1455), "Germany", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1457), "Germany" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Poland", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Poland" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "USA", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "USA" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Germany", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Germany" }
                 });
 
             migrationBuilder.InsertData(
@@ -1199,9 +1213,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1485), "Action", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1488), "Action" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1491), "Romance", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1492), "Romance" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1495), "Drama", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1497), "Drama" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Action", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Action" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Drama", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Drama" }
                 });
 
             migrationBuilder.InsertData(
@@ -1209,9 +1223,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1525), "Polish", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1527), "Polish" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1530), "English", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1531), "English" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1535), "Danish", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1537), "Danish" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Polish", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Polish" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "English", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "English" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Danish", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Danish" }
                 });
 
             migrationBuilder.InsertData(
@@ -1219,8 +1233,8 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1562), "4:3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1564), "4:3" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1567), "16:9", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1569), "16:9" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "4:3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "4:3" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "16:9", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "16:9" }
                 });
 
             migrationBuilder.InsertData(
@@ -1228,9 +1242,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1604), "Superb", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1607), "Superb" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1609), "Extra", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1611), "Extra" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1614), "Magic", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1616), "Magic" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Superb", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Superb" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Extra", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Extra" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Magic", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Magic" }
                 });
 
             migrationBuilder.InsertData(
@@ -1238,9 +1252,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1642), "Warner Bros", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1644), "Warner Bros" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1647), "KOJAK", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1649), "KOJAK" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1651), "Netflix", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1653), "Netflix" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Warner Bros", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Warner Bros" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "KOJAK", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "KOJAK" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Netflix", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Netflix" }
                 });
 
             migrationBuilder.InsertData(
@@ -1248,8 +1262,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1727), "Cash", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1729), "Cash" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1732), "Credit Card", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1733), "Credit Card" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cash", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cash" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Credit Card", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Credit Card" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Stripe", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Stripe" }
                 });
 
             migrationBuilder.InsertData(
@@ -1257,9 +1272,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name", "RoomNumber" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1914), "ŻABA", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1916), "ŻABA", 12 },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1920), "KROWA", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1922), "KROWA", 23 },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1924), "MILKY WAY", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1926), "MILKY WAY", 34 }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "ŻABA", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "ŻABA", 12 },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "KROWA", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "KROWA", 23 },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "MILKY WAY", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "MILKY WAY", 34 }
                 });
 
             migrationBuilder.InsertData(
@@ -1267,9 +1282,18 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1681), "Polish", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1683), "Polish" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1686), "English", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1688), "English" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1690), "Danish", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1692), "Danish" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Polish", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Polish" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "English", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "English" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Danish", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Danish" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserLevel",
+                columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name", "PointsToNextLevel" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Level 1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", 10 },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Level 2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", 50 }
                 });
 
             migrationBuilder.InsertData(
@@ -1277,9 +1301,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1761), "General Assistant", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1763), "General Assistant" },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1766), "Floor Manager", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1768), "Floor Manager" },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1771), "Cleaner", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1772), "Cleaner" }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "General Assistant", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "General Assistant" },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Floor Manager", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Floor Manager" },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cleaner", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cleaner" }
                 });
 
             migrationBuilder.InsertData(
@@ -1287,9 +1311,9 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "AwardId", "CountryId", "CreatedAt", "DateOfBirth", "Description", "FirstName", "IsActive", "LastName", "MiddleName", "ModifiedAt", "MovieId", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1803), new DateTime(1994, 11, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1811), "Jerzy Puławski", "Jerzy", true, "Puławski", null, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1805), null, "Jerzy Puławski", null },
-                    { 2, null, 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1816), new DateTime(1994, 11, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1821), "John Longue", "John", true, "Longue", null, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1818), null, "John Longue", null },
-                    { 3, null, 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1823), new DateTime(2004, 9, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1828), "Anna Kobiela", "Anna", true, "Kobiela", null, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1825), null, "Anna Kobiela", null }
+                    { 1, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jerzy Puławski", "Jerzy", true, "Puławski", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Jerzy Puławski", null },
+                    { 2, null, 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Longue", "John", true, "Longue", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "John Longue", null },
+                    { 3, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2004, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anna Kobiela", "Anna", true, "Kobiela", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Anna Kobiela", null }
                 });
 
             migrationBuilder.InsertData(
@@ -1297,8 +1321,8 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "AwardId", "CountryId", "CreatedAt", "DateOfBirth", "Description", "FirstName", "IsActive", "LastName", "MiddleName", "ModifiedAt", "MovieId", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1867), new DateTime(1974, 11, 25, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1874), "Mariusz Puławski", "Mariusz", true, "Puławski", null, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1869), null, "Mariusz Puławski" },
-                    { 2, null, 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1879), new DateTime(1965, 3, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1883), "John Mingue", "John", true, "Mingue", null, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1880), null, "John Mingue" }
+                    { 1, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1974, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mariusz Puławski", "Mariusz", true, "Puławski", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Mariusz Puławski" },
+                    { 2, null, 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1965, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Mingue", "John", true, "Mingue", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "John Mingue" }
                 });
 
             migrationBuilder.InsertData(
@@ -1306,33 +1330,33 @@ namespace DatabaseAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name", "NumberInRow", "Row", "ScreenId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1953), "1/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1956), "1/1", 1, 1, 1 },
-                    { 2, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1960), "1/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1962), "1/2", 2, 1, 1 },
-                    { 3, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1965), "1/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1967), "1/3", 3, 1, 1 },
-                    { 4, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1970), "2/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1972), "2/1", 1, 2, 1 },
-                    { 5, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1975), "2/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1977), "2/2", 2, 2, 1 },
-                    { 6, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1980), "2/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1982), "2/3", 3, 2, 1 },
-                    { 7, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1985), "3/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1987), "3/1", 1, 3, 1 },
-                    { 8, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1990), "3/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1992), "3/2", 2, 3, 1 },
-                    { 9, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1996), "3/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(1998), "3/3", 3, 3, 1 },
-                    { 10, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2001), "1/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2002), "1/1", 1, 1, 2 },
-                    { 11, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2006), "1/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2007), "1/2", 2, 1, 2 },
-                    { 12, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2010), "1/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2012), "1/3", 3, 1, 2 },
-                    { 13, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2015), "2/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2017), "2/1", 1, 2, 2 },
-                    { 14, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2020), "2/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2022), "2/2", 2, 2, 2 },
-                    { 15, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2025), "2/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2026), "2/3", 3, 2, 2 },
-                    { 16, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2029), "3/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2031), "3/1", 1, 3, 2 },
-                    { 17, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2035), "3/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2037), "3/2", 2, 3, 2 },
-                    { 18, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2040), "3/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2042), "3/3", 3, 3, 2 },
-                    { 19, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2045), "1/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2047), "1/1", 1, 1, 3 },
-                    { 20, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2050), "1/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2052), "1/2", 2, 1, 3 },
-                    { 21, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2055), "1/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2056), "1/3", 3, 1, 3 },
-                    { 22, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2060), "2/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2061), "2/1", 1, 2, 3 },
-                    { 23, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2064), "2/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2066), "2/2", 2, 2, 3 },
-                    { 24, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2069), "2/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2071), "2/3", 3, 2, 3 },
-                    { 25, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2074), "3/1", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2076), "3/1", 1, 3, 3 },
-                    { 26, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2079), "3/2", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2081), "3/2", 2, 3, 3 },
-                    { 27, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2084), "3/3", true, new DateTime(2025, 2, 2, 10, 9, 35, 521, DateTimeKind.Local).AddTicks(2086), "3/3", 3, 3, 3 }
+                    { 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/1", 1, 1, 1 },
+                    { 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/2", 2, 1, 1 },
+                    { 3, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/3", 3, 1, 1 },
+                    { 4, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/1", 1, 2, 1 },
+                    { 5, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/2", 2, 2, 1 },
+                    { 6, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/3", 3, 2, 1 },
+                    { 7, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/1", 1, 3, 1 },
+                    { 8, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/2", 2, 3, 1 },
+                    { 9, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/3", 3, 3, 1 },
+                    { 10, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/1", 1, 1, 2 },
+                    { 11, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/2", 2, 1, 2 },
+                    { 12, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/3", 3, 1, 2 },
+                    { 13, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/1", 1, 2, 2 },
+                    { 14, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/2", 2, 2, 2 },
+                    { 15, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/3", 3, 2, 2 },
+                    { 16, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/1", 1, 3, 2 },
+                    { 17, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/2", 2, 3, 2 },
+                    { 18, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/3", 3, 3, 2 },
+                    { 19, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/1", 1, 1, 3 },
+                    { 20, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/2", 2, 1, 3 },
+                    { 21, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1/3", 3, 1, 3 },
+                    { 22, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/1", 1, 2, 3 },
+                    { 23, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/2", 2, 2, 3 },
+                    { 24, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2/3", 3, 2, 3 },
+                    { 25, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/1", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/1", 1, 3, 3 },
+                    { 26, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/2", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/2", 2, 3, 3 },
+                    { 27, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/3", true, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "3/3", 3, 3, 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1415,6 +1439,11 @@ namespace DatabaseAPI.Migrations
                 column: "MoviesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartElement_CouponId",
+                table: "CartElement",
+                column: "CouponId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CartElement_ScreeningSeatId",
                 table: "CartElement",
                 column: "ScreeningSeatId");
@@ -1438,6 +1467,11 @@ namespace DatabaseAPI.Migrations
                 name: "IX_ELementOfMenu_TypeOfElementOfMenuId",
                 table: "ELementOfMenu",
                 column: "TypeOfElementOfMenuId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Invoice_CouponId",
+                table: "Invoice",
+                column: "CouponId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Invoice_PaymentMethodId",
@@ -1591,9 +1625,6 @@ namespace DatabaseAPI.Migrations
                 name: "ContactInformation");
 
             migrationBuilder.DropTable(
-                name: "Coupon");
-
-            migrationBuilder.DropTable(
                 name: "ELementOfMenu");
 
             migrationBuilder.DropTable(
@@ -1670,6 +1701,9 @@ namespace DatabaseAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Award");
+
+            migrationBuilder.DropTable(
+                name: "Coupon");
 
             migrationBuilder.DropTable(
                 name: "PaymentMethod");

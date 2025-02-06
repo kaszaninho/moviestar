@@ -66,6 +66,30 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Action" class="form-label">Action</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Action" class="form-control" id="floatingInput" placeholder="Enter Action">
+                                <label asp-for="Action">Enter Action</label>
+                                <span asp-validation-for="Action" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Controller" class="form-label">Controller</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Controller" class="form-control" id="floatingInput" placeholder="Enter Controller">
+                                <label asp-for="Controller">Enter Controller</label>
+                                <span asp-validation-for="Controller" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 

@@ -4,6 +4,7 @@ namespace DatabaseAPI.Models.CMS
 {
     public class Navbar : AbstractCMSDatatable
     {
-        public string Link { get; set; }
+        public string? Controller { get; set; }
+        public string? Action { get; set; }
     }
 }

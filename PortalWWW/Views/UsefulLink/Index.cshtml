@@ -44,7 +44,7 @@
 
         function loadDataTable() {
             dataTable = $('#tblData').DataTable({
-                "ajax": { url: '/UsefulLink/getall' },
+                "ajax": { url: '/usefullink/getall' },
                 "columns": [
                     { "data": "id" },
                     { "data": "name" },
@@ -54,9 +54,9 @@
                         data: 'id',
                         "render": function (data) {
                             return `<div class="test-center" >
-                                        <a href="/ContactInformation/delete?id=${data}" class="btn btn-danger btn-sm custom-btn">Delete</a>
-                                                    <a href="/ContactInformation/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
-                                                    <a href="/ContactInformation/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
+                                                <a href="/usefullink/delete?id=${data}" class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                                            <a href="/usefullink/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
+                                                            <a href="/usefullink/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
                                         </div>`
                         }
                     }

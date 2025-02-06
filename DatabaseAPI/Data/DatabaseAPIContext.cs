@@ -122,7 +122,7 @@ namespace DatabaseAPI.Data
                 );
 
             builder.Entity<UserLevel>().HasData(
-                new UserLevel { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Level 1", Name = "1", PointsToNextLevel = 10},
+                new UserLevel { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Level 1", Name = "1", PointsToNextLevel = 10 },
                 new UserLevel { Id = 2, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Level 2", Name = "2", PointsToNextLevel = 50 }
                 );
 
@@ -237,6 +237,72 @@ namespace DatabaseAPI.Data
                 );
 
 
+            builder.Entity<Navbar>().HasData(
+                new Navbar
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Home",
+                    Action = "Index",
+                    Controller = "Home",
+                    Content = "Home",
+                    Position = 1
+                },
+                new Navbar
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Invoices",
+                    Action = "InvoiceReportForUser",
+                    Controller = "Home",
+                    Content = "Invoices",
+                    Position = 2
+                },
+                new Navbar
+                {
+                    Id = 3,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Movies",
+                    Action = "Index",
+                    Controller = "Movie",
+                    Content = "Movies",
+                    Position = 3
+                },
+                new Navbar
+                {
+                    Id = 4,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Screenings",
+                    Action = "ShowScreeningsForMovie",
+                    Controller = "Movie",
+                    Content = "Screenings",
+                    Position = 4
+                },
+                new Navbar
+                {
+                    Id = 5,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Cart",
+                    Action = "Index",
+                    Controller = "Cart",
+                    Content = "Cart",
+                    Position = 5
+                });
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
