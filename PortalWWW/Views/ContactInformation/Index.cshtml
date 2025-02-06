@@ -7,7 +7,7 @@
 }
 <!-- Importowanie stylów DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="container">
     <div class="row pt-4 pb-3">
@@ -81,6 +81,31 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true
+            });
+        } 
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonService: "#3085d6",
+                cancelButtonService: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            toastr.success(data.message);
+                        },
+                        error: function (err) {
+                            toastr.error("Something went wrong!");
+                        }
+                    });
+                }
             });
         }
     </script>
