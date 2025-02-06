@@ -60,8 +60,9 @@ namespace DatabaseAPI.Data
         public DbSet<ContactInformation>? ContactInformation { get; set; }
         public DbSet<Navbar>? Navbar { get; set; }
         public DbSet<Newsletter>? Newsletter { get; set; }
-        public DbSet<Topbar>? Topbar { get; set; }
+        public DbSet<Bottombar>? Bottombar { get; set; }
         public DbSet<UsefulLink>? UsefulLink { get; set; }
+        public DbSet<FooterIcon>? FooterIcon { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -364,8 +365,170 @@ namespace DatabaseAPI.Data
                     Position = 5
                 });
 
+            builder.Entity<Newsletter>().HasData(
+                new Newsletter
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Title",
+                    Content = "<h4>Sign  <span class=\"col_red\">Newsletter</span></h4>",
+                    Position = 1
+                },
+                new Newsletter
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Expression",
+                    Content = "\r\n<p class=\"mt-3\">Subscribe to our newsletter list to get latest news and updates from us</p>",
+                    Position = 2
+                },
+                new Newsletter
+                {
+                    Id = 3,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Mail with button",
+                    Content = "\r\n<div class=\"input-group\">\r\n    <input type=\"text\" class=\"form-control bg-black\" placeholder=\"Email\">\r\n    <span class=\"input-group-btn\">\r\n        <button class=\"btn btn text-white bg_red rounded-0 border-0\" type=\"button\">\r\n            Subscribe\r\n        </button>\r\n    </span>\r\n</div>",
+                    Position = 3
+                });
 
 
+
+            builder.Entity<FooterIcon>().HasData(
+                new FooterIcon
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Instagram",
+                    Content = "\r\n        <a href=\"#\" class=\"icoInstagram\" title=\"Instagram\" style=\"display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #E4405F; color: white; text-decoration: none;\">\r\n            <i class=\"bi bi-instagram\" style=\"font-size: 20px;\"></i>\r\n        </a>",
+                    Position = 1
+                },
+                new FooterIcon
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Facebook",
+                    Content = "<a href=\"#\" class=\"icoFacebook\" title=\"Facebook\" style=\"display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #3b5998; color: white; text-decoration: none;\">\r\n            <i class=\"bi bi-facebook\" style=\"font-size: 20px;\"></i>\r\n        </a>",
+                    Position = 2
+                },
+                new FooterIcon
+                {
+                    Id = 3,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Twitter",
+                    Content = "<a href=\"#\" class=\"icoTwitter\" title=\"Twitter\" style=\"display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #1DA1F2; color: white; text-decoration: none;\">\r\n            <i class=\"bi bi-twitter\" style=\"font-size: 20px;\"></i>\r\n        </a>",
+                    Position = 3
+                },
+                new FooterIcon
+                {
+                    Id = 4,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Youtube",
+                    Content = "<a href=\"#\" class=\"icoYouTube\" title=\"YouTube\" style=\"display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #FF0000; color: white; text-decoration: none;\">\r\n            <i class=\"bi bi-youtube\" style=\"font-size: 20px;\"></i>\r\n        </a>",
+                    Position = 4
+                },
+                new FooterIcon
+                {
+                    Id = 5,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "LinkedIn",
+                    Content = "<a href=\"#\" class=\"icoLinkedin\" title=\"LinkedIn\" style=\"display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #0077B5; color: white; text-decoration: none;\">\r\n            <i class=\"bi bi-linkedin\" style=\"font-size: 20px;\"></i>\r\n        </a",
+                    Position = 5
+                });
+
+
+            builder.Entity<UsefulLink>().HasData(
+                new UsefulLink
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Home",
+                    Content = "<a href=\"#\">Home</a>",
+                    Position = 1
+                },
+                new UsefulLink
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Movies",
+                    Content = "<a href=\"Movie\">Movies</a>",
+                    Position = 2
+                },
+                new UsefulLink
+                {
+                    Id = 3,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Cart",
+                    Content = "<a href=\"Cart\">Cart</a>",
+                    Position = 3
+                },
+                new UsefulLink
+                {
+                    Id = 4,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Home",
+                    Content = "<a href=\"Identity/Account/Manage\">Profile</a>",
+                    Position = 4
+                },
+                new UsefulLink
+                {
+                    Id = 5,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Contact",
+                    Content = "<a href=\"Contact\">Contact</a>",
+                    Position = 5
+                });
+
+            builder.Entity<Bottombar>().HasData(
+                new Bottombar
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Copyright",
+                    Content = "<p class=\"mb-0 footer-text\" style=\"color: white;\">© 2024 MovieStar Cinema. All rights reserved. Design by <a class=\"col_red\" href=\"https://www.google.com\">Bartosz Waśko</a></p>",
+                    Position = 1
+                });
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

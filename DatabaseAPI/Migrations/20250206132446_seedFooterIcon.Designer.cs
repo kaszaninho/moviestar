@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250206132446_seedFooterIcon")]
+    partial class seedFooterIcon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,53 +38,6 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("MoviesId");
 
                     b.ToTable("AwardMovie");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.CMS.Bottombar", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Position")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bottombar");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Content = "<p class=\"mb-0 footer-text\" style=\"color: white;\">© 2024 MovieStar Cinema. All rights reserved. Design by <a class=\"col_red\" href=\"https://www.google.com\">Bartosz Waśko</a></p>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Copyright",
-                            Position = 1
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.ContactInformation", b =>
@@ -442,6 +398,40 @@ namespace DatabaseAPI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.Topbar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Topbar");
+                });
+
             modelBuilder.Entity("DatabaseAPI.Models.CMS.UsefulLink", b =>
                 {
                     b.Property<int>("Id")
@@ -474,63 +464,6 @@ namespace DatabaseAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UsefulLink");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Content = "<a href=\"#\">Home</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Home",
-                            Position = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Content = "<a href=\"Movie\">Movies</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Movies",
-                            Position = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Content = "<a href=\"Cart\">Cart</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Cart",
-                            Position = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Content = "<a href=\"Identity/Account/Manage\">Profile</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Home",
-                            Position = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Content = "<a href=\"Contact\">Contact</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Contact",
-                            Position = 5
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Website", b =>
