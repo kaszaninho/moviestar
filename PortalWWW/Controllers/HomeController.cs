@@ -71,5 +71,13 @@ namespace PortalWWW.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Route("~/Home/More/{name}")]
+        public async Task<IActionResult> More(string name)
+        {
+            var website = await dbContext.Website.FirstOrDefaultAsync(x => x.Name == name);
+
+            return View("More", website);
+        }
     }
 }

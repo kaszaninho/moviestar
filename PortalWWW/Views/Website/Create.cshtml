@@ -34,13 +34,25 @@
                 <tbody>
                     <tr>
                         <td>
-                            <label asp-for="TitleName" class="form-label">Name</label>
+                            <label asp-for="TitleName" class="form-label">Title Name</label>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
                                 <input asp-for="TitleName" class="form-control" id="floatingInput">
-                                <label asp-for="TitleName">Enter Name</label>
+                                <label asp-for="TitleName">Enter Title Name</label>
                                 <span asp-validation-for="TitleName" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Name" class="form-label">Name</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control" id="floatingInput">
+                                <label asp-for="Name">Enter Name</label>
+                                <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
                         </td>
                     </tr>
@@ -60,7 +72,7 @@
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input asp-for="Content" class="form-control" id="floatingInput" placeholder="Enter Content">
+                                <textarea asp-for="Content" class="form-control" id="Content" placeholder="Enter Content"></textarea>
                                 <label asp-for="Content">Enter Content</label>
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
