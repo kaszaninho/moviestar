@@ -46,29 +46,27 @@
                     </tr>
                     <tr>
                         <td>
-                            <label asp-for="Description" class="form-label">Enter Description</label>
+                            <strong><label asp-for="Description" class="form-label">Description</label></strong>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <textarea asp-for="Description" class="form-control" id="floatingDescription" placeholder="Description" style="height: 300px;"></textarea>
+                                <textarea asp-for="Description" class="form-control" id="floatingDescription" placeholder="Description" style="height: 150px;"></textarea>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label asp-for="Content" class="form-label">Content</label>
+                            <strong><label asp-for="Content" class="form-label">Content</label></strong>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input asp-for="Content" class="form-control" id="floatingInput" placeholder="Enter Content">
-                                <label asp-for="Content">Enter Content</label>
+                                <textarea asp-for="Content" class="form-control" id="floatingInput" placeholder="Content" style="height: 300px;"></textarea>
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
             <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-success m-2" />
             </div>
