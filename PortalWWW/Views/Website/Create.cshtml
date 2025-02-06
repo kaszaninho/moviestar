@@ -21,6 +21,16 @@
     <div class="table-responsive">
         <form asp-action="Create" method="post">
             <table class="table table-bordered table-striped table-hover custom-table">
+                <div class="table-responsive">
+                    <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+                        <thead>
+                            <tr>
+                                <th>New Page</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
                 <tbody>
                     <tr>
                         <td>
@@ -40,7 +50,7 @@
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <textarea asp-for="Description" class="form-control" id="floatingDescription" placeholder="Description"></textarea>
+                                <textarea asp-for="Description" class="form-control" id="floatingDescription" placeholder="Description" style="height: 300px;"></textarea>
                             </div>
                         </td>
                     </tr>
