@@ -15,6 +15,7 @@ namespace DatabaseAPI.Models.General
         public int? ApartmentNumber { get; set; }
         public string EirCode { get; set; }
         public string City { get; set; }
+        public string PhoneNumber { get; set; }
         public Country? Country { get; set; }
         public int CountryId { get; set; }
         public ICollection<OpeningHour> OpeningHour { get; set; }
