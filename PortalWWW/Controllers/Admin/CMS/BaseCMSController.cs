@@ -3,6 +3,7 @@ using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Models.CMS;
 using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PortalWWW.Controllers.Admin.CMS
 {
@@ -30,25 +31,48 @@ namespace PortalWWW.Controllers.Admin.CMS
         public IActionResult Create(T entity)
         {
             entity.Position = context.Set<T>().ToList().Count + 1;
+            entity.CreatedAt = DateTime.Now;
+            entity.ModifiedAt = DateTime.Now;
+            entity.IsActive = true;
             context.Set<T>().Add(entity);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult Edit(T entity)
+        public async Task<IActionResult> Edit(T entity)
         {
             int newPosition = entity.Position;
+            entity.ModifiedAt = DateTime.Now;
+            entity.IsActive = true;
             context.Set<T>().Update(entity);
-            context.SaveChanges(); 
-            var entitiesToUpdate = context.Set<T>()
-                .Where(e => e.Position >= newPosition && e.Id != entity.Id)
-                .OrderBy(e => e.Position)
-                .ToList();
-            foreach (var e in entitiesToUpdate)
+            var entityFromDb = await context.Set<T>().AsNoTracking().FirstAsync(e => e.Id == entity.Id);
+            if (entityFromDb != null)
             {
-                e.Position++; // Shift position down
+                if (entity.Position > entityFromDb.Position)
+                {
+                    var entitiesToUpdate = context.Set<T>()
+                        .Where(e => e.Position <= newPosition && e.Position > entityFromDb.Position && e.Id != entity.Id)
+                        .OrderBy(e => e.Position)
+                        .ToList();
+                    foreach (var e in entitiesToUpdate)
+                    {
+                        e.Position--; // Shift position down
+                    }
+                }
+                else
+                {
+                    var entitiesToUpdate = context.Set<T>()
+                        .Where(e => e.Position >= newPosition && e.Position < entityFromDb.Position && e.Id != entity.Id)
+                        .OrderBy(e => e.Position)
+                        .ToList();
+                    foreach (var e in entitiesToUpdate)
+                    {
+                        e.Position++; // Shift position down
+                    }
+                }
             }
+            context.Set<T>().Update(entity);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
