@@ -3,13 +3,13 @@
 
 @{
     ViewData["Title"] = "Payment Choice";
-    
+
 }
 
 <div class="container">
     <div class="container">
         <p>Cart Details</p>
-         <div class="container">
+        <div class="container">
             @foreach (var element in Model.CartElements)
             {
                 <div class="col-md-6 d-flex card">
@@ -27,15 +27,30 @@
             }
         </div>
 
-        <p>Total Price: @Model.PriceTotal zł</p>
+        <p>Tickets Price: @Model.PriceTotal zł</p>
+    </div>
+    @if (Model.Coupon == null)
+    {
+        <div class="container">
+            <p>Add Coupon?</p>
+            <form asp-controller="Cart" asp-action="AddCoupon" method="post">
+                <input type="text" name="couponName" class="form-control" />
+                <button type="submit" class="btn btn-toolbar m-2 border-white text-white" value="Enter coupon" />
+            </form>
         </div>
+    }
+    else
+    {
+        <p>Coupon activated</p>
+        <p>Coupon: @Model.Coupon.Name</p>
+        <p>Discount: @Model.CouponDiscount PLN</p>
+        <p>Total Price: @(Model.PriceTotal - Model.CouponDiscount)</p>
+    }
     <p>Choose Payment</p>
     <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
-
-        <select asp-for="@Model.PaymentMethod" class="form-control" asp-items="ViewBag.PaymentMethods">
+        <select class="form-control" name="paymentMethodId" asp-items="ViewBag.PaymentMethods">
             <option value="">-- Payment Method --</option>
         </select>
         <button type="submit" class="btn btn-toolbar m-2 border-white">Go to payment</button>
     </form>
 </div>
-    

@@ -20,6 +20,9 @@
                                 <a asp-controller="Home" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Home" ? "active" : "")">Home</a>
                             </li>
                             <li class="nav-item">
+                                <a asp-controller="Home" asp-action="InvoiceReportForUser" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Home" ? "active" : "")">Invoices</a>
+                            </li>
+                            <li class="nav-item">
                                 <a asp-controller="Movie" asp-action="Index" class="nav-link @(ViewContext?.RouteData?.Values["controller"]?.ToString() == "Movie" && ViewContext?.RouteData?.Values["action"]?.ToString() == "Index" ? "active" : "")">Screenings</a>
                             </li>
                             <li class="nav-item">

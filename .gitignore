@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/PortalWWW/appsettings.json
+/PortalWWW/wwwroot/reports

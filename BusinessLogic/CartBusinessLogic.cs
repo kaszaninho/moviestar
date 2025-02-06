@@ -39,6 +39,11 @@ namespace BusinessLogic
             return httpContext.Session.GetString("SessionId").ToString();
         }
 
+        public string GetSessionId()
+        {
+            return SessionId;
+        }
+
         public async Task RemoveFromCart(CartElement element)
         {
             dbContext.CartElement.Remove(element);
@@ -48,6 +53,14 @@ namespace BusinessLogic
         public async Task ClearCart(CartElement[] elements)
         {
             dbContext.CartElement.RemoveRange(elements);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task ClearCoupon(int? couponId)
+        {
+            if (couponId == null) return;
+            var couponCartElement = await dbContext.CartElement.FirstOrDefaultAsync(ele => ele.SessionId == this.SessionId &&  ele.CouponId == couponId);
+            dbContext.CartElement.Remove(couponCartElement);
             await dbContext.SaveChangesAsync();
         }
 
@@ -61,7 +74,7 @@ namespace BusinessLogic
 
         public async Task<List<CartElement>> GetCartElements()
         {
-            return await dbContext.CartElement.Where(item => item.SessionId == this.SessionId)
+            return await dbContext.CartElement.Where(item => item.SessionId == this.SessionId && item.CouponId == null)
                 .Include(item => item.ScreeningSeat)
                     .ThenInclude(item => item.Screening).ThenInclude(item => item.Screen)
                 .Include(item => item.ScreeningSeat)
@@ -71,14 +84,18 @@ namespace BusinessLogic
 
         public async Task<decimal> CalculateSum()
         {
-            return await dbContext.CartElement.Where(item => item.SessionId == this.SessionId).Include(item => item.ScreeningSeat)
+            return await dbContext.CartElement.Where(item => item.SessionId == this.SessionId && item.CouponId == null).Include(item => item.ScreeningSeat)
                 .ThenInclude(item => item.Screening).ThenInclude(item => item.Movie).SumAsync(item => item.ScreeningSeat.Screening.Movie.TicketPrice) ?? decimal.Zero;
         }
 
-        // Creating receipt and adding to database
-        public void AddReceipt()
+        public Coupon CheckCoupon()
         {
-
+            var cartEleCoupon = dbContext.CartElement.Where(item => item.SessionId == this.SessionId && item.CouponId != null).Include(item => item.Coupon).ToList();
+            if (cartEleCoupon.Any() )
+            {
+                return cartEleCoupon.First().Coupon;
+            }
+            return null;
         }
 
         private CartElement NewCartElement(ScreeningSeat screeningSeat)

@@ -11,7 +11,6 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
 
         public override Task<IActionResult> Create(Coupon entity)
         {
-            entity.CouponNumber = Ulid.NewUlid().ToString();
             return base.Create(entity);
         }
     }
