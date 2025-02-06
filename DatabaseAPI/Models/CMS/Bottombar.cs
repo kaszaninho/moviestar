@@ -2,7 +2,7 @@
 
 namespace DatabaseAPI.Models.CMS
 {
-    public class Topbar : AbstractCMSDatatable
+    public class Bottombar : AbstractCMSDatatable
     {
     }
 }

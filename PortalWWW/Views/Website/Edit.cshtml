@@ -36,7 +36,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <strong><label asp-for="TitleName" class="form-label">Name</label></strong>
+                            <strong><label asp-for="TitleName" class="form-label">Title Name</label></strong>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
@@ -47,11 +47,22 @@
                     </tr>
                     <tr>
                         <td>
+                            <strong><label asp-for="Name" class="form-label">Name</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control " id="floatingInput" value="@Model.Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <strong><label asp-for="Content" class="form-label">Content</label></strong>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input asp-for="Content" class="form-control" id="floatingInput" value="@Model.Content">
+                                <textarea asp-for="Content" class="form-control" id="Content" value="@Model.Content"></textarea>
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                         </td>

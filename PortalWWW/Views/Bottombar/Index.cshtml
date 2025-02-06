@@ -10,11 +10,11 @@
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
-            <h4 class="text-primary">Topbar</h4>
+            <h4 class="text-primary">Bottombar</h4>
         </div>
         <div class="col-6 text-end">
             <a asp-action="Create" class="btn btn-success m-2 custom-btn">
-                <i class="bi bi-plus-circle"></i> Add Topbar
+                <i class="bi bi-plus-circle"></i> Add Bottombar
             </a>
         </div>
     </div>
@@ -44,7 +44,7 @@
 
         function loadDataTable() {
             dataTable = $('#tblData').DataTable({
-                "ajax": { url: '/topbar/getall' },
+                "ajax": { url: '/Bottombar/getall' },
                 "columns": [
                     { "data": "id" },
                     { "data": "name" },
@@ -54,9 +54,9 @@
                         data: 'id',
                         "render": function (data) {
                             return `<div class="test-center" >
-                                                <a href="/topbar/delete?id=${data}" class="btn btn-danger btn-sm custom-btn">Delete</a>
-                                                        <a href="/topbar/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
-                                                        <a href="/topbar/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
+                                                <a href="/Bottombar/delete?id=${data}" class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                                        <a href="/Bottombar/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
+                                                        <a href="/Bottombar/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
                                     </div>`
                         }
                     }

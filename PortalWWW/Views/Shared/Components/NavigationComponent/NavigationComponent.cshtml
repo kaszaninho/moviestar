@@ -17,6 +17,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-0 d-flex justify-content-center">
                             @await Component.InvokeAsync("NavbarComponent")
+                            @await Component.InvokeAsync("WebsiteComponent")                            
                             <partial name="_LoginPartial" />
                         </ul>
                     </div>

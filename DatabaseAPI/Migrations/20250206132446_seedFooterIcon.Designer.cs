@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250206132446_seedFooterIcon")]
+    partial class seedFooterIcon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,53 +38,6 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("MoviesId");
 
                     b.ToTable("AwardMovie");
-                });
-
-            modelBuilder.Entity("DatabaseAPI.Models.CMS.Bottombar", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Position")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bottombar");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Content = "<p class=\"mb-0 footer-text\" style=\"color: white;\">© 2024 MovieStar Cinema. All rights reserved. Design by <a class=\"col_red\" href=\"https://www.google.com\">Bartosz Waśko</a></p>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Copyright",
-                            Position = 1
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.ContactInformation", b =>
@@ -370,19 +326,6 @@ namespace DatabaseAPI.Migrations
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Cart",
                             Position = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Action = "Contact",
-                            Content = "Contact",
-                            Controller = "Home",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Contact",
-                            Position = 6
                         });
                 });
 
@@ -455,6 +398,40 @@ namespace DatabaseAPI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DatabaseAPI.Models.CMS.Topbar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Topbar");
+                });
+
             modelBuilder.Entity("DatabaseAPI.Models.CMS.UsefulLink", b =>
                 {
                     b.Property<int>("Id")
@@ -487,63 +464,6 @@ namespace DatabaseAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UsefulLink");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Content = "<a href=\"#\">Home</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Home",
-                            Position = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Content = "<a href=\"Movie\">Movies</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Movies",
-                            Position = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Content = "<a href=\"Cart\">Cart</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Cart",
-                            Position = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Content = "<a href=\"Identity/Account/Manage\">Profile</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Home",
-                            Position = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Content = "<a href=\"Contact\">Contact</a>",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Contact",
-                            Position = 5
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Website", b =>
@@ -555,86 +475,20 @@ namespace DatabaseAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Website");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Content = "<h2 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Privacy Policy</font></strong></h2><p style=\"text-align: center; \"><strong>Effective Date:</strong> [02.05.2025]</p><p style=\"text-align: center; \">MovieStar (\"we,\" \"us,\" or \"our\") values your privacy. This Privacy Policy describes how we collect, use, and protect your personal data when you use our website.</p><p style=\"text-align: center; \"><strong>1. Information We Collect</strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\">Personal data: Name, email address, payment details (if applicable), and other account information.</p></li><li><p style=\"text-align: center;\">Non-personal data: IP address, browser type, and website usage statistics.</p></li></ul><p style=\"text-align: center;\"><strong>2. How We Use Your Information</strong></p><ul data-spread=\"false\"><ul><li><ul><li style=\"text-align: center;\">To provide and improve our services.</li></ul></li><li><ul><li style=\"text-align: center;\">To process transactions and payments.</li></ul></li><li><ul><li style=\"text-align: center;\">To personalize user experience and deliver relevant content.</li></ul></li><li><ul><li style=\"text-align: center;\">To comply with legal obligations.</li></ul></li></ul></ul><p style=\"text-align: center;\"><strong>3. Data Security</strong>\r\nWe implement industry-standard security measures to protect your personal data. However, no online transmission is 100% secure, and we cannot guarantee absolute security.</p><p style=\"text-align: center;\"><strong>4. Third-Party Sharing</strong>\r\nWe do not sell your personal data. We may share data with third parties for processing transactions, legal compliance, or service improvements.</p><p style=\"text-align: center;\"><strong>5. Your Rights</strong>\r\nYou have the right to access, update, or delete your personal data. Contact us at [Insert Contact Info] to exercise these rights.</p><p style=\"text-align: center;\"><strong>6. Changes to This Policy</strong>\r\nWe may update this Privacy Policy from time to time. Please review it periodically.</p><p style=\"text-align: center;\"><br></p><p style=\"text-align: right;\">MovieStar team</p>",
-                            Description = "",
-                            Name = "Privacy",
-                            TitleName = "Privacy"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Content = "<h2 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Terms and Conditions</font></strong></h2><p style=\"text-align: center;\"><font color=\"#ffffff\"><strong>Effective Date:</strong> 02.05.2025</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">Welcome to MovieStar! By accessing or using our website, you agree to these Terms and Conditions.</font></p><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">1. Use of the Website</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You must be at least 18 years old or have parental consent to use our services.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You agree not to use the website for any unlawful or prohibited activities.</font></p></li></ul><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">2. Account Registration</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You are responsible for maintaining the confidentiality of your account credentials.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">We reserve the right to suspend or terminate accounts that violate our policies.</font></p></li></ul><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">3. Content and Intellectual Property</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">All content on MovieStar, including logos, text, and media, is owned by us or our licensors.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You may not copy, distribute, or modify any content without permission.</font></p></li></ul><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">4. Limitation of Liability</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">We are not liable for any damages resulting from the use of our website.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">We do not guarantee uninterrupted or error-free service.</font></p></li></ul><p style=\"text-align: center;\"><font color=\"#ffffff\"><strong>5. Changes to Terms</strong>\r\nWe may update these Terms and Conditions. Continued use of the website means acceptance of the updated terms.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\">For any questions, contact us at info@gmail.com.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: right;\"><font color=\"#ffffff\">MovieStar Team</font></p>",
-                            Description = "",
-                            Name = "TermsAndConditions",
-                            TitleName = "Terms and Conditions"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Content = "<h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Welcome to MovieStar Cinema!</font></strong></h4><p style=\"text-align: center; \"><font color=\"#ffffff\">At MovieStar Cinema, we bring the magic of movies to life. From the latest blockbusters to timeless classics, our state-of-the-art theaters provide an unmatched cinematic experience.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">With premium sound systems, ultra-HD screens, and comfortable seating, we ensure every visit is special. Whether you're here for action, drama, comedy, or family entertainment, we have something for everyone.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\">Thank you for choosing MovieStar Cinema—where every story comes to life on the big screen!</font></p>",
-                            Description = "",
-                            Name = "AboutUs",
-                            TitleName = "About Us"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Content = "<p></p><h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Frequently asked questions</font></strong></h3><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h4><p style=\"text-align: center; \"><font color=\"#ffffff\">This is the list of the most asked questions. We will be updating this page periodically.</font></p><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h4><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\">General Questions</font></strong></h4><p></p><div style=\"text-align: center;\"><strong style=\"text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: What are your operating hours?</font></strong></div><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">A: We are open from 10 am - 10 pm daily.</font></span></div><p></p><p></p><div style=\"text-align: center;\"><strong style=\"text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: How can I buy tickets?</font></strong></div><div style=\"text-align: center;\"><font color=\"#ffffff\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">A: You can&nbsp;</span><span style=\"text-align: var(--bs-body-text-align); font-weight: bolder;\">buy&nbsp;</span><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">online through our website or purchase them at the cinema.</span></font></div><p></p><h4 style=\"text-align: center;\"><strong><font color=\"#ffffff\">Ticketing &amp; Refunds</font></strong></h4><p></p><div style=\"text-align: center;\"><strong style=\"text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: Can I cancel or refund my ticket?</font></strong></div><div style=\"text-align: center;\"><font color=\"#ffffff\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">A: Please refer to our </span><strong style=\"text-align: var(--bs-body-text-align);\">[Refund &amp; Cancellation Policy]</strong><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"> for details.</span></font></div><p></p><p></p><font color=\"#ffffff\"><span style=\"font-weight: bolder; font-size: 18px;\"><div style=\"text-align: center;\"><span style=\"font-weight: bolder; text-align: var(--bs-body-text-align);\">Q: Do you offer discounts?</span></div></span><span style=\"font-size: 18px;\"><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">A: Yes! Contact us for booking details.</span></div></span></font><p></p><p></p><div><div style=\"text-align: center;\"><span style=\"font-weight: bolder; text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: Can you make a seat reservation?</font></span></div><span style=\"font-size: 18px;\"><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">A: Currently no. You need to pay up front for a tickets.</font></span></div></span></div><div style=\"text-align: center; \"><font color=\"#ffffff\"><span style=\"font-size: 18px;\"><br></span><span style=\"font-size: 18px;\"></span></font></div><div><font color=\"#ffffff\"><span style=\"font-size: 18px;\"></span></font></div><span style=\"font-weight: bolder;\"><div style=\"text-align: center;\"><span style=\"font-weight: bolder; text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: How can I pay for a tickets?</font></span></div></span><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">A: At the moment, it is possible to pay for a ticket using cash, credit card or Stripe.</font></span></div><p></p><p style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center; \"><font color=\"#ffffff\">If you have other questions, please ask via <b>Contact Us </b>page!</font></p>",
-                            Description = "",
-                            Name = "FAQ",
-                            TitleName = "FAQ"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Content = "<h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\">&nbsp;Refund &amp; Cancellation Policy</font></strong></h3><h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h3><p style=\"text-align: center;\"><font color=\"#ffffff\">At MovieStar Cinema, we strive to provide the best experience. However, we understand that plans may change.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li><p style=\"text-align: center;\"><font color=\"#ffffff\">🎟 <strong>Ticket Refunds:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">Tickets are refundable if canceled at least 24 hours before the showtime.</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Refunds are processed within 3-5 business days.</font></li></ul></li></ul><p><ul></ul></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">🎬 <strong>Cancellations Due to Technical Issues:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">If a show is canceled due to technical problems, a full refund or free rebooking will be provided.</font></li></ul></li></ul><p><ul></ul></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">🚫 <strong>No-Show Policy:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">If you fail to attend without prior cancellation, no refund will be issued.</font></li></ul></li></ul><p><ul></ul></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li></li></ul><p style=\"text-align: center; \"><font color=\"#ffffff\">For refund requests, please contact us at info@gmail.com.</font></p>",
-                            Description = "",
-                            Name = "Refund",
-                            TitleName = "Refund and Cancellation Policy"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Content = "<h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">Cookie Policy</font></span></h3><h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\"><br></font></span></h3><p style=\"text-align: center;\"><font color=\"#ffffff\">MovieStar Cinema uses cookies to enhance your browsing experience.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">What Are Cookies?</font></span></h4><p style=\"text-align: center;\"><font color=\"#ffffff\">Cookies are small text files stored on your device when you visit our website.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">How We Use Cookies</font></span></h4><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">To improve website functionality</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">To remember your preferences</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">For analytics and marketing purposes</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></li></ul><p style=\"text-align: center;\"><font color=\"#ffffff\">By using our website, you consent to our use of cookies. You can adjust your settings anytime in your browser.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">For more details, visit our&nbsp;<span style=\"font-weight: bolder;\">[Privacy Policy]</span>.</font></p>",
-                            Description = "",
-                            Name = "CookiePolicy",
-                            TitleName = "Cookie Policy"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Content = "<h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">Careers</font></span></h3><h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\"><br></font></span></h3><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">Join Our Team at MovieStar Cinema!</font></span></h4><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\"><br></font></span></h4><p style=\"text-align: center;\"><font color=\"#ffffff\">Are you passionate about movies and customer service? We’re always looking for enthusiastic individuals to join our team.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">🚀&nbsp;<span style=\"font-weight: bolder;\">Current Openings:</span></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">Ticket Sales Associate</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Concessions &amp; Food Service</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Cinema Manager</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Projection &amp; Technical Team</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></li></ul><p style=\"text-align: center;\"><font color=\"#ffffff\">If you’d like to work in an exciting, fast-paced environment, apply today! Send your resume to info@gmail.com.</font></p>",
-                            Description = "",
-                            Name = "Career",
-                            TitleName = "Career"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Content = "<h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Partnerships &amp; Advertising</font></strong></h3><h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h3><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Partner with MovieStar Cinema</font></strong></h4><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h4><p style=\"text-align: center; \"><font color=\"#ffffff\">Looking for an opportunity to showcase your brand to thousands of moviegoers? We offer premium advertising slots before and during screenings.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">📢 <strong>Advertising Options:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">On-screen ads before movies</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Digital banners on our website</font></li><li style=\"text-align: center; \"><font color=\"#ffffff\">Promotional events at our cinemas</font></li><li style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></li></ul><p style=\"text-align: center; \"><font color=\"#ffffff\">Interested?</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\"> Contact our marketing team at info@gmail.com to discuss collaboration opportunities.</font></p>",
-                            Description = "",
-                            Name = "Partnership",
-                            TitleName = "Partnership"
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.CartElement", b =>

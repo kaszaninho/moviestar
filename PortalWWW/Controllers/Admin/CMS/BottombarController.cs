@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PortalWWW.Controllers.Admin.CMS
 {
-    public class NavbarController : BaseCMSController<Navbar>
+    public class BottomBarontroller : BaseCMSController<Bottombar>
     {
-        public NavbarController(DatabaseAPIContext context) : base(context)
+        public BottomBarontroller(DatabaseAPIContext context) : base(context)
         {
         }
     }
