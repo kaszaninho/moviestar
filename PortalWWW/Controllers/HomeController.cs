@@ -79,5 +79,10 @@ namespace PortalWWW.Controllers
 
             return View("More", website);
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

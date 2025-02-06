@@ -305,6 +305,19 @@ namespace DatabaseAPI.Data
                     Controller = "Cart",
                     Content = "Cart",
                     Position = 5
+                },
+                new Navbar
+                {
+                    Id = 6,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Contact",
+                    Action = "Contact",
+                    Controller = "Home",
+                    Content = "Contact",
+                    Position = 6
                 });
 
 
