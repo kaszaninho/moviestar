@@ -237,6 +237,8 @@ namespace DatabaseAPI.Data
                 );
 
 
+            // CMS
+
             builder.Entity<Navbar>().HasData(
                 new Navbar
                 {
@@ -303,6 +305,66 @@ namespace DatabaseAPI.Data
                     Content = "Cart",
                     Position = 5
                 });
+
+
+            builder.Entity<ContactInformation>().HasData(
+                new ContactInformation
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Title",
+                    Content = "\r\n<h3><a class=\"text-white\" href=\"index.html\"><i class=\"fa fa-video-camera col_red me-1\"></i> MovieStar</a></h3>",
+                    Position = 1
+                },
+                new ContactInformation
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Expression",
+                    Content = "\r\n<p class=\"mt-3\">Any question? Send a mail, e-mail or call us</p>",
+                    Position = 2
+                },
+                new ContactInformation
+                {
+                    Id = 3,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Address",
+                    Content = "<h6 class=\"fw-normal\">\r\n    <i class=\"fa fa-map-marker fs-5 align-middle col_red me-1\"></i> Nowy Sącz, Lwowska 2532, Małpolskie, Polska\r\n</h6>",
+                    Position = 3
+                },
+                new ContactInformation
+                {
+                    Id = 4,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Email",
+                    Content = "<h6 class=\"fw-normal mt-3\"><i class=\"fa fa-envelope fs-5 align-middle col_red me-1\"></i> info@gmail.com</h6>",
+                    Position = 4
+                },
+                new ContactInformation
+                {
+                    Id = 5,
+                    CreatedAt = new DateTime(2025, 2, 2),
+                    ModifiedAt = new DateTime(2025, 2, 2),
+                    IsActive = true,
+                    Description = "",
+                    Name = "Phone Number",
+                    Content = "<h6 class=\"fw-normal mt-3 mb-0\"><i class=\"fa fa-phone fs-5 align-middle col_red me-1\"></i>  +123 123 456</h6>",
+                    Position = 5
+                });
+
+
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
