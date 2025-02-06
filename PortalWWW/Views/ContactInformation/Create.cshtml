@@ -4,33 +4,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
-<h1>Create</h1>
 
-<h4>Contact Information element</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Create Contact Information</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2 custom-btn">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input type="text" asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input type="text" asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <textarea id="Content" asp-for="Content"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
+    <div class="table-responsive">
+        <form asp-action="Create" method="post">
+            <table class="table table-bordered table-striped table-hover custom-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Name" class="form-label">Name</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control " id="floatingInput" placeholder="Enter Name">
+                                 <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Description" class="form-label">Description</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Description" class="form-control" id="floatingDescription" placeholder="Description"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Content" class="form-label">Content</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Content" class="form-control" id="floatingInput" placeholder="Content">
+                                 <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-success m-2 custom-btn" />
             </div>
         </form>
     </div>
