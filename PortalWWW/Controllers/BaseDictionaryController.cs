@@ -40,15 +40,7 @@ namespace PortalWWW.Controllers
         }
 
 
-        [HttpPost]
-        virtual public async Task<IActionResult> Create(T entity)
-        {
-            entity.CreatedAt = DateTime.Now;
-            entity.ModifiedAt = DateTime.Now;
-            await repository.AddEntityAsync(entity);
-            return RedirectToAction("Index");
-        }
-
+        
         virtual public async Task<IActionResult> Create()
         {
             ViewData["type"] = typeof(T);
@@ -65,21 +57,6 @@ namespace PortalWWW.Controllers
             ViewData["type"] = typeof(T);
             return View(entity);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(T entity)
-        {
-            if (!ModelState.IsValid)
-            {
-                ViewData["type"] = typeof(T);
-                return View(entity);
-            }
-            entity.ModifiedAt = DateTime.Now;
-            await repository.UpdateEntityAsync(entity);
-            return RedirectToAction(nameof(Index));
-        }
-
         virtual public async Task<IActionResult> Delete(int id)
         {
             var entity = await repository.FindEntityAsync(id);
@@ -97,6 +74,33 @@ namespace PortalWWW.Controllers
             await repository.DeleteEntityAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(T entity)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["type"] = typeof(T);
+                return View(entity);
+            }
+            entity.ModifiedAt = DateTime.Now;
+            await repository.UpdateEntityAsync(entity);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        virtual public async Task<IActionResult> Create(T entity)
+        {
+            entity.CreatedAt = DateTime.Now;
+            entity.ModifiedAt = DateTime.Now;
+            await repository.AddEntityAsync(entity);
+            return RedirectToAction("Index");
+        }
+
+
 
         //[HttpDelete]
         //public async Task<IActionResult> Delete(int id)

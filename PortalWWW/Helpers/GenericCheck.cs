@@ -1,4 +1,5 @@
 ﻿using DatabaseAPI.Models.Abstract;
+using DatabaseAPI.Models.General;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection;
@@ -53,6 +54,8 @@ namespace PortalWWW.Helpers
         {
             switch (type)
             {
+                case Type t when t == typeof(Photo):
+                    return "type = file";
                 case Type t when t == typeof(bool):
                     return "type = checkbox value=true @(propValue as bool? == true ? checked : unchecked)";
                 case Type t when t == typeof(bool?):

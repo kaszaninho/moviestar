@@ -1,6 +1,7 @@
 ﻿using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.DictionaryModels;
+using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.People;
 using System.Collections.Generic;
 
@@ -28,5 +29,6 @@ namespace DatabaseAPI.Models.CinemaMovie
         public ICollection<Screening>? Screenings { get; set; }
         public int? Duration { get; set; }
         public decimal? TicketPrice { get; set; }
+        public string? imageUrl { get; set; }
     }
 }

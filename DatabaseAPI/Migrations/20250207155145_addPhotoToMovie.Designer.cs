@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250207155145_addPhotoToMovie")]
+    partial class addPhotoToMovie
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1054,6 +1057,9 @@ namespace DatabaseAPI.Migrations
                     b.Property<int?>("GenreId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -1075,9 +1081,6 @@ namespace DatabaseAPI.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("imageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AgeRatingId");
@@ -1085,6 +1088,8 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("GenreId");
+
+                    b.HasIndex("ImageId");
 
                     b.HasIndex("MovieFormatId");
 
@@ -3273,6 +3278,10 @@ namespace DatabaseAPI.Migrations
                         .WithMany("Movies")
                         .HasForeignKey("GenreId");
 
+                    b.HasOne("DatabaseAPI.Models.General.Photo", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.DictionaryModels.MovieFormat", "MovieFormat")
                         .WithMany("Movies")
                         .HasForeignKey("MovieFormatId");
@@ -3290,6 +3299,8 @@ namespace DatabaseAPI.Migrations
                     b.Navigation("Country");
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Image");
 
                     b.Navigation("MovieFormat");
 
