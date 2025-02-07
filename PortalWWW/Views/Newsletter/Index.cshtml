@@ -6,7 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="container">
     <div class="row pt-4 pb-3">
@@ -36,6 +35,7 @@
 
 @section Scripts
 {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
@@ -57,7 +57,7 @@
                         data: 'id',
                         "render": function (data) {
                             return `<div class="text-center">
-                                            <a href="/Newsletter/delete?id=${data}" class="btn btn-danger btn-sm">Delete</button>
+                                                    <a onClick=Delete('/Newsletter/delete?id=${data}') class="btn btn-danger btn-sm">Delete</button>
                                             <a href="/Newsletter/details?id=${data}" class="btn btn-info btn-sm">Details</a>
                                             <a href="/Newsletter/edit?id=${data}" class="btn btn-warning btn-sm">Edit</a>
                                         </div>`;

@@ -92,27 +92,24 @@ namespace PortalWWW.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await repository.DeleteEntityAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        //[HttpDelete]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var entity = repository.FindEntityAsync(id);
+        //    if (entity == null)
+        //    {
+        //        return Json(new { success = false, message = "Error while deleting" });
+        //    }
+
+        //    await repository.DeleteEntityAsync(id);
+
+        //    return Json(new { success = true, message = "Delete Successful" });
+        //}
     }
-    //[HttpDelete]
-    //public IActionResult Delete(int? id)
-    //{
-    //    var TermsAndConditionToBeDeleted = _unitOfWork.TermsAndCondition.Get(u => u.Id == id);
-    //    if (TermsAndConditionToBeDeleted == null)
-    //    {
-    //        return Json(new { success = false, message = "Error while deleting" });
-    //    }
-
-    //    TermsAndConditionToBeDeleted.isActive = false;
-    //    TermsAndConditionToBeDeleted.DateOfDelete = DateTime.Now;
-    //    _unitOfWork.TermsAndCondition.Update(TermsAndConditionToBeDeleted);
-    //    _unitOfWork.Save();
-
-    //    return Json(new { success = true, message = "Delete Successful" });
-    //}
 }

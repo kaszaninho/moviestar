@@ -7,8 +7,5 @@ namespace DatabaseAPI.Models.General
         public int StartHour { get; set; }
         public int EndHour { get; set; }
         public int WeekDay { get; set; }
-        // Foreign key to the Store
-        public int AddressId { get; set; }
-        public Address Store { get; set; }
     }
 }

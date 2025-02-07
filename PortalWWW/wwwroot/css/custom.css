@@ -50,13 +50,16 @@
 
 .showcase {
     border-radius: 7px;
-    display: flex;
+    display: center;
     padding: 15px;
     background-color: darkslateblue;
     list-style: none;
     font-weight: 500;
     margin: 20px 0;
     color: #777;
+    width: 250px;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
 }
 
     .showcase li {
@@ -103,8 +106,9 @@
 }
 
 .screening-container {
-    width: 275px;
+    width: 1000px;
     perspective: 1000px;
+    padding: 50px
 }
 
     .screening-container .screen {

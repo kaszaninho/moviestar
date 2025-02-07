@@ -36,6 +36,9 @@
                 </li>
 
             </ul>
+
+
+
             @* Group seats by row *@
             @foreach (var rowGroup in Model.GroupBy(s => s.Seat.Row).OrderBy(g => g.Key))
             {

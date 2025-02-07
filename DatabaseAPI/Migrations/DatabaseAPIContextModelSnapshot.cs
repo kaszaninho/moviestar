@@ -1090,6 +1090,328 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Movie");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AgeRatingId = 3,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "\"Killing Dead Man\" is a pulse-pounding action thriller that takes audiences on a relentless ride through a world where morality is a luxury and survival is the only rule.\r\n\r\nSet against the gritty backdrop of a crime-ridden American metropolis, the film follows ex-hitman Jack Mercer—a man who left behind a violent past only to find that the past isn’t done with him. When a mysterious contract is put out on his life, Mercer is forced back into the deadly underworld he once escaped. Hunted by elite assassins and betrayed by those he trusted, he soon discovers that the one pulling the strings is none other than a man he killed years ago… or so he thought.\r\n\r\nAs the lines between reality and deception blur, Mercer must unravel the truth before he becomes just another forgotten name on a hit list. Fueled by explosive action sequences, intense hand-to-hand combat, and a gripping narrative of revenge and redemption, Killing Dead Man is a high-stakes adrenaline rush from start to finish.\r\n\r\nBrought to life by Warner Bros., this 18+ action spectacle delivers breathtaking cinematography in a classic 4:3 format, immersing viewers in its raw, uncompromising aesthetic. With a runtime of 103 minutes, it’s a relentless, edge-of-your-seat experience that will leave audiences questioning whether the dead ever truly stay buried.",
+                            Duration = 103,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 1,
+                            MovieProductionCompanyId = 1,
+                            Name = "Killing Dead Man",
+                            TicketPrice = 15.99m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AgeRatingId = 3,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In a dystopian future where technology and warfare have merged, elite soldier Captain Ryan Drake is tasked with a mission that could alter the fate of the world. With cyber-enhanced mercenaries, lethal drones, and corrupt corporations standing in his way, Drake must navigate a battlefield of deception and destruction. Explosive action, high-tech combat, and an adrenaline-fueled storyline make 'Shadow Strike' an unmissable cinematic spectacle.",
+                            Duration = 120,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 1,
+                            Name = "Shadow Strike",
+                            TicketPrice = 17.99m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AgeRatingId = 3,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Deep within the haunted forests of Poland, an abandoned village holds a terrifying secret. When journalist Anna Kowalski investigates the eerie whispers that plague the nearby town, she uncovers a horrifying legend of lost souls trapped between worlds. As night falls, shadows move, whispers turn to screams, and Anna realizes she’s not alone. With no escape and sanity slipping away, she must face the dark truth before she becomes part of the legend herself. *Whispers in the Dark* is a chilling horror masterpiece from Netflix, blending psychological terror with supernatural horror in a spine-tingling tale you won't forget.",
+                            Duration = 112,
+                            GenreId = 5,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 3,
+                            Name = "Whispers in the Dark",
+                            TicketPrice = 14.99m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AgeRatingId = 3,
+                            CountryId = 3,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In a neon-lit future where corporations rule and cybernetic enhancements are the norm, rogue enforcer Kai Renegade is the last hope for a crumbling society. When a powerful AI goes rogue, launching a drone war over the towering metropolis of Neo-Berlin, Kai must wield his twin plasma blades and fight his way through an army of cybernetic mercenaries. With the city on the brink of collapse and time running out, he faces the ultimate choice: submit to the machine or rewrite the future. *Niefllerissing* is a visually stunning, adrenaline-charged action thriller that pushes the boundaries of sci-fi cinema.",
+                            Duration = 118,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "Niefllerissing",
+                            TicketPrice = 16.99m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AgeRatingId = 2,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "On a misty evening at a quiet train station, two women, once inseparable, stand facing each other for the final time. As the sun sets in the distance, casting an orange glow over the platform, the weight of their past begins to resurface. *The Last Goodbye* tells a poignant story of love, loss, and the bittersweet moments that define our lives. As the trains come and go, they are forced to confront their emotions and say goodbye—forever.",
+                            Duration = 95,
+                            GenreId = 2,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "The Last Goodbye",
+                            TicketPrice = 12.99m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AgeRatingId = 1,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "At a lavish wedding ceremony, the groom stands in confusion, alone in front of the altar in his tuxedo, waiting for the bride. But as the doors swing open, it's not his bride that enters—it's a different woman, running past him to the man standing at the back. In a whirlwind of mistaken identities and hilarious events, *Ooops! Wrong Wedding* brings to life the chaos of love, misunderstandings, and the consequences of running away from commitment. Prepare for a comedy of errors that will have you laughing from start to finish.",
+                            Duration = 90,
+                            GenreId = 2,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 1,
+                            Name = "Ooops! Wrong Wedding",
+                            TicketPrice = 10.99m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AgeRatingId = 3,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In a war-torn, desolate town, one man walks through the devastation with unwavering determination. With a burning car in the background, his focus never wavers as he strides forward, prepared to take vengeance on those who destroyed everything he loved. *Bulletproof Vengeance* is an action-packed thriller that follows a soldier's relentless quest for revenge in a world where justice is earned with blood, sweat, and bullets. The stakes are high, and survival is the only option.",
+                            Duration = 105,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 1,
+                            Name = "Bulletproof Vengeance",
+                            TicketPrice = 15.99m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AgeRatingId = 2,
+                            CountryId = 3,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In a small, dimly lit room, a man sits on the floor, typing away on a vintage typewriter, the rhythmic sound of the keys echoing in the silence. Outside the window, life continues without him, as people move along, oblivious to his internal struggle. *A Life Unwritten* explores the complexities of a man’s inner world, his dreams, and the stories he longs to tell, all while grappling with the reality of an unfulfilled life. A heartfelt drama about the power of words and the burden of missed opportunities.",
+                            Duration = 100,
+                            GenreId = 3,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "A Life Unwritten",
+                            TicketPrice = 13.99m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AgeRatingId = 1,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In the midst of a chaotic office, one boss is on a rampage. Papers fly, cups crash to the floor, and his office workers are caught in the crossfire, all while the rest of the staff remain glued to their computer screens, oblivious to the storm that’s unfolding. *My Crazy Boss* is a hilarious comedy about the unpredictable, often absurd world of office life, where chaos reigns and no one is safe from the eccentricities of their leader. Prepare for non-stop laughter and ridiculous office antics!",
+                            Duration = 85,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 1,
+                            Name = "My Crazy Boss",
+                            TicketPrice = 11.99m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AgeRatingId = 3,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Under the eerie glow of a blood-red moon, a sinister figure, resembling a villain from the darkest of nightmares, prowls the streets of an abandoned town. The air is thick with fear as the old church looms in the background, its doors creaking open to welcome the horrors that await. *Silent Screams* is a chilling horror film that takes you on a terrifying journey into the heart of darkness, where every shadow hides a secret and every scream is swallowed by the silence of the night.",
+                            Duration = 110,
+                            GenreId = 5,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 3,
+                            Name = "Silent Screams",
+                            TicketPrice = 14.99m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AgeRatingId = 2,
+                            CountryId = 3,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Standing at the edge of a cliff, a man faces a breathtaking view of the land below, where the clouds part to let the sunlight beam through. The world feels vast, filled with possibilities, and an old, mysterious clock floats above him in the air—its hands frozen in time. *Crossroads of Fate* is a stunning fantasy adventure that explores the moment when a single choice can change the course of a life forever. As the man stares into the unknown, he must decide if he will step into the future or remain bound by the past.",
+                            Duration = 105,
+                            GenreId = 4,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "Crossroads of Fate",
+                            TicketPrice = 13.49m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AgeRatingId = 1,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In an animated world of confusion and chaos, *The Clumsy Detective* tries his best to solve the case, though things rarely go as planned. Surrounded by stacks of documents, a curious cat by his side, and a few sharp-suited gentlemen in the office, the detective is a lovable mess. As he stumbles through clues and mishaps, his true genius shines through, despite the comedic disaster he causes. This hilarious animated feature will have you laughing out loud as the clumsy detective slowly but surely unravels the mystery.",
+                            Duration = 90,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 1,
+                            MovieProductionCompanyId = 1,
+                            Name = "The Clumsy Detective",
+                            TicketPrice = 9.99m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AgeRatingId = 2,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In the vastness of space, where the boundaries of reality bend and twist, a spaceship embarks on a journey beyond the known universe. As the Earth and the Moon drift silently in the background, the crew is drawn toward a mysterious rift, a cosmic tunnel that looks like an Einstein-Rosen bridge. Inside it, a brilliant star, like the Sun, beckons them into the unknown. *Beyond the Rift* is a thrilling sci-fi adventure that explores the deepest mysteries of the cosmos, where space and time converge and the fate of the universe hangs in the balance.",
+                            Duration = 120,
+                            GenreId = 4,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 3,
+                            Name = "Beyond the Rift",
+                            TicketPrice = 16.99m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AgeRatingId = 1,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In a cozy, dimly lit restaurant, a man and a woman sit close together, sipping on lattes, their conversations filled with secrets, shared smiles, and the occasional laugh. As their hands touch over the table and their faces lean in, the chemistry between them is undeniable. But beneath their blossoming romance lies a web of lies that threatens to unravel everything. *Love, Lies, Love and Lattes* is a heartwarming romantic comedy about love's unpredictable twists and the sweet moments shared over coffee that may just change everything.",
+                            Duration = 90,
+                            GenreId = 2,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "Love, Lies, Love and Lattes",
+                            TicketPrice = 11.49m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AgeRatingId = 3,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In the heart of a dark, rain-soaked city, three hooded assassins in black move swiftly across the rooftops, their silhouettes cutting through the evening sky. Armed and focused, they traverse the heights with deadly precision, preparing to strike. In the background, the city’s skyline looms, a constant reminder of the danger that lurks within its depths. *Rouge Rouge Assassins* is an intense action thriller that follows a group of elite assassins on a high-stakes mission, where loyalty is tested, and the line between right and wrong blurs in the shadows of the city.",
+                            Duration = 110,
+                            GenreId = 1,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 1,
+                            Name = "Rouge Rouge Assassins",
+                            TicketPrice = 14.99m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AgeRatingId = 2,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "On the edge of a barren world, the last surviving humans stand before a sleek, futuristic complex, their last hope for survival. In the distance, a spacecraft hovers near the massive colony, and beyond that, another planet—or perhaps a moon—looms ominously in the sky. *The Last Colony* takes you on a thrilling journey into space where humanity's future depends on a fragile settlement in the farthest reaches of the galaxy. With danger on all sides and secrets lurking within the complex, seven brave souls must decide what kind of future awaits them in the unknown.",
+                            Duration = 125,
+                            GenreId = 4,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 3,
+                            Name = "The Last Colony",
+                            TicketPrice = 17.99m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AgeRatingId = 1,
+                            CountryId = 3,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A man stands alone on the shore, gazing out at the calm sea beneath a sky filled with the breathtaking glow of constellations. The night is still, the only sound being the gentle lapping of waves. As he stares into the vast expanse of stars, the weight of his dreams, his losses, and his longing fill the silence. *Falling Stars* is a poignant drama that explores the fragility of hope, the impact of dreams lost and regained, and the eternal search for meaning beneath the stars.",
+                            Duration = 95,
+                            GenreId = 3,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "Falling Stars",
+                            TicketPrice = 12.49m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AgeRatingId = 3,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "On a moonlit night, beneath the eerie glow of a full moon, a small wooden bridge stretches over a misty chasm, flanked by old, dead trees. The air is thick with a chilling fog as a man, dressed in dark clerical robes, stands at the end of the bridge, accompanied by a child. The silence is oppressive, broken only by the whispers of the past. *The Cursed Hollow* is a supernatural horror that delves into the heart of an ancient curse, where the line between the living and the dead blurs, and the truth must be uncovered before the darkness consumes them all.",
+                            Duration = 115,
+                            GenreId = 5,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 3,
+                            Name = "The Cursed Hollow",
+                            TicketPrice = 14.99m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AgeRatingId = 2,
+                            CountryId = 3,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "In the heart of a ferocious storm, five warriors stand tall on a lone stone amidst the restless sea, their magical weapons glowing with power. Flame swords, lightning-infused blades, and mystical artifacts crackle with energy as thunder cracks the sky. The sea rages around them, but these heroes are unyielding, bound by a common fate. *Tormbreakers* is an epic fantasy adventure where magic, courage, and destiny collide in a world on the brink of destruction. As the storm rages, so too does the battle for the future of their realm.",
+                            Duration = 130,
+                            GenreId = 4,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 2,
+                            Name = "Tormbreakers",
+                            TicketPrice = 16.49m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AgeRatingId = 3,
+                            CountryId = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A portal to another dimension opens, revealing a futuristic world where time itself is at war. Soldiers, dressed in advanced SWAT gear, patrol the perimeter of the rift, weapons at the ready as spacecrafts zoom overhead. In the background, the mighty Pantheon stands as a symbol of ancient power and mystery. *ChronoWars* is a gripping sci-fi action thriller that spans across time and dimensions, where elite soldiers battle to control the flow of history itself. As they fight for dominance, the future of all worlds hangs in the balance.",
+                            Duration = 140,
+                            GenreId = 4,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MovieFormatId = 2,
+                            MovieProductionCompanyId = 1,
+                            Name = "ChronoWars",
+                            TicketPrice = 18.99m
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.MovieReview", b =>
@@ -1966,6 +2288,24 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Drama"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Fantasy",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Fantasy"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Horror",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Horror"
                         });
                 });
 
