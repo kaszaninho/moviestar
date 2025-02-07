@@ -20,7 +20,7 @@
                 <p class="card-text">
                     @foreach (var screening in movie.Value)
                     {
-                        <form asp-controller="Movie" asp-action="ChooseSeat" asp-route-screeningId="@screening.Id">
+                        <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
                             <button class="btn btn-dark m-2">@screening.StartDate.Value.ToString("HH:mm")</button>
                         </form>
                     }

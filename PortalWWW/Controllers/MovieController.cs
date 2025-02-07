@@ -3,6 +3,7 @@ using DatabaseAPI.Models.CinemaMovie;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PortalWWW.Models;
 
 namespace PortalWWW.Controllers
 {
@@ -68,16 +69,61 @@ namespace PortalWWW.Controllers
             return View(seatsForScreening);
         }
 
-        public ActionResult DetailsOfChoice(string[] checkboxValues)
+        public IActionResult ChooseSeats(int screeningId)
         {
-            var datas = dbContext.ScreeningSeat.Include(x => x.Screening).ThenInclude(x => x.Movie).First(item => item.Id == int.Parse(checkboxValues[0]));
-            ViewData["ScreeningId"] = datas.ScreeningId;
-            ViewData["MovieName"] = datas.Screening.Movie.Name;
-            ViewData["Date"] = datas.Screening.StartDate.Value.Date.ToString("dd-MM-yyyy")
-                + ", " + datas.Screening.StartDate.Value.ToString("HH:mm") 
-                + " - " + datas.Screening.EndDate.Value.ToString("HH:mm");
-            ViewBag.CheckboxValues = checkboxValues;
-            return View();
+            var screeningSeats = dbContext.ScreeningSeat
+                .Include(ss => ss.Seat)
+                .Include(ss => ss.Screening)
+                .ThenInclude(ss => ss.Movie)
+                .Where(ss => ss.ScreeningId == screeningId)
+                .ToList();
+            ViewData["ScreeningId"] = screeningSeats.First().ScreeningId;
+            ViewData["MovieName"] = screeningSeats.First().Screening.Movie.Name;
+            ViewData["date"] = screeningSeats.First().Screening.StartDate.Value.Date.ToString("dd-MM-yyyy")
+                + ", " + screeningSeats.First().Screening.StartDate.Value.ToString("HH:mm")
+                + " - " + screeningSeats.First().Screening.EndDate.Value.ToString("HH:mm");
+
+            return View(screeningSeats);
+        }
+
+
+        public IActionResult DetailsOfChoice(string seatIds)
+        {
+            var seatIdList = seatIds.Split(',').Select(int.Parse).ToList();
+            var chosenSeats = dbContext.ScreeningSeat.Include(item => item.Screening).ThenInclude(item => item.Movie).Where(item => seatIdList.Contains(item.Id)).ToList();
+            var movieData = chosenSeats.First();
+            ViewData["ScreeningId"] = movieData.ScreeningId;
+            ViewData["MovieName"] = movieData.Screening.Movie.Name;
+            ViewData["date"] = movieData.Screening.StartDate.Value.Date.ToString("dd-MM-yyyy")
+                + ", " + movieData.Screening.StartDate.Value.ToString("HH:mm")
+                + " - " + movieData.Screening.EndDate.Value.ToString("HH:mm");
+            return View(chosenSeats);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DetailsOfChosenSeats([FromBody] SeatSelectionModel selection)
+        {
+            if (selection?.SelectedSeats == null || !selection.SelectedSeats.Any())
+            {
+                return BadRequest(new { message = "No seats selected." });
+            }
+            var selectedSeats = selection.SelectedSeats;
+            var chosenSeats = dbContext.ScreeningSeat.Include(item => item.Screening).ThenInclude(item => item.Movie).Where(item => selectedSeats.Contains(item.Id)).ToList();
+            var movieData = chosenSeats.First();
+            var screeningId = movieData.ScreeningId;
+            var movieName = movieData.Screening.Movie.Name;
+            var date = movieData.Screening.StartDate.Value.Date.ToString("dd-MM-yyyy")
+                + ", " + movieData.Screening.StartDate.Value.ToString("HH:mm")
+                + " - " + movieData.Screening.EndDate.Value.ToString("HH:mm");
+            var redirectUrl = Url.Action("DetailsOfChoice", "Movie", new
+            {
+                screeningId = screeningId,
+                movieName = movieName,
+                date = date,
+                seatIds = string.Join(",", selectedSeats)
+            });
+
+            return Json(new { redirectUrl });
         }
 
         public ActionResult PaymentChoice()

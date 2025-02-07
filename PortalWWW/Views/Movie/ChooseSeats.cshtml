@@ -1,0 +1,114 @@
+﻿@using DatabaseAPI.Models.CinemaMovie;
+@model IEnumerable<DatabaseAPI.Models.CinemaMovie.ScreeningSeat>
+@{
+    ViewData["Title"] = "Choose Your Seats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/css/custom.css" rel="stylesheet" />
+</head>
+<div class="container" style="display:flex">
+    <div>
+        <p>Details</p>
+        <p>Screening ID: @ViewData["ScreeningId"]</p>
+        <p>Movie Name: @ViewData["MovieName"]</p>
+        <p>Date: @ViewData["Date"]</p>
+    </div>
+    <div class="screening">
+        <div class="screening-container">
+            <div class="screen"></div>
+
+
+            <ul class="showcase">
+                <li>
+                    <div class="seat"></div>
+                    <small>N/A</small>                   
+                </li>
+                <li>
+                    <div class="seat selected"></div>
+                    <small>Selected</small>
+                    
+                </li>
+                <li>
+                    <div class="seat occupied"></div>
+                    <small>Occupied</small>                    
+                </li>
+
+            </ul>
+            @* Group seats by row *@
+            @foreach (var rowGroup in Model.GroupBy(s => s.Seat.Row).OrderBy(g => g.Key))
+            {
+                <div class="row">
+                    @foreach (var screeningSeat in rowGroup.OrderBy(s => s.Seat.NumberInRow))
+                    {
+                        string seatClass = screeningSeat.IsTaken == true ? "seat occupied" : "seat";
+                        <div class="@seatClass" data-seat="@($"{(char)(64 + screeningSeat.Seat.Row)}{screeningSeat.Seat.NumberInRow}")"
+                             data-seatid="@screeningSeat.Id"></div>
+                    }
+                </div>
+            }
+        </div>
+
+        <p class="text">
+            You have selected <span id="seatsSelected">0</span> seats.
+        </p>
+
+        <button id="submitSeats">Confirm Selection</button>
+    </div>
+
+
+
+
+
+
+
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.screening-container');
+            const seatsSelected = document.getElementById('seatsSelected');
+            const submitButton = document.getElementById('submitSeats');
+            let selectedSeats = [];
+
+            const updateSeatCount = () => {
+                seatsSelected.innerText = selectedSeats.length;
+            };
+
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+                    const seatId = e.target.dataset.seatid;
+                    if (selectedSeats.includes(seatId)) {
+                        selectedSeats = selectedSeats.filter(id => id !== seatId);
+                        e.target.classList.remove('selected');
+                    } else {
+                        selectedSeats.push(seatId);
+                        e.target.classList.add('selected');
+                    }
+                    updateSeatCount();
+                }
+            });
+
+            submitButton.addEventListener('click', () => {
+                fetch('/Movie/DetailsOfChosenSeats', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ selectedSeats: selectedSeats })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to submit seat selection.');
+                        }
+                        return response.json(); // Expecting a JSON response with the redirection URL
+                    })
+                    .then(data => {
+                        if (data.redirectUrl) {
+                            window.location.href = data.redirectUrl; // Redirect to the new view
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+}
