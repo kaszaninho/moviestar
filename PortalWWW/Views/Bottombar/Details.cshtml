@@ -5,41 +5,80 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Contact Information Details</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-sm custom-btn">
+                <i class="bi bi-pencil"></i>
+                Edit
+            </a>
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover custom-table">
+            <input asp-for="Id" type="hidden" class="form-control" ) />
 
-<h1>Details</h1>
-
-<div>
-    <h4>@Model.Name</h4>
-    <hr />
-    <dl class="row">
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(item => item.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(item => item.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(item => item.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(item => item.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(item => item.Content)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(item => item.Content)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(item => item.Position)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(item => item.Position)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
-    <a asp-action="Index">Back to List</a>
+            <div class="table-responsive">
+                <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+                    <thead>
+                        <tr>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Name" class="form-label">Name</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-controlX " id="floatingInput" value="@Model.Name" readonly>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Description" class="form-label">Description</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <textarea asp-for="Description" class="form-controlX" id="floatingDescription" value="@Model.Description" style="height: 200px;" readonly></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Content" class="form-label">Content</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <textarea asp-for="Content" class="form-controlX" id="floatingDescription" value="@Model.Content" style="height: 300px;" readonly></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Position" class="form-label">Position</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Position" class="form-controlX" id="floatingInput" value="@Model.Position" readonly>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

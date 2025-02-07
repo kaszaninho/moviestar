@@ -84,25 +84,25 @@ bottom:0;
     border-radius: 6px;
 }
 
-    /* Styl dla placeholderów - czarny tekst */
+    /* Styl dla placeholderï¿½w - czarny tekst */
     .custom-input::placeholder {
         color: black !important;
-        opacity: 1; /* Pe³na widocznoœæ placeholdera */
+        opacity: 1; /* Peï¿½na widocznoï¿½ï¿½ placeholdera */
     }
 
-    /* Dla przegl¹darek opartych na WebKit (Chrome, Safari) */
+    /* Dla przeglï¿½darek opartych na WebKit (Chrome, Safari) */
     .custom-input::-webkit-input-placeholder {
         color: black !important;
         opacity: 1;
     }
 
-    /* Dla przegl¹darek opartych na Mozilla (Firefox) */
+    /* Dla przeglï¿½darek opartych na Mozilla (Firefox) */
     .custom-input::-moz-placeholder {
         color: black !important;
         opacity: 1;
     }
 
-    /* Dla przegl¹darek Microsoft Edge */
+    /* Dla przeglï¿½darek Microsoft Edge */
     .custom-input:-ms-input-placeholder {
         color: black !important;
         opacity: 1;
@@ -131,12 +131,12 @@ bottom:0;
 }
 .custom-select option {
     color: black; /* Tekst opcji jest czarny */
-    background-color: white; /* T³o opcji */
+    background-color: white; /* Tï¿½o opcji */
 }
 
 /* Zmiana koloru zaznaczonej opcji */
 .custom-select option:checked {
-    background-color: azure !important; /* Kolor t³a dla zaznaczonej opcji */
+    background-color: azure !important; /* Kolor tï¿½a dla zaznaczonej opcji */
     color: black !important; /* Tekst pozostaje czarny */
 }
 /* Styl dla przycisku */
@@ -366,24 +366,24 @@ min-height:515px;
  }
 
 .custom-table {
-    background-color: #343a40 !important; /* Ciemnoszary kolor t³a */
-    color: #ffffff !important; /* Bia³y tekst */
-    font-size: 18px !important; /* Powiêkszona czcionka */
+    background-color: #343a40 !important; /* Ciemnoszary kolor tï¿½a */
+    color: #ffffff !important; /* Biaï¿½y tekst */
+    font-size: 18px !important; /* Powiï¿½kszona czcionka */
 }
 
-    /* Stylizacja nag³ówków tabeli */
+    /* Stylizacja nagï¿½ï¿½wkï¿½w tabeli */
     .custom-table thead {
         background-color: #212529 !important;
         color: #ffffff !important;
-        font-size: 18px !important; /* Powiêkszona czcionka */
+        font-size: 18px !important; /* Powiï¿½kszona czcionka */
     }
 
-    /* Stylizacja komórek tabeli */
+    /* Stylizacja komï¿½rek tabeli */
     .custom-table th,
     .custom-table td {
         border-color: #6c757d !important;
         color: #ffffff !important;
-        font-size: 18px !important; /* Powiêkszona czcionka */
+        font-size: 18px !important; /* Powiï¿½kszona czcionka */
     }
 
     /* Stylizacja naprzemiennych wierszy */
@@ -392,18 +392,18 @@ min-height:515px;
     }
 
     .custom-table tbody tr:nth-child(even) {
-        background-color: #3d4247 !important; /* Jaœniejszy szary kolor */
+        background-color: #3d4247 !important; /* Jaï¿½niejszy szary kolor */
     }
 
     /* Dodatkowa stylizacja wierszy dla hover */
     .custom-table tbody tr:hover {
-        background-color: #495057 !important; /* Jeszcze jaœniejszy szary dla efektu hover */
+        background-color: #495057 !important; /* Jeszcze jaï¿½niejszy szary dla efektu hover */
     }
 
-/* Stylizacja elementów interfejsu DataTables */
+/* Stylizacja elementï¿½w interfejsu DataTables */
 .dataTables_wrapper {
     color: #ffffff !important;
-    font-size: 18px !important; /* Powiêkszona czcionka */
+    font-size: 18px !important; /* Powiï¿½kszona czcionka */
 }
 
     .dataTables_wrapper .dataTables_length,
@@ -411,21 +411,52 @@ min-height:515px;
     .dataTables_wrapper .dataTables_info,
     .dataTables_wrapper .dataTables_paginate {
         color: #ffffff !important;
-        font-size: 18px !important; /* Powiêkszona czcionka */
+        font-size: 18px !important; /* Powiï¿½kszona czcionka */
     }
 
-    /* Stylizacja pól formularza DataTables */
+    /* Stylizacja pï¿½l formularza DataTables */
     .dataTables_wrapper select,
     .dataTables_wrapper input {
         background-color: #343a40 !important;
         color: #ffffff !important;
         border: 1px solid #6c757d !important;
-        font-size: 18px !important; /* Powiêkszona czcionka */
+        font-size: 18px !important; /* Powiï¿½kszona czcionka */
     }
 
-/* Stylizacja wiêkszych przycisków */
+/* Stylizacja wiï¿½kszych przyciskï¿½w */
 .custom-btn {
-    font-size: 18px !important; /* Powiêkszona czcionka dla przycisków */
-    padding: 6px 14px !important; /* Wiêksze przyciski */
+    font-size: 18px !important; /* Powiï¿½kszona czcionka dla przyciskï¿½w */
+    padding: 6px 14px !important; /* Wiï¿½ksze przyciski */
 }
- 
+input:disabled, textarea:disabled {
+    background-color: #f8f9fa !important; /* Kolor tÅ‚a taki jak dla aktywnego pola */
+    color: #495057 !important; /* Kolor tekstu taki jak dla aktywnego pola */
+    opacity: 1 !important; /* DomyÅ›lnie przeglÄ…darki obniÅ¼ajÄ… opacity dla disabled */
+    cursor: not-allowed;
+}
+.form-controlX {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #696969; /* Szare tÅ‚o */
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+    /* Styl dla wyÅ‚Ä…czonego elementu */
+    .form-controlX:disabled,
+    .form-controlX[readonly] {
+        background-color: #696969 !important; /* Zapewnia, Å¼e kolor tÅ‚a siÄ™ nie zmieni */
+        color: #fff !important; /* Tekst staje siÄ™ jaÅ›niejszy */
+        opacity: 1 !important; /* Zapobiega przyciemnieniu */
+        cursor: not-allowed; /* Wskazuje, Å¼e element jest nieaktywny */
+    }

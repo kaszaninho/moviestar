@@ -99,5 +99,20 @@ namespace PortalWWW.Controllers
             return RedirectToAction(nameof(Index));
         }
     }
+    //[HttpDelete]
+    //public IActionResult Delete(int? id)
+    //{
+    //    var TermsAndConditionToBeDeleted = _unitOfWork.TermsAndCondition.Get(u => u.Id == id);
+    //    if (TermsAndConditionToBeDeleted == null)
+    //    {
+    //        return Json(new { success = false, message = "Error while deleting" });
+    //    }
 
+    //    TermsAndConditionToBeDeleted.isActive = false;
+    //    TermsAndConditionToBeDeleted.DateOfDelete = DateTime.Now;
+    //    _unitOfWork.TermsAndCondition.Update(TermsAndConditionToBeDeleted);
+    //    _unitOfWork.Save();
+
+    //    return Json(new { success = true, message = "Delete Successful" });
+    //}
 }

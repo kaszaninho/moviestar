@@ -47,22 +47,22 @@
                     </tr>
                     <tr>
                         <td>
-                            <strong><label asp-for="Content" class="form-label">Content</label></strong>
+                            <strong><label asp-for="Description" class="form-label">Description</label></strong>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input asp-for="Content" class="form-control" id="floatingInput" value="@Model.Content">
-                                <span asp-validation-for="Content" class="text-danger"></span>
+                                <textarea asp-for="Description" class="form-control" id="floatingDescription" value="@Model.Description" style="height: 150px;"></textarea>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <strong><label asp-for="Description" class="form-label">Description</label></strong>
+                            <strong><label asp-for="Content" class="form-label">Content</label></strong>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <textarea asp-for="Description" class="form-control" id="floatingDescription" value="@Model.Description" style="height: 300px;"></textarea>
+                                <textarea asp-for="Content" class="form-control" id="floatingInput" value="@Model.Content" style="height: 300px;"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                         </td>
                     </tr>
@@ -73,7 +73,7 @@
                         <td>
                             <div class="form-floating mb-3">
                                 <input asp-for="Position" class="form-control" id="floatingInput" value="@Model.Position">
-                                <span asp-validation-for="Content" class="text-danger"></span>
+                                <span asp-validation-for="Position" class="text-danger"></span>
                             </div>
                         </td>
                     </tr>
