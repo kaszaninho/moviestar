@@ -39,19 +39,22 @@ namespace PortalWWW.Controllers.Admin.CMS
             return RedirectToAction("Index");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
-            var website = context.Website.Find(id);
-            if (website != null)
+            var entity = context.Website.Find(id);
+            if (entity == null)
             {
-                context.Website.Remove(website);
-                context.SaveChanges();
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            return RedirectToAction("Index");
-        }
+            else
+            {
+                context.Website.Remove(entity);
+                context.SaveChanges();
 
+                return Json(new { success = true, message = "Delete Successful" });
+            }
+        }
         public IActionResult Edit(int id)
         {
             var entity = context.Website.FirstOrDefault(w => w.Id == id);
@@ -59,12 +62,6 @@ namespace PortalWWW.Controllers.Admin.CMS
         }
 
         public IActionResult Details(int id)
-        {
-            var entity = context.Website.FirstOrDefault(w => w.Id == id);
-            return View(entity);
-        }
-
-        public IActionResult Delete(int id)
         {
             var entity = context.Website.FirstOrDefault(w => w.Id == id);
             return View(entity);
