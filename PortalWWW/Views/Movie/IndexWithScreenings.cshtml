@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
 
 @{
-    ViewData["Title"] = "Movies";
+    ViewData["Title"] = "Movies with screenings";
+    string selectedOne = ViewData["selectedDate"] as string;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var properDate = DateTime.ParseExact(selectedOne, "dd/MM/yyyy", null).Date;
 }
-
-
 
 
 <div class="container">
@@ -15,11 +15,11 @@
         </div>
 
         <div class="container">
-            <div class="col-auto">
+            <div class="latest-news text-center">
                 <form asp-controller="Movie" asp-action="IndexWithScreenings" method="post"
                       class="d-flex align-items-center justify-content-center gap-2">
                     <label class="custom-label" for="datepicker">Select a Date for the Movie:</label>
-                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;"/>
+                    <input type="text" id="datepicker" name="selectedDate" value="@selectedOne" style="background-color: black; height:40px;" />
                     <br>
                     <button type="submit" class="btn btn-dark">Choose a date</button>
                 </form>
@@ -29,7 +29,7 @@
             @if (Model.Count() == 0)
             {
                 <div class="container">
-                    <p>Sorry, there is no screenings at the moment.</p>
+                    <p>Sorry, there is no screenings that day.</p>
                 </div>
             }
             @foreach (var movie in Model)
@@ -80,6 +80,23 @@
                                 </button>
                             </form>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <strong><label class="form-label">Screenings</label></strong>
+
+                    <div id="screeningsContainerForMovie" class="container">
+                        @foreach (var screening in movie.Screenings)
+                        {
+                            if (screening.StartDate >= properDate && screening.StartDate <= properDate.AddDays(1))
+                            {
+                                <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
+                                    <button class="btn btn-info btn-sm mb-2">
+                                        @screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")
+                                    </button>
+                                </form>
+                            }
+                        }
                     </div>
                 </div>
             }
