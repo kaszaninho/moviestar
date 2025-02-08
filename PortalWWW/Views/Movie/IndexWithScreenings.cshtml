@@ -1,11 +1,11 @@
-@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
+﻿@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
 
 @{
-    ViewData["Title"] = "Movies";
+    ViewData["Title"] = "Movies with screenings";
+    string selectedOne = ViewData["selectedDate"] as string;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var properDate = DateTime.ParseExact(selectedOne, "dd/MM/yyyy", null).Date;
 }
-
-
 
 
 <div class="container">
@@ -15,11 +15,11 @@
         </div>
 
         <div class="container">
-            <div class="col-auto">
+            <div class="latest-news text-center">
                 <form asp-controller="Movie" asp-action="IndexWithScreenings" method="post"
                       class="d-flex align-items-center justify-content-center gap-2">
                     <label class="custom-label" for="datepicker">Select a Date for the Movie:</label>
-                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;"/>
+                    <input type="text" id="datepicker" name="selectedDate" value="@selectedOne" style="background-color: black; height:40px;" />
                     <br>
                     <button type="submit" class="btn btn-dark">Choose a date</button>
                 </form>
@@ -29,7 +29,7 @@
             @if (Model.Count() == 0)
             {
                 <div class="container">
-                    <p>Sorry, there is no screenings at the moment.</p>
+                    <p>Sorry, there is no screenings that day.</p>
                 </div>
             }
             @foreach (var movie in Model)
@@ -42,22 +42,22 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <strong><label class="form-label" style="font-size:24px">@movie.Name</label></strong>
+                        <strong><label class="form-label">@movie.Name</label></strong>
                         <table class="table-responsive">
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Genre</label></td>
+                                <td><label class="form-label">Genre</label></td>
                                 <td><p class="form-label">@movie.Genre.Name</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Release date</label></td>
+                                <td><label class="form-label">Release date</label></td>
                                 <td><p class="form-label">@movie.CreatedAt</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Age Rating</label></td>
+                                <td><label class="form-label">Age Rating</label></td>
                                 <td><p class="form-label">@movie.AgeRating.Name</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Description</label></td>
+                                <td><label class="form-label">Description</label></td>
                                 <td>
                                     <p class="form-label">
                                         @(movie.Description.Substring(0, Math.Min(150, movie.Description.Length))
@@ -66,15 +66,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Ticket Price</label></td>
+                                <td><label class="form-label">Ticket Price</label></td>
                                 <td><p class="form-label">@movie.TicketPrice PLN</p></td>
                             </tr>
                         </table>
                     </div>
-                   
                     <div class="col-1">
 
-                        <div class="text-center">
+                        <div class="border p-1 m-2 text-center">
                             <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
                                 <button class="btn btn-danger">
                                     Details
@@ -82,7 +81,23 @@
                             </form>
                         </div>
                     </div>
-                    <hr>
+                </div>
+                <div class="row">
+                    <strong><label class="form-label">Screenings</label></strong>
+
+                    <div id="screeningsContainerForMovie" class="container">
+                        @foreach (var screening in movie.Screenings)
+                        {
+                            if (screening.StartDate >= properDate && screening.StartDate <= properDate.AddDays(1))
+                            {
+                                <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
+                                    <button class="btn btn-info btn-sm mb-2">
+                                        @screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")
+                                    </button>
+                                </form>
+                            }
+                        }
+                    </div>
                 </div>
             }
         </div>
