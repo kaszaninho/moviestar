@@ -32,10 +32,8 @@ namespace DatabaseAPI.Data
         public DbSet<MovieKeywords>? MovieKeywords { get; set; }
         public DbSet<MovieProductionCompany>? MovieProductionCompany { get; set; }
         public DbSet<Subtitles>? Subtitles { get; set; }
-        //public DbSet<Cinema>? Cinema { get; set; }
         public DbSet<Movie>? Movie { get; set; }
         public DbSet<MovieReview>? MovieReview { get; set; }
-        public DbSet<Reservations>? Reservations { get; set; }
         public DbSet<Screen>? Screen { get; set; }
         public DbSet<Screening>? Screening { get; set; }
         public DbSet<Seat>? Seat { get; set; }
