@@ -4,28 +4,6 @@
     ViewData["Title"] = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@* @section Scripts
-{
-    <!-- Include jQuery and jQuery UI libraries at the top -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous">
-    </script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
-            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
-            crossorigin="anonymous"></script>
-    <!-- JavaScript code to initialize datepicker -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#datepicker", {
-                dateFormat: "d/m/Y", // Adjust the format to your locale
-                defaultDate: new Date(), // Optional: set a default date
-                allowInput: true,      // Allow manual input if desired
-            });
-        });
-    </script>
-} *@
 
 <div class="container">
     <div class="table-responsive">
@@ -43,22 +21,22 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <strong><label class="form-label">@movie.Name</label></strong>
+                        <strong><label class="form-label" style="font-size:24px">@movie.Name</label></strong>
                         <table class="table-responsive">
                             <tr>
-                                <td><label class="form-label">Genre</label></td>
+                                <td><label class="form-label" style="font-size:20px">Genre</label></td>
                                 <td><p class="form-label">@movie.Genre.Name</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label">Release date</label></td>
+                                <td><label class="form-label" style="font-size:20px">Release date</label></td>
                                 <td><p class="form-label">@movie.CreatedAt</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label">Age Rating</label></td>
+                                <td><label class="form-label" style="font-size:20px">Age Rating</label></td>
                                 <td><p class="form-label">@movie.AgeRating.Name</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label">Description</label></td>
+                                <td><label class="form-label" style="font-size:20px">Description</label></td>
                                 <td>
                                     <p class="form-label">
                                         @(movie.Description.Substring(0, Math.Min(150, movie.Description.Length))
@@ -67,14 +45,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="form-label">Ticket Price</label></td>
+                                <td><label class="form-label" style="font-size:20px">Ticket Price</label></td>
                                 <td><p class="form-label">@movie.TicketPrice PLN</p></td>
                             </tr>
                         </table>
                     </div>
+                   
                     <div class="col-1">
 
-                        <div class="border p-1 m-2 text-center">
+                        <div class="text-center">
                             <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
                                 <button class="btn btn-danger">
                                     Details
@@ -82,6 +61,7 @@
                             </form>
                         </div>
                     </div>
+                    <hr>
                 </div>
             }
         </div>
