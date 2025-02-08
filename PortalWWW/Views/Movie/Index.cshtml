@@ -1,10 +1,10 @@
-@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
+﻿@model IEnumerable<DatabaseAPI.Models.CinemaMovie.Movie>
 
 @{
     ViewData["Title"] = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section Scripts
+@* @section Scripts
 {
     <!-- Include jQuery and jQuery UI libraries at the top -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -25,36 +25,65 @@
             });
         });
     </script>
-}
-<section class="hero">
-    <div class="container">
-        <div class="row">
+} *@
 
-            <div class="col-md-6 align-items-center">
-                <h2>Movies played on Date</h2>
-            </div>
+<div class="container">
+    <div class="table-responsive">
+        <div>
+            <h4>Movies in the cinema</h4>
+        </div>
+        <div class="flex-column">
+            @foreach (var movie in Model)
+            {
+                <div class="row">
+                    <div class="col-3">
+                        <div class="border p-1 m-2 text-center">
+                            <img src="@movie.imageUrl" width="100%"
+                                 style="border-radius:5px; border:1px solid #bbb9b9" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <strong><label class="form-label">@movie.Name</label></strong>
+                        <table class="table-responsive">
+                            <tr>
+                                <td><label class="form-label">Genre</label></td>
+                                <td><p class="form-label">@movie.Genre.Name</p></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label">Release date</label></td>
+                                <td><p class="form-label">@movie.CreatedAt</p></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label">Age Rating</label></td>
+                                <td><p class="form-label">@movie.AgeRating.Name</p></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label">Description</label></td>
+                                <td>
+                                    <p class="form-label">
+                                        @(movie.Description.Substring(0, Math.Min(150, movie.Description.Length))
+                                            + "...")
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label">Ticket Price</label></td>
+                                <td><p class="form-label">@movie.TicketPrice PLN</p></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-1">
+
+                        <div class="border p-1 m-2 text-center">
+                            <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
+                                <button class="btn btn-danger">
+                                    Details
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</section>
-<div class="container">
-    <div class="latest-news text-center">
-        <form asp-controller="Movie" asp-action="ChooseMovieBasedOnDate" method="post"
-              class="d-flex align-items-center justify-content-center gap-2">
-            <label class="custom-label" for="datepicker">Select a Date for the Movie:</label>
-            <input type="text" id="datepicker" name="selectedDate" style="background-color: white; height:40px;">
-            <button type="submit" class="btn custom-button">Choose a date</button>
-        </form>
-    </div>
 </div>
-
-
-@* Choice of top 3 movies
-    I'll need to change to pick not the first 3 added movies, but top 3 movies based on some order
- *@
-<div class="cointainer">
-    @await Component.InvokeAsync("ChooseAMovieComponent")
-</div>
-
-
-
-

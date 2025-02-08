@@ -1,0 +1,85 @@
+﻿@model DatabaseAPI.Models.CinemaMovie.Movie
+
+@{
+    ViewData["Title"] = "Movie Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="table-responsive">
+        <div>
+            <h4>@Model.Name</h4>
+        </div>
+        <div class="flex-column">
+            <div class="row">
+                <div class="col-4">
+                    <div class="border p-1 m-2 text-center">
+                        <img src="@Model.imageUrl" width="100%"
+                             style="border-radius:5px; border:1px solid #bbb9b9" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <strong><label class="form-label">@Model.Name</label></strong>
+                    <table class="table-responsive">
+                        <tr>
+                            <td><label class="form-label">Genre</label></td>
+                            <td><p class="form-label">@Model.Genre.Name</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Duration</label></td>
+                            <td><p class="form-label">@Model.Duration mins</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Release date</label></td>
+                            <td><p class="form-label">@Model.CreatedAt</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Age Rating</label></td>
+                            <td><p class="form-label">@Model.AgeRating.Name</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Country of Origin</label></td>
+                            <td><p class="form-label">@Model.Country.Name</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Production Company</label></td>
+                            <td><p class="form-label">@Model.MovieProductionCompany.Name</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Movie Format</label></td>
+                            <td><p class="form-label">@Model.MovieFormat.Name</p></td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label">Ticket Price</label></td>
+                            <td><p class="form-label">@Model.TicketPrice PLN</p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <tr>
+                    <td><label class="form-label">Description</label></td>
+                    <td><p class="form-label">@Model.Description</p></td>
+                </tr>
+            </div>
+            <div class="row">
+                <strong><label class="form-label">Screenings</label></strong>
+
+                <div id="screeningsContainerForMovie" class="container">
+                    @if (Model.Screenings.Count == 0)
+                    {
+                        <p> No screenings for this movie. Sorry </p>
+                    }
+                    @foreach (var screening in Model.Screenings)
+                    {
+                        <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
+                            <button class="btn btn-info btn-sm mb-2">
+                                @screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
