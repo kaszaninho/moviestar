@@ -11,100 +11,22 @@
                         @await Component.InvokeAsync("ContactInformationComponent")
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 ms-auto text-end">
+                    <!-- Przesunięcie tylko NewsletterComponent na prawo -->
                     <div class="footer_1i">
-                        <h4>Flickr <span class="col_red">Stream</span></h4>
-                        <div class="footer_1i1 row mt-4">
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/4.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/5.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/6.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/7.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer_1i1 row mt-3">
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/8.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/9.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/10.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <div class="footer_1i1i">
-                                    <div class="grid clearfix">
-                                        <figure class="effect-jazz mb-0">
-                                            <a href="#"><img src="img/11.jpg" height="70" class="w-100" alt="abc"></a>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @await Component.InvokeAsync("NewsletterComponent")
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="footer_1i">
-                        @await Component.InvokeAsync("NewsletterComponent")
                         @await Component.InvokeAsync("FooterIconComponent")
-                       
-
-
                     </div>
                 </div>
             </div>
         </div>
 
         @await Component.InvokeAsync("UsefulLinkComponent")
+
         <div class="row mt-3">
             <div class="col text-center">
                 @await Component.InvokeAsync("BottombarComponent")
