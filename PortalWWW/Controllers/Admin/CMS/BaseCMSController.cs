@@ -1,7 +1,5 @@
 ﻿using DatabaseAPI.Data;
 using DatabaseAPI.Models.Abstract;
-using DatabaseAPI.Models.CMS;
-using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -76,30 +74,6 @@ namespace PortalWWW.Controllers.Admin.CMS
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult DeleteConfirmed(int id)
-        //{
-        //    var entity = context.Set<T>().Find(id);
-        //    if (entity != null)
-        //    {
-        //        int deletedPosition = entity.Position;
-        //        context.Set<T>().Remove(entity);
-        //        context.SaveChanges();
-        //        var entitiesToUpdate = context.Set<T>()
-        //        .Where(e => e.Position > deletedPosition)
-        //        .OrderBy(e => e.Position)
-        //        .ToList();
-        //        foreach (var e in entitiesToUpdate)
-        //        {
-        //            e.Position--; // Shift position up
-        //        }
-        //        context.SaveChanges();
-
-        //    }
-        //    return RedirectToAction("Index");
-        //}
 
         [HttpDelete]
         public IActionResult Delete(int id)
