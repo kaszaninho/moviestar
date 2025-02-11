@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Photos\aboutus.png" />
+    <None Remove="Photos\career.png" />
+    <None Remove="Photos\cookies.png" />
+    <None Remove="Photos\faq.png" />
     <None Remove="Photos\LOGO.png" />
+    <None Remove="Photos\partnership.png" />
+    <None Remove="Photos\privacy.png" />
+    <None Remove="Photos\refund.png" />
+    <None Remove="Photos\termsandconditions.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -179,10 +187,18 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="Photos\aboutus.png" />
+    <Content Include="Photos\career.png" />
+    <Content Include="Photos\cookies.png" />
+    <Content Include="Photos\faq.png" />
     <Content Include="Photos\LOGO.png">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="Photos\partnership.png" />
+    <Content Include="Photos\privacy.png" />
+    <Content Include="Photos\refund.png" />
+    <Content Include="Photos\termsandconditions.png" />
   </ItemGroup>
 
 </Project>

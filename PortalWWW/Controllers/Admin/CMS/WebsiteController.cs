@@ -1,4 +1,4 @@
-﻿using DatabaseAPI.Data;
+using DatabaseAPI.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -73,5 +73,17 @@ namespace PortalWWW.Controllers.Admin.CMS
             var entities = context.Website.ToList();
             return Json(new { data = entities });
         }
+        public IActionResult More(int id)
+        {
+            var entity = context.Website.FirstOrDefault(w => w.Id == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.WebsiteList = context.Website.ToList(); // Przekazanie listy do ViewBag
+            return View(entity); // Przekazanie modelu do widoku
+        }
+
     }
 }

@@ -4,30 +4,15 @@
     ViewData["Title"] = "More - " + Model.TitleName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="container d-flex justify-content-center">
-    <div class="col-md-8 text-center">
-        @Html.Raw(Model.Content)
-    </div>
-</div>
-
-@* <div class="container mt-5">
-    <h1 class="text-center mb-4">@Model.Name</h1>
-    <br>
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <div class="list-group">
-                @foreach (var item in ViewBag.TermsList)
-                {
-                    <a href="@Url.Action("More", "Home", new { id = item.Id })" class="list-group-item list-group-item-action @((item.Id == Model.Id) ? "active" : "")">
-                        @item.Name
-                    </a>
-                }
-            </div>
+            <img src="@Model.Description" class="img-fluid rounded mb-4" alt="Music Store">
         </div>
         <div class="col-md-8">
-            <h6>@Model.Description</h6>
-            <p>@Model.Content</p>
+ 
+        @Html.Raw(Model.Content)
         </div>
     </div>
-</div> *@
+</div>
+ 
