@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.ProfilePage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Profile Page"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+
+        <Button Grid.Row="1"
+                Text="Your info"
+                x:Name="BtnProfileInfo"
+                Margin="0,20,0,0" 
+                Clicked="Logout_Clicked"/>
+
+
+        <Button Grid.Row="2"
+                Text="Address"
+                x:Name="BtnAddressInfo"
+                Margin="0,20,0,0" 
+                Clicked="Logout_Clicked"/>
+
+
+        <Button Grid.Row="3"
+                Text="Your tickets"
+                x:Name="BtnTicketsInfo"
+                Margin="0,20,0,0" 
+                Clicked="BtnTicketInfo_Clicked"/>
+
+
+        <Button Grid.Row="4"
+                Text="Your invoices"
+                x:Name="BtnInvoiceInfo"
+                Margin="0,20,0,0" 
+                Clicked="BtnInvoiceInfo_Clicked"/>
+
+        <Button Grid.Row="5"
+                Text="Logout"
+                x:Name="BtnSignIn"
+                Margin="0,20,0,0" 
+                Clicked="Logout_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>
