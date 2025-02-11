@@ -10,9 +10,9 @@ namespace DatabaseAPI.Models.People
         public string? MiddleName { get; set; }
         public string LastName { get; set;}
         public DateTime DateOfBirth { get; set; }
-        public Country Country { get; set; }
-        public int CountryId { get; set; }
-        public ICollection<Photo>? Photos { get; set; }
+        public Country? Country { get; set; }
+        public int? CountryId { get; set; }
+        public string? ImageUrl { get; set; }
 
 
     }

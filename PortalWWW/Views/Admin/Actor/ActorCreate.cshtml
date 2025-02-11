@@ -1,0 +1,7 @@
+﻿@model DatabaseAPI.Models.People.Actor;
+
+<div class="form-group">
+    <label asp-for="Country" class="control-label"></label>
+    <select asp-for="CountryId" class="form-control" asp-items="ViewBag.Country"></select>
+    <span asp-validation-for="CountryId" class="text-danger"></span>
+</div>
