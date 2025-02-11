@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLo
 		{16F1F938-E7EF-42C4-8854-08257E3A1CD4} = {16F1F938-E7EF-42C4-8854-08257E3A1CD4}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos", "Photos\Photos.csproj", "{62FCB9F4-8986-4F78-8F3E-DDC72F20568B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{2CCC159B-B40F-48C6-BDB7-722B07989233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CCC159B-B40F-48C6-BDB7-722B07989233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CCC159B-B40F-48C6-BDB7-722B07989233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62FCB9F4-8986-4F78-8F3E-DDC72F20568B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FCB9F4-8986-4F78-8F3E-DDC72F20568B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FCB9F4-8986-4F78-8F3E-DDC72F20568B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FCB9F4-8986-4F78-8F3E-DDC72F20568B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,6 +4,91 @@
     ViewData["Title"] = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
+
+<div class="container">
+    <div class="table-responsive">
+        <div>
+            <h4>Movies in the cinema</h4>
+        </div>
+
+        <div class="container">
+            <div class="col-auto">
+                <form asp-controller="Movie" asp-action="IndexWithScreenings" method="post"
+                      class="d-flex align-items-center justify-content-center gap-2">
+                    <label class="custom-label" for="datepicker">Select a Date for the Movie:</label>
+                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;"/>
+                    <br>
+                    <button type="submit" class="btn btn-dark">Choose a date</button>
+                </form>
+            </div>
+        </div>
+        <div class="flex-column">
+            @if (Model.Count() == 0)
+            {
+                <div class="container">
+                    <p>Sorry, there is no screenings at the moment.</p>
+                </div>
+            }
+            @foreach (var movie in Model)
+            {
+                <div class="row">
+                    <div class="col-3">
+                        <div class="border p-1 m-2 text-center">
+                            <img src="@movie.imageUrl" width="100%"
+                                 style="border-radius:5px; border:1px solid #bbb9b9" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <strong><label class="form-label" style="font-size:24px">@movie.Name</label></strong>
+                        <table class="table-responsive">
+                            <tr>
+                                <td><label class="form-label" style="font-size:20px">Genre</label></td>
+                                <td><p class="form-label">@movie.Genre.Name</p></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" style="font-size:20px">Release date</label></td>
+                                <td><p class="form-label">@movie.CreatedAt</p></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" style="font-size:20px">Age Rating</label></td>
+                                <td><p class="form-label">@movie.AgeRating.Name</p></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" style="font-size:20px">Description</label></td>
+                                <td>
+                                    <p class="form-label">
+                                        @(movie.Description.Substring(0, Math.Min(150, movie.Description.Length))
+                                            + "...")
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" style="font-size:20px">Ticket Price</label></td>
+                                <td><p class="form-label">@movie.TicketPrice PLN</p></td>
+                            </tr>
+                        </table>
+                    </div>
+                   
+                    <div class="col-1">
+
+                        <div class="text-center">
+                            <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
+                                <button class="btn btn-danger">
+                                    Details
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
 @section Scripts
 {
     <!-- Include jQuery and jQuery UI libraries at the top -->
@@ -20,41 +105,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             flatpickr("#datepicker", {
                 dateFormat: "d/m/Y", // Adjust the format to your locale
-                defaultDate: new Date(), // Optional: set a default date
-                allowInput: true,      // Allow manual input if desired
+                allowInput: false,      // Allow manual input if desired
             });
         });
     </script>
 }
-<section class="hero">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-6 align-items-center">
-                <h2>Movies played on Date</h2>
-            </div>
-        </div>
-    </div>
-</section>
-<div class="container">
-    <div class="latest-news text-center">
-        <form asp-controller="Movie" asp-action="ChooseMovieBasedOnDate" method="post"
-              class="d-flex align-items-center justify-content-center gap-2">
-            <label class="custom-label" for="datepicker">Select a Date for the Movie:</label>
-            <input type="text" id="datepicker" name="selectedDate" style="background-color: white; height:40px;">
-            <button type="submit" class="btn custom-button">Choose a date</button>
-        </form>
-    </div>
-</div>
-
-
-@* Choice of top 3 movies
-    I'll need to change to pick not the first 3 added movies, but top 3 movies based on some order
- *@
-<div class="cointainer">
-    @await Component.InvokeAsync("ChooseAMovieComponent")
-</div>
-
-
-
-

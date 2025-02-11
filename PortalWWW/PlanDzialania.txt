@@ -202,3 +202,18 @@ Nastepnie, jak tworzone jest Screening (polaczenie screenu i movie), to:
     "DatabaseAPIContext": "Server=KASZOLANDIA\\LOCALDATABASE;Database=MovieStarDatabase;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true",
     "DatabaseAPIContextConnection": "Server=(localdb)\\mssqllocaldb;Database=PortalWWW;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
+
+
+  
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to submit seat selection.');
+                        }
+                        return response.json(); // Expecting a JSON response with the redirection URL
+                    })
+                    .then(data => {
+                        if (data.redirectUrl) {
+                            window.location.href = data.redirectUrl; // Redirect to the new view
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));

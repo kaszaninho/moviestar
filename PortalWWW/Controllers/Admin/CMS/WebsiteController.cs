@@ -1,4 +1,4 @@
-﻿using DatabaseAPI.Data;
+using DatabaseAPI.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,19 +39,22 @@ namespace PortalWWW.Controllers.Admin.CMS
             return RedirectToAction("Index");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
-            var website = context.Website.Find(id);
-            if (website != null)
+            var entity = context.Website.Find(id);
+            if (entity == null)
             {
-                context.Website.Remove(website);
-                context.SaveChanges();
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            return RedirectToAction("Index");
-        }
+            else
+            {
+                context.Website.Remove(entity);
+                context.SaveChanges();
 
+                return Json(new { success = true, message = "Delete Successful" });
+            }
+        }
         public IActionResult Edit(int id)
         {
             var entity = context.Website.FirstOrDefault(w => w.Id == id);
@@ -64,17 +67,23 @@ namespace PortalWWW.Controllers.Admin.CMS
             return View(entity);
         }
 
-        public IActionResult Delete(int id)
-        {
-            var entity = context.Website.FirstOrDefault(w => w.Id == id);
-            return View(entity);
-        }
-
         [HttpGet]
         public IActionResult GetAll()
         {
             var entities = context.Website.ToList();
             return Json(new { data = entities });
         }
+        public IActionResult More(int id)
+        {
+            var entity = context.Website.FirstOrDefault(w => w.Id == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.WebsiteList = context.Website.ToList(); // Przekazanie listy do ViewBag
+            return View(entity); // Przekazanie modelu do widoku
+        }
+
     }
 }

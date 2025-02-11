@@ -2,6 +2,7 @@
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Repository;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,13 +10,19 @@ using ServiceStack;
 
 namespace PortalWWW.Controllers.Admin.CinemaMovie
 {
-    public class MovieAdminController : BaseDictionaryController<Movie>
+
+    public class MovieAdminController : Controller
     {
-        public MovieAdminController(IRepository<Movie> repository) : base(repository)
+
+        protected readonly IRepository<Movie> repository;
+        protected readonly IWebHostEnvironment webHostEnvironment;
+        public MovieAdminController(IRepository<Movie> repository, IWebHostEnvironment webHostEnvironment)
         {
+            this.repository = repository;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
-        override public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["type"] = typeof(Movie);
             ViewData["entityEndpoint"] = "movieadmin";
@@ -23,7 +30,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         }
 
 
-        override public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create()
         {
             ViewBag.AgeRating = new SelectList(await repository.GetDbSet<AgeRating>().ToListAsync(), "Id", "Name");
             ViewBag.Country = new SelectList(await repository.GetDbSet<Country>().ToListAsync(), "Id", "Name");
@@ -35,7 +42,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View();
         }
 
-        override public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var entity = await repository.FindEntityAsync(id);
             if (entity == null)
@@ -52,7 +59,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View(entity);
         }
 
-        override public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             var entity = await repository.getDbSet()
                 .Include(movie => movie.AgeRating)
@@ -70,7 +77,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View(entity);
         }
 
-        override public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var entity = await repository.getDbSet()
                 .Include(movie => movie.AgeRating)
@@ -86,6 +93,90 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             ViewData["type"] = typeof(Movie);
             ViewData["PartialViewName"] = "MovieDetails";
             return View(entity);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await repository.DeleteEntityAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Movie entity, IFormFile? file)
+        {
+            if (file != null)
+            {
+                string wwwRootPath = webHostEnvironment.WebRootPath;
+                string folderPath = Path.Combine(wwwRootPath, @"photos");
+                string finalPath = Path.Combine(folderPath, file.FileName);
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                if (!string.IsNullOrEmpty(entity.imageUrl))
+                {
+                    var oldImagePath = Path.Combine(wwwRootPath, entity.imageUrl.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+                if (System.IO.File.Exists(finalPath))
+                {
+                    System.IO.File.Delete(finalPath);
+                }
+                using (var fileStream = new FileStream(finalPath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                entity.imageUrl = @"\photos\" + file.FileName;
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewData["type"] = typeof(Movie);
+                return View(entity);
+            }
+            entity.ModifiedAt = DateTime.Now;
+            await repository.UpdateEntityAsync(entity);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        virtual public async Task<IActionResult> Create(Movie entity, IFormFile? file)
+        {
+            if (file != null)
+            {
+                string wwwRootPath = webHostEnvironment.WebRootPath;
+                string folderPath = Path.Combine(wwwRootPath, @"photos");
+                string finalPath = Path.Combine(folderPath, file.FileName);
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                using (var fileStream = new FileStream(finalPath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                entity.imageUrl = @"\photos\" + file.FileName;
+            }
+            entity.CreatedAt = DateTime.Now;
+            entity.ModifiedAt = DateTime.Now;
+            await repository.AddEntityAsync(entity);
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Movie> entities = repository.GetEntityList().ToList();
+            return Json(new { data = entities });
         }
     }
 }

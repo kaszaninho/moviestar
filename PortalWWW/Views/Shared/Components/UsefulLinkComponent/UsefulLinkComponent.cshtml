@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<DatabaseAPI.Models.CMS.UsefulLink>
-<div class="container d-flex justify-content-center justify-content-md-between">
-    @foreach (var item in Model)
-    {
-        @Html.Raw(item.Content)
-    }
+
+<div class="row mt-3">
+    <ul class="col text-center">
+@foreach (var item in Model)
+{
+            <li class="list-inline-item me-2">@Html.Raw(item.Content)</li>
+}
+
+    </ul>
 </div>

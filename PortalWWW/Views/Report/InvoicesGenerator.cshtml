@@ -1,0 +1,95 @@
+﻿@using System.Linq;
+@using DatabaseAPI.Models.DictionaryModels;
+@using static PortalWWW.Helpers.GenericCheck;
+@{
+    ViewData["Title"] = "Invoices Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+<h1>Invoices report</h1>
+
+<p>
+    <a asp-action="Create">Create New Page</a>
+</p>
+
+<form asp-action="InvoicesGenerator" asp-controller="Report">
+    <div class="form-group">
+        <label class="control-label">Start Date</label>
+        <input type="date" name="start" />
+        <label class="control-label">End Date</label>
+        <input type="date" name="end" />
+        <div class="form-group">
+            <select name="mode" class="form-control" asp-items="ViewBag.PaymentStatuses">
+                <option value="">-- Payment status --</option>
+                <option value="">All statuses</option>
+            </select>
+        </div>
+        <input type="submit" value="Regenerate" class="btn btn-primary black white-text" />
+    </div>
+</form>
+
+<div class="col-md-4 offset-md-2 text-right">
+    <div class="d-flex">
+        <form method="post" asp-controller="Report" asp-action="ExportExcel" class="mr-2">
+            <input type="hidden" name="status" value="@Context.Request.Query["mode"]" />
+            <button type="submit" class="btn btn-danger btn-sm my-1">Excel Export</button>
+        </form>
+        <form method="post" asp-controller="Report" asp-action="ExportDoc">
+            <input type="hidden" name="status" value="@Context.Request.Query["mode"]" />
+            <button type="submit" class="btn btn-primary btn-sm my-1">Pdf Export</button>
+        </form>
+    </div>
+</div>
+<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th>Invoice ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Total Sum</th>
+            <th>Payment Method</th>
+            <th>Payment Status</th>
+            <th>Order Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        var startDate = '@(ViewData["startDate"] != null ? Convert.ToDateTime(ViewData["startDate"]).ToString("yyyy-MM-dd") : "")';
+        var endDate = '@(ViewData["endDate"] != null ? Convert.ToDateTime(ViewData["endDate"]).ToString("yyyy-MM-dd") : "")';
+        var paymentMethod = '@(ViewData["paymentMethod"])';
+        $(document).ready(function () {
+            loadDataTable(startDate, endDate, paymentMethod);
+        });
+
+        function loadDataTable(startDate, endDate, paymentMethod) {
+            dataTable = $('#tblData').DataTable({
+                "ajax": {
+                    url: '/report/getallinvoices',
+                    type: 'GET',
+                    data: {
+                        start: startDate,
+                        end: endDate,
+                        mode: paymentMethod
+                    }
+                },
+                "columns": [
+                    { "data": "invoiceId" },
+                    { "data": "user.firstName" },
+                    { "data": "user.lastName" },
+                    { "data": "totalSum" },
+                    { "data": "paymentMethod.name" },
+                    { "data": "paymentStatus" },
+                    { "data": "orderStatus" }
+                ]
+            })
+        }
+    </script>
+}

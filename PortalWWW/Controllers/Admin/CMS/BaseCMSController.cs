@@ -1,8 +1,7 @@
 ﻿using DatabaseAPI.Data;
 using DatabaseAPI.Models.Abstract;
-using DatabaseAPI.Models.CMS;
-using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PortalWWW.Controllers.Admin.CMS
 {
@@ -30,35 +29,61 @@ namespace PortalWWW.Controllers.Admin.CMS
         public IActionResult Create(T entity)
         {
             entity.Position = context.Set<T>().ToList().Count + 1;
+            entity.CreatedAt = DateTime.Now;
+            entity.ModifiedAt = DateTime.Now;
+            entity.IsActive = true;
             context.Set<T>().Add(entity);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult Edit(T entity)
+        public async Task<IActionResult> Edit(T entity)
         {
             int newPosition = entity.Position;
+            entity.ModifiedAt = DateTime.Now;
+            entity.IsActive = true;
             context.Set<T>().Update(entity);
-            context.SaveChanges(); 
-            var entitiesToUpdate = context.Set<T>()
-                .Where(e => e.Position >= newPosition && e.Id != entity.Id)
-                .OrderBy(e => e.Position)
-                .ToList();
-            foreach (var e in entitiesToUpdate)
+            var entityFromDb = await context.Set<T>().AsNoTracking().FirstAsync(e => e.Id == entity.Id);
+            if (entityFromDb != null)
             {
-                e.Position++; // Shift position down
+                if (entity.Position > entityFromDb.Position)
+                {
+                    var entitiesToUpdate = context.Set<T>()
+                        .Where(e => e.Position <= newPosition && e.Position > entityFromDb.Position && e.Id != entity.Id)
+                        .OrderBy(e => e.Position)
+                        .ToList();
+                    foreach (var e in entitiesToUpdate)
+                    {
+                        e.Position--; // Shift position down
+                    }
+                }
+                else
+                {
+                    var entitiesToUpdate = context.Set<T>()
+                        .Where(e => e.Position >= newPosition && e.Position < entityFromDb.Position && e.Id != entity.Id)
+                        .OrderBy(e => e.Position)
+                        .ToList();
+                    foreach (var e in entitiesToUpdate)
+                    {
+                        e.Position++; // Shift position down
+                    }
+                }
             }
+            context.Set<T>().Update(entity);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
             var entity = context.Set<T>().Find(id);
-            if (entity != null)
+            if (entity == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+            else
             {
                 int deletedPosition = entity.Position;
                 context.Set<T>().Remove(entity);
@@ -73,8 +98,8 @@ namespace PortalWWW.Controllers.Admin.CMS
                 }
                 context.SaveChanges();
 
+                return Json(new { success = true, message = "Delete Successful" });
             }
-            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)
@@ -89,11 +114,11 @@ namespace PortalWWW.Controllers.Admin.CMS
             return View(entity);
         }
 
-        public IActionResult Delete(int id)
-        {
-            var entity = context.Set<T>().FirstOrDefault(w => w.Id == id);
-            return View(entity);
-        }
+        //public IActionResult Delete(int id)
+        //{
+        //    var entity = context.Set<T>().FirstOrDefault(w => w.Id == id);
+        //    return View(entity);
+        //}
 
         [HttpGet]
         public IActionResult GetAll()

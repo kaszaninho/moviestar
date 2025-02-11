@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DatabaseAPI.Models.CMS.FooterIcon>
+<ul class="social-network social-circle mb-0 mt-4" style="display: flex; justify-content: center; padding: 0; list-style: none;">
+
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item">
+            @Html.Raw(item.Content)
+        </li>
+    }
+</ul>

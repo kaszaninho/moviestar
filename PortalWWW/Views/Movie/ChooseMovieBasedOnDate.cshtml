@@ -23,7 +23,7 @@
             <div class="card-body">
                 @foreach (var screening in movieWithScreenings.GetValueOrDefault(movie))
                 {
-                    <form asp-controller="Movie" asp-action="ChooseSeat" asp-route-screeningId="@screening.Id">
+                    <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
                         <button class="btn-dark btn m-2">@screening.StartDate.Value.ToString("HH:mm")</button>
                     </form>
                 }

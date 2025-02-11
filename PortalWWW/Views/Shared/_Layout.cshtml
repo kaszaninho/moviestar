@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MovieStar Cinema</title>
 
-
-
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/css/global.css" rel="stylesheet">
@@ -14,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 </head>
@@ -34,11 +32,6 @@
                     <h2 class="fs-4">My Sidebar</h2>
                 </div>
                 <ul class="list-unstyled sidebar-menu">
-                    <li>
-                        <a href="#" class="d-block text-decoration-none py-2 px-3 text-light">
-                            <i class="fas fa-home me-2"></i> Home
-                        </a>
-                    </li>
                     <!-- Movies Section -->
                     <li>
                         <a class="d-block text-decoration-none py-2 px-3 text-light" data-bs-toggle="collapse" href="#moviesMenu" role="button" aria-expanded="false" aria-controls="moviesMenu">
@@ -78,6 +71,8 @@
                                 <li><a asp-controller="Address" asp-action="Index">Addresses</a></li>
                                 <li><a asp-controller="BankAccount" asp-action="Index">Bank Accounts</a></li>
                                 <li><a asp-controller="Invoice" asp-action="Index">Invoices</a></li>
+                                <li><a asp-controller="Photo" asp-action="Index">Photos</a></li>
+                                <li><a asp-controller="OpeningHour" asp-action="Index">Opening Hours</a></li>
                                 <!-- Add more items as needed -->
                             </ul>
                         </div>
@@ -90,6 +85,9 @@
                         <div class="collapse" id="peopleMenu">
                             <ul class="list-unstyled ps-4">
                                 <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                                <li><a asp-controller="UserLevel" asp-action="Index">User Levels</a></li>
+                                <li><a asp-controller="Actor" asp-action="Index">Actors</a></li>
+                                <li><a asp-controller="Director" asp-action="Index">Directors</a></li>
                             </ul>
                         </div>
                     </li>
@@ -103,7 +101,7 @@
                                 <li><a asp-controller="ContactInformation" asp-action="Index">Contact Informations</a></li>
                                 <li><a asp-controller="Navbar" asp-action="Index">Navbar</a></li>
                                 <li><a asp-controller="Newsletter" asp-action="Index">Newsletter</a></li>
-                                <li><a asp-controller="Topbar" asp-action="Index">Topbar</a></li>
+                                <li><a asp-controller="Bottombar" asp-action="Index">Bottombar</a></li>
                                 <li><a asp-controller="UsefulLink" asp-action="Index">Useful Links</a></li>
                                 <li><a asp-controller="Website" asp-action="Index">Website</a></li>
                             </ul>
@@ -117,6 +115,8 @@
                         <div class="collapse" id="reportMenu">
                             <ul class="list-unstyled ps-4">
                                 <li><a asp-controller="Report" asp-action="MoviesGenerator">Movies and Genres</a></li>
+                                <li><a asp-controller="Report" asp-action="InvoicesGenerator">Invoices Report</a></li>
+                                <li><a asp-controller="Report" asp-action="IncomeGenerator">Income Report</a></li>
                             </ul>
                         </div>
                     </li>

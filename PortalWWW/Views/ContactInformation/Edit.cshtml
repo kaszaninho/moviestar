@@ -1,46 +1,92 @@
 ﻿@model DatabaseAPI.Models.CMS.ContactInformation;
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
-<h1>Edit</h1>
 
-<h4>Contact Information element</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="Id" type="hidden" class="form-control" ) />
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Edit Contact Information</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2 custom-btn">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input type="text" asp-for="Name" class="form-control" value="@Model.Name" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input type="text" asp-for="Description" class="form-control" value="@Model.Description" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Position" class="control-label"></label>
-                <input type="number" asp-for="Position" class="form-control" value="@Model.Position" />
-                <span asp-validation-for="Position" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <textarea id="Content" asp-for="Content" value="@Model.Content"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
+    <div class="table-responsive">
+        <form asp-action="Edit" method="post">
+            <table class="table table-bordered table-striped table-hover custom-table">
+                <input asp-for="Id" type="hidden" class="form-control" ) />
 
-            <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
+                <div class="table-responsive">
+                    <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+                        <thead>
+                            <tr>
+                                <th>Edit</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Name" class="form-label">Name</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control " id="floatingInput" value="@Model.Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Description" class="form-label">Description</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Description" class="form-control" id="floatingDescription" value="@Model.Description" style="height: 150px;"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Content" class="form-label">Content</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Content" class="form-control" id="floatingInput" value="@Model.Content" style="height: 300px;"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Position" class="form-label">Position</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Position" class="form-control" id="floatingInput" value="@Model.Position">
+                                <span asp-validation-for="Position" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Update" class="btn btn-success m-2 custom-btn" />
             </div>
         </form>
     </div>
 </div>
+ 
 
 @section Scripts
 {

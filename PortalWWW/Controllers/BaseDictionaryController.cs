@@ -40,15 +40,7 @@ namespace PortalWWW.Controllers
         }
 
 
-        [HttpPost]
-        virtual public async Task<IActionResult> Create(T entity)
-        {
-            entity.CreatedAt = DateTime.Now;
-            entity.ModifiedAt = DateTime.Now;
-            await repository.AddEntityAsync(entity);
-            return RedirectToAction("Index");
-        }
-
+        
         virtual public async Task<IActionResult> Create()
         {
             ViewData["type"] = typeof(T);
@@ -65,6 +57,25 @@ namespace PortalWWW.Controllers
             ViewData["type"] = typeof(T);
             return View(entity);
         }
+        virtual public async Task<IActionResult> Delete(int id)
+        {
+            var entity = await repository.FindEntityAsync(id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            ViewData["type"] = typeof(T);
+            return View(entity);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await repository.DeleteEntityAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -80,24 +91,29 @@ namespace PortalWWW.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        virtual public async Task<IActionResult> Delete(int id)
+        [HttpPost]
+        virtual public async Task<IActionResult> Create(T entity)
         {
-            var entity = await repository.FindEntityAsync(id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-            ViewData["type"] = typeof(T);
-            return View(entity);
+            entity.CreatedAt = DateTime.Now;
+            entity.ModifiedAt = DateTime.Now;
+            await repository.AddEntityAsync(entity);
+            return RedirectToAction("Index");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await repository.DeleteEntityAsync(id);
-            return RedirectToAction(nameof(Index));
-        }
+
+
+        //[HttpDelete]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var entity = repository.FindEntityAsync(id);
+        //    if (entity == null)
+        //    {
+        //        return Json(new { success = false, message = "Error while deleting" });
+        //    }
+
+        //    await repository.DeleteEntityAsync(id);
+
+        //    return Json(new { success = true, message = "Delete Successful" });
+        //}
     }
-
 }

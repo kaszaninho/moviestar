@@ -95,7 +95,7 @@
                     <div id="screeningsContainerForEachMovie" class="container">
                         @foreach (var screening in movie.Screenings)
                         {
-                            <form asp-controller="Movie" asp-action="ChooseSeat" asp-route-screeningId="@screening.Id">
+                            <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
                                 <button class="btn btn-info btn-sm mb-2">
                                     @screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")
                                 </button>

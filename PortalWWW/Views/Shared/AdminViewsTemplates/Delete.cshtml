@@ -15,7 +15,8 @@
 <div>
     <h4>@entityType.Name</h4>
     <hr />
-        <form asp-action="Delete">
+    <form asp-action="Delete">
+        <input name="Id" id="Id" type="hidden" value="@Model.Id" class="form-control" />
     <dl class="row">
         @foreach (var prop in Model.GetType().GetProperties())
             {

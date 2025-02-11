@@ -1,0 +1,76 @@
+﻿@using System.Linq;
+@using DatabaseAPI.Models.DictionaryModels;
+@using static PortalWWW.Helpers.GenericCheck;
+@{
+    ViewData["Title"] = "Invoices Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+<h1>Invoices report</h1>
+
+
+<form asp-action="InvoiceReportForUser" asp-controller="Home">
+    <div class="form-group">
+        <label class="control-label">Start Date</label>
+        <input type="date" name="start" />
+        <label class="control-label">End Date</label>
+        <input type="date" name="end" />
+        <div class="form-group">
+            <select name="mode" class="form-control" asp-items="ViewBag.PaymentStatuses">
+                <option value="">-- Payment status --</option>
+                <option value="">All statuses</option>
+            </select>
+        </div>
+        <input type="submit" value="Regenerate" class="btn btn-primary black white-text" />
+    </div>
+</form>
+
+<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
+    <thead class="thead-dark">
+        <tr>
+            <th>Invoice ID</th>
+            <th>Cost</th>
+            <th>Payment Method</th>
+            <th>Payment Status</th>
+            <th>Order Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        var startDate = '@(ViewData["startDate"] != null ? Convert.ToDateTime(ViewData["startDate"]).ToString("yyyy-MM-dd") : "")';
+        var endDate = '@(ViewData["endDate"] != null ? Convert.ToDateTime(ViewData["endDate"]).ToString("yyyy-MM-dd") : "")';
+        var paymentMethod = '@(ViewData["paymentMethod"])';
+        $(document).ready(function () {
+            loadDataTable(startDate, endDate, paymentMethod);
+        });
+
+        function loadDataTable(startDate, endDate, paymentMethod) {
+            dataTable = $('#tblData').DataTable({
+                "ajax": {
+                    url: '/home/GetAllInvoicesForUser',
+                    type: 'GET',
+                    data: {
+                        start: startDate,
+                        end: endDate,
+                        mode: paymentMethod
+                    }
+                },
+                "columns": [
+                    { "data": "invoiceId" },
+                    { "data": "totalSum" },
+                    { "data": "paymentMethod.name" },
+                    { "data": "paymentStatus" },
+                    { "data": "orderStatus" }
+                ]
+            })
+        }
+    </script>
+}

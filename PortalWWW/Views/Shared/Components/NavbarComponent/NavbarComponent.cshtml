@@ -1,7 +1,19 @@
 ﻿@model IEnumerable<DatabaseAPI.Models.CMS.Navbar>
-<div class="container d-flex justify-content-center justify-content-md-between">
-    @foreach (var item in Model)
+
+@{
+    var currentController = ViewContext?.RouteData?.Values["controller"]?.ToString() ?? String.Empty;
+    var currentAction = ViewContext?.RouteData?.Values["action"]?.ToString() ?? String.Empty;
+}
+
+@foreach (var item in Model)
+{
+    if (item.Position == 1)
     {
-        @Html.Raw(item.Content)
+        <li class="nav-item">
+            <a href="/" class="nav-link active)"> </a>
+        </li>
     }
-</div>
+    <li class="nav-item">
+        <a asp-controller="@item.Controller" asp-action="@item.Action" class="nav-link  @(currentController == item.Controller && currentAction == item.Action ? "active" : "")">@item.Content</a>
+    </li>
+}

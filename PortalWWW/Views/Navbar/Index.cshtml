@@ -7,28 +7,36 @@
 }
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
-<h1>Index</h1>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Navigation Bar</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-success m-2 custom-btn">
+                <i class="bi bi-plus-circle"></i> Add Navbar
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title Name</th>
+                    <th>Description</th>
+                    <th>Position</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New Navbar element</a>
-</p>
-
-<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
-    <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Title Name</th>
-            <th>Description</th>
-            <th>Position</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
 
 @section Scripts
 {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
@@ -48,14 +56,39 @@
                         data: 'id',
                         "render": function (data) {
                             return `<div class="test-center" >
-                                            <a href="/Navbar/delete?id=${data}" class="btn btn-primary"> Delete </a>
-                                                            <a href="/Navbar/details?id=${data}" class="btn btn-primary"> Details </a>
-                                                            <a href="/Navbar/edit?id=${data}" class="btn btn-primary"> Edit </a>
-                                            </div>`
+                                            <a onClick=Delete('/Navbar/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                            <a href="/Navbar/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
+                                            <a href="/Navbar/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
+                                </div>`
                         }
                     }
                 ]
             })
+        }
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            Swal.fire("Deleted!", "Your record has been deleted.", "success");
+                        },
+                        error: function (err) {
+                            Swal.fire("Error!", "Something went wrong.", "error");
+                        }
+                    });
+                }
+            });
         }
     </script>
 }

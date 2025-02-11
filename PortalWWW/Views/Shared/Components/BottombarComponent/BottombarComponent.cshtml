@@ -1,0 +1,6 @@
+﻿@model IEnumerable<DatabaseAPI.Models.CMS.Bottombar>
+@foreach (var item in Model)
+{
+    @Html.Raw(item.Content)
+}
+

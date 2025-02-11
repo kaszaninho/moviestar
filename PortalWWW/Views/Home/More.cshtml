@@ -1,0 +1,18 @@
+﻿@model DatabaseAPI.Models.CMS.Website;
+
+@{
+    ViewData["Title"] = "More - " + Model.TitleName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.Description" class="img-fluid rounded mb-4" alt="Music Store">
+        </div>
+        <div class="col-md-8">
+ 
+        @Html.Raw(Model.Content)
+        </div>
+    </div>
+</div>
+ 
