@@ -48,7 +48,7 @@
         });
 
         function loadDataTable() {
-            $('#tblData').DataTable({
+            dataTable = $('#tblData').DataTable({
                 "ajax": { url: '/ContactInformation/getall' },
                 "columns": [
                     { "data": "id" },
@@ -59,7 +59,7 @@
                         "data": "id",
                         "render": function (data) {
                             return `<div class="text-center">
-                                        <a onClick=Delete('/ContactInformation/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                                <a onClick=Delete('/ContactInformation/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">Delete</a>
                                         <a href="/ContactInformation/details?id=${data}" class="btn btn-info btn-sm custom-btn">Details</a>
                                         <a href="/ContactInformation/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">Edit</a>
                                    </div>`;

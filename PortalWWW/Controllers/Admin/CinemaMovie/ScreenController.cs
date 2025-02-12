@@ -10,10 +10,10 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
         }
 
-        override public async Task<IActionResult> Create(Screen entity)
+        override public async Task<IActionResult> CreateConfirmed(Screen entity)
         {
             entity.Seats = await generateDefaultSeats(entity, 5, 10);
-            return await base.Create(entity);
+            return await base.CreateConfirmed(entity);
         }
 
         private async Task<List<Seat>> generateDefaultSeats(Screen screen, int rowsNumber, int seatsInRowNumber)

@@ -9,9 +9,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         public CouponController(IRepository<Coupon> repository) : base(repository)
         { }
 
-        public override Task<IActionResult> Create(Coupon entity)
+        public override Task<IActionResult> CreateConfirmed(Coupon entity)
         {
-            return base.Create(entity);
+            return base.CreateConfirmed(entity);
         }
     }
 }

@@ -26,9 +26,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View(entities);
         }
 
-        override public async Task<IActionResult> Create(Ticket entity)
+        override public async Task<IActionResult> CreateConfirmed(Ticket entity)
         {
-            return await base.Create(entity);
+            return await base.CreateConfirmed(entity);
         }
 
         override public async Task<IActionResult> Create()

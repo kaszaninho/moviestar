@@ -10,7 +10,7 @@
 <h1>Invoices report</h1>
 
 
-<form asp-action="InvoiceReportForUser" asp-controller="Home">
+<form asp-action="InvoiceReportForUser" method="get" asp-controller="Home">
     <div class="form-group">
         <label class="control-label">Start Date</label>
         <input type="date" name="start" />
@@ -55,8 +55,8 @@
         function loadDataTable(startDate, endDate, paymentMethod) {
             dataTable = $('#tblData').DataTable({
                 "ajax": {
-                    url: '/home/GetAllInvoicesForUser',
-                    type: 'GET',
+                    url: '/GetAllInvoicesForUser',
+                    type: 'POST',
                     data: {
                         start: startDate,
                         end: endDate,

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace PortalWWW.Controllers
 {
+    [Route("[controller]")]
     public abstract class BaseDictionaryController<T> : Controller where T : BaseDatatable
     {
         protected readonly IRepository<T> repository;
@@ -16,6 +17,7 @@ namespace PortalWWW.Controllers
             this.repository = repository;
         }
 
+        [HttpGet("Index")]
         virtual public async Task<IActionResult> Index()
         {
             var entities = await repository.GetEntityListAsync();
@@ -24,13 +26,14 @@ namespace PortalWWW.Controllers
             return View(entities.ToList());
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             List<T> entities = repository.GetEntityList().ToList();
             return Json(new { data = entities });
         }
 
+        [HttpGet("Details")]
         virtual public async Task<IActionResult> Details(int id)
         {
             var entity = await repository.FindEntityAsync(id);
@@ -40,13 +43,15 @@ namespace PortalWWW.Controllers
         }
 
 
-        
+
+        [HttpGet("Create")]
         virtual public async Task<IActionResult> Create()
         {
             ViewData["type"] = typeof(T);
             return View();
         }
 
+        [HttpGet("Edit")]
         virtual public async Task<IActionResult> Edit(int id)
         {
             var entity = await repository.FindEntityAsync(id);
@@ -57,6 +62,8 @@ namespace PortalWWW.Controllers
             ViewData["type"] = typeof(T);
             return View(entity);
         }
+
+        [HttpGet("Delete")]
         virtual public async Task<IActionResult> Delete(int id)
         {
             var entity = await repository.FindEntityAsync(id);
@@ -68,7 +75,7 @@ namespace PortalWWW.Controllers
             return View(entity);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("DeleteConfirmed")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await repository.DeleteEntityAsync(id);
@@ -77,9 +84,9 @@ namespace PortalWWW.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost("EditConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(T entity)
+        public async Task<IActionResult> EditConfirmed(T entity)
         {
             if (!ModelState.IsValid)
             {
@@ -91,29 +98,13 @@ namespace PortalWWW.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        virtual public async Task<IActionResult> Create(T entity)
+        [HttpPost("CreateConfirmed")]
+        virtual public async Task<IActionResult> CreateConfirmed(T entity)
         {
             entity.CreatedAt = DateTime.Now;
             entity.ModifiedAt = DateTime.Now;
             await repository.AddEntityAsync(entity);
             return RedirectToAction("Index");
         }
-
-
-
-        //[HttpDelete]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var entity = repository.FindEntityAsync(id);
-        //    if (entity == null)
-        //    {
-        //        return Json(new { success = false, message = "Error while deleting" });
-        //    }
-
-        //    await repository.DeleteEntityAsync(id);
-
-        //    return Json(new { success = true, message = "Delete Successful" });
-        //}
     }
 }

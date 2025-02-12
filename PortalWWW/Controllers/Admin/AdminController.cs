@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PortalWWW.Controllers.Admin
 {
-    
+
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly DatabaseAPIContext dbContext;
@@ -13,12 +14,6 @@ namespace PortalWWW.Controllers.Admin
         public AdminController(DatabaseAPIContext dbContext)
         {
             this.dbContext = dbContext;
-        }
-
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
-        {
-            return View();
         }
     }
 }

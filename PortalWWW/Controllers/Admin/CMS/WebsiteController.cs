@@ -13,17 +13,19 @@ namespace PortalWWW.Controllers.Admin.CMS
             this.context = context;
         }
 
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(DatabaseAPI.Models.CMS.Website page)
         {
             context.Website.Add(page);
@@ -31,7 +33,7 @@ namespace PortalWWW.Controllers.Admin.CMS
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost("Edit")]
         public IActionResult Edit(DatabaseAPI.Models.CMS.Website page)
         {
             context.Website.Update(page);
@@ -55,24 +57,27 @@ namespace PortalWWW.Controllers.Admin.CMS
                 return Json(new { success = true, message = "Delete Successful" });
             }
         }
+        [HttpGet("Edit")]
         public IActionResult Edit(int id)
         {
             var entity = context.Website.FirstOrDefault(w => w.Id == id);
             return View(entity);
         }
 
+        [HttpGet("Details")]
         public IActionResult Details(int id)
         {
             var entity = context.Website.FirstOrDefault(w => w.Id == id);
             return View(entity);
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             var entities = context.Website.ToList();
             return Json(new { data = entities });
         }
+        [HttpGet("More")]
         public IActionResult More(int id)
         {
             var entity = context.Website.FirstOrDefault(w => w.Id == id);
