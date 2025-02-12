@@ -1,8 +1,7 @@
 ﻿using BusinessLogic;
+using BusinessLogic.Helpers;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
-using DatabaseAPI.Models.General;
-using DatabaseAPI.Models.Helpers;
 using InvoiceSdk.Models;
 using InvoiceSdk.Models.Payments;
 using InvoiceSdk.Renderer;
@@ -213,7 +212,7 @@ namespace PortalWWW.Controllers
                     ScreeningSeatId = element.ScreeningSeatId,
                     Invoice = dbInvoice
                 };
-                TicketGenerator.GenerateTicket(ticketInvoice);
+                TicketGenerator.GenerateTicket(ticketInvoice, null);
                 dbContext.Ticket.Add(ticket);
                 dbContext.ScreeningSeat.First(item => item.Id == element.ScreeningSeat.Id).IsTaken = true;
                 if (itemsOnInvoice.Exists(item => item.Name == ticketInvoice.MovieName))

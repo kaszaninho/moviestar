@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.ProfilePages.ProfileInvoices"
+             Title="ProfileInvoices">
+    <Grid RowDefinitions="Auto, *"  
+     RowSpacing="10"
+   Margin="20">
+
+        <!-- Title -->
+        <Label Text="All Invoices"
+        Grid.Row="0"
+        FontSize="Large" />
+
+        <!-- Movies CollectionView -->
+        <CollectionView Grid.Row="1"
+             x:Name="CvAllInvoices"
+             SelectionMode="Single"
+             VerticalScrollBarVisibility="Always"
+             VerticalOptions="FillAndExpand">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                        ItemSpacing="30" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" CornerRadius="8" BackgroundColor="#F5F5F5">
+                        <HorizontalStackLayout Spacing="10">
+
+                            <!-- Invoice Info -->
+                            <VerticalStackLayout>
+                                <Label Text="{Binding InvoiceId, StringFormat='Invoice ID: {0}'}" 
+                            FontSize="Medium" 
+                            FontAttributes="Bold"/>
+                                <Label Text="{Binding OrderStatus, StringFormat='Order Status: {0}'}" 
+                            FontSize="Small" />
+                                <Label Text="{Binding PaymentStatus, StringFormat='Payment Status: {0}'}" 
+                            FontSize="Small" />
+                                <Label Text="{Binding CreatedAt, StringFormat='CreatedAt: {0}'}" 
+                            FontSize="Small" />
+                                <Label Text="{Binding TotalSum, StringFormat='Total sum: PLN {0:F2}'}" 
+                            FontSize="Small" />
+
+                                <!-- Navigate Button -->
+                                <Button Text="View Details"
+                             FontSize="Small"
+                             Clicked="OnInvoiceDetailsClicked"
+                             CommandParameter="{Binding InvoiceId}" />
+                            </VerticalStackLayout>
+
+                        </HorizontalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

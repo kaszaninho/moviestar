@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
+using DatabaseAPI.ViewModels;
 
 namespace DatabaseAPI.Controllers
 {
@@ -19,6 +20,32 @@ namespace DatabaseAPI.Controllers
         public ScreeningController(DatabaseAPIContext context)
         {
             _context = context;
+        }
+
+
+
+        // GET: api/Screening/allscreenings/5
+        [HttpGet("/allscreenings/{userId}")]
+        public async Task<IEnumerable<ScreeningViewModel>> GetMoviesBasedOnScreenings(string userId)
+        {
+            IEnumerable<Screening?> screenings = await GatherMoviesBasedOnUser(userId);
+            return screenings.Select(scr => new ScreeningViewModel
+            {
+                EndDate = scr.EndDate,
+                StartDate = scr.StartDate,
+                imageUrl = scr.Movie.imageUrl,
+                MovieId = scr.MovieId,
+                MovieTitle = scr.Movie.Name
+            }).ToList();
+        }
+
+        private async Task<IEnumerable<Screening?>> GatherMoviesBasedOnUser(string userId)
+        {
+            var invList = await _context.Invoice.Include(inv => inv.Tickets).ThenInclude(inv => inv.ScreeningSeat).ThenInclude(inv => inv.Screening).ThenInclude(inv => inv.Movie).Where(inv => inv.UserId == userId).ToListAsync();
+            var screenings = invList
+                    .SelectMany(inv => inv.Tickets) // Flatten the tickets from all invoices
+                    .Select(tick => tick.ScreeningSeat.Screening).DistinctBy(scr => scr.Id).ToList();
+            return screenings;
         }
 
         // GET: api/Screening

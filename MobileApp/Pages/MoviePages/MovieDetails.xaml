@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.MoviePages.MovieDetails"
+             Title="MovieDetails">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Movie Image -->
+            <Image x:Name="MovieImage"
+                   HeightRequest="250"
+                   WidthRequest="170"
+                   HorizontalOptions="Center" />
+
+            <!-- Movie Title -->
+            <Label x:Name="MovieTitle" 
+                   FontSize="Large" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <!-- General Info -->
+            <Label x:Name="MovieGenre" FontSize="Small"/>
+            <Label x:Name="MovieFormat" FontSize="Small"/>
+            <Label x:Name="MovieDuration" FontSize="Small"/>
+            <Label x:Name="MovieReleaseDate" FontSize="Small"/>
+            <Label x:Name="MovieAgeRating" FontSize="Small"/>
+            <Label x:Name="MovieCountry" FontSize="Small"/>
+            <Label x:Name="MovieProductionCompany" FontSize="Small"/>
+            <Label x:Name="MovieTicketPrice" FontSize="Small"/>
+
+            <!-- Movie Description -->
+            <Label Text="Description:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label x:Name="MovieDescription" FontSize="Small" TextColor="Gray"/>
+
+            <!-- Screenings List -->
+            <Label Text="Screenings:" FontSize="Medium" FontAttributes="Bold"/>
+            <CollectionView x:Name="ScreeningsCollectionView">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" CornerRadius="8" BackgroundColor="#F5F5F5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding StartDate, StringFormat='Start: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                                <Label Text="{Binding EndDate, StringFormat='End: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
