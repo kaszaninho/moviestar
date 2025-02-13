@@ -57,6 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Pages\AboutUsPages\**" />
+	  <Compile Remove="Pages\AboutUsPages\**" />
+	  <EmbeddedResource Remove="Pages\AboutUsPages\**" />
+	  <MauiCss Remove="Pages\AboutUsPages\**" />
+	  <MauiXaml Remove="Pages\AboutUsPages\**" />
+	  <None Remove="Pages\AboutUsPages\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="ServiceReference">
 	    <SourceUri>https://localhost:7221/swagger/v1/swagger.json</SourceUri>
 	  </OpenApiReference>
@@ -79,6 +88,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AboutUs\WebsiteDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPages\AboutUsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -118,10 +130,6 @@
 	  <MauiXaml Update="Pages\ProfilePages\ProfileUserInfo.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Pages\AboutUsPages\" />
 	</ItemGroup>
 
 </Project>
