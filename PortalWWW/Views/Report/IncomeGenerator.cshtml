@@ -1,40 +1,57 @@
 ﻿@{
     ViewData["Title"] = "Chart";
     var totalSum = ViewData["totalSum"] ?? 0;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container datepicker-controls">
+
+<!-- Importowanie stylów DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<div class="container">
     <form asp-action="IncomeGenerator" asp-controller="Report">
-        <div class="form-group">
-            <label class="control-label">Start Date</label>
-            <input type="date" name="start" />
-            <label class="control-label">End Date</label>
-            <input type="date" name="end" />
-            <input type="submit" value="Choose dates" class="btn btn-primary black white-text" />
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="control-label">Start Date</label>
+                <input type="date" name="start" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label">End Date</label>
+                <input type="date" name="end" class="form-control" />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <input type="submit" value="Choose dates" class="btn btn-primary w-100" />
+            </div>
         </div>
     </form>
-
-    <div class="container md">
-        Total sum from this period: @totalSum PLN.
+    <br />
+    <div class="container">
+        <div class="alert alert-info text-center">
+            <strong>Total sum from this period:</strong> @totalSum PLN.
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <canvas id="myChart"></canvas>
     </div>
 </div>
-<div class="container md">
-    <canvas id="myChart"></canvas>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chartData = @Html.Raw(Json.Serialize(Model));
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chartData = @Html.Raw(Json.Serialize(Model));
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
+}
