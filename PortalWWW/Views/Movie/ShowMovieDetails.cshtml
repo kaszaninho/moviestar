@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <div class="table-responsive">
+    <div class="table">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <form asp-controller="Movie" asp-action="Index">
                 <button class="btn btn-primary">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <strong><label class="form-label" style="font-size:24px">@Model.Name</label></strong>
+                <strong><label class="form-label" style="font-size:24px; color:white">@Model.Name</label></strong>
                 <table class="table table-dark table-bordered mt-3">
                     <tr>
                         <td><strong>Genre</strong></td>
@@ -61,12 +61,12 @@
         </div>
 
         <div class="row mt-4">
-            <h5>Description</h5>
+            <h5 style="color:white">Description</h5>
             <p class="form-label">@Model.Description</p>
         </div>
 
         <div class="row mt-4">
-            <h5>Screenings</h5>
+            <h5 style="color:white">Screenings</h5>
             <div id="screeningsContainerForMovie" class="container">
                 @if (Model.Screenings.Count == 0)
                 {
