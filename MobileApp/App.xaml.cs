@@ -21,7 +21,7 @@ namespace MobileApp
         protected override Window CreateWindow(IActivationState? activationState)
         {
             const int newHeight = 800;
-            const int newWidth = 450;
+            const int newWidth = 500;
 
             var newWindow = new Window(MainPage)
             {

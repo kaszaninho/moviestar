@@ -1,5 +1,6 @@
 ﻿using PdfSharp.Fonts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,11 +11,24 @@ namespace MobileApp.Helpers
 {
     public class CustomFontResolver : IFontResolver
     {
+
+        private Hashtable hashtable = new Hashtable
+        {
+
+            { "OpenSansRegular", "OpenSans-Regular.ttf"},
+            { "OpenSansSemibold", "OpenSans-Semibold.ttf"},
+                    { "Arial", "Arial.ttf" },
+                    { "RajdhaniBold", "Rajdhani-Bold.ttf"},
+                    { "RajdhaniLight", "Rajdhani-Light.ttf" },
+                    { "RajdhaniMedium", "Rajdhani-Medium.ttf"},
+                    { "Rajdhani", "Rajdhani-Regular.ttf"},
+                    { "RajdhaniSemiBold", "Rajdhani-SemiBold.ttf"}
+        };
         public byte[] GetFont(string faceName)
         {
-            if (faceName == "Arial")
+            if (hashtable.ContainsKey(faceName))
             {
-                var fontStream = FileSystem.OpenAppPackageFileAsync("Arial.ttf").Result;
+                var fontStream = FileSystem.OpenAppPackageFileAsync((string) hashtable[faceName]).Result;
                 using (var memoryStream = new MemoryStream())
                 {
                     fontStream.CopyTo(memoryStream);
@@ -26,9 +40,9 @@ namespace MobileApp.Helpers
 
         public FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic)
         {
-            if (familyName == "Arial")
+            if (hashtable.ContainsKey(familyName))
             {
-                return new FontResolverInfo("Arial");
+                return new FontResolverInfo(familyName);
             }
             return null;
         }

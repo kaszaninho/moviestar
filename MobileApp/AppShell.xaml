@@ -7,9 +7,9 @@
     xmlns:pages="clr-namespace:MobileApp.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="MobileApp"
-    Shell.TabBarBackgroundColor="DarkBlue"
-    Shell.TabBarUnselectedColor="White"
-    Shell.TabBarTitleColor="DarkOrange"
+    Shell.TabBarBackgroundColor="{StaticResource SecondaryDark}"
+    Shell.TabBarUnselectedColor="{StaticResource PrimaryText}"
+    Shell.TabBarTitleColor="{StaticResource Primary}"
     Shell.PresentationMode="Animated"
     WidthRequest="200">
 

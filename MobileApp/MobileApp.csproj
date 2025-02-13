@@ -66,6 +66,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Rajdhani-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Rajdhani-Light.ttf" />
+	  <None Remove="Resources\Fonts\Rajdhani-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Rajdhani-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Rajdhani-SemiBold.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="ServiceReference">
 	    <SourceUri>https://localhost:7221/swagger/v1/swagger.json</SourceUri>
 	  </OpenApiReference>

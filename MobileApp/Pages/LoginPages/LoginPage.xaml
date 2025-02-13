@@ -2,14 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Pages.LoginPage"
-             Title="LoginPage"
              NavigationPage.HasNavigationBar="False">
     <ScrollView>
 
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
           RowSpacing="20">
 
-            <Label Grid.Row="0"
+                <Image Grid.Row="0"
+                    Aspect="AspectFit"                       
+                x:Name="ImageLabel" />
+
+                <Label Grid.Row="1"
                Text="Login" 
                FontAttributes="Bold" 
                FontSize="Large"
@@ -20,7 +23,7 @@
                HorizontalOptions="Center" />
             <Frame Grid.Row="3"
                Padding="15"
-               BackgroundColor="White">
+               >
                 <VerticalStackLayout>
                     <Label Text="Enter your login:" 
                        FontAttributes="Bold" 
@@ -51,7 +54,7 @@
             VerticalOptions="EndAndExpand">
                 <Label Text="Not a member?" />
                 <Label Text="Register now"
-                   TextColor="DarkBlue">
+                   >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer x:Name="TapRegister"
                             Tapped="TapRegister_Tapped" />

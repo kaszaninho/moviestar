@@ -2,6 +2,7 @@ using MobileApp.Pages.AboutUs;
 using MobileApp.Services;
 using MobileApp.ViewModels.AboutUs;
 using System.Collections.ObjectModel;
+using static MobileApp.Services.AppSettings;
 
 namespace MobileApp.Pages;
 
@@ -12,6 +13,7 @@ public partial class AboutUsPage : ContentPage
     public AboutUsPage()
     {
         InitializeComponent();
+        ImageLabel.Source = IMAGE_LOGO_URL;
         LoadWebsites();
     }
 

@@ -1,5 +1,5 @@
 using MobileApp.Services;
-
+using static MobileApp.Services.AppSettings;
 namespace MobileApp.Pages;
 
 public partial class LoginPage : ContentPage
@@ -7,6 +7,7 @@ public partial class LoginPage : ContentPage
     public LoginPage()
     {
         InitializeComponent();
+        ImageLabel.Source = IMAGE_LOGO_URL;
     }
 
     private async void BtnSignIn_Clicked(object sender, EventArgs e)

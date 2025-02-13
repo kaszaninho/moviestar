@@ -1,6 +1,6 @@
 
 using MobileApp.Services;
-using System.Xml.Linq;
+using static MobileApp.Services.AppSettings;
 
 namespace MobileApp.Pages;
 
@@ -9,7 +9,8 @@ public partial class HomePage : ContentPage
 	public HomePage()
 	{
 		InitializeComponent();
-		LoadData().GetAwaiter().GetResult();
+        ImageLabel.Source = IMAGE_LOGO_URL;
+        LoadData().GetAwaiter().GetResult();
 	}
 
     private async Task LoadData()

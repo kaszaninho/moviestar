@@ -1,4 +1,5 @@
 using MobileApp.Services;
+using static MobileApp.Services.AppSettings;
 
 namespace MobileApp.Pages;
 
@@ -7,6 +8,7 @@ public partial class RegisterPage : ContentPage
     public RegisterPage()
     {
         InitializeComponent();
+        ImageLabel.Source = IMAGE_LOGO_URL;
     }
 
     private async void BtnRegister_Clicked(object sender, EventArgs e)
