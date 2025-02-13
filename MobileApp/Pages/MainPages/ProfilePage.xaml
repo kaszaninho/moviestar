@@ -13,30 +13,23 @@
                 Text="Your info"
                 x:Name="BtnProfileInfo"
                 Margin="0,20,0,0" 
-                Clicked="Logout_Clicked"/>
+                Clicked="BtnProfileInfo_Clicked"/>
 
 
         <Button Grid.Row="2"
-                Text="Address"
-                x:Name="BtnAddressInfo"
-                Margin="0,20,0,0" 
-                Clicked="Logout_Clicked"/>
-
-
-        <Button Grid.Row="3"
                 Text="Your tickets"
                 x:Name="BtnTicketsInfo"
                 Margin="0,20,0,0" 
                 Clicked="BtnTicketInfo_Clicked"/>
 
 
-        <Button Grid.Row="4"
+        <Button Grid.Row="3"
                 Text="Your invoices"
                 x:Name="BtnInvoiceInfo"
                 Margin="0,20,0,0" 
                 Clicked="BtnInvoiceInfo_Clicked"/>
 
-        <Button Grid.Row="5"
+        <Button Grid.Row="4"
                 Text="Logout"
                 x:Name="BtnSignIn"
                 Margin="0,20,0,0" 

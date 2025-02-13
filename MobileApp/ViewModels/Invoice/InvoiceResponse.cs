@@ -33,8 +33,8 @@ namespace MobileApp.ViewModels.Invoice
         [JsonPropertyName("totalSum")]
         public double TotalSum { get; set; }
 
-        [JsonPropertyName("buyerAddress")]
-        public BuyerAddress BuyerAddress { get; set; }
+        [JsonPropertyName("address")]
+        public AddressResponse Address { get; set; }
 
         [JsonPropertyName("tickets")]
         public List<TicketResponse> Tickets { get; set; }

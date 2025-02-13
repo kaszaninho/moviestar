@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.People;
+using DatabaseAPI.ViewModels;
 
 namespace DatabaseAPI.Controllers
 {
@@ -31,7 +32,7 @@ namespace DatabaseAPI.Controllers
 
         // GET: api/User/5
         [HttpGet("{param}")]
-        public async Task<ActionResult<User>> GetUser(string param)
+        public async Task<ActionResult<UserViewModel>> GetUser(string param)
         {
             var user = await _context.User.Include(user => user.Address).ThenInclude(user => user.Country).Where(user => user.Id == param || user.UserName == param).FirstAsync();
 
@@ -39,7 +40,29 @@ namespace DatabaseAPI.Controllers
             {
                 return NotFound();
             }
-            return user;
+            var userViewModel = new UserViewModel
+            {
+                Country = user.Address.Country.Name,
+                DateOfBirth = user.DateOfBirth.Date,
+                Email = user.Email,
+                EmailConfirmed = user.EmailConfirmed,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                PhoneNumber = user.PhoneNumber,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                UserName = user.UserName,
+                Address = new AddressViewModel
+                { 
+                    City = user.Address.City,
+                    Country = user.Address.Country.Name,
+                    EirCode = user.Address.EirCode,
+                    Street = user.Address.StreetName + " " + user.Address.HouseNumber
+                }
+            };
+            return userViewModel;
         }
 
         // PUT: api/User/5

@@ -77,7 +77,7 @@ namespace DatabaseAPI.Controllers
                     Street = $"{invoice.User.Address.StreetName} {invoice.User.Address.HouseNumber}",
                     City = invoice.User.Address.City,
                     Country = invoice.User.Address.Country.Name,
-                    Eircode = invoice.User.Address.EirCode
+                    EirCode = invoice.User.Address.EirCode
                 },
                 Tickets = invoice.Tickets.Select(ticket => new TicketViewModel
                 {

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MobileApp.ViewModels.Invoice
 {
-    public class BuyerAddress
+    public class AddressResponse
     {
         [JsonPropertyName("street")]
         public string Street { get; set; }
 
-        [JsonPropertyName("eircode")]
+        [JsonPropertyName("eirCode")]
         public string Eircode { get; set; }
 
         [JsonPropertyName("city")]

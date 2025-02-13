@@ -27,12 +27,12 @@ public partial class InvoiceDetails : ContentPage
             CreatedAtLabel.Text = $"Created At: {invoice.CreatedAt:MMM dd, yyyy HH:mm}";
 
             // Populate buyer address
-            if (invoice.BuyerAddress != null)
+            if (invoice.Address != null)
             {
-                BuyerStreetLabel.Text = $"Street: {invoice.BuyerAddress.Street}";
-                BuyerEircodeLabel.Text = $"Eircode: {invoice.BuyerAddress.Eircode}";
-                BuyerCityLabel.Text = $"City: {invoice.BuyerAddress.City}";
-                BuyerCountryLabel.Text = $"Country: {invoice.BuyerAddress.Country}";
+                BuyerStreetLabel.Text = $"Street: {invoice.Address.Street}";
+                BuyerEircodeLabel.Text = $"Eircode: {invoice.Address.Eircode}";
+                BuyerCityLabel.Text = $"City: {invoice.Address.City}";
+                BuyerCountryLabel.Text = $"Country: {invoice.Address.Country}";
             }
 
             // Populate price details

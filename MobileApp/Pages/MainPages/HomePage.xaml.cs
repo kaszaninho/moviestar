@@ -51,7 +51,7 @@ public partial class HomePage : ContentPage
             }
 			else 
 			{ 
-                name = response.firstName;
+                name = response.FirstName;
                 await SecureStorage.SetAsync("name", name);
                 LblUserName.Text = "Hi " + name;
             }

@@ -24,4 +24,9 @@ public partial class ProfilePage : ContentPage
     {
         await Navigation.PushAsync(new ProfileTickets());
     }
+
+    private async void BtnProfileInfo_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ProfileUserInfo());
+    }
 }
