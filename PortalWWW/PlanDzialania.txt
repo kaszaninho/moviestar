@@ -217,3 +217,39 @@ Nastepnie, jak tworzone jest Screening (polaczenie screenu i movie), to:
                         }
                     })
                     .catch(error => console.error('Error:', error));
+
+
+
+
+
+
+PROJEKT APKI MOBILNEJ
+
+POMYSL NA MOBILKE:
+1. Logowanie klienta/ Rejestracja
+2. Wyswietlanie invoicow klienta
+3. About Us/ Contact (zapychacze)
+4. Wyswietlanie biletow + generowanie PDF
+5. Wyswietlanie seanse na które zakupiles bilety
+
+Najpierw - strona logowania z opcja przejscia do rejestracji.
+Po Rejestracji - przeniesienie do strony logowania
+Po zalogowaniu - przneiesienie na strone glowna
+Obie powinny miec wylaczone mozliwosc cofki
+
+Przed zalogowaniem - glowna strona to strona logowania
+Po zalogowaniu - glowna strona to strona glowna
+
+Strona glowna - co powinna miec:
+1. Powitanie uzytkownika
+2. Dwie informacje - najbliszy seans oraz dzisiejsze seanse, 
+3. Shell navbar (navbar na dole) - Home, Profile (Your profile, invoices - wyswietlanie oraz sciaganie PDF, tickets - wyswietlanie oraz sciaganie PDF, logout), Movies (List of movies, today's screenings, list of your upcoming screenings), About Us (zapychacze) 
+
+
+
+Postep:
+Jest dodana strona logowania i rejestracji.
+Rejestracja jest zjebana, no ale coz, nie wiem czy bedzie mi sie chcialo tak sie w to bawic.
+Teraz chce zaimplementowac ProfilePage, gdzie moge podgladnac info i MOZE... pozmieniac cos w profilu.
+Najpierw musze zrobic User Controller w API (DatabaseAPI) by to zadzialalo :)
+

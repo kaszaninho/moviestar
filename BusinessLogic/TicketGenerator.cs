@@ -1,12 +1,13 @@
-﻿using DatabaseAPI.Models.Helpers;
+﻿using BusinessLogic.Helpers;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
+using ServiceStack;
 
 namespace BusinessLogic
 {
     public static class TicketGenerator
     {
-        public static void GenerateTicket(TicketInvoiceModel ticket)
+        public static void GenerateTicket(TicketInvoiceModel ticket, string? filePath)
         {
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();
@@ -21,7 +22,8 @@ namespace BusinessLogic
             gfx.DrawString("Seat: " + ticket.seatCode, font, XBrushes.Black, new XRect(0, 70, page.Width, page.Height), format);
             gfx.DrawString("Date: " + ticket.StartDate, font, XBrushes.Black, new XRect(0, 90, page.Width, page.Height), format);
 
-            document.Save("C:/Users/pre12/Desktop/Ticket" + new Random().Next(100) + ".pdf");
+            var path = filePath.IsNullOrEmpty() ? "C:/Users/pre12/Desktop/Ticket" + new Random().Next(100) + ".pdf" : filePath;
+            document.Save(path);
         }
     }
 }

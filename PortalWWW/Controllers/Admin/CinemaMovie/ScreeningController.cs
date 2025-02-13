@@ -12,7 +12,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
         }
 
-        override public async Task<IActionResult> Create(Screening entity)
+        override public async Task<IActionResult> CreateConfirmed(Screening entity)
         {
             var movie = await repository.GetDbSet<Movie>().Where(x => x.Id == entity.MovieId)
                 .FirstAsync();
@@ -33,7 +33,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 });
             }
             entity.ScreeningSeats = screeningSeats;
-            return await base.Create(entity);
+            return await base.CreateConfirmed(entity);
         }
         override public async Task<IActionResult> Index()
         {

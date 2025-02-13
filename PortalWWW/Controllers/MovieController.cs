@@ -9,6 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PortalWWW.Controllers
 {
+    [Route("[controller]")]
     public class MovieController : Controller
     {
         private readonly DatabaseAPIContext dbContext;
@@ -19,6 +20,7 @@ namespace PortalWWW.Controllers
             dbContext = context;
         }
 
+        [HttpGet("Index")]
         public ActionResult Index()
         {
             List<Movie> entities = dbContext.Movie
@@ -30,6 +32,7 @@ namespace PortalWWW.Controllers
             return View(entities);
         }
 
+        [HttpPost("IndexWithScreenings")]
         public ActionResult IndexWithScreenings(string? selectedDate)
         {
             if(selectedDate == null)
@@ -55,6 +58,7 @@ namespace PortalWWW.Controllers
             return View(moviesToShow);
         }
 
+        [HttpPost("ShowMovieDetails")]
         public ActionResult ShowMovieDetails(int id)
         {
             var entity = dbContext.Movie
@@ -68,7 +72,7 @@ namespace PortalWWW.Controllers
             return View(entity);
         }
 
-        [HttpPost]
+        [HttpPost("ChooseMovieBasedOnDate")]
         public ActionResult ChooseMovieBasedOnDate(string selectedDate)
         {
             var properDate = DateTime.ParseExact(selectedDate, DATE_FORMAT, null).Date;
@@ -92,25 +96,21 @@ namespace PortalWWW.Controllers
             return View();
         }
 
+        [HttpGet("ShowScreeningsForMovie")]
         public async Task<IActionResult> ShowScreeningsForMovie()
         {
             //TODO: I'll have to include more information when it'll be added (.Inlude(screening...))
             return View(await dbContext.Movie.Include(item => item.Screenings.OrderBy(item => item.StartDate)).ToListAsync());
         }
 
+        [HttpPost("GetScreenings")]
         public ActionResult GetScreenings(int movieId, DateTime date)
         {
             return PartialView("ScreeningsForMovie", dbContext.Screening
                 .Where(item => item.MovieId == movieId && item.StartDate.Value.Date.Equals(date.Date)).ToList());
         }
 
-        public ActionResult ChooseSeat(int screeningId)
-        {
-            //list of seats for a screeening -> screening.screeningseats -> it'll be populated from seats for a screen
-            var seatsForScreening = dbContext.ScreeningSeat.Where(item => item.ScreeningId == screeningId).ToList();
-            return View(seatsForScreening);
-        }
-
+        [HttpPost("ChooseSeats")]
         public IActionResult ChooseSeats(int screeningId)
         {
             var screeningSeats = dbContext.ScreeningSeat
@@ -129,6 +129,7 @@ namespace PortalWWW.Controllers
         }
 
 
+        [HttpGet("DetailsOfChoice")]
         public IActionResult DetailsOfChoice(string seatIds)
         {
             var seatIdList = seatIds.Split(',').Select(int.Parse).ToList();
@@ -142,7 +143,7 @@ namespace PortalWWW.Controllers
             return View(chosenSeats);
         }
 
-        [HttpPost]
+        [HttpPost("DetailsOfChosenSeats")]
         public async Task<ActionResult> DetailsOfChosenSeats([FromBody] SeatSelectionModel selection)
         {
             if (selection?.SelectedSeats == null || !selection.SelectedSeats.Any())
@@ -168,6 +169,7 @@ namespace PortalWWW.Controllers
             return Json(new { redirectUrl });
         }
 
+        [HttpGet("PaymentChoice")]
         public ActionResult PaymentChoice()
         {
             return View();

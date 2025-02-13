@@ -11,6 +11,7 @@ using PortalWWW.Models;
 
 namespace PortalWWW.Controllers.Admin.People
 {
+    [Route("[controller]")]
     public class UserController : Controller
     {
         private readonly DatabaseAPIContext context;
@@ -22,12 +23,13 @@ namespace PortalWWW.Controllers.Admin.People
             this.userManager = userManager;
         }
 
+        [HttpGet("Index")]
         virtual public async Task<IActionResult> Index()
         {
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             var entities = context.User.ToList();
@@ -43,6 +45,7 @@ namespace PortalWWW.Controllers.Admin.People
             return Json(new { data = entities });
         }
 
+        [HttpGet("Details")]
         virtual public async Task<IActionResult> Details(string id)
         {
             var entity = await context.User.Include(u => u.Address).ThenInclude(u => u.Country).FirstOrDefaultAsync(us => us.Id == id);
@@ -54,6 +57,7 @@ namespace PortalWWW.Controllers.Admin.People
             return View(entity);
         }
 
+        [HttpGet("Delete")]
         virtual public async Task<IActionResult> Delete(string id)
         {
             var entity = await context.User.Include(u => u.Address).ThenInclude(u => u.Country).FirstOrDefaultAsync(us => us.Id == id);
@@ -78,7 +82,7 @@ namespace PortalWWW.Controllers.Admin.People
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
+        [HttpPost("LockUnlock")]
         public IActionResult LockUnlock([FromBody]string id) 
         { 
             var user = context.User.FirstOrDefault(u => u.Id == id);
@@ -98,6 +102,7 @@ namespace PortalWWW.Controllers.Admin.People
             return Json(new { success = true, message = "Success" });
         }
 
+        [HttpGet("RoleManagement")]
         public IActionResult RoleManagement(string id)
         {
             string RoleID = context.UserRoles.FirstOrDefault(u => u.UserId == id).RoleId;
@@ -115,7 +120,7 @@ namespace PortalWWW.Controllers.Admin.People
             return View(RoleVM);
         }
 
-        [HttpPost]
+        [HttpPost("RoleManagement")]
         public async Task<IActionResult> RoleManagement(RoleManagementVM roleVM)
         {
             string RoleID = context.UserRoles.FirstOrDefault(u => u.UserId == roleVM.User.Id).RoleId;

@@ -10,7 +10,7 @@ using ServiceStack;
 
 namespace PortalWWW.Controllers.Admin.CinemaMovie
 {
-
+    [Route("[controller]")]
     public class MovieAdminController : Controller
     {
 
@@ -22,6 +22,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             this.webHostEnvironment = webHostEnvironment;
         }
 
+        [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
             ViewData["type"] = typeof(Movie);
@@ -30,6 +31,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         }
 
 
+        [HttpGet("Create")]
         public async Task<IActionResult> Create()
         {
             ViewBag.AgeRating = new SelectList(await repository.GetDbSet<AgeRating>().ToListAsync(), "Id", "Name");
@@ -42,6 +44,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View();
         }
 
+        [HttpGet("Edit")]
         public async Task<IActionResult> Edit(int id)
         {
             var entity = await repository.FindEntityAsync(id);
@@ -59,6 +62,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View(entity);
         }
 
+        [HttpGet("Details")]
         public async Task<IActionResult> Details(int id)
         {
             var entity = await repository.getDbSet()
@@ -77,6 +81,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View(entity);
         }
 
+        [HttpGet("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             var entity = await repository.getDbSet()
@@ -96,7 +101,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         }
 
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("DeleteConfirmed")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await repository.DeleteEntityAsync(id);
@@ -105,9 +110,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
 
 
 
-        [HttpPost]
+        [HttpPost("EditConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Movie entity, IFormFile? file)
+        public async Task<IActionResult> EditConfirmed(Movie entity, IFormFile? file)
         {
             if (file != null)
             {
@@ -147,8 +152,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        virtual public async Task<IActionResult> Create(Movie entity, IFormFile? file)
+
+        [HttpPost("CreateConfirmed")]
+        virtual public async Task<IActionResult> CreateConfirmed(Movie entity, IFormFile? file)
         {
             if (file != null)
             {
@@ -171,8 +177,8 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return RedirectToAction("Index");
         }
 
-
-        [HttpGet]
+        
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             List<Movie> entities = repository.GetEntityList().ToList();

@@ -14,7 +14,8 @@ using System.Diagnostics;
 
 namespace PortalWWW.Controllers
 {
-	public class HomeController : Controller
+    [Route("")]
+    public class HomeController : Controller
 	{
 		private readonly DatabaseAPIContext dbContext;
 		private readonly UserManager<IdentityUser> userManager;
@@ -25,7 +26,8 @@ namespace PortalWWW.Controllers
 			this.userManager = userManager;
 		}
 
-		public async Task<IActionResult> Index()
+        [HttpGet("")]
+        public async Task<IActionResult> Index()
 		{
 			var movies = dbContext.Movie != null ? await dbContext.Movie
 				.Include(mov => mov.Genre)
@@ -87,7 +89,8 @@ namespace PortalWWW.Controllers
 			return View(homeIndexViewModel);
 		}
 
-		public IActionResult InvoiceReportForUser(DateTime? start, DateTime? end, string mode = "all")
+        [HttpGet("InvoiceReportForUser")]
+        public IActionResult InvoiceReportForUser(DateTime? start, DateTime? end, string mode = "all")
 		{
 			ViewBag.PaymentStatuses = new SelectList(Constans.PaymentStatuses);
 			ViewData["startDate"] = start == null ? new DateTime(2023, 1, 1) : start;
@@ -96,7 +99,7 @@ namespace PortalWWW.Controllers
 			return View();
 		}
 
-		[HttpGet]
+		[HttpPost("GetAllInvoicesForUser")]
 		public async Task<IActionResult> GetAllInvoicesForUser(DateTime? start, DateTime? end, string mode = "all")
 		{
 			DateTime? startDate = start == null ? new DateTime(2023, 1, 1) : start;
@@ -114,16 +117,6 @@ namespace PortalWWW.Controllers
 			return Json(new { data = invoicesToShow });
 		}
 
-		public IActionResult OnGetGetMoviesByDate(string date)
-		{
-			DateTime selectedDate = DateTime.Parse(date);
-			// List<Movie> movies = _movieService.GetMoviesByDate(selectedDate);
-
-			List<Movie> movies = new();
-
-			return PartialView("_MovieListPartial", movies);
-		}
-
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
@@ -138,7 +131,8 @@ namespace PortalWWW.Controllers
 			return View("More", website);
 		}
 
-		public IActionResult Contact()
+        [HttpGet("Contact")]
+        public IActionResult Contact()
 		{
 			return View();
 		}

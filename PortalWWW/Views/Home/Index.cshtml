@@ -34,7 +34,7 @@
             @for (int i = 0; i < 3; i++)
             {
                 <div class="carousel-item @(i==0 ? "active" : "") ">
-                    <a asp-controller="Movie" asp-action="ShowMovieDetails" method="post" asp-route-id="@movieCarouselList.ElementAt(i).MovieId">
+                    <a asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movieCarouselList.ElementAt(i).MovieId">
                         <img src="@movieCarouselList.ElementAt(i).PhotoUrl" class="mx-auto d-block w-50" alt="@movieCarouselList.ElementAt(i).Title">
                     </a>
                 </div>

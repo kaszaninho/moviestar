@@ -1,8 +1,7 @@
 ﻿using BusinessLogic;
+using BusinessLogic.Helpers;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
-using DatabaseAPI.Models.General;
-using DatabaseAPI.Models.Helpers;
 using InvoiceSdk.Models;
 using InvoiceSdk.Models.Payments;
 using InvoiceSdk.Renderer;
@@ -20,6 +19,8 @@ using static PortalWWW.Helpers.StripeHelper;
 
 namespace PortalWWW.Controllers
 {
+    [Route("[controller]")]
+    [Authorize]
     public class CartController : Controller
     {
         private readonly DatabaseAPIContext dbContext;
@@ -29,7 +30,7 @@ namespace PortalWWW.Controllers
             dbContext = context;
         }
 
-        [Authorize]
+        [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
@@ -41,14 +42,14 @@ namespace PortalWWW.Controllers
             return View(cartInformation);
         }
 
-        [HttpGet]
+        [HttpGet("Cart")]
         public ActionResult Cart()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost("AddToCart")]
         public ActionResult AddToCart(string[] screeningSeats)
         {
             var seats = dbContext.ScreeningSeat.Include(x => x.Screening).ThenInclude(x => x.Movie).Where(item => screeningSeats.Contains(item.Id.ToString())).ToList();
@@ -60,8 +61,7 @@ namespace PortalWWW.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost("AddCoupon")]
         public async Task<IActionResult> AddCoupon(string couponName)
         {
             if (!couponName.IsNullOrEmpty())
@@ -85,7 +85,7 @@ namespace PortalWWW.Controllers
             return RedirectToAction("ChoosePayment");
         }
 
-        [Authorize]
+        [HttpGet("ChoosePayment")]
         public async Task<ActionResult> ChoosePayment()
         {
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
@@ -108,6 +108,7 @@ namespace PortalWWW.Controllers
             return View(cartInformation);
         }
 
+        [HttpGet("OrderConfirmed")]
         public async Task<IActionResult> OrderConfirmed(Guid invoiceId)
         {
             var invoice = dbContext.Invoice.Include(inv => inv.PaymentMethod).Include(inv => inv.Coupon).First(inv => inv.InvoiceId == invoiceId);
@@ -134,13 +135,14 @@ namespace PortalWWW.Controllers
             return View(invoice);
         }
 
+        [HttpGet("OrderCancelled")]
         public async Task<IActionResult> OrderCancelled(Guid invoiceId)
         {
             var invoice = dbContext.Invoice.Include(inv => inv.PaymentMethod).First(inv => inv.InvoiceId == invoiceId);
             return View(invoice);
         }
 
-        [Authorize]
+        [HttpPost("ProcessPayment")]
         public async Task<ActionResult> ProcessPayment(int paymentMethodId)
         {
             //add tickets to db based on screeningseats
@@ -213,7 +215,7 @@ namespace PortalWWW.Controllers
                     ScreeningSeatId = element.ScreeningSeatId,
                     Invoice = dbInvoice
                 };
-                TicketGenerator.GenerateTicket(ticketInvoice);
+                TicketGenerator.GenerateTicket(ticketInvoice, null);
                 dbContext.Ticket.Add(ticket);
                 dbContext.ScreeningSeat.First(item => item.Id == element.ScreeningSeat.Id).IsTaken = true;
                 if (itemsOnInvoice.Exists(item => item.Name == ticketInvoice.MovieName))
@@ -342,11 +344,6 @@ namespace PortalWWW.Controllers
                     invoice.PaymentStatus = paymentStatus;
                 }
             }
-        }
-
-        public void GenerateRaport()
-        {
-
         }
     }
 }
