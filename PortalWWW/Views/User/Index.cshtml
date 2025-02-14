@@ -78,7 +78,7 @@
         function LockUnlock(id) {
             $.ajax({
                 type: "POST",
-                url: 'User/LockUnlock',
+                url: 'LockUnlock',
                 data: JSON.stringify(id),
                 contentType: 'application/json',
                 success: function (data) {
