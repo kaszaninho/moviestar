@@ -8,16 +8,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Type entityType = ViewData["type"] as Type;
     string entityEndpoint = ViewData["entityEndpoint"] != null ? ViewData["entityEndpoint"].ToString() : entityType.Name.ToLower();
-    // Get the list of columns, excluding collections and Id fields
-    var columnList = entityType.GetProperties()
-        .Where(prop => !IsGenericCollection(prop.PropertyType))
-        .Select(prop => char.ToLower(prop.Name[0]) + prop.Name.Substring(1))
-        .ToList();
-
-
-
-    // Serialize the column list to JSON
-    var columnListJson = Json.Serialize(columnList);
 }
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
@@ -46,13 +36,7 @@
 {
     <script>
         function loadDataTable() {
-            const myArray = @Html.Raw(Json.Serialize(columnList));
             const modelType = "@entityEndpoint";
-            expectedpayload = [];
-
-            myArray.forEach((item, index) => {
-                expectedpayload.push({ "data": item });
-            })
             dataTable = $('#tblData').DataTable({
                 "ajax": { url: `/${modelType}/getall` },
                 "columns": [
@@ -64,68 +48,47 @@
                     {
                         data: 'id',
                         "render": function (data) {
-                            return `<div class="test-center" > 
-                            <a href="/${modelType}/delete?id=${data}" class="btn btn-primary"> Delete </a>
-                                    <a href="/${modelType}/details?id=${data}" class="btn btn-primary"> Details </a>
-                                    <a href="/${modelType}/edit?id=${data}" class="btn btn-primary"> Edit </a>
-                                    </div>`
+                            return `<div class="test-center" >
+                                            <a onClick=Delete('/${modelType}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                            <a href="/${modelType}/details?id=${data}" class="btn btn-primary"> Details </a>
+                                            <a href="/${modelType}/edit?id=${data}" class="btn btn-primary"> Edit </a>
+                                            </div>`
                         }
                     }
                 ]
             });
         }
+
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            Swal.fire("Deleted!", "Your record has been deleted.", "success");
+                        },
+                        error: function (err) {
+                            Swal.fire("Error!", "Something went wrong.", "error");
+                        }
+                    });
+                }
+            });
+        }
+
         $(document).ready(function () {
             loadDataTable();
-        }
-        );
+        });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    @*     <script src="~/js/getAllTable.js"></script>
- *@
 }
-
-@* @foreach (var item in Model)
-        {expectedpayload
-            <tr>
-                <td>@item.Id</td>
-                @foreach (var prop in entityType.GetProperties())
-                {
-                    if (IsGenericCollection(prop.PropertyType)) continue;
-                    if (IsId(prop.Name)) continue;
-                    if (IsTypeOfBaseDatatable(prop.PropertyType))
-                    {
-                        <td>@GetNameFromPropertyOfObject(prop, item)</td>
-                    }
-                    else
-                    {
-                        <td>@prop.GetValue(item, null)</td>
-                    }
-                }
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-
-
-            @foreach (var prop in entityType.GetProperties())
-            {
-                if (IsGenericCollection(prop.PropertyType)) continue;
-                <th>@prop.Name</th>
-            }
-            <th>Actions</th>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-        *@
