@@ -56,9 +56,10 @@
                                     @if (prop.PropertyType == typeof(string))
                                     {
                                         <textarea id="@prop.Name" name="@prop.Name" class="form-control"
-                                                  style="min-height: 150px; width: 100%; resize: vertical; text-align: left; color: white; white-space: pre-line;">
+                                                  style="min-height: 150px; width: 100%; resize: vertical; text-align: left !important; color: white; white-space: pre-line;">
                                             @(@prop.GetValue(Model) ?? "")
         </textarea>
+
  
                                     }
                                     else if (isBoolean && isIsActive)
