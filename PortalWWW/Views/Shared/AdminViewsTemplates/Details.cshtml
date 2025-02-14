@@ -9,32 +9,52 @@
     Type entityType = ViewData["type"] as Type;
 }
 
-<h1>Details</h1>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">@entityType.Name Details</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-sm custom-btn">
+                <i class="bi bi-pencil"></i> Edit
+            </a>
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
 
-<div>
-    <h4>@entityType.Name</h4>
-    <hr />
-    <dl class="row">
-        @foreach (var prop in Model.GetType().GetProperties())
-        {
-            if (IsGenericCollection(prop.PropertyType)) continue;
-            if (IsId(prop.Name)) continue;
-            if (IsTypeOfBaseDatatable(prop.PropertyType)) continue;
-            <dt class="col-sm-2">
-                @Html.DisplayName(prop.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @GenericCheck.DisplayValue(Html, prop, (object)Model)
-            </dd>
-        }
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover custom-table">
+            <tbody>
+                @foreach (var prop in Model.GetType().GetProperties())
+                {
+                    if (IsGenericCollection(prop.PropertyType)) continue;
+                    if (IsId(prop.Name)) continue;
+                    if (IsTypeOfBaseDatatable(prop.PropertyType)) continue;
 
-        @if (partialViewName != null)
-        {
-            @await Html.PartialAsync(partialViewName)
-        }
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+                    <tr>
+                        <td><strong><label class="form-label">@Html.DisplayName(prop.Name)</label></strong></td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                @if (prop.PropertyType == typeof(string) || prop.PropertyType == typeof(bool) || Nullable.GetUnderlyingType(prop.PropertyType) == typeof(bool))
+                                {
+                                    <textarea class="form-control" readonly style="height: 150px;">@GenericCheck.DisplayValue(Html, prop, (object)Model)</textarea>
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" value="@GenericCheck.DisplayValue(Html, prop, (object)Model)" readonly />
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (partialViewName != null)
+    {
+        @await Html.PartialAsync(partialViewName)
+    }
 </div>

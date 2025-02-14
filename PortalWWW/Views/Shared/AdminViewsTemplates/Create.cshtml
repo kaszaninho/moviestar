@@ -7,47 +7,106 @@
     Type entityType = ViewData["type"] as Type;
     string partialViewName = (string)ViewData["PartialViewName"];
     var properties = entityType.GetProperties();
-    string id = "Id";
 }
 
-<h1>Create</h1>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
 
-<h4>@entityType.Name</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Create @entityType.Name</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2 custom-btn">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
         <form asp-action="CreateConfirmed" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @foreach (var prop in properties)
-            {
-                if (IsGenericCollection(prop.PropertyType)) continue;
-                if (!ShouldShowPropertyOnCreate(prop.Name)) continue;
-                if (IsId(prop.Name)) continue;
-                if (IsTypeOfBaseDatatable(prop.PropertyType)) continue;
-                <div class="form-group">
-                    <label for="@prop.Name" class="control-label">@prop.Name</label>
-                    <input id="@prop.Name" name="@prop.Name" @TextTypeBasedOnPropertyType(prop.PropertyType) ) />
-                    <span asp-validation-for="@prop.Name" class="text-danger"></span>
+            <table class="table table-bordered table-striped table-hover custom-table">
+                <div class="table-responsive">
+                    <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+                        <thead>
+                            <tr>
+                                <th>New @entityType.Name</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-            }
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </td>
+                    </tr>
+
+                    @foreach (var prop in properties)
+                    {
+                        if (IsGenericCollection(prop.PropertyType)) continue;
+                        if (!ShouldShowPropertyOnCreate(prop.Name)) continue;
+                        if (IsId(prop.Name)) continue;
+                        if (IsTypeOfBaseDatatable(prop.PropertyType)) continue;
+
+                        bool isBoolean = prop.PropertyType == typeof(bool) || Nullable.GetUnderlyingType(prop.PropertyType) == typeof(bool);
+                        bool isIsActive = prop.Name.Equals("IsActive", StringComparison.OrdinalIgnoreCase);
+
+                        <tr>
+                            <td><strong><label for="@prop.Name" class="form-label">@prop.Name</label></strong></td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    @if (prop.PropertyType == typeof(string))
+                                    {
+                                        <textarea id="@prop.Name" name="@prop.Name" class="form-control" placeholder="@prop.Name"></textarea>
+                                    }
+                                    else if (isBoolean && isIsActive)
+                                    {
+                                        <!-- Fancy Radio Button for isActive -->
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="@prop.Name" id="@prop.Name-yes" value="true" checked>
+                                                <label class="form-check-label" for="@prop.Name-yes">Active</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="@prop.Name" id="@prop.Name-no" value="false">
+                                                <label class="form-check-label" for="@prop.Name-no">Inactive</label>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <input id="@prop.Name" name="@prop.Name" @TextTypeBasedOnPropertyType(prop.PropertyType) class="form-control" />
+                                    }
+                                    <span asp-validation-for="@prop.Name" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
             @if (partialViewName != null)
             {
                 @await Html.PartialAsync(partialViewName)
             }
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-success m-2 custom-btn" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote();
+        });
+    </script>
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
