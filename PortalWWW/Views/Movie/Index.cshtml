@@ -14,10 +14,10 @@
 
         <div class="container">
             <div class="col-auto">
-                <form asp-controller="Movie" asp-action="IndexWithScreenings" method="post"
+                <form asp-controller="Movie" asp-action="IndexWithScreenings" method="get"
                       class="d-flex align-items-center justify-content-center gap-2">
                     <label class="custom-label" for="datepicker" style="font-size:26px; margin:10px;">Select a Date for the Movie:</label>
-                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;"/>
+                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;" />
                     <br>
                     <button type="submit" class="btn btn-danger">Choose a date</button>
                 </form>
@@ -70,15 +70,13 @@
                             </tr>
                         </table>
                     </div>
-                   
+
                     <div class="col-1">
 
                         <div class="text-center">
-                            <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
-                                <button class="btn btn-primary">
-                                    Details
-                                </button>
-                            </form>
+                            <a asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id" class="btn btn-primary">
+                                Details
+                            </a>
                         </div>
                     </div>
                     <hr>
