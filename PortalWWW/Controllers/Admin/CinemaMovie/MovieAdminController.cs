@@ -81,34 +81,6 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return View(entity);
         }
 
-        [HttpGet("Delete")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var entity = await repository.getDbSet()
-                .Include(movie => movie.AgeRating)
-                .Include(movie => movie.Country)
-                .Include(movie => movie.Genre)
-                .Include(movie => movie.MovieFormat)
-                .Include(movie => movie.MovieProductionCompany)
-                .FirstAsync(movie => movie.Id == id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-            ViewData["type"] = typeof(Movie);
-            ViewData["PartialViewName"] = "MovieDetails";
-            return View(entity);
-        }
-
-
-        [HttpPost("DeleteConfirmed")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await repository.DeleteEntityAsync(id);
-            return RedirectToAction(nameof(Index));
-        }
-
-
 
         [HttpPost("EditConfirmed")]
         [ValidateAntiForgeryToken]
@@ -183,6 +155,22 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
             List<Movie> entities = repository.GetEntityList().ToList();
             return Json(new { data = entities });
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var entity = await repository.FindEntityAsync(id);
+            if (entity == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+            else
+            {
+                await repository.DeleteEntityAsync(id);
+
+                return Json(new { success = true, message = "Delete Successful" });
+            }
         }
     }
 }

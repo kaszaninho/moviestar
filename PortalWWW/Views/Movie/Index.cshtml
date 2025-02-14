@@ -7,17 +7,17 @@
 
 
 <div class="container">
-    <div class="table-responsive">
+    <div class="table">
         <div>
             <h3 class="text-primary">Movies</h3>
         </div>
 
-        <div class="container">
+        <div class="container" style="color:white">
             <div class="col-auto">
-                <form asp-controller="Movie" asp-action="IndexWithScreenings" method="post"
+                <form asp-controller="Movie" asp-action="IndexWithScreenings" method="get"
                       class="d-flex align-items-center justify-content-center gap-2">
                     <label class="custom-label" for="datepicker" style="font-size:26px; margin:10px;">Select a Date for the Movie:</label>
-                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;"/>
+                    <input type="text" id="datepicker" name="selectedDate" style="background-color: black; height:40px;" />
                     <br>
                     <button type="submit" class="btn btn-danger">Choose a date</button>
                 </form>
@@ -41,22 +41,22 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <strong><label class="form-label" style="font-size:24px">@movie.Name</label></strong>
+                        <strong><label class="form-label" style="font-size:24px; color:white">@movie.Name</label></strong>
                         <table class="table-responsive">
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Genre</label></td>
+                                <td><label class="form-label" style="font-size:20px; color:white">Genre</label></td>
                                 <td><p class="form-label">@movie.Genre.Name</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Release date</label></td>
+                                <td><label class="form-label" style="font-size:20px; color:white">Release date</label></td>
                                 <td><p class="form-label">@movie.CreatedAt</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Age Rating</label></td>
+                                <td><label class="form-label" style="font-size:20px; color:white">Age Rating</label></td>
                                 <td><p class="form-label">@movie.AgeRating.Name</p></td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Description</label></td>
+                                <td><label class="form-label" style="font-size:20px; color:white">Description</label></td>
                                 <td>
                                     <p class="form-label">
                                         @(movie.Description.Substring(0, Math.Min(150, movie.Description.Length))
@@ -65,20 +65,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label class="form-label" style="font-size:20px">Ticket Price</label></td>
+                                <td><label class="form-label" style="font-size:20px; color:white">Ticket Price</label></td>
                                 <td><p class="form-label">@movie.TicketPrice PLN</p></td>
                             </tr>
                         </table>
                     </div>
-                   
+
                     <div class="col-1">
 
                         <div class="text-center">
-                            <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
-                                <button class="btn btn-primary">
-                                    Details
-                                </button>
-                            </form>
+                            <a asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id" class="btn btn-primary">
+                                Details
+                            </a>
                         </div>
                     </div>
                     <hr>

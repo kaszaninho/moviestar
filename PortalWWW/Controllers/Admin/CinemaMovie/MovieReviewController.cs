@@ -63,19 +63,5 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             ViewData["PartialViewName"] = "MovieReviewDetails";
             return View(entity);
         }
-
-        override public async Task<IActionResult> Delete(int id)
-        {
-            var entity = await repository.getDbSet()
-                .Include(movieReview => movieReview.Movie)
-                .FirstAsync(movieReview => movieReview.Id == id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-            ViewData["type"] = typeof(MovieReview);
-            ViewData["PartialViewName"] = "MovieReviewDetails";
-            return View(entity);
-        }
     }
 }

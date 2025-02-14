@@ -1,4 +1,4 @@
-﻿@using System.Linq;
+@using System.Linq;
 @using DatabaseAPI.Models.DictionaryModels;
 @using static PortalWWW.Helpers.GenericCheck;
 @model dynamic
@@ -63,32 +63,26 @@
         });
 
         function loadDataTable() {
-            const columns = @Html.Raw(Json.Serialize(columnList));
-            const entityEndpoint = "@entityEndpoint";
-
-            let columnDefinitions = [{ "data": "id" }]; // Pierwsza kolumna to ID
-            columnDefinitions = columnDefinitions.concat(columns.map(col => ({ "data": col }))); // Kolejne kolumny
-
-            columnDefinitions.push({
-                "data": "id",
-                "render": function (data) {
-                    return `<div class="text-center">
-                                        <a href="/${entityEndpoint}/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
-                                        <a href="/${entityEndpoint}/details?id=${data}" class="btn btn-info btn-sm custom-btn">
-                                            <i class="bi bi-eye"></i> Details
-                                        </a>
-                                        <a onClick=Delete('/${entityEndpoint}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">
-                                            <i class="bi bi-trash"></i> Delete
-                                        </a>
-                                    </div>`;
-                }
-            });
-
+            const modelType = "@entityEndpoint";
             dataTable = $('#tblData').DataTable({
-                "ajax": { url: `/${entityEndpoint}/getall`, type: "GET" },
-                "columns": columnDefinitions
+                "ajax": { url: `/${modelType}/getall` },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "isActive" },
+                    { "data": "createdAt" },
+                    { "data": "modifiedAt" },
+                    {
+                        data: 'id',
+                        "render": function (data) {
+                            return `<div class="test-center" >
+                                            <a onClick=Delete('/${modelType}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                            <a href="/${modelType}/details?id=${data}" class="btn btn-primary"> Details </a>
+                                            <a href="/${modelType}/edit?id=${data}" class="btn btn-primary"> Edit </a>
+                                            </div>`
+                        }
+                    });
+                }
             });
         }
 
@@ -106,16 +100,22 @@
                     $.ajax({
                         url: url,
                         type: 'DELETE',
-                        success: function () {
+                        success: function (data) {
                             dataTable.ajax.reload();
                             Swal.fire("Deleted!", "Your record has been deleted.", "success");
                         },
-                        error: function () {
+                        error: function (err) {
                             Swal.fire("Error!", "Something went wrong.", "error");
                         }
                     });
                 }
             });
         }
+
+        $(document).ready(function () {
+            loadDataTable();
+        });
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 }

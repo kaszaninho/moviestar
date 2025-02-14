@@ -58,7 +58,7 @@ namespace PortalWWW.Controllers
             return View(moviesToShow);
         }
 
-        [HttpPost("ShowMovieDetails")]
+        [HttpGet("ShowMovieDetails")]
         public ActionResult ShowMovieDetails(int id)
         {
             var entity = dbContext.Movie

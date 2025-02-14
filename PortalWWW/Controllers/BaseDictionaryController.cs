@@ -63,23 +63,41 @@ namespace PortalWWW.Controllers
             return View(entity);
         }
 
-        [HttpGet("Delete")]
-        virtual public async Task<IActionResult> Delete(int id)
-        {
-            var entity = await repository.FindEntityAsync(id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-            ViewData["type"] = typeof(T);
-            return View(entity);
-        }
+        //[HttpGet("Delete")]
+        //virtual public async Task<IActionResult> Delete(int id)
+        //{
+        //    var entity = await repository.FindEntityAsync(id);
+        //    if (entity == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["type"] = typeof(T);
+        //    return View(entity);
+        //}
 
         [HttpPost("DeleteConfirmed")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await repository.DeleteEntityAsync(id);
             return RedirectToAction(nameof(Index));
+        }
+
+
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var entity = await repository.FindEntityAsync(id);
+            if (entity == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+            else
+            {
+                await repository.DeleteEntityAsync(id);
+
+                return Json(new { success = true, message = "Delete Successful" });
+            }
         }
 
 

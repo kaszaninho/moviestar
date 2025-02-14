@@ -2,32 +2,45 @@
 @using DatabaseAPI.Models.DictionaryModels;
 @using static PortalWWW.Helpers.GenericCheck;
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<!-- Importowanie stylów DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 
-<h1>Index</h1>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Users</h4>
+        </div>
 
-<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
-    <thead class="thead-dark">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+    </div>
+
+    <div class="table-responsive">
+        <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @section Scripts
 {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <script>
         $(document).ready(function () {
             loadDataTable();
@@ -42,38 +55,65 @@
                     { "data": "dateOfBirth" },
                     { "data": "role" },
                     {
-                        data: { id: 'id', lockoutEnd: "lockoutEnd" },
+                        "data": { id: "id", lockoutEnd: "lockoutEnd" },
                         "render": function (data) {
                             var today = new Date().getTime();
                             var lockout = new Date(data.lockoutEnd).getTime();
-                            if (lockout > today) {
-                                var str = `<a onClick=LockUnlock('${data.id}')  class="btn btn-success" style="width:80px" > Unlock </a>`
-                            }
-                            else {
-                                var str = `<a onClick=LockUnlock('${data.id}')   class="btn btn-danger" style="width:80px" > Lock </a>`
-                            }
-                            return `<div class="test-center" style="width:350px"> ${str} <a href="/user/rolemanagement?id=${data.id}"  class="btn btn-primary" > Roles </a> <a href="/user/delete?id=${data.id}"  class="btn btn-primary"> Delete </a>  <a href="/user/details?id=${data.id}"
-                                                    class="btn btn-primary"> Details </a> </div>`
+                            var lockUnlockBtn = lockout > today
+                                ? `<a onClick=LockUnlock('${data.id}') class="btn btn-success btn-sm">Unlock</a>`
+                                : `<a onClick=LockUnlock('${data.id}') class="btn btn-danger btn-sm">Lock</a>`;
+
+                            return `<div class="text-center d-flex gap-2">
+                                                ${lockUnlockBtn}
+                                                <a href="/user/rolemanagement?id=${data.id}" class="btn btn-primary btn-sm">Roles</a>
+                                                <a onClick=Delete('/user/delete?id=${data.id}') class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="/user/details?id=${data.id}" class="btn btn-info btn-sm">Details</a>
+                                            </div>`;
                         }
                     }
                 ]
-            })
+            });
         }
-    </script>
-    <script>
+
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            Swal.fire("Deleted!", "Your record has been deleted.", "success");
+                        },
+                        error: function (err) {
+                            Swal.fire("Error!", "Something went wrong.", "error");
+                        }
+                    });
+                }
+            });
+        }
+
         function LockUnlock(id) {
             $.ajax({
                 type: "POST",
-                url: 'User/LockUnlock',
+                url: 'LockUnlock',
                 data: JSON.stringify(id),
                 contentType: 'application/json',
                 success: function (data) {
                     if (data.success) {
                         toastr.success(data.message);
-                        dataTable.ajax.reload();
+                        $('#tblData').DataTable().ajax.reload();
                     }
                 }
-            })
+            });
         }
     </script>
 }

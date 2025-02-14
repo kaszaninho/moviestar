@@ -59,19 +59,5 @@ namespace PortalWWW.Controllers.Admin.General
             ViewData["PartialViewName"] = "AddressDetails";
             return View(entity);
         }
-
-        override public async Task<IActionResult> Delete(int id)
-        {
-            var entity = await repository.getDbSet()
-                .Include(address => address.Country)
-                .FirstAsync(address => address.Id == id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-            ViewData["type"] = typeof(Address);
-            ViewData["PartialViewName"] = "AddressDetails";
-            return View(entity);
-        }
     }
 }
