@@ -57,29 +57,46 @@ namespace PortalWWW.Controllers.Admin.People
             return View(entity);
         }
 
-        [HttpGet("Delete")]
-        virtual public async Task<IActionResult> Delete(string id)
+        //[HttpGet("Delete")]
+        //virtual public async Task<IActionResult> Delete(string id)
+        //{
+        //    var entity = await context.User.Include(u => u.Address).ThenInclude(u => u.Country).FirstOrDefaultAsync(us => us.Id == id);
+        //    var userRole = await context.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
+        //    var role = await context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+
+        //    entity.Role = role.Name;
+
+        //    return View(entity);
+        //}
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(string id)
+        //{
+        //    var user = await context.User.FirstAsync(us => us.Id == id);
+        //    if (user != null)
+        //    {
+        //        context.Remove(user);
+        //        await context.SaveChangesAsync();
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(string id)
         {
-            var entity = await context.User.Include(u => u.Address).ThenInclude(u => u.Country).FirstOrDefaultAsync(us => us.Id == id);
-            var userRole = await context.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
-            var role = await context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
-
-            entity.Role = role.Name;
-
-            return View(entity);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var user = await context.User.FirstAsync(us => us.Id == id);
-            if (user != null)
+            var entity = await context.User.FindAsync(id);
+            if (entity == null)
             {
-                context.Remove(user);
-                await context.SaveChangesAsync();
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                context.Remove(entity);
+                await context.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Delete Successful" });
+            }
         }
 
         [HttpPost("LockUnlock")]

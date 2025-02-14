@@ -47,7 +47,7 @@
         });
 
         function loadDataTable() {
-            $('#tblData').DataTable({
+            dataTable = $('#tblData').DataTable({
                 "ajax": { url: '/user/getall' },
                 "columns": [
                     { "data": "firstName" },
@@ -66,12 +66,38 @@
                             return `<div class="text-center d-flex gap-2">
                                                 ${lockUnlockBtn}
                                                 <a href="/user/rolemanagement?id=${data.id}" class="btn btn-primary btn-sm">Roles</a>
-                                                <a href="/user/delete?id=${data.id}" class="btn btn-danger btn-sm">Delete</a>
+                                                <a onClick=Delete('/user/delete?id=${data.id}') class="btn btn-danger btn-sm">Delete</a>
                                                 <a href="/user/details?id=${data.id}" class="btn btn-info btn-sm">Details</a>
                                             </div>`;
                         }
                     }
                 ]
+            });
+        }
+
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            Swal.fire("Deleted!", "Your record has been deleted.", "success");
+                        },
+                        error: function (err) {
+                            Swal.fire("Error!", "Something went wrong.", "error");
+                        }
+                    });
+                }
             });
         }
 
