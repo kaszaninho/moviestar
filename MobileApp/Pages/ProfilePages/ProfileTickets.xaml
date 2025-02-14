@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.ProfilePages.ProfileTickets">
+    <Grid RowDefinitions="Auto, *"  
+  RowSpacing="10"
+Margin="20">
+
+        <!-- Title -->
+        <Label Text="All Tickets"
+     Grid.Row="0"
+     FontSize="Large" />
+
+        <!-- Movies CollectionView -->
+        <CollectionView Grid.Row="1"
+          x:Name="CvAllTickets"
+          SelectionMode="Single"
+          VerticalScrollBarVisibility="Always"
+          VerticalOptions="FillAndExpand">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                     ItemSpacing="30" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" CornerRadius="8">
+                        <HorizontalStackLayout Spacing="10">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding TicketId, StringFormat='Ticket ID: {0}'}" 
+                         FontSize="Medium" 
+                         FontAttributes="Bold"/>
+                                <Label Text="{Binding MovieName, StringFormat='Movie: {0}'}" 
+                         FontSize="Small" />
+                                <Label Text="{Binding SeatNumber, StringFormat='Seat: {0}'}" 
+                         FontSize="Small" />
+                                <Label Text="{Binding StartDate, StringFormat='Start at: {0}'}" 
+                         FontSize="Small" />
+                                <Label Text="{Binding EndDate, StringFormat='End at: {0}'}" 
+                         FontSize="Small" />
+                                <Label Text="{Binding TicketPrice, StringFormat='Price: PLN {0:F2}'}" 
+                         FontSize="Small" />
+
+                                <!-- Generate PDF Button -->
+                                <Button Text="Generate PDF"
+                                    BackgroundColor="Green"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    Clicked="OnGeneratePDFClicked"
+                                    CommandParameter="{Binding TicketId}" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

@@ -71,8 +71,8 @@
         function loadDataTable(startDate, endDate, paymentMethod) {
             dataTable = $('#tblData').DataTable({
                 "ajax": {
-                    url: '/home/GetAllInvoicesForUser',
-                    type: 'GET',
+                    url: '/GetAllInvoicesForUser',
+                    type: 'POST',
                     data: {
                         start: startDate,
                         end: endDate,

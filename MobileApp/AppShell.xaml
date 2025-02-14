@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MobileApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MobileApp"
+    xmlns:pages="clr-namespace:MobileApp.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="MobileApp"
+    Shell.TabBarBackgroundColor="{StaticResource SecondaryDark}"
+    Shell.TabBarUnselectedColor="{StaticResource PrimaryText}"
+    Shell.TabBarTitleColor="{StaticResource Primary}"
+    Shell.PresentationMode="Animated"
+    WidthRequest="200">
+
+
+    <TabBar Shell.TabBarIsVisible="True">
+        <Tab Title="Home"
+             Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:HomePage}" />
+        </Tab>
+        <Tab Title="Movies"
+             Icon="orders.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MoviesPage}" />
+        </Tab>
+        <Tab Title="Profile"
+             Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:ProfilePage}" />
+        </Tab>
+        <Tab Title="About Us"
+             Icon="profilesettings.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:AboutUsPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

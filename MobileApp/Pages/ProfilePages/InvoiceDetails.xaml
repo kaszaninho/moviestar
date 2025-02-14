@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.ProfilePages.InvoiceDetails">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Invoice Information -->
+            <Label Text="Invoice Details" FontSize="Large" FontAttributes="Bold" />
+
+            <Label x:Name="InvoiceIdLabel" FontSize="Medium"/>
+            <Label x:Name="OrderStatusLabel" FontSize="Small"/>
+            <Label x:Name="PaymentStatusLabel" FontSize="Small"/>
+            <Label x:Name="CreatedAtLabel" FontSize="Small"/>
+
+            <!-- Buyer Address -->
+            <Label Text="Buyer Address:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label x:Name="BuyerStreetLabel" FontSize="Small"/>
+            <Label x:Name="BuyerEircodeLabel" FontSize="Small"/>
+            <Label x:Name="BuyerCityLabel" FontSize="Small"/>
+            <Label x:Name="BuyerCountryLabel" FontSize="Small"/>
+
+            <!-- Price Details -->
+            <Label Text="Ticket Summary:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label x:Name="TicketSumLabel" FontSize="Small"/>
+            <Label x:Name="CouponLabel" FontSize="Small"/>
+            <Label x:Name="CouponDiscountLabel" FontSize="Small"/>
+            <Label x:Name="TotalSumLabel" FontSize="Medium" FontAttributes="Bold" TextColor="Green"/>
+
+            <!-- Ticket List -->
+            <Label Text="Tickets:" FontSize="Medium" FontAttributes="Bold"/>
+            <CollectionView x:Name="TicketsCollectionView">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" CornerRadius="8">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding MovieName}" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label Text="{Binding SeatNumber, StringFormat='Seat: {0}'}" FontSize="Small"/>
+                                <Label Text="{Binding StartDate, StringFormat='Start: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                                <Label Text="{Binding EndDate, StringFormat='End: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

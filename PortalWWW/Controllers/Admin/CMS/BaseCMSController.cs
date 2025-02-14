@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PortalWWW.Controllers.Admin.CMS
 {
+    [Route("[controller]")]
     public class BaseCMSController<T> : Controller  where T : AbstractCMSDatatable
     {
 
@@ -14,18 +15,19 @@ namespace PortalWWW.Controllers.Admin.CMS
         {
             this.context = context;
         }
-
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(T entity)
         {
             entity.Position = context.Set<T>().ToList().Count + 1;
@@ -37,7 +39,7 @@ namespace PortalWWW.Controllers.Admin.CMS
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost("Edit")]
         public async Task<IActionResult> Edit(T entity)
         {
             int newPosition = entity.Position;
@@ -75,7 +77,7 @@ namespace PortalWWW.Controllers.Admin.CMS
             return RedirectToAction("Index");
         }
 
-        [HttpDelete]
+        [HttpDelete("Delete")]
         public IActionResult Delete(int id)
         {
             var entity = context.Set<T>().Find(id);
@@ -102,12 +104,14 @@ namespace PortalWWW.Controllers.Admin.CMS
             }
         }
 
+        [HttpGet("Edit")]
         public IActionResult Edit(int id)
         {
             var entity = context.Set<T>().FirstOrDefault(w => w.Id == id);
             return View(entity);
         }
 
+        [HttpGet("Details")]
         public IActionResult Details(int id)
         {
             var entity = context.Set<T>().FirstOrDefault(w => w.Id == id);
@@ -120,7 +124,7 @@ namespace PortalWWW.Controllers.Admin.CMS
         //    return View(entity);
         //}
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             var entities = context.Set<T>().ToList();

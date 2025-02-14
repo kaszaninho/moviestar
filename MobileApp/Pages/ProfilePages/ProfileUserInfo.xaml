@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.ProfilePages.ProfileUserInfo">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- User Information -->
+            <Label Text="User Details" FontSize="Large" FontAttributes="Bold" />
+
+            <Label x:Name="UserIdLabel" FontSize="Medium"/>
+            <Label x:Name="UserNameLabel" FontSize="Medium"/>
+            <Label x:Name="EmailLabel" FontSize="Small"/>
+            <Label x:Name="PhoneNumberLabel" FontSize="Small"/>
+
+            <!-- Address Information -->
+            <Label Text="Address Information:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label x:Name="StreetLabel" FontSize="Small"/>
+            <Label x:Name="EirCodeLabel" FontSize="Small"/>
+            <Label x:Name="CityLabel" FontSize="Small"/>
+            <Label x:Name="CountryLabel" FontSize="Small"/>
+
+            <!-- Personal Information -->
+            <Label Text="Personal Information:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label x:Name="FirstNameLabel" FontSize="Small"/>
+            <Label x:Name="MiddleNameLabel" FontSize="Small"/>
+            <Label x:Name="LastNameLabel" FontSize="Small"/>
+            <Label x:Name="DateOfBirthLabel" FontSize="Small"/>
+
+            <!-- Account Status -->
+            <Label Text="Account Status:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label x:Name="EmailConfirmedLabel" FontSize="Small"/>
+            <Label x:Name="PhoneNumberConfirmedLabel" FontSize="Small"/>
+            <Label x:Name="TwoFactorEnabledLabel" FontSize="Small"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

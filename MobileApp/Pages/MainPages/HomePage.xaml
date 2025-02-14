@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.HomePage">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+          RowSpacing="20"
+          Margin="20">
+
+
+        <Grid ColumnDefinitions="*,Auto" Grid.Row="0"
+      Margin="20,0"
+      VerticalOptions="Start">
+
+            <VerticalStackLayout Grid.Column="0"
+                             Spacing="5"
+           VerticalOptions="Center" 
+           HorizontalOptions="Start" >
+                <Label x:Name="LblUserName"
+                   FontSize="Large" />
+                <Label Text="What you want to check today?"
+                   FontSize="Subtitle" />
+            </VerticalStackLayout>
+
+            <Image Grid.Column="1"
+           x:Name="ImageLabel"
+           WidthRequest="150"
+           Aspect="AspectFit"
+           VerticalOptions="Start"
+           HorizontalOptions="End"
+           Margin="10,0,0,0"/>
+        </Grid>
+        <Label Text="Your Upcoming Screenings"
+               Grid.Row="1"
+               FontSize="Large" />
+
+        <CollectionView Grid.Row="2"
+                        x:Name="CvUpcomingScreenings"
+                        SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="30"
+                                   Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Border  StrokeShape="RoundRectangle 10">
+                            <Image HeightRequest="100"
+                                   WidthRequest="90"
+                                   Source="{Binding FullImageUrl}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnMovieTapped"
+                                                          CommandParameter="{Binding MovieId}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Border>
+                        <VerticalStackLayout>
+                            <Label HorizontalOptions="Center"
+                               FontSize="Small" 
+                                   Text="{Binding MovieTitle}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnMovieTapped"
+                                                          CommandParameter="{Binding MovieId}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label HorizontalOptions="Center"
+                               FontSize="Small" 
+                                   Text="{Binding StartDate}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnMovieTapped"
+                                                          CommandParameter="{Binding MovieId}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label HorizontalOptions="Center"
+                               FontSize="Small" 
+                                   Text="{Binding EndDate}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnMovieTapped"
+                                                          CommandParameter="{Binding MovieId}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Frame Padding="10" CornerRadius="8" x:Name="LastestInvoice" Grid.Row="3">
+            <Border  StrokeShape="RoundRectangle 10">
+                <HorizontalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Your latest invoice"
+               FontSize="Large" />
+                        <HorizontalStackLayout>
+                            <Label Text="Invoice No:" FontAttributes="Bold"/>
+                            <Label x:Name="InvoiceNumber" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Date:" FontAttributes="Bold"/>
+                            <Label x:Name="InvoiceDate" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Amount:" FontAttributes="Bold"/>
+                            <Label x:Name="InvoiceAmount" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Order Status:" FontAttributes="Bold"/>
+                            <Label x:Name="InvoiceOrderStatus" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Payment Status:" FontAttributes="Bold"/>
+                            <Label x:Name="InvoicePaymentStatus" />
+                        </HorizontalStackLayout>
+                        <Button Text="Details"
+                            x:Name="ButtonInvoiceDetails">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="InvoiceDetails_Clicked" />
+                            </Button.GestureRecognizers>
+                        </Button>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+        </Frame>
+
+    </Grid>
+</ContentPage>

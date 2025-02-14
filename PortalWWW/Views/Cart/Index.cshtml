@@ -35,7 +35,7 @@
 
         <p>Total Price: @Model.PriceTotal zł</p>
 
-        <form asp-controller="Cart" asp-action="ChoosePayment" method="post">
+        <form asp-controller="Cart" asp-action="ChoosePayment" method="get">
             <button type="submit" class="btn btn-outline-dark">Go to payment</button>
         </form>
     }

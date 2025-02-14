@@ -1,4 +1,6 @@
 using DatabaseAPI.Data;
+using DatabaseAPI.Models.People;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,15 @@ builder.Services.AddDbContext<DatabaseAPIContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+builder.Services.AddAuthorizationBuilder();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<DatabaseAPIContext>()
+    .AddRoles<IdentityRole>()
+    .AddUserManager<UserManager<IdentityUser>>()
+    .AddApiEndpoints();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,9 +32,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
+
+app.MapIdentityApi<IdentityUser>();
 
 app.MapControllers();
 

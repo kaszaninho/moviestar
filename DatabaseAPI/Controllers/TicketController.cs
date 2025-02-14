@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
+using DatabaseAPI.ViewModels;
 
 namespace DatabaseAPI.Controllers
 {
@@ -26,6 +27,24 @@ namespace DatabaseAPI.Controllers
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
             return await _context.Ticket.ToListAsync();
+        }
+
+        // GET: api/Ticket
+        [HttpGet("ticketsforuser/{userId}")]
+        public async Task<ActionResult<IEnumerable<TicketViewModel>>> GetTicketsForUser(string userId)
+        {
+            var tickets = await _context.Ticket.Include(ticket => ticket.ScreeningSeat).ThenInclude(ticket => ticket.Screening).ThenInclude(ticket => ticket.Movie)
+                .Include(ticket => ticket.Invoice).Where(ticket => ticket.Invoice.UserId == userId).ToListAsync();
+            return tickets.Select(ticket => new TicketViewModel
+            {
+                StartDate = ticket.ScreeningSeat.Screening.StartDate,
+                EndDate = ticket.ScreeningSeat.Screening.EndDate,
+                MovieId = ticket.ScreeningSeat.Screening.MovieId,
+                MovieName = ticket.ScreeningSeat.Screening.Movie.Name,
+                SeatNumber = ticket.ScreeningSeat.Name,
+                TicketPrice = ticket.ScreeningSeat.Screening.Movie.TicketPrice,
+                TicketId = ticket.Id
+            }).ToList();
         }
 
         // GET: api/Ticket/5
