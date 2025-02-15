@@ -2,18 +2,15 @@ using MobileApp.Pages.AboutUs;
 using MobileApp.Services;
 using MobileApp.ViewModels.AboutUs;
 using System.Collections.ObjectModel;
-using static MobileApp.Services.AppSettings;
 
 namespace MobileApp.Pages;
 
 public partial class AboutUsPage : ContentPage
 {
     private IEnumerable<WebsiteResponse> WebsitePages { get; set; } = new List<WebsiteResponse>();
-    private ObservableCollection<WebsiteResponse> DisplayedPages { get; set; } = new ObservableCollection<WebsiteResponse>();
     public AboutUsPage()
     {
         InitializeComponent();
-        ImageLabel.Source = IMAGE_LOGO_URL;
         LoadWebsites();
     }
 

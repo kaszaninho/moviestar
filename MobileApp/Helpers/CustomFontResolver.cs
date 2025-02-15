@@ -28,7 +28,7 @@ namespace MobileApp.Helpers
         {
             if (hashtable.ContainsKey(faceName))
             {
-                var fontStream = FileSystem.OpenAppPackageFileAsync((string) hashtable[faceName]).Result;
+                var fontStream = FileSystem.OpenAppPackageFileAsync((string) hashtable[faceName]).GetAwaiter().GetResult();
                 using (var memoryStream = new MemoryStream())
                 {
                     fontStream.CopyTo(memoryStream);

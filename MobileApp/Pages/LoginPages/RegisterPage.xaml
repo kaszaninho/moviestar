@@ -4,53 +4,119 @@
              x:Class="MobileApp.Pages.RegisterPage"
              NavigationPage.HasNavigationBar="False">
     <ScrollView>
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
-              RowSpacing="20">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+          RowSpacing="10"
+          Margin="20">
+
+            <!-- Logo -->
             <Image Grid.Row="0"
-                    Aspect="AspectFit"                       
-                x:Name="ImageLabel" />
+               Aspect="AspectFit"                       
+               x:Name="ImageLabel"
+               Margin="20,20,20,20" />
+
+            <!-- Registration Header -->
             <Label Grid.Row="1"
-                   Text="Registration" 
-                   FontAttributes="Bold" 
-                   FontSize="Large"
-                   HorizontalOptions="Center" />
-            <Frame Grid.Row="2"
-                   Padding="15"
-                   >
-                <VerticalStackLayout>
-                    <Label Text="Email:" 
-                           FontAttributes="Bold" 
-                           FontSize="Default"
-                           HorizontalOptions="Fill" />
+               Text="Registration" 
+               FontAttributes="Bold" 
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+            <!-- Registration Form -->
+            <Frame Grid.Row="2" Padding="15">
+                <VerticalStackLayout Spacing="10">
+
+                    <!-- Email -->
+                    <Label Text="Email:" FontAttributes="Bold"/>
                     <Entry Placeholder="Enter Email"
-                           Keyboard="Email"
-                           x:Name="EntEmail" />
-                    <Label Text="Password:" 
-                           FontAttributes="Bold" 
-                           FontSize="Default"
-                           HorizontalOptions="Fill" />
+                       Keyboard="Email"
+                       x:Name="EntEmail" />
+
+                    <!-- Password -->
+                    <Label Text="Password:" FontAttributes="Bold"/>
                     <Entry Placeholder="Enter Password"
-                           IsPassword="True"
-                           x:Name="EntPassword" />
+                       IsPassword="True"
+                       x:Name="EntPassword" />
+
+                    <!-- Confirm Password -->
+                    <Label Text="Confirm Password:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Confirm Password"
+                       IsPassword="True"
+                       x:Name="EntConfirmPassword" />
+
+                    <!-- First Name -->
+                    <Label Text="First Name:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter First Name"
+                       x:Name="EntFirstName" />
+
+                    <!-- Middle Name -->
+                    <Label Text="Middle Name (Optional):" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Middle Name"
+                       x:Name="EntMiddleName" />
+
+                    <!-- Last Name -->
+                    <Label Text="Last Name:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Last Name"
+                       x:Name="EntLastName" />
+
+                    <!-- Date of Birth -->
+                    <Label Text="Date of Birth:" FontAttributes="Bold"/>
+                    <DatePicker x:Name="DpDateOfBirth" Format="yyyy-MM-dd"/>
+
+                    <!-- Street Name -->
+                    <Label Text="Street Name:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Street Name"
+                       x:Name="EntStreetName" />
+
+                    <!-- House Number -->
+                    <Label Text="House Number:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter House Number"
+                       x:Name="EntHouseNumber"
+                       Keyboard="Numeric"/>
+
+                    <!-- Apartment Number -->
+                    <Label Text="Apartment Number (Optional):" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Apartment Number"
+                       x:Name="EntApartmentNumber"
+                       Keyboard="Numeric"/>
+
+                    <!-- EirCode -->
+                    <Label Text="EirCode:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter EirCode"
+                       x:Name="EntEirCode" />
+
+                    <!-- City -->
+                    <Label Text="City:" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter City"
+                       x:Name="EntCity" />
+
+                    <!-- Country (Dropdown) -->
+                    <Label Text="Country:" FontAttributes="Bold"/>
+                    <Picker x:Name="PickerCountry"
+                        Title="Select Country"
+                        SelectedIndexChanged="PickerCountry_SelectedIndexChanged"/>
+
                 </VerticalStackLayout>
             </Frame>
 
+            <!-- Register Button -->
             <Button Grid.Row="3"    
-                    Text="Sign Up"
-                    x:Name="BtnRegister"
-                    Margin="0,20,0,0" 
-                    Clicked="BtnRegister_Clicked"/>
+                Text="Sign Up"
+                x:Name="BtnRegister"
+                Margin="20,20,20,20" 
+                Clicked="BtnRegister_Clicked"/>
+
+            <!-- Already Have an Account -->
             <HorizontalStackLayout Grid.Row="4"
-                                   Spacing="2"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="EndAndExpand"
-                                   Margin="0,20,0,0" >
+                               Spacing="2"
+                               HorizontalOptions="Center"
+                               VerticalOptions="EndAndExpand"
+                               Margin="0,20,0,0">
                 <Label Text="Already have an account?" />
                 <Label Text="Sign In"
-                       >
+                   TextColor="Blue">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer x:Name="TapSignIn"
-                            Tapped="TapSignIn_Tapped" />
+                                          Tapped="TapSignIn_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
             </HorizontalStackLayout>

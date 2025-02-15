@@ -47,30 +47,34 @@
 
                             <!-- Movie Image -->
                             <Border StrokeShape="RoundRectangle 10">
-                                <Image HeightRequest="100"
-                               WidthRequest="90"
+                                <Image 
+                               WidthRequest="150"
                                Source="{Binding FullImageUrl}" />
                             </Border>
 
-                            <!-- Movie Info -->
                             <VerticalStackLayout>
-                                <Label Text="{Binding Title}" 
+                            <!-- Movie Info -->
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Title}" 
                                FontSize="Medium" 
                                FontAttributes="Bold"/>
-                                <Label Text="{Binding AgeRating, StringFormat='Age Rating: {0}'}" 
+                                    <Label Text="{Binding AgeRating, StringFormat='Age Rating: {0}'}" 
                                FontSize="Small" />
-                                <Label Text="{Binding Country, StringFormat='Country: {0}'}" 
+                                    <Label Text="{Binding Country, StringFormat='Country: {0}'}" 
                                FontSize="Small" />
-                                <Label Text="{Binding Genre, StringFormat='Genre: {0}'}" 
+                                    <Label Text="{Binding Genre, StringFormat='Genre: {0}'}" 
                                FontSize="Small" />
-                                <Label Text="{Binding Duration, StringFormat='Duration: {0} min'}" 
+                                    <Label Text="{Binding Duration, StringFormat='Duration: {0} min'}" 
                                FontSize="Small" />
-                                <Label Text="{Binding TicketPrice, StringFormat='Ticket Price: ${0:F2}'}" 
+                                    <Label Text="{Binding TicketPrice, StringFormat='Ticket Price: PLN {0:F2}'}" 
                                FontSize="Small" />
+                                </VerticalStackLayout>
 
                                 <!-- Navigate Button -->
                                 <Button Text="View Details"
                                 FontSize="Small"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="150"
                                 Clicked="OnMovieDetailsClicked"
                                 CommandParameter="{Binding MovieId}" />
                             </VerticalStackLayout>

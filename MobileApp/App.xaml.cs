@@ -1,4 +1,6 @@
-﻿using MobileApp.Pages;
+﻿using MobileApp.Helpers;
+using MobileApp.Pages;
+using PdfSharp.Fonts;
 
 namespace MobileApp
 {
@@ -7,6 +9,7 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
+            GlobalFontSettings.FontResolver = new CustomFontResolver();
 
             var accesstoken = SecureStorage.GetAsync("accesstoken").GetAwaiter().GetResult();
             if (string.IsNullOrEmpty(accesstoken))

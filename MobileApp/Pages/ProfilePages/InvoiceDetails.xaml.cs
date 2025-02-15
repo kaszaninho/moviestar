@@ -36,10 +36,10 @@ public partial class InvoiceDetails : ContentPage
             }
 
             // Populate price details
-            TicketSumLabel.Text = $"Ticket Sum: ${invoice.TicketSum:F2}";
+            TicketSumLabel.Text = $"Ticket Sum: PLN {invoice.TicketSum:F2}";
             CouponLabel.Text = string.IsNullOrEmpty(invoice.Coupon) ? "Coupon: None" : $"Coupon: {invoice.Coupon}";
-            CouponDiscountLabel.Text = invoice.CouponDiscount == null ? "Discount: None" : $"Discount: ${invoice.CouponDiscount:F2}";
-            TotalSumLabel.Text = $"Total: ${invoice.TotalSum:F2}";
+            CouponDiscountLabel.Text = invoice.CouponDiscount == null ? "Discount: None" : $"Discount: PLN {invoice.CouponDiscount:F2}";
+            TotalSumLabel.Text = $"Total: PLN {invoice.TotalSum:F2}";
 
             // Populate ticket list
             if (invoice.Tickets != null && invoice.Tickets.Count > 0)

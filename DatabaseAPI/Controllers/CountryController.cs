@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.DictionaryModels;
+using DatabaseAPI.ViewModels;
 
 namespace DatabaseAPI.Controllers
 {
@@ -23,9 +24,13 @@ namespace DatabaseAPI.Controllers
 
         // GET: api/Country
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountry()
+        public async Task<ActionResult<IEnumerable<CountryViewModel>>> GetCountry()
         {
-            return await _context.Country.ToListAsync();
+            return await _context.Country.Select(x => new CountryViewModel
+            {
+                CountryName = x.Name,
+                CountryId = x.Id
+            }).ToListAsync();
         }
 
         // GET: api/Country/5

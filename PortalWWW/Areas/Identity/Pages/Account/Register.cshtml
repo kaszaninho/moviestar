@@ -1,11 +1,12 @@
 @page
 @model RegisterModel
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     ViewData["Title"] = "Register";
 }
 
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="container d-flex justify-content-center align-items-center vh-200">
     <div class="card p-4 shadow-lg border-0 bg-dark text-white" style="width: 600px; border-radius: 10px;">
         <h2 class="text-center mb-4">Register</h2>
         <form id="registerForm" method="post">
@@ -30,14 +31,39 @@
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
+                <input asp-for="Input.MiddleName" class="form-control bg-light text-dark rounded-3" placeholder="Middle Name" />
+                <label asp-for="Input.MiddleName" class="text-dark">Middle Name</label>
+                <span asp-validation-for="Input.MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
                 <input asp-for="Input.LastName" class="form-control bg-light text-dark rounded-3" placeholder="Last Name" />
                 <label asp-for="Input.LastName" class="text-dark">Last Name</label>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
-            </div>
+                </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.DateOfBirth" type="text" id="datepicker" class="form-control bg-light text-dark rounded-3" placeholder="Select your date of birth">
                 <label asp-for="Input.DateOfBirth" class="text-dark">Date of Birth</label>
                 <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.StreetName" class="form-control bg-light text-dark rounded-3" placeholder="Street Name" />
+                <label asp-for="Input.StreetName" class="text-dark">Street Name</label>
+                <span asp-validation-for="Input.StreetName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.HouseNumber" class="form-control bg-light text-dark rounded-3" placeholder="House No." />
+                <label asp-for="Input.HouseNumber" class="text-dark">House Number</label>
+                <span asp-validation-for="Input.HouseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ApartmentNumber" class="form-control bg-light text-dark rounded-3" placeholder="Apar. No." />
+                <label asp-for="Input.ApartmentNumber" class="text-dark">Apartment Number</label>
+                <span asp-validation-for="Input.ApartmentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.EirCode" class="form-control bg-light text-dark rounded-3" placeholder="EirCode" />
+                <label asp-for="Input.EirCode" class="text-dark">EirCode</label>
+                <span asp-validation-for="Input.EirCode" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.City" class="form-control bg-light text-dark rounded-3" placeholder="City" />
@@ -51,6 +77,17 @@
                 <label asp-for="Input.CountryId" class="text-dark">Country</label>
                 <span asp-validation-for="Input.CountryId" class="text-danger"></span>
             </div>
+
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <div class="form-floating mb-3">
+                    <select asp-for="Input.RoleName" class="form-control bg-light text-dark rounded-3" asp-items="Model.RoleList">
+                        <option value="">-- Role --</option>
+                    </select>
+                    <label asp-for="Input.RoleName" class="text-dark">Role</label>
+                    <span asp-validation-for="Input.RoleName" class="text-danger"></span>
+                </div>
+            }
 
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary btn-lg rounded-3">Sign up</button>

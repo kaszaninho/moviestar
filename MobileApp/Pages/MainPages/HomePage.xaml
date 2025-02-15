@@ -31,11 +31,15 @@
         </Grid>
         <Label Text="Your Upcoming Screenings"
                Grid.Row="1"
-               FontSize="Large" />
+               FontSize="Large"
+               
+           Margin="10,0,0,0"/>
 
         <CollectionView Grid.Row="2"
                         x:Name="CvUpcomingScreenings"
-                        SelectionMode="Single">
+                        SelectionMode="Single"
+                        
+           Margin="10,0,0,0">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="30"
                                    Orientation="Horizontal" />
@@ -85,40 +89,40 @@
         </CollectionView>
 
         <Frame Padding="10" CornerRadius="8" x:Name="LastestInvoice" Grid.Row="3">
-            <Border  StrokeShape="RoundRectangle 10">
-                <HorizontalStackLayout>
-                    <VerticalStackLayout>
-                        <Label Text="Your latest invoice"
+            <VerticalStackLayout>
+                <Label Text="Your latest invoice"
                FontSize="Large" />
-                        <HorizontalStackLayout>
-                            <Label Text="Invoice No:" FontAttributes="Bold"/>
+                <Border  StrokeShape="RoundRectangle 10">
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout Margin="10,10,10,10">
+                            <Label Text="Invoice No: " FontAttributes="Bold"/>
                             <Label x:Name="InvoiceNumber" />
                         </HorizontalStackLayout>
-                        <HorizontalStackLayout>
-                            <Label Text="Date:" FontAttributes="Bold"/>
+                        <HorizontalStackLayout Margin="10,10,10,10">
+                            <Label Text="Date: " FontAttributes="Bold"/>
                             <Label x:Name="InvoiceDate" />
                         </HorizontalStackLayout>
-                        <HorizontalStackLayout>
-                            <Label Text="Amount:" FontAttributes="Bold"/>
+                        <HorizontalStackLayout Margin="10,10,10,10">
+                            <Label Text="Amount: " FontAttributes="Bold"/>
                             <Label x:Name="InvoiceAmount" />
                         </HorizontalStackLayout>
-                        <HorizontalStackLayout>
-                            <Label Text="Order Status:" FontAttributes="Bold"/>
+                        <HorizontalStackLayout Margin="10,10,10,10">
+                            <Label Text="Order Status: " FontAttributes="Bold"/>
                             <Label x:Name="InvoiceOrderStatus" />
                         </HorizontalStackLayout>
-                        <HorizontalStackLayout>
-                            <Label Text="Payment Status:" FontAttributes="Bold"/>
+                        <HorizontalStackLayout Margin="10,10,10,10">
+                            <Label Text="Payment Status: " FontAttributes="Bold"/>
                             <Label x:Name="InvoicePaymentStatus" />
                         </HorizontalStackLayout>
                         <Button Text="Details"
-                            x:Name="ButtonInvoiceDetails">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="InvoiceDetails_Clicked" />
-                            </Button.GestureRecognizers>
-                        </Button>
+        HorizontalOptions="Start"
+        WidthRequest="100"
+        x:Name="ButtonInvoiceDetails"
+        Clicked="InvoiceDetails_Clicked"
+        CommandParameter="{Binding LatestInvoiceWithTickets.InvoiceId}" />
                     </VerticalStackLayout>
-                </HorizontalStackLayout>
-            </Border>
+                </Border>
+            </VerticalStackLayout>
         </Frame>
 
     </Grid>

@@ -10,7 +10,8 @@
 
                 <Image Grid.Row="0"
                     Aspect="AspectFit"                       
-                x:Name="ImageLabel" />
+                x:Name="ImageLabel"
+                       Margin="20,20,20,20"/>
 
                 <Label Grid.Row="1"
                Text="Login" 
@@ -44,7 +45,7 @@
             <Button Grid.Row="4"
                 Text="Sign In"
                 x:Name="BtnSignIn"
-                Margin="0,20,0,0" 
+                Margin="20,20,20,20" 
                 Clicked="BtnSignIn_Clicked"/>
 
             <HorizontalStackLayout Grid.Row="5"

@@ -13,15 +13,9 @@ namespace MobileApp.Services
 {
     public class IdentityApiService
     {
-        public static async Task<bool> RegisterUser(string email, string password)
+        public static async Task<bool> RegisterUser(RegisterRequest registerRequest)
         {
-            var register = new RegisterRequest()
-            {
-                // I need to fill up user data here
-                Email = email,
-                Password = password
-            };
-            return await RequestHelper.SendRequestAsync("/register", HttpMethod.Post, register, null);
+            return await RequestHelper.SendRequestAsync("/register", HttpMethod.Post, registerRequest, null);
         }
 
         public static async Task<bool> LoginUser(string email, string password)
@@ -36,6 +30,11 @@ namespace MobileApp.Services
             await SecureStorage.SetAsync("accesstoken", response.AccessToken);
             await SecureStorage.SetAsync("username", email);
             return true;
+        }
+
+        public static async Task<IEnumerable<CountryResponse>> GetCountryList()
+        {
+            return await RequestHelper.SendRequestAsync<IEnumerable<CountryResponse>>("/api/Country", HttpMethod.Get, null);
         }
     }
 }

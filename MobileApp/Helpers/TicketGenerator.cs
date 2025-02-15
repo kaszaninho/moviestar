@@ -9,7 +9,6 @@ namespace MobileApp.Helpers
         public static string IMAGE_LOGO_URL = @"http://localhost/images/photos/LOGO.png";
         public static void GenerateTicket(TicketInvoiceModel ticket, string? filePath)
         {
-            GlobalFontSettings.FontResolver = new CustomFontResolver();
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();
             XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -18,11 +17,16 @@ namespace MobileApp.Helpers
             using (HttpClient client = new HttpClient())
             {
                 var imageData = client.GetByteArrayAsync(IMAGE_LOGO_URL).GetAwaiter().GetResult(); // Download image as byte array
-                using (MemoryStream ms = new MemoryStream(imageData))
+                if (imageData == null || imageData.Length == 0)
                 {
-                    XImage img = XImage.FromStream(ms);
-                    gfx.DrawImage(img, 300, 100, 225, 75);
+                    throw new Exception("Failed to download image. Image data is empty.");
                 }
+                // Save to a temporary file
+                string tempPath = Path.Combine(FileSystem.CacheDirectory, "temp_logo.png");
+                File.WriteAllBytes(tempPath, imageData);
+
+                XImage img = XImage.FromFile(tempPath);
+                gfx.DrawImage(img, 300, 100, 225, 75);
             }
             gfx.DrawString("Ticket number: " + ticket.Id, font, XBrushes.Black, new XRect(0, 10, page.Width, page.Height), format);
             gfx.DrawString("Movie: " + ticket.MovieName, font, XBrushes.Black, new XRect(0, 30, page.Width, page.Height), format);
