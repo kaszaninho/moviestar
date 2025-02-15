@@ -49,13 +49,17 @@ namespace PortalWWW.Helpers
             return true;
         }
 
+        public static bool ShouldBeShownBasedOnPropertyName(string propertyName)
+        {
+            if (propertyName.ToLower().Contains("imageurl"))
+                return false;
+            return true;
+        }
 
         public static string TextTypeBasedOnPropertyType(Type type)
         {
             switch (type)
             {
-                case Type t when t == typeof(Photo):
-                    return "type = file";
                 case Type t when t == typeof(bool):
                     return "type = checkbox value=true @(propValue as bool? == true ? checked : unchecked)";
                 case Type t when t == typeof(bool?):

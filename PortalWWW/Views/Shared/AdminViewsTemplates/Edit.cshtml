@@ -8,6 +8,7 @@
     string partialViewName = (string)ViewData["PartialViewName"];
     var properties = entityType.GetProperties();
     string id = "Id";
+    string createdAt = "CreatedAt";
 }
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
@@ -27,7 +28,8 @@
     <div class="table-responsive">
         <form asp-action="EditConfirmed" method="post" enctype="multipart/form-data">
             <table class="table table-bordered table-striped table-hover custom-table">
-                <input asp-for="@id" type="hidden" class="form-control" ) />
+                <input asp-for="@id" type="hidden" class="form-control" value="@Model.Id" />
+                <input asp-for="@createdAt" type="hidden" class="form-control" value="@Model.CreatedAt" />
                 <div class="table-responsive">
                     <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
 
@@ -56,9 +58,7 @@
                                     @if (prop.PropertyType == typeof(string))
                                     {
                                         <textarea id="@prop.Name" name="@prop.Name" class="form-control"
-                                                  style="min-height: 150px; width: 100%; resize: vertical; text-align: left !important; color: white; white-space: pre-line;">
-                                            @(@prop.GetValue(Model) ?? "")
-        </textarea>
+                                                  style="min-height: 150px; width: 100%; resize: vertical; text-align: left !important; color: white; white-space: pre-line;">@(@prop.GetValue(Model) ?? "")</textarea>
 
  
                                     }

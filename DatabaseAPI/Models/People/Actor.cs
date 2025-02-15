@@ -12,8 +12,5 @@ namespace DatabaseAPI.Models.People
         public DateTime DateOfBirth { get; set; }
         public Country? Country { get; set; }
         public int? CountryId { get; set; }
-        public string? ImageUrl { get; set; }
-
-
     }
 }

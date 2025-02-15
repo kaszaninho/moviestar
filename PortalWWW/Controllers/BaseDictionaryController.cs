@@ -63,18 +63,6 @@ namespace PortalWWW.Controllers
             return View(entity);
         }
 
-        //[HttpGet("Delete")]
-        //virtual public async Task<IActionResult> Delete(int id)
-        //{
-        //    var entity = await repository.FindEntityAsync(id);
-        //    if (entity == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["type"] = typeof(T);
-        //    return View(entity);
-        //}
-
         [HttpPost("DeleteConfirmed")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -109,7 +97,7 @@ namespace PortalWWW.Controllers
             if (!ModelState.IsValid)
             {
                 ViewData["type"] = typeof(T);
-                return View(entity);
+                return RedirectToAction(nameof(Edit), entity);
             }
             entity.ModifiedAt = DateTime.Now;
             await repository.UpdateEntityAsync(entity);
