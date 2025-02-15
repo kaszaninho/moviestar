@@ -1,23 +1,35 @@
 ﻿@model DatabaseAPI.Models.General.Invoice
 
-
 @{
     ViewData["Title"] = "Order Cancelled";
 }
+ 
 
-<div class="container">
-    <p>The order cancellation</p>
-</div>
-<div class="container">
-    <p>Your order was cancelled</p>
-    <p>Order details:</p>
-    <p>Invoice ID: @Model.InvoiceId</p>
-    <p>Sum: @Model.TotalSum PLN</p>
-    <p>Payment Method: @Model.PaymentMethod.Name</p>
-    <p>Payment status: @Model.PaymentStatus</p>
-    <p>Order details: @Model.OrderStatus</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card order-card">
+                <div class="card-header">
+                    Order Cancelled ❌
+                </div>
+                <div class="card-body">
+                    <h4 class="text-warning text-center">Your order has been cancelled.</h4>
 
-    <form asp-controller="Cart" asp-action="Index" method="get">
-        <button type="submit" class="btn btn-outline-dark">Go to the cart</button>
-    </form>
+                    <div class="mt-4">
+                        <p>🆔 <strong>Invoice ID:</strong> <span class="highlight-text">@Model.InvoiceId</span></p>
+                        <p>💰 <strong>Total Sum:</strong> <span class="highlight-text">@Model.TotalSum PLN</span></p>
+                        <p>💳 <strong>Payment Method:</strong> <span class="highlight-text">@Model.PaymentMethod.Name</span></p>
+                        <p>✅ <strong>Payment Status:</strong> <span class="highlight-text">@Model.PaymentStatus</span></p>
+                        <p>📜 <strong>Order Status:</strong> <span class="highlight-text">@Model.OrderStatus</span></p>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <form asp-controller="Cart" asp-action="Index" method="get">
+                            <button type="submit" class="btn btn-primary w-100">Go to the Cart 🛒</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

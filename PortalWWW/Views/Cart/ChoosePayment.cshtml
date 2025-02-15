@@ -1,56 +1,69 @@
 ﻿@model PortalWWW.Models.CartInformation
 
-
 @{
     ViewData["Title"] = "Payment Choice";
-
 }
+ 
+<div class="container mt-5">
+    <h2 class="text-primary text-center">💳 Choose Payment</h2>
 
-<div class="container">
     <div class="container">
-        <p>Cart Details</p>
-        <div class="container">
+        <h4 class="text-white mb-3">🎟️ Your Tickets</h4>
+        <div class="row justify-content-center">
             @foreach (var element in Model.CartElements)
             {
-                <div class="col-md-6 d-flex card">
-                    <div class="card-header">
-                        <p>@element.ScreeningSeat.Screening.Movie.Name</p>
-                    </div>
-                    <div class="card-body">
-                        <p>Duration - @element.ScreeningSeat.Screening.Movie.Duration</p>
-                        <p>Date - @element.ScreeningSeat.Screening.StartDate.Value.ToString("dd:MM:yyyy")</p>
-                        <p>Start - @element.ScreeningSeat.Screening.StartDate.Value.ToString("HH:mm")</p>
-                        <p>End - @element.ScreeningSeat.Screening.EndDate.Value.ToString("HH:mm")</p>
-                        <p>Seat - @element.ScreeningSeat.Name</p>
+                <div class="col-md-6">
+                    <div class="card ticket-card">
+                        <div class="card-header">
+                            @element.ScreeningSeat.Screening.Movie.Name
+                        </div>
+                        <div class="card-body">
+                            <p>🎬 <strong>Duration:</strong> @element.ScreeningSeat.Screening.Movie.Duration min</p>
+                            <p>📅 <strong>Date:</strong> @element.ScreeningSeat.Screening.StartDate.Value.ToString("dd-MM-yyyy")</p>
+                            <p>🕒 <strong>Start:</strong> @element.ScreeningSeat.Screening.StartDate.Value.ToString("HH:mm")</p>
+                            <p>🕓 <strong>End:</strong> @element.ScreeningSeat.Screening.EndDate.Value.ToString("HH:mm")</p>
+                            <div class="ticket-info">
+                                <span>🎟 Seat:</span> <span>@element.ScreeningSeat.Name</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }
         </div>
 
-        <p>Tickets Price: @Model.PriceTotal zł</p>
+        <h3 class="total-price">💰 Total Price: @Model.PriceTotal zł</h3>
     </div>
+
     @if (Model.Coupon == null)
     {
-        <div class="container">
-            <p>Add Coupon?</p>
-            <form asp-controller="Cart" asp-action="AddCoupon" method="post">
-                <input type="text" name="couponName" class="form-control" />
-                <button type="submit" class="btn btn-toolbar m-2 border-white text-white" value="Enter coupon" />
+        <div class="container mt-4">
+            <h5 class="text-white">🎟️ Add a Coupon?</h5>
+            <form asp-controller="Cart" asp-action="AddCoupon" method="post" class="d-flex">
+                <input type="text" name="couponName" class="form-control me-2" placeholder="Enter coupon code">
+                <button type="submit" class="btn btn-success">Apply</button>
             </form>
         </div>
     }
     else
     {
-        <p>Coupon activated</p>
-        <p>Coupon: @Model.Coupon.Name</p>
-        <p>Discount: @Model.CouponDiscount PLN</p>
-        <p>Total Price: @(Model.PriceTotal - Model.CouponDiscount)</p>
+        <div class="container mt-4">
+            <h5 class="text-white">✅ Coupon Applied</h5>
+            <p><strong>Coupon:</strong> @Model.Coupon.Name</p>
+            <p><strong>Discount:</strong> @Model.CouponDiscount PLN</p>
+            <h5 class="text-white">💰 Final Price: <span class="text-success">@(Model.PriceTotal - Model.CouponDiscount) zł</span></h5>
+        </div>
     }
-    <p>Choose Payment</p>
-    <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
-        <select class="form-control" name="paymentMethodId" asp-items="ViewBag.PaymentMethods">
-            <option value="">-- Payment Method --</option>
-        </select>
-        <button type="submit" class="btn btn-toolbar m-2 border-white">Go to payment</button>
-    </form>
+
+    <div class="container mt-4">
+        <h4 class="text-white">💳 Select Payment Method</h4>
+        <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
+            <div class="form-floating mb-3">
+                <select class="form-control" name="paymentMethodId" asp-items="ViewBag.PaymentMethods">
+                    <option value="">-- Select Payment Method --</option>
+                </select>
+            </div>
+            <button type="submit" class="payment-btn">Proceed to Payment</button>
+        </form>
+    </div>
 </div>
+<br>
