@@ -1,4 +1,4 @@
-﻿@using System.Linq;
+@using System.Linq;
 @using DatabaseAPI.Models.DictionaryModels;
 @using static PortalWWW.Helpers.GenericCheck;
 @model dynamic
@@ -8,54 +8,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Type entityType = ViewData["type"] as Type;
     string entityEndpoint = ViewData["entityEndpoint"] != null ? ViewData["entityEndpoint"].ToString() : entityType.Name.ToLower();
+
+    // Pobranie listy kolumn (bez kolekcji i Id)
+    var columnList = entityType.GetProperties()
+        .Where(prop => !IsGenericCollection(prop.PropertyType))
+        .Select(prop => char.ToLower(prop.Name[0]) + prop.Name.Substring(1))
+        .ToList();
+
+    // Serializacja kolumn do JSON
+    var columnListJson = Json.Serialize(columnList);
 }
+
+<!-- Importowanie stylów DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<h1>Index</h1>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">@entityType.Name Management</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-success m-2 custom-btn">
+                <i class="bi bi-plus-circle"></i> Add @entityType.Name
+            </a>
+        </div>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New @entityType.Name</a>
-</p>
-
-<table id="tblData" class="table table-striped table-bordered table-hover table-sm table-responsive">
-    <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Is Active</th>
-            <th>Created At</th>
-            <th>Modified At</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    @foreach (var column in columnList)
+                    {
+                        <th>@column</th>
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
 
 @section Scripts
 {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
     <script>
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
         function loadDataTable() {
-            const modelType = "@entityEndpoint";
+            const columns = @Html.Raw(Json.Serialize(columnList));
+            const entityEndpoint = "@entityEndpoint";
+
+            let columnDefinitions = columns.map(col => ({ "data": col }));
+            columnDefinitions.unshift({ "data": "id" });
+
+            columnDefinitions.push({
+                "data": "id",
+                "render": function (data) {
+                    return `<div class="text-center">
+                                        <a href="/${entityEndpoint}/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a href="/${entityEndpoint}/details?id=${data}" class="btn btn-info btn-sm custom-btn">
+                                            <i class="bi bi-eye"></i> Details
+                                        </a>
+                                        <a onClick=Delete('/${entityEndpoint}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </a>
+                                    </div>`;
+                }
+            });
+
             dataTable = $('#tblData').DataTable({
-                "ajax": { url: `/${modelType}/getall` },
-                "columns": [
-                    { "data": "id" },
-                    { "data": "name" },
-                    { "data": "isActive" },
-                    { "data": "createdAt" },
-                    { "data": "modifiedAt" },
-                    {
-                        data: 'id',
-                        "render": function (data) {
-                            return `<div class="test-center" >
-                                            <a onClick=Delete('/${modelType}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">Delete</a>
-                                            <a href="/${modelType}/details?id=${data}" class="btn btn-primary"> Details </a>
-                                            <a href="/${modelType}/edit?id=${data}" class="btn btn-primary"> Edit </a>
-                                            </div>`
-                        }
-                    }
-                ]
+                "ajax": { url: `/${entityEndpoint}/getall`, type: "GET" },
+                "columns": columnDefinitions
             });
         }
 
@@ -73,22 +106,16 @@
                     $.ajax({
                         url: url,
                         type: 'DELETE',
-                        success: function (data) {
+                        success: function () {
                             dataTable.ajax.reload();
                             Swal.fire("Deleted!", "Your record has been deleted.", "success");
                         },
-                        error: function (err) {
+                        error: function () {
                             Swal.fire("Error!", "Something went wrong.", "error");
                         }
                     });
                 }
             });
         }
-
-        $(document).ready(function () {
-            loadDataTable();
-        });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 }
