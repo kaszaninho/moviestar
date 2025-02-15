@@ -8,15 +8,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Type entityType = ViewData["type"] as Type;
     string entityEndpoint = ViewData["entityEndpoint"] != null ? ViewData["entityEndpoint"].ToString() : entityType.Name.ToLower();
-
-    // Pobranie listy kolumn (bez kolekcji i Id)
-    var columnList = entityType.GetProperties()
-        .Where(prop => !IsGenericCollection(prop.PropertyType))
-        .Select(prop => char.ToLower(prop.Name[0]) + prop.Name.Substring(1))
-        .ToList();
-
-    // Serializacja kolumn do JSON
-    var columnListJson = Json.Serialize(columnList);
 }
 
 <!-- Importowanie stylów DataTables -->
@@ -40,10 +31,10 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    @foreach (var column in columnList)
-                    {
-                        <th>@column</th>
-                    }
+                    <th>Name</th>
+                    <th>Is Active</th>
+                    <th>Created At</th>
+                    <th>Modified At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -63,32 +54,27 @@
         });
 
         function loadDataTable() {
-            const columns = @Html.Raw(Json.Serialize(columnList));
-            const entityEndpoint = "@entityEndpoint";
 
-            let columnDefinitions = columns.map(col => ({ "data": col }));
-            columnDefinitions.unshift({ "data": "id" });
-
-            columnDefinitions.push({
-                "data": "id",
-                "render": function (data) {
-                    return `<div class="text-center">
-                                        <a href="/${entityEndpoint}/edit?id=${data}" class="btn btn-warning btn-sm custom-btn">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
-                                        <a href="/${entityEndpoint}/details?id=${data}" class="btn btn-info btn-sm custom-btn">
-                                            <i class="bi bi-eye"></i> Details
-                                        </a>
-                                        <a onClick=Delete('/${entityEndpoint}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn">
-                                            <i class="bi bi-trash"></i> Delete
-                                        </a>
-                                    </div>`;
-                }
-            });
-
+            const modelType = "@entityEndpoint";
             dataTable = $('#tblData').DataTable({
-                "ajax": { url: `/${entityEndpoint}/getall`, type: "GET" },
-                "columns": columnDefinitions
+                "ajax": { url: `/${modelType}/getall` },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "isActive" },
+                    { "data": "createdAt" },
+                    { "data": "modifiedAt" },
+                    {
+                        data: 'id',
+                        "render": function (data) {
+                            return `<div class="text-center" >
+                                <a onClick=Delete('/${modelType}/delete?id=${data}') class="btn btn-danger btn-sm custom-btn"><i class="bi bi-trash"></i> Delete</a>
+                                <a href="/${modelType}/details?id=${data}" class="btn btn-primary btn-sm custom-btn"><i class="bi bi-eye"></i> Details </a>
+                                <a href="/${modelType}/edit?id=${data}" class="btn btn-warning btn-sm custom-btn"> <i class="bi bi-pencil-square"></i> Edit </a>
+                            </div>`
+                        }
+                    }
+                ]
             });
         }
 
