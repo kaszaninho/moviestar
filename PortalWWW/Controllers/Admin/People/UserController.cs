@@ -1,11 +1,14 @@
 ﻿using DatabaseAPI.Data;
+using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using NuGet.Protocol.Core.Types;
 using PortalWWW.Models;
 
@@ -56,31 +59,6 @@ namespace PortalWWW.Controllers.Admin.People
 
             return View(entity);
         }
-
-        //[HttpGet("Delete")]
-        //virtual public async Task<IActionResult> Delete(string id)
-        //{
-        //    var entity = await context.User.Include(u => u.Address).ThenInclude(u => u.Country).FirstOrDefaultAsync(us => us.Id == id);
-        //    var userRole = await context.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
-        //    var role = await context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
-
-        //    entity.Role = role.Name;
-
-        //    return View(entity);
-        //}
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(string id)
-        //{
-        //    var user = await context.User.FirstAsync(us => us.Id == id);
-        //    if (user != null)
-        //    {
-        //        context.Remove(user);
-        //        await context.SaveChangesAsync();
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
 
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string id)
@@ -151,6 +129,63 @@ namespace PortalWWW.Controllers.Admin.People
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet("Edit")]
+        public async Task<IActionResult> Edit(string id)
+        {
+            var entity = await context.User.Include(x => x.Address).ThenInclude(x => x.Country).FirstAsync(x => x.Id == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Countries = new SelectList(await context.Country.ToListAsync(), "Id", "Name");
+            var viewModel = new UserViewModel
+            {
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                ApartmentNumber = entity.Address.ApartmentNumber,
+                City = entity.Address.City,
+                CountryId = entity.Address.CountryId,
+                DateOfBirth = entity.DateOfBirth.Date,
+                EirCode = entity.Address.EirCode,
+                Email = entity.Email,
+                HouseNumber = entity.Address.HouseNumber,
+                MiddleName = entity.MiddleName,
+                StreetName = entity.Address.StreetName,
+                Id = entity.Id
+            };
+            return View(viewModel);
+        }
+
+
+        [HttpPost("EditConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed(UserViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Edit), viewModel);
+            }
+            var entity = await context.User.Include(x => x.Address).FirstAsync(x => x.Id == viewModel.Id);
+            if (entity == null)
+            {
+                return RedirectToAction(nameof(Edit), viewModel);
+            }
+            entity.FirstName = viewModel.FirstName;
+            entity.LastName = viewModel.LastName;
+            entity.MiddleName = viewModel.MiddleName;
+            entity.Email = viewModel.Email;
+            entity.DateOfBirth = viewModel.DateOfBirth;
+            entity.Address.City = viewModel.City;
+            entity.Address.StreetName = viewModel.StreetName;
+            entity.Address.HouseNumber = viewModel.HouseNumber;
+            entity.Address.ApartmentNumber = viewModel.ApartmentNumber;
+            entity.Address.EirCode = viewModel.EirCode;
+            entity.Address.CountryId = viewModel.CountryId;
+            context.Update(entity);
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
