@@ -261,10 +261,10 @@ namespace DatabaseAPI.Data
                     ModifiedAt = new DateTime(2025, 2, 2),
                     IsActive = true,
                     Description = "",
-                    Name = "Invoices",
-                    Action = "InvoiceReportForUser",
-                    Controller = "Home",
-                    Content = "Invoices",
+                    Name = "Movies",
+                    Action = "Index",
+                    Controller = "Movie",
+                    Content = "Movies",
                     Position = 2
                 },
                 new Navbar
@@ -274,10 +274,10 @@ namespace DatabaseAPI.Data
                     ModifiedAt = new DateTime(2025, 2, 2),
                     IsActive = true,
                     Description = "",
-                    Name = "Movies",
+                    Name = "Cart",
                     Action = "Index",
-                    Controller = "Movie",
-                    Content = "Movies",
+                    Controller = "Cart",
+                    Content = "Cart",
                     Position = 3
                 },
                 new Navbar
@@ -287,24 +287,11 @@ namespace DatabaseAPI.Data
                     ModifiedAt = new DateTime(2025, 2, 2),
                     IsActive = true,
                     Description = "",
-                    Name = "Cart",
-                    Action = "Index",
-                    Controller = "Cart",
-                    Content = "Cart",
-                    Position = 4
-                },
-                new Navbar
-                {
-                    Id = 5,
-                    CreatedAt = new DateTime(2025, 2, 2),
-                    ModifiedAt = new DateTime(2025, 2, 2),
-                    IsActive = true,
-                    Description = "",
                     Name = "Contact",
                     Action = "Contact",
                     Controller = "Home",
                     Content = "Contact",
-                    Position = 5
+                    Position = 4
                 });
 
 
