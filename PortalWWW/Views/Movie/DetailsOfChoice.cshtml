@@ -5,23 +5,90 @@
     ViewData["Title"] = "Details";
 }
 
-<div>
-    <p>Details</p>
-    <p>Screening ID: @ViewData["ScreeningId"]</p>
-    <p>Movie Name: @ViewData["MovieName"]</p>
-    <p>Date: @ViewData["Date"]</p>
-</div>
+<!-- Dodaj link do Font Awesome dla ikon -->
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <p>@item.Name</p>
+<style>
+    /* Styl dla sekcji informacji */
+    .info-section {
+        background-color: #222;
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: center;
     }
+
+    /* Styl dla miejsc */
+    .seat-card {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 5px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Styl dla kontenera miejsc */
+    .seat-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    /* Przycisk dodania do koszyka */
+    .add-to-cart-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        padding: 12px;
+        background-color: #0d6efd;
+        border-color: #007bff;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: 0.3s;
+    }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-primary text-center"><i class="fas fa-film"></i> Screening Details</h2>
+
+    <div class="info-section">
+        <h4><i class="fas fa-video"></i> Movie Name: <span class="text-warning">@ViewData["MovieName"]</span></h4>
+        <h5><i class="fas fa-ticket-alt"></i> Screening ID: <span class="text-info">@ViewData["ScreeningId"]</span></h5>
+        <h5><i class="fas fa-calendar-alt"></i> Date: <span class="text-success">@ViewData["Date"]</span></h5>
+    </div>
+
+    <h4 class="text-center text-white"><i class="fas fa-chair"></i> Available Seats</h4>
+    <div class="seat-container">
+        @foreach (var item in Model)
+        {
+            <div class="seat-card">@item.Name</div>
+        }
+    </div>
+
+    <form asp-controller="Cart" asp-action="AddToCart" method="post">
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            <input type="hidden" name="screeningSeats[@i]" value="@Model.ElementAt(i).Id" />
+        }
+        <button type="submit" class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+    </form>
 </div>
-<form asp-controller="Cart" asp-action="AddToCart" method="post">
-    @for (var i = 0; i < Model.Count(); i++)
-    {
-        <input type="hidden" name="screeningSeats[@i]" value="@Model.ElementAt(i).Id" />
-    }
-<button type="submit" class="btn btn-toolbar m-2 border-white">Add to cart</button>
-</form>

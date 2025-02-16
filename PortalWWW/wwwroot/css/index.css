@@ -460,3 +460,117 @@ input:disabled, textarea:disabled {
         opacity: 1 !important; /* Zapobiega przyciemnieniu */
         cursor: not-allowed; /* Wskazuje, że element jest nieaktywny */
     }
+/* Ulepszony wygląd kart biletów */
+.ticket-card {
+    background-color: #222; /* Ciemne tło */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+    .ticket-card .card-header {
+        background-color: #333;
+        color: #ffcc00;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .ticket-card .card-body {
+        padding: 15px;
+    }
+
+    .ticket-card p {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+}
+
+    .ticket-info span {
+        font-weight: bold;
+        color: #ffcc00;
+    }
+
+/* Styl dla całkowitej ceny */
+.total-price {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffcc00;
+    margin-top: 20px;
+}
+
+/* Styl dla przycisku płatności */
+.payment-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 12px;
+    background-color: #0d6efd;
+    border-color: #007bff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+    .payment-btn:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+.order-card {
+    background-color: #222;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+    .order-card .card-header {
+        background-color: #d9534f; /* Czerwony nagłówek */
+        color: white;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 15px;
+    }
+
+    .order-card .card-body {
+        padding: 20px;
+    }
+
+    .order-card p {
+        font-size: 18px;
+        margin: 8px 0;
+    }
+
+.highlight-text {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    font-weight: bold;
+    padding: 12px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
