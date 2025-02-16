@@ -59,14 +59,15 @@
                 </table>
             </div>
         </div>
-
+        <br>
         <div class="row mt-4">
             <h5 style="color:white">Description</h5>
             <p class="form-label">@Model.Description</p>
         </div>
-
+         
         <div class="row mt-4">
-            <h5 style="color:white">Screenings</h5>
+            <br>
+            <h2 class="text-primary text-center" style="color:white">Screenings</h2>
             <div id="screeningsContainerForMovie" class="container">
                 @if (Model.Screenings.Count == 0)
                 {
@@ -75,10 +76,11 @@
                 @foreach (var screening in Model.Screenings)
                 {
                     <form asp-controller="Movie" asp-action="ChooseSeats" asp-route-screeningId="@screening.Id">
-                        <button class="btn btn-info btn-sm mb-2">
-                            @screening.StartDate.Value.ToString("dd-MM-yyyy HH:mm")
+                        <button class="btn btn-info btn-lg fw-bold px-4 py-3 mb-2">
+                            📅 @screening.StartDate?.ToString("dd-MM-yyyy HH:mm")
                         </button>
                     </form>
+
                 }
             </div>
         </div>

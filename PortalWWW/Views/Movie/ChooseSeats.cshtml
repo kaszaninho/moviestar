@@ -80,15 +80,14 @@
 </head>
 
 <div class="container align-content-center text-center d-flex flex-column align-items-center">
-    <div class="screening-info">
-        <h3>Choose Your Seats</h3>
-        <p>Screening ID: @ViewData["ScreeningId"]</p>
-        <p>Movie Name: @ViewData["MovieName"]</p>
-        <p>Date: @ViewData["Date"]</p>
-    </div>
-
     <div class="screening">
         <div class="screening-container">
+            <div class="screening-info">
+                <h2 class="text-primary text-center">Choose Your Seats</h2>
+                <p>Screening ID: @ViewData["ScreeningId"]</p>
+                <p>Movie Name: @ViewData["MovieName"]</p>
+                <p>Date: @ViewData["Date"]</p>
+            </div>
             <div class="screen">SCREEN</div>
 
             <ul class="showcase">
@@ -115,7 +114,7 @@
         </div>
 
         <p class="text">You have selected <span id="seatsSelected">0</span> seats.</p>
-        <button id="submitSeats">Confirm Selection</button>
+        <button id="submitSeats" class="btn btn-danger">Confirm Selection</button>
     </div>
 </div>
 @section Scripts {
