@@ -172,4 +172,8 @@
 		</Content>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\reports\" />
+	</ItemGroup>
+
 </Project>
