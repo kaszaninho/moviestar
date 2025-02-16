@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    [Migration("20250208210147_correctingTableState")]
-    partial class correctingTableState
+    [Migration("20250216113808_newInitialCreateDatabase")]
+    partial class newInitialCreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -325,19 +325,6 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 2,
-                            Action = "InvoiceReportForUser",
-                            Content = "Invoices",
-                            Controller = "Home",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Invoices",
-                            Position = 2
-                        },
-                        new
-                        {
-                            Id = 3,
                             Action = "Index",
                             Content = "Movies",
                             Controller = "Movie",
@@ -346,11 +333,11 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Movies",
-                            Position = 3
+                            Position = 2
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             Action = "Index",
                             Content = "Cart",
                             Controller = "Cart",
@@ -359,11 +346,11 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Cart",
-                            Position = 4
+                            Position = 3
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 4,
                             Action = "Contact",
                             Content = "Contact",
                             Controller = "Home",
@@ -372,7 +359,7 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Contact",
-                            Position = 5
+                            Position = 4
                         });
                 });
 
@@ -493,7 +480,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 2,
-                            Content = "<a href=\"Movie\">Movies</a>",
+                            Content = "<a href=\"/Movie\\Index\">Movies</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -504,7 +491,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 3,
-                            Content = "<a href=\"Cart\">Cart</a>",
+                            Content = "<a href=\"/Cart\\Index\">Cart</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -515,7 +502,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 4,
-                            Content = "<a href=\"Identity/Account/Manage\">Profile</a>",
+                            Content = "<a href=\"/Identity/Account/Manage\">Profile</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -526,7 +513,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 5,
-                            Content = "<a href=\"Contact\">Contact</a>",
+                            Content = "<a href=\"/Contact\">Contact</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -564,64 +551,64 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 1,
-                            Content = "<h2 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Privacy Policy</font></strong></h2><p style=\"text-align: center; \"><strong>Effective Date:</strong> [02.05.2025]</p><p style=\"text-align: center; \">MovieStar (\"we,\" \"us,\" or \"our\") values your privacy. This Privacy Policy describes how we collect, use, and protect your personal data when you use our website.</p><p style=\"text-align: center; \"><strong>1. Information We Collect</strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\">Personal data: Name, email address, payment details (if applicable), and other account information.</p></li><li><p style=\"text-align: center;\">Non-personal data: IP address, browser type, and website usage statistics.</p></li></ul><p style=\"text-align: center;\"><strong>2. How We Use Your Information</strong></p><ul data-spread=\"false\"><ul><li><ul><li style=\"text-align: center;\">To provide and improve our services.</li></ul></li><li><ul><li style=\"text-align: center;\">To process transactions and payments.</li></ul></li><li><ul><li style=\"text-align: center;\">To personalize user experience and deliver relevant content.</li></ul></li><li><ul><li style=\"text-align: center;\">To comply with legal obligations.</li></ul></li></ul></ul><p style=\"text-align: center;\"><strong>3. Data Security</strong>\r\nWe implement industry-standard security measures to protect your personal data. However, no online transmission is 100% secure, and we cannot guarantee absolute security.</p><p style=\"text-align: center;\"><strong>4. Third-Party Sharing</strong>\r\nWe do not sell your personal data. We may share data with third parties for processing transactions, legal compliance, or service improvements.</p><p style=\"text-align: center;\"><strong>5. Your Rights</strong>\r\nYou have the right to access, update, or delete your personal data. Contact us at [Insert Contact Info] to exercise these rights.</p><p style=\"text-align: center;\"><strong>6. Changes to This Policy</strong>\r\nWe may update this Privacy Policy from time to time. Please review it periodically.</p><p style=\"text-align: center;\"><br></p><p style=\"text-align: right;\">MovieStar team</p>",
-                            Description = "",
+                            Content = " \r\n  \r\n\r\n<div class=\"container\">\r\n    <h2><strong>Privacy Policy</strong></h2>\r\n    <p><strong>Effective Date:</strong> 02.05.2025</p>\r\n\r\n    <p>\r\n        Welcome to MovieStar! We are committed to protecting your personal data and ensuring transparency in how we collect, \r\n        use, and secure your information. This Privacy Policy outlines our data processing practices and your rights.\r\n    </p>\r\n\r\n    <h4><strong>1. Information We Collect</strong></h4>\r\n    <ul>\r\n        <li><strong>Personal Data:</strong> Name, email address, phone number, payment details (if applicable), and account preferences.</li>\r\n        <li><strong>Non-Personal Data:</strong> IP address, device type, browser details, and site usage statistics.</li>\r\n        <li><strong>Cookies & Tracking:</strong> We use cookies to enhance your browsing experience and improve our services.</li>\r\n    </ul>\r\n\r\n    <h4><strong>2. How We Use Your Information</strong></h4>\r\n    <ul>\r\n        <li>To provide, manage, and improve our services.</li>\r\n        <li>To process payments and bookings securely.</li>\r\n        <li>To personalize your experience based on preferences.</li>\r\n        <li>To send updates, promotions, and important notifications.</li>\r\n        <li>To comply with legal and regulatory requirements.</li>\r\n    </ul>\r\n\r\n    <h4><strong>3. Data Security & Protection</strong></h4>\r\n    <p>\r\n        We implement advanced security measures, including encryption, secure servers, and regular security audits, \r\n        to protect your personal data. However, while we strive for maximum security, no system is entirely foolproof. \r\n        We recommend using strong passwords and safeguarding your login credentials.\r\n    </p>\r\n\r\n    <h4><strong>4. Third-Party Sharing</strong></h4>\r\n    <p>\r\n        We do not sell your personal data. However, we may share necessary information with trusted third parties \r\n        for the following reasons:\r\n    </p>\r\n    <ul>\r\n        <li>Processing payments through secure gateways.</li>\r\n        <li>Ensuring compliance with legal and regulatory obligations.</li>\r\n        <li>Improving our services through analytics and feedback tools.</li>\r\n    </ul>\r\n\r\n    <h4><strong>5. Your Rights & Choices</strong></h4>\r\n    <p>\r\n        You have full control over your data. Your rights include:\r\n    </p>\r\n    <ul>\r\n        <li><span class=\"highlight\">Access & Review:</span> Request details about the data we hold on you.</li>\r\n        <li><span class=\"highlight\">Corrections:</span> Update any incorrect or outdated personal information.</li>\r\n        <li><span class=\"highlight\">Deletion:</span> Request removal of your data under applicable laws.</li>\r\n        <li><span class=\"highlight\">Opt-Out:</span> Manage communication preferences and unsubscribe from promotional messages.</li>\r\n    </ul>\r\n    <p>\r\n        To exercise any of these rights, contact us at: <strong>[Insert Contact Info]</strong>.\r\n    </p>\r\n\r\n    <h4><strong>6. Cookies & Tracking Technologies</strong></h4>\r\n    <p>\r\n        We use cookies and similar tracking technologies to enhance functionality, analyze usage trends, and deliver personalized content. \r\n        You can manage cookie preferences in your browser settings.\r\n    </p>\r\n\r\n    <h4><strong>7. Changes to This Policy</strong></h4>\r\n    <p>\r\n        We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. \r\n        We encourage you to review this policy periodically to stay informed.\r\n    </p>\r\n\r\n    <p  style = \"color:red\";>MovieStar Team</p>\r\n</div>\r\n\r\n ",
+                            Description = "http://localhost/Images/photos/privacy.png",
                             Name = "Privacy",
                             TitleName = "Privacy"
                         },
                         new
                         {
                             Id = 2,
-                            Content = "<h2 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Terms and Conditions</font></strong></h2><p style=\"text-align: center;\"><font color=\"#ffffff\"><strong>Effective Date:</strong> 02.05.2025</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">Welcome to MovieStar! By accessing or using our website, you agree to these Terms and Conditions.</font></p><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">1. Use of the Website</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You must be at least 18 years old or have parental consent to use our services.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You agree not to use the website for any unlawful or prohibited activities.</font></p></li></ul><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">2. Account Registration</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You are responsible for maintaining the confidentiality of your account credentials.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">We reserve the right to suspend or terminate accounts that violate our policies.</font></p></li></ul><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">3. Content and Intellectual Property</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">All content on MovieStar, including logos, text, and media, is owned by us or our licensors.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">You may not copy, distribute, or modify any content without permission.</font></p></li></ul><p style=\"text-align: center;\"><strong><font color=\"#ffffff\">4. Limitation of Liability</font></strong></p><ul data-spread=\"false\"><li><p style=\"text-align: center;\"><font color=\"#ffffff\">We are not liable for any damages resulting from the use of our website.</font></p></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">We do not guarantee uninterrupted or error-free service.</font></p></li></ul><p style=\"text-align: center;\"><font color=\"#ffffff\"><strong>5. Changes to Terms</strong>\r\nWe may update these Terms and Conditions. Continued use of the website means acceptance of the updated terms.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\">For any questions, contact us at info@gmail.com.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: right;\"><font color=\"#ffffff\">MovieStar Team</font></p>",
-                            Description = "",
+                            Content = " \r\n<div class=\"container\">\r\n    <div class=\"faq-container\">\r\n        <h2>Frequently Asked Questions</h2>\r\n        <p class=\"text-center\" style=\"color: red;\">Here you will find answers to the most common questions. We update this section regularly.</p>\r\n\r\n        <div class=\"faq-section\">\r\n            <h4><i class=\"bi bi-info-circle\"></i> General Questions</h4>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: What are your operating hours?</strong>\r\n                <p>A: We are open from <strong>10 AM - 10 PM</strong> daily, including weekends.</p>\r\n            </div>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: How can I buy tickets?</strong>\r\n                <p>A: You can purchase tickets online through our <strong>official website</strong> or at the cinema.</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"faq-section\">\r\n            <h4><i class=\"bi bi-ticket-perforated\"></i> Ticketing & Refunds</h4>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: Can I cancel or refund my ticket?</strong>\r\n                <p>A: Please check our <a href=\"#\">Refund & Cancellation Policy</a> for specific terms.</p>\r\n            </div>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: Do you offer discounts?</strong>\r\n                <p>A: Yes! We offer special discounts for students, seniors, and groups. Check our website for current offers.</p>\r\n            </div>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: Can I reserve a seat?</strong>\r\n                <p>A: Seat selection is available when purchasing a ticket online.</p>\r\n            </div>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: What payment methods do you accept?</strong>\r\n                <p>A: We accept cash, credit/debit cards, and online payments via Stripe.</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"faq-section\">\r\n            <h4><i class=\"bi bi-popcorn\"></i> Experience & Services</h4>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: Do you have VIP or premium seats?</strong>\r\n                <p>A: Yes! We offer luxury seating options for a more comfortable experience.</p>\r\n            </div>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: Are food and drinks allowed inside?</strong>\r\n                <p>A: We offer a variety of snacks and beverages at our concession stands. Outside food is not permitted.</p>\r\n            </div>\r\n            <div class=\"faq-item\">\r\n                <strong>Q: Do you provide accessibility options?</strong>\r\n                <p>A: Yes! We have wheelchair-accessible seating and assistive listening devices available upon request.</p>\r\n            </div>\r\n        </div>\r\n\r\n        <p class=\"faq-footer\">Still have questions? Contact us via the <a href=\"#\">Contact Us</a> page!</p>\r\n    </div>\r\n</div>\r\n\r\n ",
+                            Description = "http://localhost/Images/photos/termsandconditions.png",
                             Name = "TermsAndConditions",
                             TitleName = "Terms and Conditions"
                         },
                         new
                         {
                             Id = 3,
-                            Content = "<h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Welcome to MovieStar Cinema!</font></strong></h4><p style=\"text-align: center; \"><font color=\"#ffffff\">At MovieStar Cinema, we bring the magic of movies to life. From the latest blockbusters to timeless classics, our state-of-the-art theaters provide an unmatched cinematic experience.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">With premium sound systems, ultra-HD screens, and comfortable seating, we ensure every visit is special. Whether you're here for action, drama, comedy, or family entertainment, we have something for everyone.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\">Thank you for choosing MovieStar Cinema—where every story comes to life on the big screen!</font></p>",
-                            Description = "",
+                            Content = " \r\n<div class=\"container\">\r\n    <div class=\"cinema-intro\">\r\n        <i class=\"fas fa-film\"></i>\r\n        <h4>Welcome to <span class=\"highlight\">MovieStar Cinema!</span></h4>\r\n        \r\n        <p>\r\n            At <span class=\"highlight\">MovieStar Cinema</span>, we bring the **magic of movies** to life! Whether you're a fan of \r\n            the **latest blockbusters**, **critically acclaimed dramas**, or **timeless classics**, our theaters provide a truly **immersive experience**.\r\n        </p>\r\n\r\n        <p>\r\n            Our state-of-the-art theaters feature **ultra-HD screens**, **Dolby Atmos surround sound**, and **luxurious seating**, ensuring maximum comfort.  \r\n            Enjoy the **vibrant colors**, **crystal-clear visuals**, and **rich, deep sound** that put you right at the heart of every scene.\r\n        </p>\r\n\r\n        <p>\r\n            Whether you're looking for an **action-packed adventure**, a **heartwarming family film**, or a **thrilling horror experience**,  \r\n            our diverse selection of movies offers **something for everyone**. Plus, we host **exclusive premieres**, **sneak previews**, and **special screenings**  \r\n            to bring you even closer to the world of cinema.\r\n        </p>\r\n\r\n        <p>\r\n            Make your visit even more enjoyable with our **gourmet snack bar**, featuring everything from **classic popcorn and nachos**  \r\n            to **premium chocolates, freshly baked pastries, and barista-style coffee**. Want to make it extra special?  \r\n            Try our **VIP lounge**, where you can relax with a selection of fine wines and cocktails before your movie starts.\r\n        </p>\r\n\r\n        <p>\r\n            We also offer **private screenings, birthday parties, and corporate events**, providing a unique and personalized movie experience  \r\n            tailored just for you and your guests.\r\n        </p>\r\n\r\n        <p style=\"color:red\";> \r\n            <strong>Thank you for choosing MovieStar Cinema—where every story comes to life on the big screen!</strong>\r\n        </p>\r\n    </div>\r\n</div>\r\n \r\n",
+                            Description = "http://localhost/Images/photos/aboutus.png",
                             Name = "AboutUs",
                             TitleName = "About Us"
                         },
                         new
                         {
                             Id = 4,
-                            Content = "<p></p><h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Frequently asked questions</font></strong></h3><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h4><p style=\"text-align: center; \"><font color=\"#ffffff\">This is the list of the most asked questions. We will be updating this page periodically.</font></p><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h4><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\">General Questions</font></strong></h4><p></p><div style=\"text-align: center;\"><strong style=\"text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: What are your operating hours?</font></strong></div><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">A: We are open from 10 am - 10 pm daily.</font></span></div><p></p><p></p><div style=\"text-align: center;\"><strong style=\"text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: How can I buy tickets?</font></strong></div><div style=\"text-align: center;\"><font color=\"#ffffff\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">A: You can&nbsp;</span><span style=\"text-align: var(--bs-body-text-align); font-weight: bolder;\">buy&nbsp;</span><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">online through our website or purchase them at the cinema.</span></font></div><p></p><h4 style=\"text-align: center;\"><strong><font color=\"#ffffff\">Ticketing &amp; Refunds</font></strong></h4><p></p><div style=\"text-align: center;\"><strong style=\"text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: Can I cancel or refund my ticket?</font></strong></div><div style=\"text-align: center;\"><font color=\"#ffffff\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">A: Please refer to our </span><strong style=\"text-align: var(--bs-body-text-align);\">[Refund &amp; Cancellation Policy]</strong><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"> for details.</span></font></div><p></p><p></p><font color=\"#ffffff\"><span style=\"font-weight: bolder; font-size: 18px;\"><div style=\"text-align: center;\"><span style=\"font-weight: bolder; text-align: var(--bs-body-text-align);\">Q: Do you offer discounts?</span></div></span><span style=\"font-size: 18px;\"><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">A: Yes! Contact us for booking details.</span></div></span></font><p></p><p></p><div><div style=\"text-align: center;\"><span style=\"font-weight: bolder; text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: Can you make a seat reservation?</font></span></div><span style=\"font-size: 18px;\"><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">A: Currently no. You need to pay up front for a tickets.</font></span></div></span></div><div style=\"text-align: center; \"><font color=\"#ffffff\"><span style=\"font-size: 18px;\"><br></span><span style=\"font-size: 18px;\"></span></font></div><div><font color=\"#ffffff\"><span style=\"font-size: 18px;\"></span></font></div><span style=\"font-weight: bolder;\"><div style=\"text-align: center;\"><span style=\"font-weight: bolder; text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">Q: How can I pay for a tickets?</font></span></div></span><div style=\"text-align: center;\"><span style=\"font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\"><font color=\"#ffffff\">A: At the moment, it is possible to pay for a ticket using cash, credit card or Stripe.</font></span></div><p></p><p style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center; \"><font color=\"#ffffff\">If you have other questions, please ask via <b>Contact Us </b>page!</font></p>",
-                            Description = "",
+                            Content = " \r\n\r\n<div class=\"container\">\r\n    <div class=\"faq-container\">\r\n        <h3><i class=\"fas fa-question-circle\"></i> Frequently Asked Questions</h3>\r\n        <p class=\"faq-intro\">Find answers to our most common questions. We update this section regularly.</p>\r\n\r\n        <div class=\"accordion\" id=\"faqAccordion\">\r\n            <!-- General Questions -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-info-circle\"></i> General Questions</h4>\r\n\r\n            <div class=\"accordion-item\" >\r\n                <h2 class=\"accordion-header\" id=\"headingOne\">\r\n                    <button class=\"accordion-button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\">\r\n                        Q: What are your operating hours?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseOne\" class=\"accordion-collapse collapse show\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: We are open daily from <strong>10 AM - 10 PM</strong>, including weekends and holidays.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingTwo\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseTwo\">\r\n                        Q: How can I buy tickets?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseTwo\" class=\"accordion-collapse collapse\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: You can purchase tickets online via our website or buy them directly at the cinema counter.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Ticketing & Refunds -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-ticket-alt\"></i> Ticketing & Refunds</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingThree\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseThree\">\r\n                        Q: Can I cancel or refund my ticket?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseThree\" class=\"accordion-collapse collapse\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Please refer to our <a href=\"#\">Refund & Cancellation Policy</a> for specific terms.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFour\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFour\">\r\n                        Q: Do you offer discounts?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFour\" class=\"accordion-collapse collapse\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Yes! We offer student, senior, and group discounts. Check our website for current offers.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFive\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFive\">\r\n                        Q: Can I reserve a seat in advance?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFive\" class=\"accordion-collapse collapse\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Yes! Seat selection is available when purchasing tickets online.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingSix\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseSix\">\r\n                        Q: What payment methods do you accept?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseSix\" class=\"accordion-collapse collapse\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: We accept cash, credit/debit cards, and online payments via Stripe.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Additional Information -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-concierge-bell\"></i> Services & Experience</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingSeven\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseSeven\">\r\n                        Q: Do you offer VIP or premium seating?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseSeven\" class=\"accordion-collapse collapse\" data-bs-parent=\"#faqAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Yes! We have luxury seating options and VIP lounges for a premium experience.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <p class=\"text-center mt-4\">Still have questions? Contact us via the <a href=\"#\">Contact Us</a> page!</p>\r\n    </div>\r\n</div>\r\n \r\n",
+                            Description = "http://localhost/Images/photos/faq.png",
                             Name = "FAQ",
                             TitleName = "FAQ"
                         },
                         new
                         {
                             Id = 5,
-                            Content = "<h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\">&nbsp;Refund &amp; Cancellation Policy</font></strong></h3><h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h3><p style=\"text-align: center;\"><font color=\"#ffffff\">At MovieStar Cinema, we strive to provide the best experience. However, we understand that plans may change.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li><p style=\"text-align: center;\"><font color=\"#ffffff\">🎟 <strong>Ticket Refunds:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">Tickets are refundable if canceled at least 24 hours before the showtime.</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Refunds are processed within 3-5 business days.</font></li></ul></li></ul><p><ul></ul></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">🎬 <strong>Cancellations Due to Technical Issues:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">If a show is canceled due to technical problems, a full refund or free rebooking will be provided.</font></li></ul></li></ul><p><ul></ul></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li></li><li><p style=\"text-align: center;\"><font color=\"#ffffff\">🚫 <strong>No-Show Policy:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">If you fail to attend without prior cancellation, no refund will be issued.</font></li></ul></li></ul><p><ul></ul></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><ul><li></li></ul><p style=\"text-align: center; \"><font color=\"#ffffff\">For refund requests, please contact us at info@gmail.com.</font></p>",
-                            Description = "",
+                            Content = " \r\n\r\n<div class=\"container\">\r\n    <div class=\"refund-container\">\r\n        <h3><i class=\"fas fa-undo-alt\"></i> Refund & Cancellation Policy</h3>\r\n        <p class=\"refund-intro\">At MovieStar Cinema, we strive to provide the best experience. However, we understand that plans may change.</p>\r\n\r\n        <div class=\"accordion\" id=\"refundAccordion\">\r\n            <!-- Ticket Refunds -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-ticket-alt\"></i> Ticket Refunds</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingOne\">\r\n                    <button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\">\r\n                        Q: Can I get a refund for my ticket?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseOne\" class=\"accordion-collapse collapse show\" data-bs-parent=\"#refundAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Yes, tickets are refundable if canceled at least **24 hours before the showtime**.  \r\n                        Refunds are processed within **3-5 business days**.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Cancellations Due to Technical Issues -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-exclamation-circle\"></i> Cancellations Due to Technical Issues</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingTwo\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseTwo\">\r\n                        Q: What happens if the movie is canceled?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseTwo\" class=\"accordion-collapse collapse\" data-bs-parent=\"#refundAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: If a movie is **canceled due to technical issues**, we offer a **full refund**  \r\n                        or the option to **rebook for another date at no additional cost**.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- No-Show Policy -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-ban\"></i> No-Show Policy</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingThree\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseThree\">\r\n                        Q: What if I miss my show?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseThree\" class=\"accordion-collapse collapse\" data-bs-parent=\"#refundAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: If you **fail to attend your movie** without canceling at least 24 hours in advance,  \r\n                        **no refund will be issued**. We recommend managing your bookings carefully.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Payment and Refund Requests -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-credit-card\"></i> Payment & Refund Requests</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFour\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFour\">\r\n                        Q: How do I request a refund?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFour\" class=\"accordion-collapse collapse\" data-bs-parent=\"#refundAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: To request a refund, please contact our support team at **info@gmail.com**  \r\n                        with your **booking details and reason for refund**.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFive\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFive\">\r\n                        Q: What payment methods are accepted?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFive\" class=\"accordion-collapse collapse\" data-bs-parent=\"#refundAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: We accept payments via **credit/debit cards, PayPal, and Stripe**.  \r\n                        Refunds are processed back to the **original payment method**.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingSix\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseSix\">\r\n                        Q: Are gift cards refundable?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseSix\" class=\"accordion-collapse collapse\" data-bs-parent=\"#refundAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Unfortunately, **gift cards are non-refundable** and cannot be exchanged for cash.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <p class=\"text-center mt-4\">For further assistance, contact us via <a href=\"#\">Customer Support</a>!</p>\r\n    </div>\r\n</div>\r\n \r\n",
+                            Description = "http://localhost/Images/photos/refund.png",
                             Name = "Refund",
                             TitleName = "Refund and Cancellation Policy"
                         },
                         new
                         {
                             Id = 6,
-                            Content = "<h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">Cookie Policy</font></span></h3><h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\"><br></font></span></h3><p style=\"text-align: center;\"><font color=\"#ffffff\">MovieStar Cinema uses cookies to enhance your browsing experience.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">What Are Cookies?</font></span></h4><p style=\"text-align: center;\"><font color=\"#ffffff\">Cookies are small text files stored on your device when you visit our website.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">How We Use Cookies</font></span></h4><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">To improve website functionality</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">To remember your preferences</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">For analytics and marketing purposes</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></li></ul><p style=\"text-align: center;\"><font color=\"#ffffff\">By using our website, you consent to our use of cookies. You can adjust your settings anytime in your browser.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">For more details, visit our&nbsp;<span style=\"font-weight: bolder;\">[Privacy Policy]</span>.</font></p>",
-                            Description = "",
+                            Content = " \r\n\r\n<div class=\"container\">\r\n    <div class=\"cookie-container\">\r\n        <h3><i class=\"fas fa-cookie-bite\"></i> Cookie Policy</h3>\r\n        <p class=\"cookie-intro\">MovieStar Cinema uses cookies to enhance your browsing experience. Learn more below.</p>\r\n\r\n        <div class=\"accordion\" id=\"cookieAccordion\">\r\n            <!-- What Are Cookies? -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-info-circle\"></i> What Are Cookies?</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingOne\">\r\n                    <button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\">\r\n                        Q: What are cookies and why do we use them?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseOne\" class=\"accordion-collapse collapse show\" data-bs-parent=\"#cookieAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: Cookies are **small text files** stored on your device when you visit our website.  \r\n                        They help improve website functionality, **remember user preferences**, and **enable analytics**.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- How We Use Cookies -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-cogs\"></i> How We Use Cookies</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingTwo\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseTwo\">\r\n                        Q: How does MovieStar Cinema use cookies?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseTwo\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookieAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: We use cookies for the following purposes:\r\n                        <ul>\r\n                            <li>To **enhance website performance** and user experience.</li>\r\n                            <li>To **remember your settings and preferences**.</li>\r\n                            <li>To analyze website traffic using **Google Analytics and similar tools**.</li>\r\n                            <li>For **marketing and targeted advertising**.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Types of Cookies -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-list\"></i> Types of Cookies</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingThree\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseThree\">\r\n                        Q: What types of cookies do we use?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseThree\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookieAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: We use the following types of cookies:\r\n                        <ul>\r\n                            <li><strong>Essential Cookies:</strong> Required for basic site functionality.</li>\r\n                            <li><strong>Performance Cookies:</strong> Help us analyze website usage and improve performance.</li>\r\n                            <li><strong>Functional Cookies:</strong> Remember user preferences and settings.</li>\r\n                            <li><strong>Marketing Cookies:</strong> Used for targeted ads and promotions.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Managing Cookies -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-user-cog\"></i> Managing Your Cookie Preferences</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFour\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFour\">\r\n                        Q: How can I manage or disable cookies?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFour\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookieAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: You can **adjust your cookie settings anytime** in your browser:\r\n                        <ul>\r\n                            <li>For Chrome: <a href=\"https://support.google.com/chrome/answer/95647\">Manage Cookies</a></li>\r\n                            <li>For Firefox: <a href=\"https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences\">Manage Cookies</a></li>\r\n                            <li>For Safari: <a href=\"https://support.apple.com/en-us/HT201265\">Manage Cookies</a></li>\r\n                            <li>For Edge: <a href=\"https://support.microsoft.com/en-us/help/4027947/microsoft-edge-delete-cookies\">Manage Cookies</a></li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Privacy Policy -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-shield-alt\"></i> Privacy & Data Protection</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFive\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFive\">\r\n                        Q: Where can I read more about data privacy?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFive\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookieAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        A: For more details on how we handle personal data, visit our <a href=\"#\">Privacy Policy</a>.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <p class=\"text-center mt-4\">For further assistance, contact us via <a href=\"#\">Customer Support</a>!</p>\r\n    </div>\r\n</div>\r\n ",
+                            Description = "http://localhost/Images/photos/cookies.png",
                             Name = "CookiePolicy",
                             TitleName = "Cookie Policy"
                         },
                         new
                         {
                             Id = 7,
-                            Content = "<h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">Careers</font></span></h3><h3 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\"><br></font></span></h3><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\">Join Our Team at MovieStar Cinema!</font></span></h4><h4 style=\"text-align: center;\"><span style=\"font-weight: bolder;\"><font color=\"#ffffff\"><br></font></span></h4><p style=\"text-align: center;\"><font color=\"#ffffff\">Are you passionate about movies and customer service? We’re always looking for enthusiastic individuals to join our team.</font></p><p style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">🚀&nbsp;<span style=\"font-weight: bolder;\">Current Openings:</span></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">Ticket Sales Associate</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Concessions &amp; Food Service</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Cinema Manager</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Projection &amp; Technical Team</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\"><br></font></li></ul><p style=\"text-align: center;\"><font color=\"#ffffff\">If you’d like to work in an exciting, fast-paced environment, apply today! Send your resume to info@gmail.com.</font></p>",
-                            Description = "",
+                            Content = " \r\n\r\n<div class=\"container\">\r\n    <div class=\"careers-container\">\r\n        <h3><i class=\"fas fa-briefcase\"></i> Careers at MovieStar Cinema</h3>\r\n        <p class=\"careers-intro\">Are you passionate about movies and customer service? Join our team and make every cinema experience special!</p>\r\n\r\n        <div class=\"accordion\" id=\"careersAccordion\">\r\n            <!-- Job Openings -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-bullhorn\"></i> Current Openings</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingOne\">\r\n                    <button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\">\r\n                        Q: What positions are available?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseOne\" class=\"accordion-collapse collapse show\" data-bs-parent=\"#careersAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        We are currently hiring for the following positions:\r\n                        <ul>\r\n                            <li><strong>🎟 Ticket Sales Associate:</strong> Assisting customers with ticket purchases.</li>\r\n                            <li><strong>🍿 Concessions & Food Service:</strong> Preparing and serving snacks.</li>\r\n                            <li><strong>🎬 Cinema Manager:</strong> Overseeing daily operations and staff.</li>\r\n                            <li><strong>🎥 Projection & Technical Team:</strong> Managing cinema equipment and screenings.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Benefits -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-gift\"></i> Employee Benefits</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingTwo\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseTwo\">\r\n                        Q: What benefits do MovieStar Cinema employees receive?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseTwo\" class=\"accordion-collapse collapse\" data-bs-parent=\"#careersAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        Working with us comes with exciting perks:\r\n                        <ul>\r\n                            <li>🎟 **Free & discounted movie tickets**</li>\r\n                            <li>🍿 **Discounts on food and drinks**</li>\r\n                            <li>📅 **Flexible work schedules**</li>\r\n                            <li>🎉 **Fun and friendly work environment**</li>\r\n                            <li>📈 **Career growth opportunities**</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Requirements -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-user-check\"></i> Job Requirements</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingThree\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseThree\">\r\n                        Q: What are the job requirements?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseThree\" class=\"accordion-collapse collapse\" data-bs-parent=\"#careersAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        Ideal candidates should have:\r\n                        <ul>\r\n                            <li>🌟 A **positive attitude** and customer service skills.</li>\r\n                            <li>⌚ **Availability to work evenings and weekends**.</li>\r\n                            <li>🏃‍♂️ Ability to work in a **fast-paced environment**.</li>\r\n                            <li>📢 **Good communication skills**.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Application Process -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-file-alt\"></i> How to Apply</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFour\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFour\">\r\n                        Q: How do I apply for a job?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFour\" class=\"accordion-collapse collapse\" data-bs-parent=\"#careersAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        To apply, send your **resume and cover letter** to:  \r\n                        📧 <strong>info@gmail.com</strong>  \r\n                        Please include the **position you're applying for** in the subject line.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Interview Process -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-comments\"></i> Interview Process</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFive\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFive\">\r\n                        Q: What is the hiring process like?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFive\" class=\"accordion-collapse collapse\" data-bs-parent=\"#careersAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        Our hiring process includes:\r\n                        <ul>\r\n                            <li>📩 **Application review**</li>\r\n                            <li>📞 **Phone interview** (for selected candidates)</li>\r\n                            <li>👥 **In-person interview** at our cinema</li>\r\n                            <li>✅ **Final selection & job offer**</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <p class=\"text-center mt-4\">Want to be part of our team? Apply now at <strong style =\"color: red;\">info@gmail.com</strong>!</p>\r\n    </div>\r\n</div>\r\n \r\n",
+                            Description = "http://localhost/Images/photos/career.png",
                             Name = "Career",
                             TitleName = "Career"
                         },
                         new
                         {
                             Id = 8,
-                            Content = "<h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Partnerships &amp; Advertising</font></strong></h3><h3 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h3><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\">Partner with MovieStar Cinema</font></strong></h4><h4 style=\"text-align: center; \"><strong><font color=\"#ffffff\"><br></font></strong></h4><p style=\"text-align: center; \"><font color=\"#ffffff\">Looking for an opportunity to showcase your brand to thousands of moviegoers? We offer premium advertising slots before and during screenings.</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></p><p style=\"text-align: center;\"><font color=\"#ffffff\">📢 <strong>Advertising Options:</strong></font></p><ul><li style=\"text-align: center;\"><font color=\"#ffffff\">On-screen ads before movies</font></li><li style=\"text-align: center;\"><font color=\"#ffffff\">Digital banners on our website</font></li><li style=\"text-align: center; \"><font color=\"#ffffff\">Promotional events at our cinemas</font></li><li style=\"text-align: center; \"><font color=\"#ffffff\"><br></font></li></ul><p style=\"text-align: center; \"><font color=\"#ffffff\">Interested?</font></p><p style=\"text-align: center; \"><font color=\"#ffffff\"> Contact our marketing team at info@gmail.com to discuss collaboration opportunities.</font></p>",
-                            Description = "",
+                            Content = " \r\n<div class=\"container\">\r\n    <div class=\"partnership-container\">\r\n        <h3><i class=\"fas fa-handshake\"></i> Partnerships & Advertising</h3>\r\n        <p class=\"partnership-intro\">Want to showcase your brand to thousands of moviegoers? Explore premium advertising and sponsorship opportunities with MovieStar Cinema!</p>\r\n\r\n        <div class=\"accordion\" id=\"partnershipAccordion\">\r\n            <!-- Advertising Options -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-bullhorn\"></i> Advertising Opportunities</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingOne\">\r\n                    <button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\">\r\n                        Q: What advertising options are available?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseOne\" class=\"accordion-collapse collapse show\" data-bs-parent=\"#partnershipAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        We offer multiple **advertising formats** to promote your brand:\r\n                        <ul>\r\n                            <li>🎬 **On-screen ads** before movies (30-60 seconds spots).</li>\r\n                            <li>🌐 **Digital banners** on our website & mobile app.</li>\r\n                            <li>🎭 **Promotional events** and **brand activations** in our cinemas.</li>\r\n                            <li>📢 **In-theater posters, standees, and flyers**.</li>\r\n                            <li>🎁 **Branded giveaways and sponsorship packages**.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Partnership Benefits -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-chart-line\"></i> Why Partner with Us?</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingTwo\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseTwo\">\r\n                        Q: What are the benefits of advertising with MovieStar Cinema?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseTwo\" class=\"accordion-collapse collapse\" data-bs-parent=\"#partnershipAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        Partnering with us provides:\r\n                        <ul>\r\n                            <li>🎯 **Targeted exposure** to engaged audiences.</li>\r\n                            <li>📊 **High recall rates** with cinema advertising.</li>\r\n                            <li>💼 **Premium placement** in a high-traffic entertainment venue.</li>\r\n                            <li>📢 **Direct engagement** through promotional events.</li>\r\n                            <li>🌍 **Nationwide reach** with multiple cinema locations.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Event Sponsorships -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-star\"></i> Event Sponsorships</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingThree\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseThree\">\r\n                        Q: Can I sponsor an event at MovieStar Cinema?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseThree\" class=\"accordion-collapse collapse\" data-bs-parent=\"#partnershipAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        Yes! We offer **event sponsorship** for:\r\n                        <ul>\r\n                            <li>🎉 **Movie premieres & special screenings**.</li>\r\n                            <li>🍿 **Exclusive fan events & meet-and-greets**.</li>\r\n                            <li>🏆 **Film festivals & charity screenings**.</li>\r\n                            <li>🎁 **Branded giveaways & product launches**.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Partnership Options -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-handshake\"></i> Partnership Opportunities</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFour\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFour\">\r\n                        Q: What kind of partnerships do you offer?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFour\" class=\"accordion-collapse collapse\" data-bs-parent=\"#partnershipAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        We welcome **long-term partnerships** with:\r\n                        <ul>\r\n                            <li>🎬 **Film distributors & studios**.</li>\r\n                            <li>🏪 **Brands & corporate sponsors**.</li>\r\n                            <li>🎟 **Loyalty program partners**.</li>\r\n                            <li>📢 **Local businesses for community promotions**.</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- Contact Information -->\r\n            <h4 class=\"mt-3\"><i class=\"fas fa-envelope\"></i> Get in Touch</h4>\r\n\r\n            <div class=\"accordion-item\">\r\n                <h2 class=\"accordion-header\" id=\"headingFive\">\r\n                    <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseFive\">\r\n                        Q: How do I start a partnership or book an ad?\r\n                    </button>\r\n                </h2>\r\n                <div id=\"collapseFive\" class=\"accordion-collapse collapse\" data-bs-parent=\"#partnershipAccordion\">\r\n                    <div class=\"accordion-body\">\r\n                        Contact our **marketing team** at:  \r\n                        📧 <strong>info@gmail.com</strong>  \r\n                        Let’s create something amazing together!\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <p class=\"text-center mt-4\">Interested? Contact us today at <strong>info@gmail.com</strong> to discuss collaboration opportunities!</p>\r\n    </div>\r\n</div>\r\n\r\n \r\n",
+                            Description = "http://localhost/Images/photos/partnership.png",
                             Name = "Partnership",
                             TitleName = "Partnership"
                         });
@@ -1660,7 +1647,7 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/1",
+                            Description = "A1",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "A1",
@@ -1672,7 +1659,7 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/2",
+                            Description = "A2",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "A2",
@@ -1684,7 +1671,7 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/3",
+                            Description = "A3",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "A3",
@@ -1696,67 +1683,235 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 4,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/1",
+                            Description = "A4",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B1",
-                            NumberInRow = 1,
-                            Row = 2,
+                            Name = "A4",
+                            NumberInRow = 4,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 5,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/2",
+                            Description = "A5",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B2",
-                            NumberInRow = 2,
-                            Row = 2,
+                            Name = "A5",
+                            NumberInRow = 5,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/3",
+                            Description = "A6",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B3",
-                            NumberInRow = 3,
-                            Row = 2,
+                            Name = "A6",
+                            NumberInRow = 6,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/1",
+                            Description = "A7",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C1",
-                            NumberInRow = 1,
-                            Row = 3,
+                            Name = "A7",
+                            NumberInRow = 7,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 8,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/2",
+                            Description = "A8",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C2",
-                            NumberInRow = 2,
-                            Row = 3,
+                            Name = "A8",
+                            NumberInRow = 8,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/3",
+                            Description = "A9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A9",
+                            NumberInRow = 9,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A10",
+                            NumberInRow = 10,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B4",
+                            NumberInRow = 4,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B5",
+                            NumberInRow = 5,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B6",
+                            NumberInRow = 6,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B7",
+                            NumberInRow = 7,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B8",
+                            NumberInRow = 8,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B9",
+                            NumberInRow = 9,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B10",
+                            NumberInRow = 10,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C3",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C3",
@@ -1766,189 +1921,1173 @@ namespace DatabaseAPI.Migrations
                         },
                         new
                         {
-                            Id = 10,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A1",
-                            NumberInRow = 1,
-                            Row = 1,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A2",
-                            NumberInRow = 2,
-                            Row = 1,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A3",
-                            NumberInRow = 3,
-                            Row = 1,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B1",
-                            NumberInRow = 1,
-                            Row = 2,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B2",
-                            NumberInRow = 2,
-                            Row = 2,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B3",
-                            NumberInRow = 3,
-                            Row = 2,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C1",
-                            NumberInRow = 1,
-                            Row = 3,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C2",
-                            NumberInRow = 2,
-                            Row = 3,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C3",
-                            NumberInRow = 3,
-                            Row = 3,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A1",
-                            NumberInRow = 1,
-                            Row = 1,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A2",
-                            NumberInRow = 2,
-                            Row = 1,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A3",
-                            NumberInRow = 3,
-                            Row = 1,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B1",
-                            NumberInRow = 1,
-                            Row = 2,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B2",
-                            NumberInRow = 2,
-                            Row = 2,
-                            ScreenId = 3
-                        },
-                        new
-                        {
                             Id = 24,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/3",
+                            Description = "C4",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B3",
-                            NumberInRow = 3,
-                            Row = 2,
-                            ScreenId = 3
+                            Name = "C4",
+                            NumberInRow = 4,
+                            Row = 3,
+                            ScreenId = 1
                         },
                         new
                         {
                             Id = 25,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/1",
+                            Description = "C5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C5",
+                            NumberInRow = 5,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C6",
+                            NumberInRow = 6,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C7",
+                            NumberInRow = 7,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C8",
+                            NumberInRow = 8,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C9",
+                            NumberInRow = 9,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C10",
+                            NumberInRow = 10,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D1",
+                            NumberInRow = 1,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D2",
+                            NumberInRow = 2,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D3",
+                            NumberInRow = 3,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D4",
+                            NumberInRow = 4,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D5",
+                            NumberInRow = 5,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D6",
+                            NumberInRow = 6,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D7",
+                            NumberInRow = 7,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D8",
+                            NumberInRow = 8,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D9",
+                            NumberInRow = 9,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D10",
+                            NumberInRow = 10,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E1",
+                            NumberInRow = 1,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E2",
+                            NumberInRow = 2,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E3",
+                            NumberInRow = 3,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E4",
+                            NumberInRow = 4,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E5",
+                            NumberInRow = 5,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E6",
+                            NumberInRow = 6,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E7",
+                            NumberInRow = 7,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E8",
+                            NumberInRow = 8,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E9",
+                            NumberInRow = 9,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E10",
+                            NumberInRow = 10,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 52,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 53,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 54,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A4",
+                            NumberInRow = 4,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 55,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A5",
+                            NumberInRow = 5,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 56,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A6",
+                            NumberInRow = 6,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 57,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A7",
+                            NumberInRow = 7,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 58,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A8",
+                            NumberInRow = 8,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 59,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A9",
+                            NumberInRow = 9,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 60,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A10",
+                            NumberInRow = 10,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 61,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 62,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 63,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 64,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B4",
+                            NumberInRow = 4,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 65,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B5",
+                            NumberInRow = 5,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 66,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B6",
+                            NumberInRow = 6,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 67,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B7",
+                            NumberInRow = 7,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 68,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B8",
+                            NumberInRow = 8,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 69,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B9",
+                            NumberInRow = 9,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 70,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B10",
+                            NumberInRow = 10,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 71,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 72,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 73,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C3",
+                            NumberInRow = 3,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 74,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C4",
+                            NumberInRow = 4,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 75,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C5",
+                            NumberInRow = 5,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 76,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C6",
+                            NumberInRow = 6,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 77,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C7",
+                            NumberInRow = 7,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 78,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C8",
+                            NumberInRow = 8,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 79,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C9",
+                            NumberInRow = 9,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 80,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C10",
+                            NumberInRow = 10,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 81,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D1",
+                            NumberInRow = 1,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 82,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D2",
+                            NumberInRow = 2,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 83,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D3",
+                            NumberInRow = 3,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 84,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D4",
+                            NumberInRow = 4,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 85,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D5",
+                            NumberInRow = 5,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 86,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D6",
+                            NumberInRow = 6,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 87,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D7",
+                            NumberInRow = 7,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 88,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D8",
+                            NumberInRow = 8,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 89,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D9",
+                            NumberInRow = 9,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 90,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D10",
+                            NumberInRow = 10,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 91,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E1",
+                            NumberInRow = 1,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 92,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E2",
+                            NumberInRow = 2,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 93,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E3",
+                            NumberInRow = 3,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 94,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E4",
+                            NumberInRow = 4,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 95,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E5",
+                            NumberInRow = 5,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 96,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E6",
+                            NumberInRow = 6,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 97,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E7",
+                            NumberInRow = 7,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 98,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E8",
+                            NumberInRow = 8,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 99,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E9",
+                            NumberInRow = 9,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 100,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E10",
+                            NumberInRow = 10,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A4",
+                            NumberInRow = 4,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A5",
+                            NumberInRow = 5,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A6",
+                            NumberInRow = 6,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A7",
+                            NumberInRow = 7,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A8",
+                            NumberInRow = 8,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A9",
+                            NumberInRow = 9,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A10",
+                            NumberInRow = 10,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B4",
+                            NumberInRow = 4,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B5",
+                            NumberInRow = 5,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B6",
+                            NumberInRow = 6,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B7",
+                            NumberInRow = 7,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B8",
+                            NumberInRow = 8,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B9",
+                            NumberInRow = 9,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B10",
+                            NumberInRow = 10,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C1",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C1",
@@ -1958,9 +3097,9 @@ namespace DatabaseAPI.Migrations
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 122,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/2",
+                            Description = "C2",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C2",
@@ -1970,14 +3109,338 @@ namespace DatabaseAPI.Migrations
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 123,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/3",
+                            Description = "C3",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C3",
                             NumberInRow = 3,
                             Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C4",
+                            NumberInRow = 4,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C5",
+                            NumberInRow = 5,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C6",
+                            NumberInRow = 6,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C7",
+                            NumberInRow = 7,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C8",
+                            NumberInRow = 8,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C9",
+                            NumberInRow = 9,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C10",
+                            NumberInRow = 10,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D1",
+                            NumberInRow = 1,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D2",
+                            NumberInRow = 2,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D3",
+                            NumberInRow = 3,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D4",
+                            NumberInRow = 4,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D5",
+                            NumberInRow = 5,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D6",
+                            NumberInRow = 6,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D7",
+                            NumberInRow = 7,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D8",
+                            NumberInRow = 8,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D9",
+                            NumberInRow = 9,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D10",
+                            NumberInRow = 10,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E1",
+                            NumberInRow = 1,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E2",
+                            NumberInRow = 2,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E3",
+                            NumberInRow = 3,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E4",
+                            NumberInRow = 4,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E5",
+                            NumberInRow = 5,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E6",
+                            NumberInRow = 6,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E7",
+                            NumberInRow = 7,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E8",
+                            NumberInRow = 8,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E9",
+                            NumberInRow = 9,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E10",
+                            NumberInRow = 10,
+                            Row = 5,
                             ScreenId = 3
                         });
                 });
@@ -2677,9 +4140,6 @@ namespace DatabaseAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -2767,7 +4227,7 @@ namespace DatabaseAPI.Migrations
                     b.Property<int?>("AwardId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -2781,9 +4241,6 @@ namespace DatabaseAPI.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsActive")
@@ -3278,7 +4735,8 @@ namespace DatabaseAPI.Migrations
                 {
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Screening", "Screening")
                         .WithMany("ScreeningSeats")
-                        .HasForeignKey("ScreeningId");
+                        .HasForeignKey("ScreeningId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Seat", "Seat")
                         .WithMany()
@@ -3385,9 +4843,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasOne("DatabaseAPI.Models.DictionaryModels.Country", "Country")
                         .WithMany("Directors")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
 
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
                         .WithMany("Directors")

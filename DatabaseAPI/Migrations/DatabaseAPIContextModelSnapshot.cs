@@ -322,19 +322,6 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 2,
-                            Action = "InvoiceReportForUser",
-                            Content = "Invoices",
-                            Controller = "Home",
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Invoices",
-                            Position = 2
-                        },
-                        new
-                        {
-                            Id = 3,
                             Action = "Index",
                             Content = "Movies",
                             Controller = "Movie",
@@ -343,11 +330,11 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Movies",
-                            Position = 3
+                            Position = 2
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             Action = "Index",
                             Content = "Cart",
                             Controller = "Cart",
@@ -356,11 +343,11 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Cart",
-                            Position = 4
+                            Position = 3
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 4,
                             Action = "Contact",
                             Content = "Contact",
                             Controller = "Home",
@@ -369,7 +356,7 @@ namespace DatabaseAPI.Migrations
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Contact",
-                            Position = 5
+                            Position = 4
                         });
                 });
 
@@ -490,7 +477,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 2,
-                            Content = "<a href=\"Movie\">Movies</a>",
+                            Content = "<a href=\"/Movie\\Index\">Movies</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -501,7 +488,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 3,
-                            Content = "<a href=\"Cart\">Cart</a>",
+                            Content = "<a href=\"/Cart\\Index\">Cart</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -512,7 +499,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 4,
-                            Content = "<a href=\"Identity/Account/Manage\">Profile</a>",
+                            Content = "<a href=\"/Identity/Account/Manage\">Profile</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -523,7 +510,7 @@ namespace DatabaseAPI.Migrations
                         new
                         {
                             Id = 5,
-                            Content = "<a href=\"Contact\">Contact</a>",
+                            Content = "<a href=\"/Contact\">Contact</a>",
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
                             IsActive = true,
@@ -1657,7 +1644,7 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/1",
+                            Description = "A1",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "A1",
@@ -1669,7 +1656,7 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/2",
+                            Description = "A2",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "A2",
@@ -1681,7 +1668,7 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/3",
+                            Description = "A3",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "A3",
@@ -1693,67 +1680,235 @@ namespace DatabaseAPI.Migrations
                         {
                             Id = 4,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/1",
+                            Description = "A4",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B1",
-                            NumberInRow = 1,
-                            Row = 2,
+                            Name = "A4",
+                            NumberInRow = 4,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 5,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/2",
+                            Description = "A5",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B2",
-                            NumberInRow = 2,
-                            Row = 2,
+                            Name = "A5",
+                            NumberInRow = 5,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/3",
+                            Description = "A6",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B3",
-                            NumberInRow = 3,
-                            Row = 2,
+                            Name = "A6",
+                            NumberInRow = 6,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/1",
+                            Description = "A7",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C1",
-                            NumberInRow = 1,
-                            Row = 3,
+                            Name = "A7",
+                            NumberInRow = 7,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 8,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/2",
+                            Description = "A8",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C2",
-                            NumberInRow = 2,
-                            Row = 3,
+                            Name = "A8",
+                            NumberInRow = 8,
+                            Row = 1,
                             ScreenId = 1
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/3",
+                            Description = "A9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A9",
+                            NumberInRow = 9,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A10",
+                            NumberInRow = 10,
+                            Row = 1,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B4",
+                            NumberInRow = 4,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B5",
+                            NumberInRow = 5,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B6",
+                            NumberInRow = 6,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B7",
+                            NumberInRow = 7,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B8",
+                            NumberInRow = 8,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B9",
+                            NumberInRow = 9,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B10",
+                            NumberInRow = 10,
+                            Row = 2,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C3",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C3",
@@ -1763,189 +1918,1173 @@ namespace DatabaseAPI.Migrations
                         },
                         new
                         {
-                            Id = 10,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A1",
-                            NumberInRow = 1,
-                            Row = 1,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A2",
-                            NumberInRow = 2,
-                            Row = 1,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A3",
-                            NumberInRow = 3,
-                            Row = 1,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B1",
-                            NumberInRow = 1,
-                            Row = 2,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B2",
-                            NumberInRow = 2,
-                            Row = 2,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B3",
-                            NumberInRow = 3,
-                            Row = 2,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C1",
-                            NumberInRow = 1,
-                            Row = 3,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C2",
-                            NumberInRow = 2,
-                            Row = 3,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C3",
-                            NumberInRow = 3,
-                            Row = 3,
-                            ScreenId = 2
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A1",
-                            NumberInRow = 1,
-                            Row = 1,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A2",
-                            NumberInRow = 2,
-                            Row = 1,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "1/3",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "A3",
-                            NumberInRow = 3,
-                            Row = 1,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/1",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B1",
-                            NumberInRow = 1,
-                            Row = 2,
-                            ScreenId = 3
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/2",
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B2",
-                            NumberInRow = 2,
-                            Row = 2,
-                            ScreenId = 3
-                        },
-                        new
-                        {
                             Id = 24,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "2/3",
+                            Description = "C4",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "B3",
-                            NumberInRow = 3,
-                            Row = 2,
-                            ScreenId = 3
+                            Name = "C4",
+                            NumberInRow = 4,
+                            Row = 3,
+                            ScreenId = 1
                         },
                         new
                         {
                             Id = 25,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/1",
+                            Description = "C5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C5",
+                            NumberInRow = 5,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C6",
+                            NumberInRow = 6,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C7",
+                            NumberInRow = 7,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C8",
+                            NumberInRow = 8,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C9",
+                            NumberInRow = 9,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C10",
+                            NumberInRow = 10,
+                            Row = 3,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D1",
+                            NumberInRow = 1,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D2",
+                            NumberInRow = 2,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D3",
+                            NumberInRow = 3,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D4",
+                            NumberInRow = 4,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D5",
+                            NumberInRow = 5,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D6",
+                            NumberInRow = 6,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D7",
+                            NumberInRow = 7,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D8",
+                            NumberInRow = 8,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D9",
+                            NumberInRow = 9,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D10",
+                            NumberInRow = 10,
+                            Row = 4,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E1",
+                            NumberInRow = 1,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E2",
+                            NumberInRow = 2,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E3",
+                            NumberInRow = 3,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E4",
+                            NumberInRow = 4,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E5",
+                            NumberInRow = 5,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E6",
+                            NumberInRow = 6,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E7",
+                            NumberInRow = 7,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E8",
+                            NumberInRow = 8,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E9",
+                            NumberInRow = 9,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E10",
+                            NumberInRow = 10,
+                            Row = 5,
+                            ScreenId = 1
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 52,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 53,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 54,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A4",
+                            NumberInRow = 4,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 55,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A5",
+                            NumberInRow = 5,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 56,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A6",
+                            NumberInRow = 6,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 57,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A7",
+                            NumberInRow = 7,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 58,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A8",
+                            NumberInRow = 8,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 59,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A9",
+                            NumberInRow = 9,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 60,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A10",
+                            NumberInRow = 10,
+                            Row = 1,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 61,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 62,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 63,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 64,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B4",
+                            NumberInRow = 4,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 65,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B5",
+                            NumberInRow = 5,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 66,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B6",
+                            NumberInRow = 6,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 67,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B7",
+                            NumberInRow = 7,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 68,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B8",
+                            NumberInRow = 8,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 69,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B9",
+                            NumberInRow = 9,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 70,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B10",
+                            NumberInRow = 10,
+                            Row = 2,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 71,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C1",
+                            NumberInRow = 1,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 72,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C2",
+                            NumberInRow = 2,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 73,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C3",
+                            NumberInRow = 3,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 74,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C4",
+                            NumberInRow = 4,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 75,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C5",
+                            NumberInRow = 5,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 76,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C6",
+                            NumberInRow = 6,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 77,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C7",
+                            NumberInRow = 7,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 78,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C8",
+                            NumberInRow = 8,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 79,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C9",
+                            NumberInRow = 9,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 80,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C10",
+                            NumberInRow = 10,
+                            Row = 3,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 81,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D1",
+                            NumberInRow = 1,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 82,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D2",
+                            NumberInRow = 2,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 83,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D3",
+                            NumberInRow = 3,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 84,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D4",
+                            NumberInRow = 4,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 85,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D5",
+                            NumberInRow = 5,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 86,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D6",
+                            NumberInRow = 6,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 87,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D7",
+                            NumberInRow = 7,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 88,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D8",
+                            NumberInRow = 8,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 89,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D9",
+                            NumberInRow = 9,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 90,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D10",
+                            NumberInRow = 10,
+                            Row = 4,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 91,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E1",
+                            NumberInRow = 1,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 92,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E2",
+                            NumberInRow = 2,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 93,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E3",
+                            NumberInRow = 3,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 94,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E4",
+                            NumberInRow = 4,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 95,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E5",
+                            NumberInRow = 5,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 96,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E6",
+                            NumberInRow = 6,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 97,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E7",
+                            NumberInRow = 7,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 98,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E8",
+                            NumberInRow = 8,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 99,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E9",
+                            NumberInRow = 9,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 100,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E10",
+                            NumberInRow = 10,
+                            Row = 5,
+                            ScreenId = 2
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A1",
+                            NumberInRow = 1,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A2",
+                            NumberInRow = 2,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A3",
+                            NumberInRow = 3,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A4",
+                            NumberInRow = 4,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A5",
+                            NumberInRow = 5,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A6",
+                            NumberInRow = 6,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A7",
+                            NumberInRow = 7,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A8",
+                            NumberInRow = 8,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A9",
+                            NumberInRow = 9,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "A10",
+                            NumberInRow = 10,
+                            Row = 1,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B1",
+                            NumberInRow = 1,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B2",
+                            NumberInRow = 2,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B3",
+                            NumberInRow = 3,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B4",
+                            NumberInRow = 4,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B5",
+                            NumberInRow = 5,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B6",
+                            NumberInRow = 6,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B7",
+                            NumberInRow = 7,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B8",
+                            NumberInRow = 8,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B9",
+                            NumberInRow = 9,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "B10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "B10",
+                            NumberInRow = 10,
+                            Row = 2,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C1",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C1",
@@ -1955,9 +3094,9 @@ namespace DatabaseAPI.Migrations
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 122,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/2",
+                            Description = "C2",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C2",
@@ -1967,14 +3106,338 @@ namespace DatabaseAPI.Migrations
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 123,
                             CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "3/3",
+                            Description = "C3",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C3",
                             NumberInRow = 3,
                             Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C4",
+                            NumberInRow = 4,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C5",
+                            NumberInRow = 5,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C6",
+                            NumberInRow = 6,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C7",
+                            NumberInRow = 7,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C8",
+                            NumberInRow = 8,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C9",
+                            NumberInRow = 9,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C10",
+                            NumberInRow = 10,
+                            Row = 3,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D1",
+                            NumberInRow = 1,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D2",
+                            NumberInRow = 2,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D3",
+                            NumberInRow = 3,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D4",
+                            NumberInRow = 4,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D5",
+                            NumberInRow = 5,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D6",
+                            NumberInRow = 6,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D7",
+                            NumberInRow = 7,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D8",
+                            NumberInRow = 8,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D9",
+                            NumberInRow = 9,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "D10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "D10",
+                            NumberInRow = 10,
+                            Row = 4,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E1",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E1",
+                            NumberInRow = 1,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E2",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E2",
+                            NumberInRow = 2,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E3",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E3",
+                            NumberInRow = 3,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E4",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E4",
+                            NumberInRow = 4,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E5",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E5",
+                            NumberInRow = 5,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E6",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E6",
+                            NumberInRow = 6,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E7",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E7",
+                            NumberInRow = 7,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E8",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E8",
+                            NumberInRow = 8,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E9",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E9",
+                            NumberInRow = 9,
+                            Row = 5,
+                            ScreenId = 3
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "E10",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "E10",
+                            NumberInRow = 10,
+                            Row = 5,
                             ScreenId = 3
                         });
                 });
@@ -2761,7 +4224,7 @@ namespace DatabaseAPI.Migrations
                     b.Property<int?>("AwardId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -3269,7 +4732,8 @@ namespace DatabaseAPI.Migrations
                 {
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Screening", "Screening")
                         .WithMany("ScreeningSeats")
-                        .HasForeignKey("ScreeningId");
+                        .HasForeignKey("ScreeningId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Seat", "Seat")
                         .WithMany()
@@ -3376,9 +4840,7 @@ namespace DatabaseAPI.Migrations
 
                     b.HasOne("DatabaseAPI.Models.DictionaryModels.Country", "Country")
                         .WithMany("Directors")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
 
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
                         .WithMany("Directors")

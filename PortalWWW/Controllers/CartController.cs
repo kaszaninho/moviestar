@@ -61,6 +61,20 @@ namespace PortalWWW.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost("RemoveFromCart")]
+        public async Task<IActionResult> RemoveFromCart(int cartElementId)
+        {
+            CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(dbContext, this.HttpContext);
+            var cartElements = await cartBusinessLogic.GetCartElements();
+            var searchedCartElement = cartElements.First(x => x.Id == cartElementId);
+            if (searchedCartElement == null)
+            {
+                return NotFound();
+            }
+            await cartBusinessLogic.RemoveFromCart(searchedCartElement);
+            return RedirectToAction("Index");
+        }
+
         [HttpPost("AddCoupon")]
         public async Task<IActionResult> AddCoupon(string couponName)
         {

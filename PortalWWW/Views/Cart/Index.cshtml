@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Cart";
 }
- 
+
 
 <div class="container mt-5">
     <h2 class="text-primary text-center">🎟️ Your Movie Tickets 🎬</h2>
@@ -16,23 +16,30 @@
     }
     else
     {
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center">
             @foreach (var element in Model.CartElements)
             {
-                <div class="col-md-6">
-                    <div class="card ticket-card">
-                        <div class="card-header">
-                            @element.ScreeningSeat.Screening.Movie.Name
-                        </div>
-                        <div class="card-body">
-                            <p>🎬 <strong>Duration:</strong> @element.ScreeningSeat.Screening.Movie.Duration min</p>
-                            <p>📅 <strong>Date:</strong> @element.ScreeningSeat.Screening.StartDate.Value.ToString("dd-MM-yyyy")</p>
-                            <p>🕒 <strong>Start:</strong> @element.ScreeningSeat.Screening.StartDate.Value.ToString("HH:mm")</p>
-                            <p>🕓 <strong>End:</strong> @element.ScreeningSeat.Screening.EndDate.Value.ToString("HH:mm")</p>
-                            <div class="ticket-info">
-                                <span>🎟 Seat:</span> <span>@element.ScreeningSeat.Name</span>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card ticket-card">
+                            <div class="card-header">
+                                @element.ScreeningSeat.Screening.Movie.Name
+                            </div>
+                            <div class="card-body">
+                                <p>🎬 <strong>Duration:</strong> @element.ScreeningSeat.Screening.Movie.Duration min</p>
+                                <p>📅 <strong>Date:</strong> @element.ScreeningSeat.Screening.StartDate.Value.ToString("dd-MM-yyyy")</p>
+                                <p>🕒 <strong>Start:</strong> @element.ScreeningSeat.Screening.StartDate.Value.ToString("HH:mm")</p>
+                                <p>🕓 <strong>End:</strong> @element.ScreeningSeat.Screening.EndDate.Value.ToString("HH:mm")</p>
+                                <div class="ticket-info">
+                                    <span>🎟 Seat:</span> <span>@element.ScreeningSeat.Name</span>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-cartelementid="@element.Id" method="post">
+                            <button type="submit" class="payment-btn"> - </button>
+                        </form>
                     </div>
                 </div>
             }
@@ -49,4 +56,4 @@
         </div>
     }
 </div>
-<br> 
+<br>

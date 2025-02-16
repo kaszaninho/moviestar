@@ -9,8 +9,10 @@ using DatabaseAPI.Models.General.DictionaryModels;
 using DatabaseAPI.Models.People;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
+using System.Reflection.Emit;
 
 namespace DatabaseAPI.Data
 {
@@ -65,6 +67,12 @@ namespace DatabaseAPI.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<ScreeningSeat>()
+        .HasOne(ss => ss.Screening)  // Navigation property
+        .WithMany(s => s.ScreeningSeats)  // Assuming Screening has a list of seats
+        .HasForeignKey(ss => ss.ScreeningId) // Foreign key property
+        .OnDelete(DeleteBehavior.Cascade); // Enables Cascade Delete
 
             builder.Entity<AgeRating>().HasData(
                 new AgeRating { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "+12", Name = "+12" },
@@ -207,35 +215,8 @@ namespace DatabaseAPI.Data
                 new Screen { Id = 3, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "MILKY WAY", Name = "MILKY WAY", RoomNumber = 34 }
                 );
 
-            builder.Entity<Seat>().HasData(
-                new Seat { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/1", Name = "A1", NumberInRow = 1, Row = 1, ScreenId = 1 },
-                new Seat { Id = 2, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/2", Name = "A2", NumberInRow = 2, Row = 1, ScreenId = 1 },
-                new Seat { Id = 3, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/3", Name = "A3", NumberInRow = 3, Row = 1, ScreenId = 1 },
-                new Seat { Id = 4, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/1", Name = "B1", NumberInRow = 1, Row = 2, ScreenId = 1 },
-                new Seat { Id = 5, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/2", Name = "B2", NumberInRow = 2, Row = 2, ScreenId = 1 },
-                new Seat { Id = 6, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/3", Name = "B3", NumberInRow = 3, Row = 2, ScreenId = 1 },
-                new Seat { Id = 7, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/1", Name = "C1", NumberInRow = 1, Row = 3, ScreenId = 1 },
-                new Seat { Id = 8, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/2", Name = "C2", NumberInRow = 2, Row = 3, ScreenId = 1 },
-                new Seat { Id = 9, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/3", Name = "C3", NumberInRow = 3, Row = 3, ScreenId = 1 },
-                new Seat { Id = 10, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/1", Name = "A1", NumberInRow = 1, Row = 1, ScreenId = 2 },
-                new Seat { Id = 11, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/2", Name = "A2", NumberInRow = 2, Row = 1, ScreenId = 2 },
-                new Seat { Id = 12, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/3", Name = "A3", NumberInRow = 3, Row = 1, ScreenId = 2 },
-                new Seat { Id = 13, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/1", Name = "B1", NumberInRow = 1, Row = 2, ScreenId = 2 },
-                new Seat { Id = 14, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/2", Name = "B2", NumberInRow = 2, Row = 2, ScreenId = 2 },
-                new Seat { Id = 15, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/3", Name = "B3", NumberInRow = 3, Row = 2, ScreenId = 2 },
-                new Seat { Id = 16, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/1", Name = "C1", NumberInRow = 1, Row = 3, ScreenId = 2 },
-                new Seat { Id = 17, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/2", Name = "C2", NumberInRow = 2, Row = 3, ScreenId = 2 },
-                new Seat { Id = 18, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/3", Name = "C3", NumberInRow = 3, Row = 3, ScreenId = 2 },
-                new Seat { Id = 19, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/1", Name = "A1", NumberInRow = 1, Row = 1, ScreenId = 3 },
-                new Seat { Id = 20, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/2", Name = "A2", NumberInRow = 2, Row = 1, ScreenId = 3 },
-                new Seat { Id = 21, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "1/3", Name = "A3", NumberInRow = 3, Row = 1, ScreenId = 3 },
-                new Seat { Id = 22, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/1", Name = "B1", NumberInRow = 1, Row = 2, ScreenId = 3 },
-                new Seat { Id = 23, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/2", Name = "B2", NumberInRow = 2, Row = 2, ScreenId = 3 },
-                new Seat { Id = 24, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "2/3", Name = "B3", NumberInRow = 3, Row = 2, ScreenId = 3 },
-                new Seat { Id = 25, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/1", Name = "C1", NumberInRow = 1, Row = 3, ScreenId = 3 },
-                new Seat { Id = 26, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/2", Name = "C2", NumberInRow = 2, Row = 3, ScreenId = 3 },
-                new Seat { Id = 27, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "3/3", Name = "C3", NumberInRow = 3, Row = 3, ScreenId = 3 }
-                );
+
+            builder.Entity<Seat>().HasData(GenerateSeats());
 
 
             // CMS
@@ -656,7 +637,7 @@ namespace DatabaseAPI.Data
                 },
                 new Movie
                 {
-                    Id = 5,  
+                    Id = 5,
                     Name = "The Last Goodbye",
                     AgeRatingId = 2, // 15+
                     CountryId = 2, // USA
@@ -931,6 +912,42 @@ namespace DatabaseAPI.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+        }
+
+        private Seat BuildSeat(int id, DateTime createdAt, DateTime modifiedAt, Boolean isActive, string description, string name, int numberInRow, int row, int screenId)
+        {
+            return new Seat
+            {
+                Id = id,
+                CreatedAt = createdAt,
+                ModifiedAt = modifiedAt,
+                IsActive = isActive,
+                Description = description,
+                Name = name,
+                NumberInRow = numberInRow,
+                Row = row,
+                ScreenId = screenId
+            };
+        }
+
+        private List<Seat> GenerateSeats()
+        {
+            var predefinedTime = new DateTime(2025, 2, 2);
+            List<Seat> seats = new List<Seat>();
+            int currentId = 1;
+            for (int i = 1; i < 4; i++) // screenId
+            {
+                for (int j = 1; j < 6; j++) // row number
+                {
+                    for (int k = 1; k < 11; k++) // seat in a row number
+                    {
+                        string rowLetter = ((char)('A' + j - 1)).ToString(); // Convert row number to letter (A-E)
+                        string seatName = $"{rowLetter}{k}";
+                        seats.Add(BuildSeat(currentId++, predefinedTime, predefinedTime, true, seatName, seatName, k, j, i));
+                    }
+                }
+            }
+            return seats;
         }
     }
 }

@@ -13,6 +13,19 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
+            width: 100%; /* Ensure full width */
+        }
+
+        .screening {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            max-width: 900px; /* Limit width */
+            margin: auto;
+            padding-bottom: 50px; /* Prevent footer overlap */
         }
 
         .screen {
@@ -27,20 +40,24 @@
         }
 
         .seats-container {
-            display: grid;
-            grid-template-columns: repeat(15, 1fr);
-            gap: 8px;
+            display: flex;
+            flex-wrap: wrap; /* Prevents seats from overflowing */
             justify-content: center;
+            gap: 8px;
+            max-width: 500px; /* Prevents spreading too far */
+            padding: 20px;
         }
 
         .row {
             display: flex;
             justify-content: center;
+            width: 100%; /* Ensure rows align correctly */
+            flex-wrap: nowrap; /* Keep seats in a single line */
         }
 
         .seat {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             background-color: #444;
             border-radius: 5px;
             display: flex;
@@ -62,27 +79,29 @@
     </style>
 </head>
 
-<div class="container text-center">
-    <h3>Choose Your Seats</h3>
-    <p>Screening ID: @ViewData["ScreeningId"]</p>
-    <p>Movie Name: @ViewData["MovieName"]</p>
-    <p>Date: @ViewData["Date"]</p>
+<div class="container align-content-center text-center d-flex flex-column align-items-center">
+    <div class="screening-info">
+        <h3>Choose Your Seats</h3>
+        <p>Screening ID: @ViewData["ScreeningId"]</p>
+        <p>Movie Name: @ViewData["MovieName"]</p>
+        <p>Date: @ViewData["Date"]</p>
+    </div>
 
     <div class="screening">
         <div class="screening-container">
             <div class="screen">SCREEN</div>
 
             <ul class="showcase">
-                <li><div class="seat"></div> <small>N/A</small></li>
-                <li><div class="seat selected"></div> <small>Selected</small></li>
-                <li><div class="seat occupied"></div> <small>Occupied</small></li>
+                <li><div class="seat"></div><small>N/A</small></li>
+                <li><div class="seat selected"></div><small>Selected</small></li>
+                <li><div class="seat occupied"></div><small>Occupied</small></li>
             </ul>
 
             <div class="seats-container">
                 @foreach (var rowGroup in Model.GroupBy(s => s.Seat.Row).OrderBy(g => g.Key))
                 {
                     <div class="row">
-                        @foreach (var screeningSeat in rowGroup.OrderBy(s => s.Seat.NumberInRow))
+                        @foreach (var screeningSeat in rowGroup.OrderBy(s => int.Parse(s.Seat.Name.Substring(1))))
                         {
                             string seatClass = screeningSeat.IsTaken == true ? "seat occupied" : "seat";
                             <div class="@seatClass" data-seat="@($"{(char)(64 + screeningSeat.Seat.Row)}{screeningSeat.Seat.NumberInRow}")"
@@ -99,7 +118,6 @@
         <button id="submitSeats">Confirm Selection</button>
     </div>
 </div>
-
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', () => {

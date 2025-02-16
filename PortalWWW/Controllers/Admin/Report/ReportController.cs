@@ -43,6 +43,8 @@ namespace PortalWWW.Controllers.Admin.Report
                 genresCount.Add(genres[i].Movies.Count);
                 labels.Add(genres[i].Name);
             }
+            var random = new Random();
+            var colors = labels.Select(_ => $"rgba({random.Next(0, 256)}, {random.Next(0, 256)}, {random.Next(0, 256)}, 1)").ToArray();
 
             var chartData = new
             {
@@ -53,7 +55,7 @@ namespace PortalWWW.Controllers.Admin.Report
                     {
                         label = $"Movies' count in each genre from {startDate.GetValueOrDefault().ToShortDateString()} do {endDate.GetValueOrDefault().ToShortDateString()}",
                         data = genresCount,
-                        backgroundColor = "rgba(75, 12, 12, 0.2)",
+                        backgroundColor = colors,
                         borderColor = "rgba(75, 12, 12, 1)",
                         borderWidth = 1
                     }
@@ -105,6 +107,8 @@ namespace PortalWWW.Controllers.Admin.Report
                 paymentMethodsSum.Add(invoices.Where(inv => inv.PaymentMethod == paymentMethods[i]).Sum(inv => inv.TotalSum));
                 labels.Add(paymentMethods[i].Name);
             }
+            var random = new Random();
+            var colors = labels.Select(_ => $"rgba({random.Next(0, 256)}, {random.Next(0, 256)}, {random.Next(0, 256)}, 1)").ToArray();
 
             var chartData = new
             {
@@ -115,7 +119,7 @@ namespace PortalWWW.Controllers.Admin.Report
                     {
                         label = $"Invoice count with each payment method from {startDate.GetValueOrDefault().ToShortDateString()} do {endDate.GetValueOrDefault().ToShortDateString()}",
                         data = paymentMethodsCount,
-                        backgroundColor = "rgba(75, 12, 12, 0.2)",
+                        backgroundColor = colors,
                         borderColor = "rgba(75, 12, 12, 1)",
                         borderWidth = 1
                     },
@@ -123,7 +127,7 @@ namespace PortalWWW.Controllers.Admin.Report
                     {
                         label = $"Income with each payment method from {startDate.GetValueOrDefault().ToShortDateString()} do {endDate.GetValueOrDefault().ToShortDateString()}",
                         data = paymentMethodsSum,
-                        backgroundColor = "rgba(15, 72, 12, 0.2)",
+                        backgroundColor = colors,
                         borderColor = "rgba(75, 12, 12, 1)",
                         borderWidth = 1
                     }
