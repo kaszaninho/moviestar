@@ -14,7 +14,7 @@ namespace BusinessLogic
             // Custom ticket size: 200mm x 100mm (~7.8in x 3.9in)
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();
-            page.Width = XUnit.FromMillimeter(200);  // Ticket width
+            page.Width = XUnit.FromMillimeter(150);  // Ticket width
             page.Height = XUnit.FromMillimeter(100); // Ticket height
 
             XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -51,19 +51,19 @@ namespace BusinessLogic
             yPosition += 30;
 
             // Ticket Details
-            gfx.DrawString($"Ticket: {ticket.Id}", subtitleFont, XBrushes.Black, margin + 30, yPosition);
+            gfx.DrawString($"Ticket: {ticket.Id}", subtitleFont, XBrushes.Black, margin + 25, yPosition);
             yPosition += 25;
 
-            gfx.DrawString($"Movie: {ticket.MovieName}", normalFont, XBrushes.Black, margin + 30, yPosition);
+            gfx.DrawString($"Movie: {ticket.MovieName}", normalFont, XBrushes.Black, margin + 25, yPosition);
             yPosition += 20;
 
-            gfx.DrawString($"Screen: {ticket.RoomNumber}", normalFont, XBrushes.Black, margin + 30, yPosition);
+            gfx.DrawString($"Screen: {ticket.RoomNumber}", normalFont, XBrushes.Black, margin + 25, yPosition);
             yPosition += 20;
 
-            gfx.DrawString($"Seat: {ticket.seatCode}", normalFont, XBrushes.Black, margin + 30, yPosition);
+            gfx.DrawString($"Seat: {ticket.seatCode}", normalFont, XBrushes.Black, margin + 25, yPosition);
             yPosition += 20;
 
-            gfx.DrawString($"Date: {ticket.StartDate}", normalFont, XBrushes.Black, margin + 30, yPosition);
+            gfx.DrawString($"Date: {ticket.StartDate}", normalFont, XBrushes.Black, margin + 25, yPosition);
             yPosition += 25;
 
             // QR Code Generation
@@ -71,7 +71,7 @@ namespace BusinessLogic
             using (MemoryStream qrStream = GenerateQRCode(qrText))
             {
                 XImage qrImage = XImage.FromStream(() => qrStream);
-                gfx.DrawImage(qrImage, page.Width - 300, page.Height - 200, 180, 180);
+                gfx.DrawImage(qrImage, page.Width - 200, page.Height - 200, 170, 170);
             }
 
             // File Saving
