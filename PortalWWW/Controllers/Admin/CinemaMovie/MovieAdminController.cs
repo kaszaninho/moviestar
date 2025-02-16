@@ -13,7 +13,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
     [Route("[controller]")]
     public class MovieAdminController : Controller
     {
-
+        private string IMAGE_PATH = @"http://localhost/images/";
         protected readonly IRepository<Movie> repository;
         protected readonly IWebHostEnvironment webHostEnvironment;
         public MovieAdminController(IRepository<Movie> repository, IWebHostEnvironment webHostEnvironment)
@@ -126,6 +126,38 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         }
 
 
+        [HttpGet("DeleteImage")]
+        public async Task<IActionResult> DeleteImage(int id)
+        {
+            var entity = await repository.FindEntityAsync(id);
+            if (!(await UrlExists(IMAGE_PATH)))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (string.IsNullOrEmpty(entity.imageUrl))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var imagePath = IMAGE_PATH + entity.imageUrl;
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+            entity.imageUrl = null;
+            entity.ModifiedAt = DateTime.Now;
+            await repository.UpdateEntityAsync(entity);
+            TempData["SuccessMessage"] = "Image delete successfully!";
+            return RedirectToAction(nameof(Index));
+        }
+        async Task<bool> UrlExists(string url)
+        {
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            return response.IsSuccessStatusCode;
+        }
+
+
         [HttpPost("CreateConfirmed")]
         virtual public async Task<IActionResult> CreateConfirmed(Movie entity, IFormFile? file)
         {
@@ -151,7 +183,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             return RedirectToAction("Index");
         }
 
-        
+
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {

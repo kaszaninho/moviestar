@@ -53,6 +53,8 @@ namespace PortalWWW.Helpers
         {
             if (propertyName.ToLower().Contains("imageurl"))
                 return false;
+            if (propertyName.ToLower().Contains("enddate"))
+                return false;
             return true;
         }
 

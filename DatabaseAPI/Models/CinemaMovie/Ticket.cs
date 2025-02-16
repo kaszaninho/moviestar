@@ -4,7 +4,7 @@ using DatabaseAPI.Models.People;
 
 namespace DatabaseAPI.Models.CinemaMovie
 {
-    public class Ticket : BaseDatatable
+    public class Ticket : DictionaryTable
     {
         public Guid? InvoiceId { get; set; }
         public Invoice? Invoice { get; set; }

@@ -1,7 +1,11 @@
 ﻿@model DatabaseAPI.Models.CinemaMovie.MovieReview;
 
-<div class="form-group">
-    <label asp-for="Movie" class="control-label"></label>
-    <select asp-for="MovieId" class="form-control" asp-items="ViewBag.Movie"></select>
-    <span asp-validation-for="MovieId" class="text-danger"></span>
-</div>
+<tr>
+    <td><strong><label for="Movie" class="form-label">Movie</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="MovieId" class="form-control" asp-items="ViewBag.Movie"></select>
+            <span asp-validation-for="MovieId" class="text-danger"></span>
+        </div>
+    </td>
+</tr>

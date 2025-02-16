@@ -1,15 +1,24 @@
 ﻿@model DatabaseAPI.Models.CinemaMovie.Screening;
 
-<dt class="col-sm-2">
-    @Html.DisplayNameFor(screening => screening.Movie)
-</dt>
-<dd class="col-sm-10">
-    @Html.DisplayFor(screening => screening.Movie.Name)
-</dd>
-
-<dt class="col-sm-2">
-    @Html.DisplayNameFor(screening => screening.Screen)
-</dt>
-<dd class="col-sm-10">
-    @Html.DisplayFor(screening => screening.Screen.Name)
-</dd>
+<tr>
+    <td>
+        <strong><label asp-for="Movie.Name" class="form-label">Movie</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Movie.Name" class="form-controlX " id="floatingInput" value="@Model.Movie.Name" readonly>
+            <span asp-validation-for="Movie.Name" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="Screen.Name" class="form-label">Screen</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Screen.Name" class="form-controlX " id="floatingInput" value="@Model.Screen.Name" readonly>
+            <span asp-validation-for="Screen.Name" class="text-danger"></span>
+        </div>
+    </td>
+</tr>

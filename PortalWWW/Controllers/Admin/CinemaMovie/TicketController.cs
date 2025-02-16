@@ -1,4 +1,5 @@
 ﻿using DatabaseAPI.Models.CinemaMovie;
+using DatabaseAPI.Models.General;
 using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -44,6 +45,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 Name = seat.Screening.Movie.Name + " - " + seat.Seat.Name
             }).ToList();
             ViewBag.ScreeningSeat = new SelectList(listForBag, "Id", "Name");
+            ViewBag.Invoice = new SelectList(await repository.GetDbSet<Invoice>().ToListAsync(), "InvoiceId", "InvoiceId");
             ViewData["type"] = typeof(Ticket);
             ViewData["PartialViewName"] = "TicketCreate";
             return View();
@@ -68,6 +70,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 Name = seat.Screening.Movie.Name + " - " + seat.Seat.Name
             }).ToList();
             ViewBag.ScreeningSeat = new SelectList(listForBag, "Id", "Name");
+            ViewBag.Invoice = new SelectList(await repository.GetDbSet<Invoice>().ToListAsync(), "InvoiceId", "InvoiceId");
             ViewData["type"] = typeof(Ticket);
             ViewData["PartialViewName"] = "TicketCreate";
             return View(entity);

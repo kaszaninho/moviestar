@@ -227,7 +227,11 @@ namespace PortalWWW.Controllers
                 {
                     ScreeningSeat = element.ScreeningSeat,
                     ScreeningSeatId = element.ScreeningSeatId,
-                    Invoice = dbInvoice
+                    Invoice = dbInvoice,
+                    CreatedAt = DateTime.Now,
+                    ModifiedAt = DateTime.Now,
+                    Name = element.ScreeningSeat.Screening.Movie.Name,
+                    IsActive = true
                 };
                 TicketGenerator.GenerateTicket(ticketInvoice, null);
                 dbContext.Ticket.Add(ticket);

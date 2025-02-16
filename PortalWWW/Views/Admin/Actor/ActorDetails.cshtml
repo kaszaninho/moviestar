@@ -1,9 +1,12 @@
 ﻿@model DatabaseAPI.Models.People.Actor;
-
-
-<dt class="col-sm-2">
-    @Html.DisplayNameFor(actor => actor.Country)
-</dt>
-<dd class="col-sm-10">
-    @Html.DisplayFor(actor => actor.Country.Name)
-</dd>
+<tr>
+    <td>
+        <strong><label asp-for="Country.Name" class="form-label">Country</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Country.Name" class="form-controlX " id="floatingInput" value="@Model.Country.Name" readonly>
+            <span asp-validation-for="Country.Name" class="text-danger"></span>
+        </div>
+    </td>
+</tr>

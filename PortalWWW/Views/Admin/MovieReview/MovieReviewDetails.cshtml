@@ -1,8 +1,13 @@
 ﻿@model DatabaseAPI.Models.CinemaMovie.MovieReview;
 
-<dt class="col-sm-2">
-    @Html.DisplayNameFor(movieReview => movieReview.Movie)
-</dt>
-<dd class="col-sm-10">
-    @Html.DisplayFor(movieReview => movieReview.Movie.Name)
-</dd>
+<tr>
+    <td>
+        <strong><label asp-for="Movie.Name" class="form-label">Movie</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Movie.Name" class="form-controlX " id="floatingInput" value="@Model.Movie.Name" readonly>
+            <span asp-validation-for="Movie.Name" class="text-danger"></span>
+        </div>
+    </td>
+</tr>

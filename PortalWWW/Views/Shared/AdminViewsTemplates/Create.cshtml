@@ -84,13 +84,13 @@
                             </td>
                         </tr>
                     }
+                    @if (partialViewName != null)
+                    {
+                        @await Html.PartialAsync(partialViewName)
+                    }
                 </tbody>
             </table>
 
-            @if (partialViewName != null)
-            {
-                @await Html.PartialAsync(partialViewName)
-            }
 
             <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-success m-2 custom-btn" />

@@ -47,6 +47,7 @@
                         if (!ShouldShowPropertyOnCreate(prop.Name)) continue;
                         if (IsId(prop.Name)) continue;
                         if (IsTypeOfBaseDatatable(prop.PropertyType)) continue;
+                        if (!ShouldBeShownBasedOnPropertyName(prop.Name)) continue;
 
                         bool isBoolean = prop.PropertyType == typeof(bool) || Nullable.GetUnderlyingType(prop.PropertyType) == typeof(bool);
                         bool isIsActive = prop.Name.Equals("IsActive", StringComparison.OrdinalIgnoreCase);
