@@ -1,7 +1,4 @@
-﻿@model IEnumerable<DatabaseAPI.Models.General.Address>
-@using System.Linq;
-@using DatabaseAPI.Models.DictionaryModels;
-@using static PortalWWW.Helpers.GenericCheck;
+﻿ 
 @{
     ViewData["Title"] = "Contact Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,17 +6,9 @@
 
 <section class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h2 class="mb-4">📍 Contact Information</h2>
-                @foreach (var item in Model)
-                {
-                    <p><strong>🏠 Address:</strong> <span>item., item.HouseNumber</span></p>
-                    <p><strong>🌍 Country:</strong> item.Country <strong>| EirCode:</strong> item.EirCode</p>
-                }
-            </div>
-        </div>
-    </div>
+        <h2 class="mb-4 text-center" >📍 Contact Information</h2>
+        @await Component.InvokeAsync("ContactInformationComponent")
+    </div>      
 </section>
 
 <section class="py-5">

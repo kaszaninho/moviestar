@@ -574,3 +574,57 @@ input:disabled, textarea:disabled {
     .btn-primary:hover {
         background-color: #0056b3;
     }
+/* Styl dla sekcji informacji */
+.info-section {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Styl dla miejsc */
+.seat-card {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Styl dla kontenera miejsc */
+.seat-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Przycisk dodania do koszyka */
+.add-to-cart-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 12px;
+    background-color: #0d6efd;
+    border-color: #007bff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+    .add-to-cart-btn:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
