@@ -67,6 +67,7 @@ namespace PortalWWW.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await repository.DeleteEntityAsync(id);
+            TempData["SuccessMessage"] = "Record deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
 
@@ -101,6 +102,7 @@ namespace PortalWWW.Controllers
             }
             entity.ModifiedAt = DateTime.Now;
             await repository.UpdateEntityAsync(entity);
+            TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction(nameof(Index));
         }
 
@@ -110,6 +112,7 @@ namespace PortalWWW.Controllers
             entity.CreatedAt = DateTime.Now;
             entity.ModifiedAt = DateTime.Now;
             await repository.AddEntityAsync(entity);
+            TempData["SuccessMessage"] = "Record created successfully!";
             return RedirectToAction("Index");
         }
     }

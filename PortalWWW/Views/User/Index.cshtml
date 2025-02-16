@@ -43,6 +43,16 @@
 
     <script>
         $(document).ready(function () {
+            var message = '@TempData["SuccessMessage"]';
+            if (message) {
+                toastr.success(message);
+            }
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
             loadDataTable();
         });
 

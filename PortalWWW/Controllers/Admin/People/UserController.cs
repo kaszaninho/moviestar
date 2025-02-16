@@ -128,6 +128,7 @@ namespace PortalWWW.Controllers.Admin.People
                 await userManager.AddToRoleAsync(user, roleVM.User.Role);
             }
 
+            TempData["SuccessMessage"] = "Role changed successfully!";
             return RedirectToAction("Index");
         }
 
@@ -185,6 +186,7 @@ namespace PortalWWW.Controllers.Admin.People
             entity.Address.CountryId = viewModel.CountryId;
             context.Update(entity);
             await context.SaveChangesAsync();
+            TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction(nameof(Index));
         }
     }

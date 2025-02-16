@@ -121,6 +121,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             }
             entity.ModifiedAt = DateTime.Now;
             await repository.UpdateEntityAsync(entity);
+            TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction(nameof(Index));
         }
 
@@ -146,6 +147,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             entity.CreatedAt = DateTime.Now;
             entity.ModifiedAt = DateTime.Now;
             await repository.AddEntityAsync(entity);
+            TempData["SuccessMessage"] = "Record created successfully!";
             return RedirectToAction("Index");
         }
 
