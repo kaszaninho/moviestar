@@ -60,7 +60,7 @@
         <div class="d-flex justify-content-end gap-2">
             <form method="post" asp-controller="Report" asp-action="ExportExcel">
                 <input type="hidden" name="status" value="@Context.Request.Query["mode"]" />
-                <button type="submit" class="btn btn-danger btn-sm">Export to Excel</button>
+                <button type="submit" class="btn btn-primary btn-sm">Export to Excel</button>
             </form>
             <form method="post" asp-controller="Report" asp-action="ExportDoc">
                 <input type="hidden" name="status" value="@Context.Request.Query["mode"]" />
