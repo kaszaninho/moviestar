@@ -7,6 +7,7 @@ using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.General.DictionaryModels;
 using DatabaseAPI.Models.People;
+using DatabaseAPI.Models.Shop;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -63,6 +64,7 @@ namespace DatabaseAPI.Data
         public DbSet<Bottombar>? Bottombar { get; set; }
         public DbSet<UsefulLink>? UsefulLink { get; set; }
         public DbSet<FooterIcon>? FooterIcon { get; set; }
+        public DbSet<CustomerQuery>? CustomerQuery { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
