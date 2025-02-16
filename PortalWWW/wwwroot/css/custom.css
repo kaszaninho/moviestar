@@ -1,5 +1,4 @@
-﻿
-* {
+﻿* {
     box-sizing: border-box;
 }
 
@@ -23,14 +22,15 @@
 
 .screening {
     font-family: 'Lato', 'sans-serif';
-    display: center;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    height: 50vh;
-    width: 50vw;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
     color: #fff;
     margin: 0;
+    padding: 50px 0 100px 0;
 }
 
 .movie-container label {
@@ -50,24 +50,28 @@
 
 .showcase {
     border-radius: 7px;
-    display: center;
-    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 15px 30px;
     background-color: darkslateblue;
     list-style: none;
     font-weight: 500;
     margin: 20px 0;
     color: #777;
-    width: 250px;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
+    width: 400px;
 }
 
     .showcase li {
-        margin: 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 100px;
     }
 
         .showcase li small {
-            margin-left: 3px;
+            white-space: nowrap;
         }
 
 .seat {
@@ -79,7 +83,7 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     text-align: center;
-    line-height: 25px; /* Centers text vertically */
+    line-height: 25px;
     font-size: 10px;
     color: white;
     font-weight: bold;
@@ -102,13 +106,17 @@
     font-size: 6px;
     font-weight: bold;
     color: black;
-    pointer-events: none; /* Prevents interfering with click events */
+    pointer-events: none;
 }
 
 .screening-container {
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
     perspective: 1000px;
-    padding: 50px
+    padding: 50px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
 }
 
     .screening-container .screen {
@@ -116,10 +124,10 @@
         height: 90px;
         background-color: #fff;
         transform: rotateX(-45deg);
-        -webkit-box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 1);
-        -moz-box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 1);
         box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 1);
-        margin: 10px 0;
+        margin: 30px 0;
+        position: relative;
+        z-index: 0;
     }
 
 .row .seat:nth-of-type(2) {
@@ -141,4 +149,10 @@
 
 .text span {
     color: rgb(115, 115, 253);
+}
+
+.screening-info {
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
 }
