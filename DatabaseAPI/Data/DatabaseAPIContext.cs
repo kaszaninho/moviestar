@@ -467,7 +467,7 @@ namespace DatabaseAPI.Data
                     IsActive = true,
                     Description = "",
                     Name = "Movies",
-                    Content = "<a href=\"Movie\">Movies</a>",
+                    Content = "<a href=\"/Movie\\Index\">Movies</a>",
                     Position = 2
                 },
                 new UsefulLink
@@ -478,7 +478,7 @@ namespace DatabaseAPI.Data
                     IsActive = true,
                     Description = "",
                     Name = "Cart",
-                    Content = "<a href=\"Cart\">Cart</a>",
+                    Content = "<a href=\"/Cart\\Index\">Cart</a>",
                     Position = 3
                 },
                 new UsefulLink
@@ -489,7 +489,7 @@ namespace DatabaseAPI.Data
                     IsActive = true,
                     Description = "",
                     Name = "Home",
-                    Content = "<a href=\"Identity/Account/Manage\">Profile</a>",
+                    Content = "<a href=\"/Identity/Account/Manage\">Profile</a>",
                     Position = 4
                 },
                 new UsefulLink
@@ -500,7 +500,7 @@ namespace DatabaseAPI.Data
                     IsActive = true,
                     Description = "",
                     Name = "Contact",
-                    Content = "<a href=\"Contact\">Contact</a>",
+                    Content = "<a href=\"/Contact\">Contact</a>",
                     Position = 5
                 });
 

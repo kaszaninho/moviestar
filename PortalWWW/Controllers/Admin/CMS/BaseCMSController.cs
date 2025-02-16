@@ -36,6 +36,7 @@ namespace PortalWWW.Controllers.Admin.CMS
             entity.IsActive = true;
             context.Set<T>().Add(entity);
             context.SaveChanges();
+            TempData["SuccessMessage"] = "Record created successfully!";
             return RedirectToAction("Index");
         }
 
@@ -74,6 +75,7 @@ namespace PortalWWW.Controllers.Admin.CMS
             }
             context.Set<T>().Update(entity);
             context.SaveChanges();
+            TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction("Index");
         }
 

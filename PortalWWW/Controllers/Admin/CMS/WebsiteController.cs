@@ -30,6 +30,7 @@ namespace PortalWWW.Controllers.Admin.CMS
         {
             context.Website.Add(page);
             context.SaveChanges();
+            TempData["SuccessMessage"] = "Record created successfully!";
             return RedirectToAction("Index");
         }
 
@@ -38,6 +39,7 @@ namespace PortalWWW.Controllers.Admin.CMS
         {
             context.Website.Update(page);
             context.SaveChanges();
+            TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction("Index");
         }
 
