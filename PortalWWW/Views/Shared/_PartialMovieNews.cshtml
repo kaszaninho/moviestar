@@ -25,9 +25,7 @@
                 <h6>@Model.Genre</h6>
                 <h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Year : @Model.ReleaseDate <span class="ms-2">Runtime: @Model.Duration</span></h6>
                 <p>@Model.Description</p>
-                <form asp-action="ShowMovieDetails" asp-controller="Movie" asp-route-id="@Model.MovieId" method="post">
-                    <h6 class="mb-0"><button class="button" type="submit"> More Info </button></h6>
-                </form>
+                    <h6 class="mb-0"><a asp-action="ShowMovieDetails" asp-controller="Movie" asp-route-id="@Model.MovieId" class="button"> More Info </a></h6>
             </div>
         </div>
     </div>

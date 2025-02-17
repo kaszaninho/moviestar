@@ -7,7 +7,7 @@ namespace BusinessLogic
 {
     public static class TicketGenerator
     {
-        public static string IMAGE_LOGO_URL = @"http://localhost/images/photos/LOGO.png";
+        public static string IMAGE_LOGO_URL = @"http://localhost/images/photos/BLACKLOGO.png";
 
         public static void GenerateTicket(TicketInvoiceModel ticket, string? filePath)
         {
@@ -38,12 +38,9 @@ namespace BusinessLogic
                 using (MemoryStream ms = new MemoryStream(imageData))
                 {
                     XImage img = XImage.FromStream(() => ms);
-                    gfx.DrawImage(img, margin + 10, margin + 10, 80, 40);
+                    gfx.DrawImage(img, margin + 110, margin + 10, 180, 40);
                 }
             }
-
-            // Draw Title
-            gfx.DrawString("CINEMA TICKET", titleFont, XBrushes.Black, new XPoint(page.Width / 2, yPosition + 30), XStringFormats.Center);
             yPosition += 60;
 
             // Separator Line
