@@ -17,23 +17,14 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-0 d-flex justify-content-center">
                             @await Component.InvokeAsync("NavbarComponent")
-                            @await Component.InvokeAsync("WebsiteComponent")                            
-                            
+                            @await Component.InvokeAsync("WebsiteComponent")  
+                            <partial name="_LoginPartial" />
                         </ul>
+ 
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row w-100 mb-3">
-            <div class="col-12 d-flex justify-content-center">
-                <div   >
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </div>
-
-
-
     </nav>
 </section>
 <br>
