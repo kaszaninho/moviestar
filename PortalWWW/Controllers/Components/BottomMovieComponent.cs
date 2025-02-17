@@ -1,5 +1,8 @@
 ﻿using DatabaseAPI.Data;
+using DatabaseAPI.Models.CinemaMovie;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PortalWWW.Models;
 
 namespace PortalWWW.Controllers.Components
 {
@@ -12,7 +15,14 @@ namespace PortalWWW.Controllers.Components
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View("BottomMovieComponent");
+            var movieList = await context.Movie.Select(x => new MovieCarousel
+            {
+                MovieId = x.Id,
+                PhotoUrl = x.imageUrl,
+                Title = x.Name
+
+            }).ToListAsync();
+            return View("BottomMovieComponent", movieList.Take(Math.Min(10, movieList.Count)));
         }
     }
 }
