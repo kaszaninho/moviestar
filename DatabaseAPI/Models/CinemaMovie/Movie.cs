@@ -4,6 +4,7 @@ using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.People;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DatabaseAPI.Models.CinemaMovie
 {
@@ -17,10 +18,10 @@ namespace DatabaseAPI.Models.CinemaMovie
         public Country? Country { get; set; }
         public int? CountryId { get; set; }
         public Genre? Genre { get; set; }
-        public int? GenreId { get; set;}
+        public int? GenreId { get; set; }
         public ICollection<Languages>? Languages { get; set; }
         public MovieFormat? MovieFormat { get; set; }
-        public int? MovieFormatId { get;set; }
+        public int? MovieFormatId { get; set; }
         public ICollection<MovieKeywords>? MovieKeywords { get; set; }
         public MovieProductionCompany? MovieProductionCompany { get; set; }
         public int? MovieProductionCompanyId { get; set; }
@@ -30,5 +31,17 @@ namespace DatabaseAPI.Models.CinemaMovie
         public int? Duration { get; set; }
         public decimal? TicketPrice { get; set; }
         public string? imageUrl { get; set; }
+        [NotMapped]
+        public List<int>? SelectedActors { get; set; }
+        [NotMapped]
+        public List<int>? SelectedMovieKeywords { get; set; }
+        [NotMapped]
+        public List<int>? SelectedSubtitles { get; set; }
+        [NotMapped]
+        public List<int>? SelectedLanguages { get; set; }
+        [NotMapped]
+        public List<int>? SelectedAwards { get; set; }
+        [NotMapped]
+        public List<int>? SelectedDirectors { get; set; }
     }
 }

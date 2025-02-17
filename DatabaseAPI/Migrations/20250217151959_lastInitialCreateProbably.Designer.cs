@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    [Migration("20250217114954_addSeedOpeningHour")]
-    partial class addSeedOpeningHour
+    [Migration("20250217151959_lastInitialCreateProbably")]
+    partial class lastInitialCreateProbably
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace DatabaseAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ActorMovie", b =>
+                {
+                    b.Property<int>("ActorMoviesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ActorsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorMoviesId", "ActorsId");
+
+                    b.HasIndex("ActorsId");
+
+                    b.ToTable("ActorMovie");
+                });
 
             modelBuilder.Entity("AwardMovie", b =>
                 {
@@ -4254,9 +4269,6 @@ namespace DatabaseAPI.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -4268,8 +4280,6 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("AwardId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("MovieId");
 
                     b.HasIndex("UserId");
 
@@ -4780,6 +4790,21 @@ namespace DatabaseAPI.Migrations
                     b.HasDiscriminator().HasValue("User");
                 });
 
+            modelBuilder.Entity("ActorMovie", b =>
+                {
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("ActorMoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseAPI.Models.People.Actor", null)
+                        .WithMany()
+                        .HasForeignKey("ActorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AwardMovie", b =>
                 {
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", null)
@@ -4964,10 +4989,6 @@ namespace DatabaseAPI.Migrations
                         .WithMany("Actors")
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
-                        .WithMany("Actors")
-                        .HasForeignKey("MovieId");
-
                     b.HasOne("DatabaseAPI.Models.People.User", null)
                         .WithMany("FavouriteActors")
                         .HasForeignKey("UserId");
@@ -5126,8 +5147,6 @@ namespace DatabaseAPI.Migrations
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Movie", b =>
                 {
-                    b.Navigation("Actors");
-
                     b.Navigation("Directors");
 
                     b.Navigation("MovieReviews");

@@ -1,6 +1,6 @@
 ﻿@model DatabaseAPI.Models.CinemaMovie.Movie;
 <tr>
-    <td><strong><label for="AgeRating" class="form-label">AgeRating.Name</label></strong></td>
+    <td><strong><label for="AgeRating" class="form-label">AgeRating</label></strong></td>
     <td>
         <div class="form-floating mb-3">
             <select asp-for="AgeRatingId" class="form-control" asp-items="ViewBag.AgeRating"></select>
@@ -9,7 +9,7 @@
     </td>
 </tr>
 <tr>
-    <td><strong><label for="Country" class="form-label">Country.Name</label></strong></td>
+    <td><strong><label for="Country" class="form-label">Country</label></strong></td>
     <td>
         <div class="form-floating mb-3">
             <select asp-for="CountryId" class="form-control" asp-items="ViewBag.Country"></select>
@@ -18,7 +18,7 @@
     </td>
 </tr>
 <tr>
-    <td><strong><label for="Genre" class="form-label">Genre.Name</label></strong></td>
+    <td><strong><label for="Genre" class="form-label">Genre</label></strong></td>
     <td>
         <div class="form-floating mb-3">
             <select asp-for="GenreId" class="form-control" asp-items="ViewBag.Genre"></select>
@@ -27,7 +27,7 @@
     </td>
 </tr>
 <tr>
-    <td><strong><label for="MovieFormat" class="form-label">MovieFormat.Name</label></strong></td>
+    <td><strong><label for="MovieFormat" class="form-label">Movie Format</label></strong></td>
     <td>
         <div class="form-floating mb-3">
             <select asp-for="MovieFormatId" class="form-control" asp-items="ViewBag.MovieFormat"></select>
@@ -36,11 +36,65 @@
     </td>
 </tr>
 <tr>
-    <td><strong><label for="MovieProductionCompany" class="form-label">MovieProductionCompany.Name</label></strong></td>
+    <td><strong><label for="MovieProductionCompany" class="form-label">Movie Production Company</label></strong></td>
     <td>
         <div class="form-floating mb-3">
             <select asp-for="MovieProductionCompanyId" class="form-control" asp-items="ViewBag.MovieProductionCompany"></select>
             <span asp-validation-for="MovieProductionCompanyId" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><strong><label for="SelectedActors" class="form-label">Actors</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="SelectedActors" class="form-control select2" multiple="true" asp-items="ViewBag.Actor"></select>
+            <span asp-validation-for="SelectedActors" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><strong><label for="SelectedAwards" class="form-label">Awards</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="SelectedAwards" class="form-control select2" multiple="true" asp-items="ViewBag.Award"></select>
+            <span asp-validation-for="SelectedAwards" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><strong><label for="SelectedDirectors" class="form-label">Directors</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="SelectedDirectors" class="form-control select2" multiple="true" asp-items="ViewBag.Director"></select>
+            <span asp-validation-for="SelectedDirectors" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><strong><label for="SelectedLanguages" class="form-label">Languages</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="SelectedLanguages" class="form-control select2" multiple="true" asp-items="ViewBag.Languages"></select>
+            <span asp-validation-for="SelectedLanguages" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><strong><label for="SelectedMovieKeywords" class="form-label">Movie Keywords</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="SelectedMovieKeywords" class="form-control select2" multiple="true" asp-items="ViewBag.MovieKeywords"></select>
+            <span asp-validation-for="SelectedMovieKeywords" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><strong><label for="SelectedSubtitles" class="form-label">Subtitles</label></strong></td>
+    <td>
+        <div class="form-floating mb-3">
+            <select asp-for="SelectedSubtitles" class="form-control select2" multiple="true" asp-items="ViewBag.Subtitles"></select>
+            <span asp-validation-for="SelectedSubtitles" class="text-danger"></span>
         </div>
     </td>
 </tr>

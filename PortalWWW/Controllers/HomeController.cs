@@ -31,9 +31,17 @@ namespace PortalWWW.Controllers
 		{
 			var movies = dbContext.Movie != null ? await dbContext.Movie
 				.Include(mov => mov.Genre)
-				.Include(mov => mov.Screenings)
+                .Include(mov => mov.Screenings)
 				.ThenInclude(mov => mov.ScreeningSeats)
 				.ToListAsync() : new List<Movie>();
+
+			var bestMovieId = movies.OrderByDescending(mov => mov.Screenings.Sum(scr => scr.ScreeningSeats.Sum(ss => ss.IsTaken ?? false ? 1 : 0))).First()?.Id;
+			var bestMovie = await dbContext.Movie
+				.Include(mov => mov.Genre)
+				.Include(mov => mov.Actors)
+				.Include(mov => mov.Directors)
+				.FirstAsync(x => x.Id == bestMovieId);
+
 
 			var homeIndexViewModel = movies.Count > 0 ? new HomeIndexViewModel()
 			{
@@ -44,13 +52,13 @@ namespace PortalWWW.Controllers
 					PhotoUrl = mov.imageUrl,
 					Title = mov.Name
 				}).ToList(),
-                TopTenMoviesList = movies.OrderByDescending(mov => mov.Screenings.Sum(scr => scr.ScreeningSeats.Sum(ss => ss.IsTaken ?? false ? 1 : 0))).ToList().Slice(1, 9).Select(mov => new MovieCarousel
-                {
-                    MovieId = mov.Id,
-                    PhotoUrl = mov.imageUrl,
-                    Title = mov.Name
-                }).ToList(),
-                LatestMovies = movies.OrderByDescending(mov => mov.CreatedAt).ToList().Slice(0, 4).Select(mov => new MovieNews
+				TopTenMoviesList = movies.OrderByDescending(mov => mov.Screenings.Sum(scr => scr.ScreeningSeats.Sum(ss => ss.IsTaken ?? false ? 1 : 0))).ToList().Slice(1, 9).Select(mov => new MovieCarousel
+				{
+					MovieId = mov.Id,
+					PhotoUrl = mov.imageUrl,
+					Title = mov.Name
+				}).ToList(),
+				LatestMovies = movies.OrderByDescending(mov => mov.CreatedAt).ToList().Slice(0, 4).Select(mov => new MovieNews
 				{
 					MovieId = mov.Id,
 					Description = mov.Description.Substring(0, Math.Min(150, mov.Description.Length))
@@ -61,7 +69,7 @@ namespace PortalWWW.Controllers
 					Title = mov.Name,
 					ReleaseDate = mov.CreatedAt.Value.Year.ToString()
 				}).ToList(),
-                OldestMovies = movies.OrderBy(mov => mov.CreatedAt).ToList().Slice(0, 4).Select(mov => new MovieNews
+				OldestMovies = movies.OrderBy(mov => mov.CreatedAt).ToList().Slice(0, 4).Select(mov => new MovieNews
 				{
 					MovieId = mov.Id,
 					Description = mov.Description.Substring(0, Math.Min(150, mov.Description.Length))
@@ -83,7 +91,7 @@ namespace PortalWWW.Controllers
 					Title = mov.Name,
 					ReleaseDate = mov.CreatedAt.Value.Year.ToString()
 				}).ToList(),
-				BestMovieOfMonth = movies.OrderByDescending(mov => mov.Screenings.Sum(scr => scr.ScreeningSeats.Sum(ss => ss.IsTaken ?? false ? 1 : 0))).First()
+				BestMovieOfMonth = bestMovie
             } : new HomeIndexViewModel();
 
 			return View(homeIndexViewModel);

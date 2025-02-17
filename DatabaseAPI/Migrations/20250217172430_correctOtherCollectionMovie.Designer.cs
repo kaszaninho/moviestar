@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    [Migration("20250217111105_correctingOpeningHour")]
-    partial class correctingOpeningHour
+    [Migration("20250217172430_correctOtherCollectionMovie")]
+    partial class correctOtherCollectionMovie
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace DatabaseAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ActorMovie", b =>
+                {
+                    b.Property<int>("ActorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MoviesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorsId", "MoviesId");
+
+                    b.HasIndex("MoviesId");
+
+                    b.ToTable("ActorMovie");
+                });
 
             modelBuilder.Entity("AwardMovie", b =>
                 {
@@ -4042,6 +4057,104 @@ namespace DatabaseAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OpeningHour");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 22,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Monday",
+                            StartHour = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 22,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Tuesday",
+                            StartHour = 10
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 22,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Wednesday",
+                            StartHour = 10
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 22,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Thursday",
+                            StartHour = 10
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 22,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Friday",
+                            StartHour = 10
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 23,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Saturday",
+                            StartHour = 11
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 19,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Sunday",
+                            StartHour = 10
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndHour = 14,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Christmas' Eve",
+                            StartHour = 9
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Christmas' Day"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Stephen's Day"
+                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Photo", b =>
@@ -4156,9 +4269,6 @@ namespace DatabaseAPI.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -4170,8 +4280,6 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("AwardId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("MovieId");
 
                     b.HasIndex("UserId");
 
@@ -4259,9 +4367,6 @@ namespace DatabaseAPI.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -4270,8 +4375,6 @@ namespace DatabaseAPI.Migrations
                     b.HasIndex("AwardId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Director");
 
@@ -4394,6 +4497,21 @@ namespace DatabaseAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CustomerQuery");
+                });
+
+            modelBuilder.Entity("DirectorMovie", b =>
+                {
+                    b.Property<int>("DirectorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MoviesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DirectorsId", "MoviesId");
+
+                    b.HasIndex("MoviesId");
+
+                    b.ToTable("DirectorMovie");
                 });
 
             modelBuilder.Entity("LanguagesMovie", b =>
@@ -4682,6 +4800,21 @@ namespace DatabaseAPI.Migrations
                     b.HasDiscriminator().HasValue("User");
                 });
 
+            modelBuilder.Entity("ActorMovie", b =>
+                {
+                    b.HasOne("DatabaseAPI.Models.People.Actor", null)
+                        .WithMany()
+                        .HasForeignKey("ActorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AwardMovie", b =>
                 {
                     b.HasOne("DatabaseAPI.Models.CinemaMovie.DictionaryModels.Award", null)
@@ -4866,10 +4999,6 @@ namespace DatabaseAPI.Migrations
                         .WithMany("Actors")
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
-                        .WithMany("Actors")
-                        .HasForeignKey("MovieId");
-
                     b.HasOne("DatabaseAPI.Models.People.User", null)
                         .WithMany("FavouriteActors")
                         .HasForeignKey("UserId");
@@ -4887,11 +5016,22 @@ namespace DatabaseAPI.Migrations
                         .WithMany("Directors")
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
-                        .WithMany("Directors")
-                        .HasForeignKey("MovieId");
-
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("DirectorMovie", b =>
+                {
+                    b.HasOne("DatabaseAPI.Models.People.Director", null)
+                        .WithMany()
+                        .HasForeignKey("DirectorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseAPI.Models.CinemaMovie.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LanguagesMovie", b =>
@@ -5028,10 +5168,6 @@ namespace DatabaseAPI.Migrations
 
             modelBuilder.Entity("DatabaseAPI.Models.CinemaMovie.Movie", b =>
                 {
-                    b.Navigation("Actors");
-
-                    b.Navigation("Directors");
-
                     b.Navigation("MovieReviews");
 
                     b.Navigation("Screenings");

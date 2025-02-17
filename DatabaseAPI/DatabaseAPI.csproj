@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\People\DictionaryModels\**" />
+    <Content Remove="Models\People\DictionaryModels\**" />
+    <EmbeddedResource Remove="Models\People\DictionaryModels\**" />
+    <None Remove="Models\People\DictionaryModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_WebToolingArtifacts Remove="Properties\serviceDependencies.json" />
     <_WebToolingArtifacts Remove="Properties\serviceDependencies.local.json" />
   </ItemGroup>
@@ -36,7 +43,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Models\People\DictionaryModels\" />
   </ItemGroup>
 
 </Project>

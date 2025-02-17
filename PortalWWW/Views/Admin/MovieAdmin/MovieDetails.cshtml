@@ -1,5 +1,14 @@
 ﻿@model DatabaseAPI.Models.CinemaMovie.Movie;
+@using static PortalWWW.Helpers.GenericCheck;
 
+@{
+    string actorString = CreateStringValueFromList(Model.Actors);
+    string awardString = CreateStringValueFromList(Model.Awards);
+    string directorString = CreateStringValueFromList(Model.Directors);
+    string languagueString = CreateStringValueFromList(Model.Languages);
+    string movieKeywordsString = CreateStringValueFromList(Model.MovieKeywords);
+    string subtitlesString = CreateStringValueFromList(Model.Subtitles);
+}
 
 <tr>
     <td>
@@ -53,6 +62,66 @@
         <div class="form-floating mb-3">
             <input asp-for="MovieProductionCompany.Name" class="form-controlX " id="floatingInput" value="@Model.MovieProductionCompany.Name" readonly>
             <span asp-validation-for="MovieProductionCompany.Name" class="text-danger"></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="Actors" class="form-label">Actors</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Actors" class="form-controlX " id="floatingInput" value="@actorString" readonly>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="Awards" class="form-label">Awards</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Awards" class="form-controlX " id="floatingInput" value="@awardString" readonly>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="Directors" class="form-label">Directors</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Directors" class="form-controlX " id="floatingInput" value="@directorString" readonly>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="Languages" class="form-label">Languages</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Languages" class="form-controlX " id="floatingInput" value="@languagueString" readonly>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="MovieKeywords" class="form-label">Movie Keywords</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="MovieKeywords" class="form-controlX " id="floatingInput" value="@movieKeywordsString" readonly>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong><label asp-for="Subtitles" class="form-label">Subtitles</label></strong>
+    </td>
+    <td>
+        <div class="form-floating mb-3">
+            <input asp-for="Subtitles" class="form-controlX " id="floatingInput" value="@subtitlesString" readonly>
         </div>
     </td>
 </tr>

@@ -1,6 +1,8 @@
-﻿using DatabaseAPI.Models.CinemaMovie;
+﻿using DatabaseAPI.Data;
+using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.DictionaryModels;
+using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +41,12 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             ViewBag.Genre = new SelectList(await repository.GetDbSet<Genre>().ToListAsync(), "Id", "Name");
             ViewBag.MovieFormat = new SelectList(await repository.GetDbSet<MovieFormat>().ToListAsync(), "Id", "Name");
             ViewBag.MovieProductionCompany = new SelectList(await repository.GetDbSet<MovieProductionCompany>().ToListAsync(), "Id", "Name");
+            ViewBag.Actor = new SelectList(await repository.GetDbSet<Actor>().ToListAsync(), "Id", "Name");
+            ViewBag.MovieKeywords = new SelectList(await repository.GetDbSet<MovieKeywords>().ToListAsync(), "Id", "Name");
+            ViewBag.Director = new SelectList(await repository.GetDbSet<Director>().ToListAsync(), "Id", "Name");
+            ViewBag.Subtitles = new SelectList(await repository.GetDbSet<Subtitles>().ToListAsync(), "Id", "Name");
+            ViewBag.Languages = new SelectList(await repository.GetDbSet<Languages>().ToListAsync(), "Id", "Name");
+            ViewBag.Award = new SelectList(await repository.GetDbSet<Award>().ToListAsync(), "Id", "Name");
             ViewData["type"] = typeof(Movie);
             ViewData["PartialViewName"] = "MovieCreate";
             return View();
@@ -47,7 +55,14 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         [HttpGet("Edit")]
         public async Task<IActionResult> Edit(int id)
         {
-            var entity = await repository.FindEntityAsync(id);
+            var entity = await repository.GetDbSet<Movie>()
+                .Include(movie => movie.Actors)
+                .Include(movie => movie.Awards)
+                .Include(movie => movie.Directors)
+                .Include(movie => movie.Languages)
+                .Include(movie => movie.MovieKeywords)
+                .Include(movie => movie.Subtitles)
+                .FirstAsync(x => x.Id == id);
             if (entity == null)
             {
                 return NotFound();
@@ -57,6 +72,18 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             ViewBag.Genre = new SelectList(await repository.GetDbSet<Genre>().ToListAsync(), "Id", "Name");
             ViewBag.MovieFormat = new SelectList(await repository.GetDbSet<MovieFormat>().ToListAsync(), "Id", "Name");
             ViewBag.MovieProductionCompany = new SelectList(await repository.GetDbSet<MovieProductionCompany>().ToListAsync(), "Id", "Name");
+            ViewBag.Actor = new SelectList(await repository.GetDbSet<Actor>().ToListAsync(), "Id", "Name");
+            ViewBag.MovieKeywords = new SelectList(await repository.GetDbSet<MovieKeywords>().ToListAsync(), "Id", "Name");
+            ViewBag.Director = new SelectList(await repository.GetDbSet<Director>().ToListAsync(), "Id", "Name");
+            ViewBag.Subtitles = new SelectList(await repository.GetDbSet<Subtitles>().ToListAsync(), "Id", "Name");
+            ViewBag.Languages = new SelectList(await repository.GetDbSet<Languages>().ToListAsync(), "Id", "Name");
+            ViewBag.Award = new SelectList(await repository.GetDbSet<Award>().ToListAsync(), "Id", "Name");
+            entity.SelectedActors = entity.Actors.Select(a => a.Id)?.ToList();
+            entity.SelectedAwards = entity.Awards.Select(a => a.Id)?.ToList();
+            entity.SelectedDirectors = entity.Directors.Select(a => a.Id)?.ToList();
+            entity.SelectedLanguages = entity.Languages.Select(a => a.Id)?.ToList();
+            entity.SelectedMovieKeywords = entity.MovieKeywords.Select(a => a.Id)?.ToList();
+            entity.SelectedSubtitles = entity.Subtitles.Select(a => a.Id)?.ToList();
             ViewData["type"] = typeof(Movie);
             ViewData["PartialViewName"] = "MovieCreate";
             return View(entity);
@@ -71,6 +98,12 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 .Include(movie => movie.Genre)
                 .Include(movie => movie.MovieFormat)
                 .Include(movie => movie.MovieProductionCompany)
+                .Include(movie => movie.Actors)
+                .Include(movie => movie.Awards)
+                .Include(movie => movie.Directors)
+                .Include(movie => movie.Languages)
+                .Include(movie => movie.MovieKeywords)
+                .Include(movie => movie.Subtitles)
                 .FirstAsync(movie => movie.Id == id);
             if (entity == null)
             {
@@ -119,8 +152,29 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 ViewData["type"] = typeof(Movie);
                 return View(entity);
             }
-            entity.ModifiedAt = DateTime.Now;
-            await repository.UpdateEntityAsync(entity);
+            var movie = await repository.GetDbSet<Movie>()
+                .Include(movie => movie.Actors)
+                .Include(movie => movie.Awards)
+                .Include(movie => movie.Directors)
+                .Include(movie => movie.Languages)
+                .Include(movie => movie.MovieKeywords)
+                .Include(movie => movie.Subtitles)
+            .FirstOrDefaultAsync(m => m.Id == entity.Id);
+            var selectedActors = await repository.GetDbSet<Actor>().Where(x => entity.SelectedActors.Contains(x.Id)).ToListAsync();
+            var selectedAwards = await repository.GetDbSet<Award>().Where(x => entity.SelectedAwards.Contains(x.Id)).ToListAsync();
+            var selectedDirectors = await repository.GetDbSet<Director>().Where(x => entity.SelectedDirectors.Contains(x.Id)).ToListAsync();
+            var selectedLanguages = await repository.GetDbSet<Languages>().Where(x => entity.SelectedLanguages.Contains(x.Id)).ToListAsync();
+            var selectedMovieKeywords = await repository.GetDbSet<MovieKeywords>().Where(x => entity.SelectedMovieKeywords.Contains(x.Id)).ToListAsync();
+            var selectedSubtitles = await repository.GetDbSet<Subtitles>().Where(x => entity.SelectedSubtitles.Contains(x.Id)).ToListAsync();
+
+            movie.Actors = selectedActors;
+            movie.Awards = selectedAwards;
+            movie.Directors = selectedDirectors;
+            movie.Languages = selectedLanguages;
+            movie.MovieKeywords = selectedMovieKeywords;
+            movie.Subtitles = selectedSubtitles;
+            movie.ModifiedAt = DateTime.Now;
+            await repository.UpdateEntityAsync(movie);
             TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction(nameof(Index));
         }
@@ -166,6 +220,19 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 }
                 entity.imageUrl = @"\photos\" + file.FileName;
             }
+            var selectedActors = await repository.GetDbSet<Actor>().Where(x => entity.SelectedActors.Contains(x.Id)).ToListAsync();
+            var selectedAwards = await repository.GetDbSet<Award>().Where(x => entity.SelectedAwards.Contains(x.Id)).ToListAsync();
+            var selectedDirectors = await repository.GetDbSet<Director>().Where(x => entity.SelectedDirectors.Contains(x.Id)).ToListAsync();
+            var selectedLanguages = await repository.GetDbSet<Languages>().Where(x => entity.SelectedLanguages.Contains(x.Id)).ToListAsync();
+            var selectedMovieKeywords = await repository.GetDbSet<MovieKeywords>().Where(x => entity.SelectedMovieKeywords.Contains(x.Id)).ToListAsync();
+            var selectedSubtitles = await repository.GetDbSet<Subtitles>().Where(x => entity.SelectedSubtitles.Contains(x.Id)).ToListAsync();
+
+            entity.Actors = selectedActors;
+            entity.Awards = selectedAwards;
+            entity.Directors = selectedDirectors;
+            entity.Languages = selectedLanguages;
+            entity.MovieKeywords = selectedMovieKeywords;
+            entity.Subtitles = selectedSubtitles;
             entity.CreatedAt = DateTime.Now;
             entity.ModifiedAt = DateTime.Now;
             await repository.AddEntityAsync(entity);

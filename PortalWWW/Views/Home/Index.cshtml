@@ -1,4 +1,5 @@
 ﻿@model PortalWWW.Models.HomeIndexViewModel
+@using static PortalWWW.Helpers.GenericCheck;
 
 @{
     ViewData["Title"] = "Home Page";
@@ -187,11 +188,11 @@
                                     </h6>
                                     <hr class="hr_1">
                                     <h6 class="fw-normal">
-                                        Director: <span class="pull-right"></span>
+                                        Director: <span class="pull-right">@CreateStringValueFromList(bestMovie.Directors)</span>
                                     </h6>
                                     <hr class="hr_1">
                                     <h6 class="fw-normal">
-                                        Stars: <span class="pull-right"></span>
+                                        Stars: <span class="pull-right">@CreateStringValueFromList(bestMovie.Actors)</span>
                                     </h6>
                                     <hr class="hr_1">
                                     <h6 class="fw-normal">

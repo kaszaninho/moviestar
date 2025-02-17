@@ -1,4 +1,5 @@
 ﻿using DatabaseAPI.Models.Abstract;
+using DatabaseAPI.Models.CoffeeShop.DictionaryModels;
 using DatabaseAPI.Models.General;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,6 +20,23 @@ namespace PortalWWW.Helpers
         {
             var value = property.GetValue(model, null);
             return new HtmlString(value?.ToString() ?? string.Empty);
+        }
+
+        public static string CreateStringValueFromList<T>(ICollection<T> list) where T : DictionaryTable
+        {
+            if (list == null || list.Count() == 0)
+                return "";
+            var stringToReturn = "";
+            var iter = list.GetEnumerator();
+            if (iter.MoveNext())
+            {
+                stringToReturn += iter.Current.Name;
+                while (iter.MoveNext())
+                {
+                    stringToReturn += $", {iter.Current.Name}";
+                }
+            }
+            return stringToReturn;
         }
 
         public static bool IsGenericCollection(Type type)

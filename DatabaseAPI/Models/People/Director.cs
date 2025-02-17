@@ -1,4 +1,5 @@
 ﻿using DatabaseAPI.Models.Abstract;
+using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
 
@@ -12,5 +13,6 @@ namespace DatabaseAPI.Models.People
         public DateTime DateOfBirth { get; set; }
         public Country? Country { get; set; }
         public int? CountryId { get; set; }
+        public ICollection<Movie>? Movies { get; set; }
     }
 }

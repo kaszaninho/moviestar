@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class newInitialCreateDatabase : Migration
+    public partial class lastInitialCreateProbably : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -152,6 +152,26 @@ namespace DatabaseAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Coupon", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerQuery",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsAnswered = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerQuery", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -304,9 +324,8 @@ namespace DatabaseAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartHour = table.Column<int>(type: "int", nullable: false),
-                    EndHour = table.Column<int>(type: "int", nullable: false),
-                    WeekDay = table.Column<int>(type: "int", nullable: false),
+                    StartHour = table.Column<int>(type: "int", nullable: true),
+                    EndHour = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -642,6 +661,45 @@ namespace DatabaseAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Actor",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CountryId = table.Column<int>(type: "int", nullable: true),
+                    AwardId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Actor", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Actor_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Actor_Award_AwardId",
+                        column: x => x.AwardId,
+                        principalTable: "Award",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Actor_Country_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Country",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -826,48 +884,27 @@ namespace DatabaseAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Actor",
+                name: "ActorMovie",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: true),
-                    AwardId = table.Column<int>(type: "int", nullable: true),
-                    MovieId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ActorMoviesId = table.Column<int>(type: "int", nullable: false),
+                    ActorsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Actor", x => x.Id);
+                    table.PrimaryKey("PK_ActorMovie", x => new { x.ActorMoviesId, x.ActorsId });
                     table.ForeignKey(
-                        name: "FK_Actor_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        name: "FK_ActorMovie_Actor_ActorsId",
+                        column: x => x.ActorsId,
+                        principalTable: "Actor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Actor_Award_AwardId",
-                        column: x => x.AwardId,
-                        principalTable: "Award",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Actor_Country_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Country",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Actor_Movie_MovieId",
-                        column: x => x.MovieId,
+                        name: "FK_ActorMovie_Movie_ActorMoviesId",
+                        column: x => x.ActorMoviesId,
                         principalTable: "Movie",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1132,7 +1169,9 @@ namespace DatabaseAPI.Migrations
                     ScreeningSeatId = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1280,6 +1319,23 @@ namespace DatabaseAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "OpeningHour",
+                columns: new[] { "Id", "CreatedAt", "Description", "EndHour", "IsActive", "ModifiedAt", "Name", "StartHour" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 22, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Monday", 10 },
+                    { 2, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 22, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tuesday", 10 },
+                    { 3, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 22, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Wednesday", 10 },
+                    { 4, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 22, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thursday", 10 },
+                    { 5, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 22, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Friday", 10 },
+                    { 6, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 23, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Saturday", 11 },
+                    { 7, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 19, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sunday", 10 },
+                    { 8, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 14, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Christmas' Eve", 9 },
+                    { 9, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Christmas' Day", null },
+                    { 10, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, true, new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Stephen's Day", null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "PaymentMethod",
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "ModifiedAt", "Name" },
                 values: new object[,]
@@ -1357,12 +1413,12 @@ namespace DatabaseAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Actor",
-                columns: new[] { "Id", "AwardId", "CountryId", "CreatedAt", "DateOfBirth", "Description", "FirstName", "IsActive", "LastName", "MiddleName", "ModifiedAt", "MovieId", "Name", "UserId" },
+                columns: new[] { "Id", "AwardId", "CountryId", "CreatedAt", "DateOfBirth", "Description", "FirstName", "IsActive", "LastName", "MiddleName", "ModifiedAt", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jerzy Puławski", "Jerzy", true, "Puławski", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Jerzy Puławski", null },
-                    { 2, null, 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Longue", "John", true, "Longue", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "John Longue", null },
-                    { 3, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2004, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anna Kobiela", "Anna", true, "Kobiela", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Anna Kobiela", null }
+                    { 1, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jerzy Puławski", "Jerzy", true, "Puławski", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jerzy Puławski", null },
+                    { 2, null, 2, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1994, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Longue", "John", true, "Longue", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Longue", null },
+                    { 3, null, 1, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2004, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anna Kobiela", "Anna", true, "Kobiela", null, new DateTime(2025, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anna Kobiela", null }
                 });
 
             migrationBuilder.InsertData(
@@ -1569,14 +1625,14 @@ namespace DatabaseAPI.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Actor_MovieId",
-                table: "Actor",
-                column: "MovieId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Actor_UserId",
                 table: "Actor",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActorMovie_ActorsId",
+                table: "ActorMovie",
+                column: "ActorsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_CountryId",
@@ -1772,7 +1828,7 @@ namespace DatabaseAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Actor");
+                name: "ActorMovie");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -1803,6 +1859,9 @@ namespace DatabaseAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "ContactInformation");
+
+            migrationBuilder.DropTable(
+                name: "CustomerQuery");
 
             migrationBuilder.DropTable(
                 name: "Director");
@@ -1853,10 +1912,10 @@ namespace DatabaseAPI.Migrations
                 name: "WorkSchedule");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Actor");
 
             migrationBuilder.DropTable(
-                name: "Award");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "TypeOfElementOfMenu");
@@ -1875,6 +1934,9 @@ namespace DatabaseAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "ScreeningSeat");
+
+            migrationBuilder.DropTable(
+                name: "Award");
 
             migrationBuilder.DropTable(
                 name: "Coupon");
