@@ -1,5 +1,5 @@
 ﻿using DatabaseAPI.Data;
-using DatabaseAPI.Models.Shop;
+using DatabaseAPI.Models.General;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PortalWWW.Controllers.Components

@@ -6,8 +6,8 @@
     var movieList = Model.MovieList;
     var movieCarouselList = Model.MovieCarouselList;
     var bestMovie = Model.BestMovieOfMonth;
- 
-    bool isAdmin = User.IsInRole("Admin");  
+
+    bool isAdmin = User.IsInRole("Admin");
 }
 
 
@@ -162,7 +162,7 @@
                     <div class="play2l">
                         <div class="grid clearfix">
                             <figure class="effect-jazz mb-0">
-                                <a asp-action="ShowMovieDetails" asp-route-id="@bestMovie.Id" asp-controller="Movie" ><img src="@($"http://localhost/images/{@bestMovie.imageUrl}")" height="515" class="w-100" alt="@bestMovie.Name"></a>
+                                <a asp-action="ShowMovieDetails" asp-route-id="@bestMovie.Id" asp-controller="Movie"><img src="@($"http://localhost/images/{@bestMovie.imageUrl}")" height="515" class="w-100" alt="@bestMovie.Name"></a>
                             </figure>
                         </div>
                     </div>
@@ -231,4 +231,21 @@
             </div>
         </div>
     </div>
-</section>  
+</section>
+@section ScriptToaster
+{
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var messageGood = '@TempData["SuccessMessage"]';
+            var messageBad = '@TempData["FailedMessage"]';
+
+            if (messageGood) {
+                toastr.success(messageGood);
+            } else if (messageBad) {
+                toastr.error(messageBad);
+            }
+        });
+    </script>
+}

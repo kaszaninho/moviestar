@@ -1,13 +1,10 @@
 ﻿using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.CMS;
-using DatabaseAPI.Models.CoffeeShop;
-using DatabaseAPI.Models.CoffeeShop.DictionaryModels;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.General.DictionaryModels;
 using DatabaseAPI.Models.People;
-using DatabaseAPI.Models.Shop;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -52,8 +49,6 @@ namespace DatabaseAPI.Data
         public DbSet<User>? User { get; set; }
         public DbSet<UserLevel>? UserLevel { get; set; }
         public DbSet<Director>? Director { get; set; }
-        public DbSet<TypeOfElementOfMenu>? TypeOfElementOfMenu { get; set; }
-        public DbSet<ELementOfMenu>? ELementOfMenu { get; set; }
         public DbSet<Invoice>? Invoice { get; set; }
         public DbSet<ScreeningSeat>? ScreeningSeat { get; set; }
         public DbSet<CartElement>? CartElement { get; set; }
@@ -65,6 +60,7 @@ namespace DatabaseAPI.Data
         public DbSet<UsefulLink>? UsefulLink { get; set; }
         public DbSet<FooterIcon>? FooterIcon { get; set; }
         public DbSet<CustomerQuery>? CustomerQuery { get; set; }
+        public DbSet<Subscriber>? Subscriber { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

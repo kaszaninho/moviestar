@@ -1,6 +1,4 @@
 ﻿using DatabaseAPI.Models.Abstract;
-using DatabaseAPI.Models.CoffeeShop.DictionaryModels;
-using DatabaseAPI.Models.General;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection;
