@@ -49,7 +49,7 @@ namespace PortalWWW.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost("AddToCart")]
+        [Route("[controller]/AddToCart")]
         public ActionResult AddToCart(string[] screeningSeats)
         {
             var seats = dbContext.ScreeningSeat.Include(x => x.Screening).ThenInclude(x => x.Movie).Where(item => screeningSeats.Contains(item.Id.ToString())).ToList();

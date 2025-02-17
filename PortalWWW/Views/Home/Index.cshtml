@@ -37,7 +37,7 @@
             {
                 <div class="carousel-item @(i==0 ? "active" : "")">
                     <a asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movieCarouselList.ElementAt(i).MovieId">
-                        <img src="@movieCarouselList.ElementAt(i).PhotoUrl" class="mx-auto d-block" alt="@movieCarouselList.ElementAt(i).Title">
+                        <img src="@($"http://localhost/images/{@movieCarouselList.ElementAt(i).PhotoUrl}")" class="mx-auto d-block" alt="@movieCarouselList.ElementAt(i).Title">
                     </a>
                 </div>
             }
@@ -136,7 +136,7 @@
                     <div class="play1l">
                         <div class="grid clearfix">
                             <figure class="effect-jazz mb-0">
-                                <a asp-action="ShowMovieDetails" asp-route-id="@bestMovie.Id" asp-controller="Movie"><img src="@bestMovie.imageUrl" class="w-100" height="450" alt="@bestMovie.Name"></a>
+                                <a asp-action="ShowMovieDetails" asp-route-id="@bestMovie.Id" asp-controller="Movie"><img src="@($"http://localhost/images/{@bestMovie.imageUrl}")" class="w-100" height="450" alt="@bestMovie.Name"></a>
                             </figure>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             <div class="play1ri mt-3">
                                 <div class="grid clearfix">
                                     <figure class="effect-jazz mb-0">
-                                        <a asp-action="ShowMovieDetails" asp-route-id="@movie.MovieId" asp-controller="Movie"><img src="@movie.PhotoUrl" class="w-100" alt="@movie.Title"></a>
+                                        <a asp-action="ShowMovieDetails" asp-route-id="@movie.MovieId" asp-controller="Movie"><img src="@($"http://localhost/images/{@movie.PhotoUrl}")" class="w-100" alt="@movie.Title"></a>
                                     </figure>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                     <div class="play2l">
                         <div class="grid clearfix">
                             <figure class="effect-jazz mb-0">
-                                <a asp-action="ShowMovieDetails" asp-route-id="@bestMovie.Id" asp-controller="Movie" ><img src="@bestMovie.imageUrl" height="515" class="w-100" alt="@bestMovie.Name"></a>
+                                <a asp-action="ShowMovieDetails" asp-route-id="@bestMovie.Id" asp-controller="Movie" ><img src="@($"http://localhost/images/{@bestMovie.imageUrl}")" height="515" class="w-100" alt="@bestMovie.Name"></a>
                             </figure>
                         </div>
                     </div>

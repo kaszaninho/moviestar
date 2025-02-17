@@ -69,7 +69,7 @@
 </tr>
 <div class="col-4">
     <div class="border p-1 m-2 text-center">
-        <img src="@Model.imageUrl" width="100%"
+        <img src="@($"http://localhost/images/{@Model.imageUrl}")" width="100%"
              style="border-radius:5px; border:1px solid #bbb9b9" />
         <a asp-action="DeleteImage" class="btn btn-danger" asp-route-id="@Model.Id">
             <i class="bi bi-trash-fill"></i> Delete

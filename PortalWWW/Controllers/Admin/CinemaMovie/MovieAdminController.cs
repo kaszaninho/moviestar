@@ -88,9 +88,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
             if (file != null)
             {
-                string wwwRootPath = webHostEnvironment.WebRootPath;
-                string folderPath = Path.Combine(wwwRootPath, @"photos");
-                string finalPath = Path.Combine(folderPath, file.FileName);
+                string xamppPath = @"C:\xampp\htdocs\images\";
+                string folderPath = @"C:\xampp\htdocs\images\photos\";
+                var finalPath = Path.Combine(folderPath, file.FileName);
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -98,7 +98,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
 
                 if (!string.IsNullOrEmpty(entity.imageUrl))
                 {
-                    var oldImagePath = Path.Combine(wwwRootPath, entity.imageUrl.TrimStart('\\'));
+                    var oldImagePath = Path.Combine(xamppPath, entity.imageUrl.TrimStart('\\'));
                     if (System.IO.File.Exists(oldImagePath))
                     {
                         System.IO.File.Delete(oldImagePath);
@@ -130,16 +130,13 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         public async Task<IActionResult> DeleteImage(int id)
         {
             var entity = await repository.FindEntityAsync(id);
-            if (!(await UrlExists(IMAGE_PATH)))
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
+            string xamppPath = @"C:\xampp\htdocs\images";
             if (string.IsNullOrEmpty(entity.imageUrl))
             {
+                TempData["SuccessMessage"] = "Image is empty!";
                 return RedirectToAction(nameof(Index));
             }
-            var imagePath = IMAGE_PATH + entity.imageUrl;
+            var imagePath = xamppPath + entity.imageUrl;
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);
@@ -150,12 +147,6 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             TempData["SuccessMessage"] = "Image delete successfully!";
             return RedirectToAction(nameof(Index));
         }
-        async Task<bool> UrlExists(string url)
-        {
-            using HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
-            return response.IsSuccessStatusCode;
-        }
 
 
         [HttpPost("CreateConfirmed")]
@@ -163,9 +154,8 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
             if (file != null)
             {
-                string wwwRootPath = webHostEnvironment.WebRootPath;
-                string folderPath = Path.Combine(wwwRootPath, @"photos");
-                string finalPath = Path.Combine(folderPath, file.FileName);
+                string folderPath = @"C:\xampp\htdocs\images\photos\";
+                var finalPath = Path.Combine(folderPath, file.FileName);
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
