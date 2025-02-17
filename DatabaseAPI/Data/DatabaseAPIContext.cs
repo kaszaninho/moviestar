@@ -1005,6 +1005,28 @@ namespace DatabaseAPI.Data
                     Name = "Stephen's Day"
                 });
 
+            builder.Entity<Coupon>().HasData(
+                new Coupon
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Discount = 5,
+                    Name = "MOVIE5",
+                    Description = "Coupon for 5%"
+                },
+                new Coupon
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Discount = 5,
+                    Name = "MOVIE20",
+                    Description = "Coupon for 20%"
+                });
+
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
