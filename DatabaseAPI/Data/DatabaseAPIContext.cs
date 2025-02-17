@@ -910,6 +910,105 @@ namespace DatabaseAPI.Data
                     imageUrl = "\\photos\\20.png"
                 });
 
+
+            builder.Entity<OpeningHour>().HasData(
+                new OpeningHour
+                {
+                    Id = 1,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Monday",
+                    StartHour = 10,
+                    EndHour = 22,
+                },
+                new OpeningHour
+                {
+                    Id = 2,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Tuesday",
+                    StartHour = 10,
+                    EndHour = 22,
+                },
+                new OpeningHour
+                {
+                    Id = 3,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Wednesday",
+                    StartHour = 10,
+                    EndHour = 22,
+                },
+                new OpeningHour
+                {
+                    Id = 4,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Thursday",
+                    StartHour = 10,
+                    EndHour = 22,
+                },
+                new OpeningHour
+                {
+                    Id = 5,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Friday",
+                    StartHour = 10,
+                    EndHour = 22,
+                },
+                new OpeningHour
+                {
+                    Id = 6,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Saturday",
+                    StartHour = 11,
+                    EndHour = 23,
+                },
+                new OpeningHour
+                {
+                    Id = 7,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Sunday",
+                    StartHour = 10,
+                    EndHour = 19,
+                },
+                new OpeningHour
+                {
+                    Id = 8,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Christmas' Eve",
+                    StartHour = 9,
+                    EndHour = 14,
+                },
+                new OpeningHour
+                {
+                    Id = 9,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Christmas' Day"
+                },
+                new OpeningHour
+                {
+                    Id = 10,
+                    CreatedAt = new DateTime(2025, 2, 7),
+                    ModifiedAt = new DateTime(2025, 2, 7),
+                    IsActive = true,
+                    Name = "Stephen's Day"
+                });
+
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

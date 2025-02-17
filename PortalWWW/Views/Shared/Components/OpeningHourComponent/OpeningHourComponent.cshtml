@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DatabaseAPI.Models.General.OpeningHour>
+<!-- Dodane godziny otwarcia -->
+<div class="mt-4">
+    <h5 class="text-primary">🕒 Opening Hours</h5>
+    <ul class="list-unstyled">
+        @foreach(var item in Model)
+        {
+            @if (item.EndHour == null || item.StartHour == null)
+            {
+                <li>@item.Name: Closed</li>
+            }
+            else
+            {
+            <li>@item.Name: @($"{item.StartHour}:00") - @($"{item.EndHour}:00")</li>
+            }
+        }
+    </ul>
+</div>

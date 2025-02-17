@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250217111105_correctingOpeningHour")]
+    partial class correctingOpeningHour
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -4039,104 +4042,6 @@ namespace DatabaseAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OpeningHour");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 22,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Monday",
-                            StartHour = 10
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 22,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Tuesday",
-                            StartHour = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 22,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Wednesday",
-                            StartHour = 10
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 22,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Thursday",
-                            StartHour = 10
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 22,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Friday",
-                            StartHour = 10
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 23,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Saturday",
-                            StartHour = 11
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 19,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Sunday",
-                            StartHour = 10
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndHour = 14,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Christmas' Eve",
-                            StartHour = 9
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Christmas' Day"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Stephen's Day"
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.General.Photo", b =>
