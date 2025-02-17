@@ -324,6 +324,9 @@ namespace PortalWWW.Controllers
                 Session session = service.Create(options);
                 UpdateStripePaymentID(dbInvoice.InvoiceId, session.Id, session.PaymentIntentId);
                 dbContext.SaveChanges();
+                IInvoiceRenderer rerer = new InvoiceRenderer();
+                string path2 = "wwwroot//reports//Invoice" + dbInvoice.Id + ".pdf";
+                rerer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Save(path2);
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
             }
@@ -331,9 +334,8 @@ namespace PortalWWW.Controllers
 
 
             IInvoiceRenderer renderer = new InvoiceRenderer();
-            string path = "wwwroot//reports//Invoice" + new Random().Next(100) + ".pdf";
+            string path = "wwwroot//reports//Invoice" + dbInvoice.Id + ".pdf";
             renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Save(path);
-            // "C:/Users/pre12/Desktop/Invoice" + new Random().Next(100) + ".pdf"
             return RedirectToAction("OrderConfirmed", new { invoiceId = dbInvoice.InvoiceId });
         }
 
