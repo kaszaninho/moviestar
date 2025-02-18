@@ -10,6 +10,7 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center"/>
             <WebView x:Name="ContentHtmlWebView"
+                     BackgroundColor="Black"                     
                      HeightRequest="600"/>
         </VerticalStackLayout>
     </ScrollView>

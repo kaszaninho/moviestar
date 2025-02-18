@@ -3,50 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Pages.ProfilePages.InvoiceDetails">
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" Padding="20" RowSpacing="15">
 
             <!-- Invoice Information -->
-            <Label Text="Invoice Details" FontSize="Large" FontAttributes="Bold" />
+            <Label Grid.Row="0" Text="Invoice Details" FontSize="Large" FontAttributes="Bold" />
 
-            <Label x:Name="InvoiceIdLabel" FontSize="Medium"/>
-            <Label x:Name="OrderStatusLabel" FontSize="Small"/>
-            <Label x:Name="PaymentStatusLabel" FontSize="Small"/>
-            <Label x:Name="CreatedAtLabel" FontSize="Small"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="1">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label  Grid.Row="0" x:Name="InvoiceIdLabel" FontSize="Medium"/>
+                    <Label  Grid.Row="1" x:Name="OrderStatusLabel" FontSize="Small"/>
+                    <Label Grid.Row="2"  x:Name="PaymentStatusLabel" FontSize="Small"/>
+                    <Label Grid.Row="3"  x:Name="CreatedAtLabel" FontSize="Small"/>
+                </Grid>
+            </Frame>
 
             <!-- Buyer Address -->
-            <Label Text="Buyer Address:" FontSize="Medium" FontAttributes="Bold"/>
-            <Label x:Name="BuyerStreetLabel" FontSize="Small"/>
-            <Label x:Name="BuyerEircodeLabel" FontSize="Small"/>
-            <Label x:Name="BuyerCityLabel" FontSize="Small"/>
-            <Label x:Name="BuyerCountryLabel" FontSize="Small"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="2">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label Grid.Row="0"  Text="Buyer Address:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Grid.Row="1"  x:Name="BuyerStreetLabel" FontSize="Small"/>
+                    <Label Grid.Row="2"  x:Name="BuyerEircodeLabel" FontSize="Small"/>
+                    <Label Grid.Row="3"  x:Name="BuyerCityLabel" FontSize="Small"/>
+                    <Label  Grid.Row="4" x:Name="BuyerCountryLabel" FontSize="Small"/>
+                </Grid>
+            </Frame>
+
 
             <!-- Price Details -->
-            <Label Text="Ticket Summary:" FontSize="Medium" FontAttributes="Bold"/>
-            <Label x:Name="TicketSumLabel" FontSize="Small"/>
-            <Label x:Name="CouponLabel" FontSize="Small"/>
-            <Label x:Name="CouponDiscountLabel" FontSize="Small"/>
-            <Label x:Name="TotalSumLabel" FontSize="Medium" FontAttributes="Bold" TextColor="Green"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="3">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label  Grid.Row="0" Text="Ticket Summary:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label  Grid.Row="1" x:Name="TicketSumLabel" FontSize="Small"/>
+                    <Label  Grid.Row="2" x:Name="CouponLabel" FontSize="Small"/>
+                    <Label  Grid.Row="3" x:Name="CouponDiscountLabel" FontSize="Small"/>
+                    <Label Grid.Row="4"  x:Name="TotalSumLabel" FontSize="Large" FontAttributes="Bold"/>
+                </Grid>
+            </Frame>
+
 
             <!-- Ticket List -->
-            <Label Text="Tickets:" FontSize="Medium" FontAttributes="Bold"/>
-            <CollectionView x:Name="TicketsCollectionView">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Padding="10" CornerRadius="8">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding MovieName}" FontSize="Medium" FontAttributes="Bold"/>
-                                <Label Text="{Binding SeatNumber, StringFormat='Seat: {0}'}" FontSize="Small"/>
-                                <Label Text="{Binding StartDate, StringFormat='Start: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
-                                <Label Text="{Binding EndDate, StringFormat='End: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="4">
+                <Grid RowDefinitions="Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label Grid.Row="0"  Text="Tickets:" FontSize="Medium" FontAttributes="Bold"/>
+                    <CollectionView Grid.Row="1" x:Name="TicketsCollectionView">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10" CornerRadius="8">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding MovieName}" FontSize="Medium" FontAttributes="Bold"/>
+                                        <Label Text="{Binding SeatNumber, StringFormat='Seat: {0}'}" FontSize="Small"/>
+                                        <Label Text="{Binding StartDate, StringFormat='Start: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                                        <Label Text="{Binding EndDate, StringFormat='End: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Frame>
 
-        </VerticalStackLayout>
+
+        </Grid>
     </ScrollView>
 </ContentPage>

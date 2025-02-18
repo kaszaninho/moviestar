@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Pages.MoviesPage">
-    <Grid RowDefinitions="Auto, Auto,Auto,Auto,Auto"  
+    <Grid RowDefinitions="Auto,Auto,Auto"  
                 RowSpacing="10"
                 Margin="20">
         <Label Grid.Row="0"
@@ -11,23 +11,33 @@
          HorizontalOptions="Start" 
          FontSize="Large"
          FontAttributes="Bold"/>
-        <Label Grid.Row="1"
+
+        <Frame Padding="10" CornerRadius="8" Grid.Row="1">
+
+            <Grid ColumnDefinitions="*, Auto" RowSpacing="10" Margin="20">
+                <Label Grid.Column="0"
             Text="List of the movies that we have in our database"
             VerticalOptions="Center" 
          HorizontalOptions="Start"  />
-        <Button Grid.Row="2"
+                <Button Grid.Column="1"
                 Text="Movies List"
                 x:Name="BtnMoviesList"
                 Clicked="BtnMoviesList_Clicked"/>
+            </Grid>
+        </Frame>
 
+        <Frame Padding="10" CornerRadius="8" Grid.Row="2">
 
-        <Label Grid.Row="3"
+            <Grid ColumnDefinitions="*, Auto" RowSpacing="10" Margin="20">
+                <Label Grid.Column="0"
             Text="List of the movies you bought ticket for"
             VerticalOptions="Center" 
          HorizontalOptions="Start" />
-        <Button Grid.Row="4"
+                <Button Grid.Column="1"
                 Text="Your screenings"
                 x:Name="BtnYourScreenings"
                 Clicked="BtnYourScreenings_Clicked"/>
+            </Grid>
+        </Frame>
     </Grid>
 </ContentPage>

@@ -31,7 +31,7 @@
             }
         </div>
 
-        <h3 class="total-price">💰 Total Price: @Model.PriceTotal zł</h3>
+        <h3 class="total-price">💰 Total Price*: @Model.PriceTotal zł</h3>
     </div>
 
     @if (Model.Coupon == null)
@@ -49,11 +49,10 @@
         <div class="container mt-4">
             <h5 class="text-white">✅ Coupon Applied</h5>
             <p><strong>Coupon:</strong> @Model.Coupon.Name</p>
-            <p><strong>Discount:</strong> @Model.CouponDiscount PLN</p>
-            <h5 class="text-white">💰 Final Price: <span class="text-success">@(Model.PriceTotal - Model.CouponDiscount) zł</span></h5>
+            <p><strong>Discount:</strong> @((Model.CouponDiscount ?? 0).ToString("F2")) PLN</p>
+            <h5 class="text-white">💰 Final Price*: <span class="text-success">@(((Model.PriceTotal - Model.CouponDiscount) ?? 0).ToString("F2")) zł</span></h5>
         </div>
     }
-
     <div class="container mt-4">
         <h4 class="text-white">💳 Select Payment Method</h4>
         <form asp-controller="Cart" asp-action="ProcessPayment" method="post">
@@ -65,5 +64,7 @@
             <button type="submit" class="payment-btn">Proceed to Payment</button>
         </form>
     </div>
+    <br/>
+    <h7>* without VAT</h7>
 </div>
 <br>

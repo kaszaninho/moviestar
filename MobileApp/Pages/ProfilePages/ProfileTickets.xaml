@@ -44,9 +44,7 @@ Margin="20">
 
                                 <!-- Generate PDF Button -->
                                 <Button Text="Generate PDF"
-                                    BackgroundColor="Green"
                                     TextColor="White"
-                                    FontAttributes="Bold"
                                     Clicked="OnGeneratePDFClicked"
                                     CommandParameter="{Binding TicketId}" />
                             </VerticalStackLayout>

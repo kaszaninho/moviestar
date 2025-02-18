@@ -3,37 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Pages.MoviePages.MovieDetails">
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Padding="20" RowSpacing="15">
 
             <!-- Movie Image -->
             <Image x:Name="MovieImage"
                    HeightRequest="250"
                    WidthRequest="170"
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Center"
+                   Grid.Row="0"/>
 
             <!-- Movie Title -->
             <Label x:Name="MovieTitle" 
                    FontSize="Large" 
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Center"
+                   Grid.Row="1"/>
 
             <!-- General Info -->
-            <Label x:Name="MovieGenre" FontSize="Small"/>
-            <Label x:Name="MovieFormat" FontSize="Small"/>
-            <Label x:Name="MovieDuration" FontSize="Small"/>
-            <Label x:Name="MovieReleaseDate" FontSize="Small"/>
-            <Label x:Name="MovieAgeRating" FontSize="Small"/>
-            <Label x:Name="MovieCountry" FontSize="Small"/>
-            <Label x:Name="MovieProductionCompany" FontSize="Small"/>
-            <Label x:Name="MovieTicketPrice" FontSize="Small"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="2">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label Grid.Row="0" x:Name="MovieGenre" FontSize="Small"/>
+                    <Label  Grid.Row="1" x:Name="MovieFormat" FontSize="Small"/>
+                    <Label Grid.Row="2" x:Name="MovieDuration" FontSize="Small"/>
+                    <Label Grid.Row="3" x:Name="MovieReleaseDate" FontSize="Small"/>
+                    <Label Grid.Row="4" x:Name="MovieAgeRating" FontSize="Small"/>
+                    <Label Grid.Row="5" x:Name="MovieCountry" FontSize="Small"/>
+                    <Label Grid.Row="6" x:Name="MovieProductionCompany" FontSize="Small"/>
+                    <Label Grid.Row="7" x:Name="MovieTicketPrice" FontSize="Small"/>
+                </Grid>
+            </Frame>
 
             <!-- Movie Description -->
-            <Label Text="Description:" FontSize="Medium" FontAttributes="Bold"/>
-            <Label x:Name="MovieDescription" FontSize="Small" TextColor="Gray"/>
+            <Label Grid.Row="3" Text="Description:" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Grid.Row="4" x:Name="MovieDescription" FontSize="Small" TextColor="Gray"/>
 
             <!-- Screenings List -->
-            <Label Text="Screenings:" FontSize="Medium" FontAttributes="Bold"/>
-            <CollectionView x:Name="ScreeningsCollectionView">
+            <Label Grid.Row="5" Text="Screenings:" FontSize="Medium" FontAttributes="Bold"/>
+            <CollectionView Grid.Row="6" x:Name="ScreeningsCollectionView">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
@@ -49,6 +55,6 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

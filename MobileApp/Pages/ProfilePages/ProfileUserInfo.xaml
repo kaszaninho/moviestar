@@ -3,36 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Pages.ProfilePages.ProfileUserInfo">
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Padding="20" RowSpacing="15">
 
             <!-- User Information -->
-            <Label Text="User Details" FontSize="Large" FontAttributes="Bold" />
+            <Label  Grid.Row="0" Text="User Details" FontSize="Large" FontAttributes="Bold" />
+            
+            <Frame Padding="10" CornerRadius="8" Grid.Row="1">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
 
-            <Label x:Name="UserIdLabel" FontSize="Medium"/>
-            <Label x:Name="UserNameLabel" FontSize="Medium"/>
-            <Label x:Name="EmailLabel" FontSize="Small"/>
-            <Label x:Name="PhoneNumberLabel" FontSize="Small"/>
+                    <Label Grid.Row="0" x:Name="UserIdLabel" FontSize="Medium"/>
+                    <Label Grid.Row="1" x:Name="UserNameLabel" FontSize="Medium"/>
+                    <Label Grid.Row="2" x:Name="EmailLabel" FontSize="Small"/>
+                    <Label Grid.Row="3" x:Name="PhoneNumberLabel" FontSize="Small"/>
+                </Grid>
+            </Frame>
 
             <!-- Address Information -->
-            <Label Text="Address Information:" FontSize="Medium" FontAttributes="Bold"/>
-            <Label x:Name="StreetLabel" FontSize="Small"/>
-            <Label x:Name="EirCodeLabel" FontSize="Small"/>
-            <Label x:Name="CityLabel" FontSize="Small"/>
-            <Label x:Name="CountryLabel" FontSize="Small"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="2">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label Grid.Row="0" Text="Address Information:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Grid.Row="1" x:Name="StreetLabel" FontSize="Small"/>
+                    <Label Grid.Row="2" x:Name="EirCodeLabel" FontSize="Small"/>
+                    <Label Grid.Row="3" x:Name="CityLabel" FontSize="Small"/>
+                    <Label Grid.Row="4" x:Name="CountryLabel" FontSize="Small"/>
+                </Grid>
+            </Frame>
 
             <!-- Personal Information -->
-            <Label Text="Personal Information:" FontSize="Medium" FontAttributes="Bold"/>
-            <Label x:Name="FirstNameLabel" FontSize="Small"/>
-            <Label x:Name="MiddleNameLabel" FontSize="Small"/>
-            <Label x:Name="LastNameLabel" FontSize="Small"/>
-            <Label x:Name="DateOfBirthLabel" FontSize="Small"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="3">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label Grid.Row="0" Text="Personal Information:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Grid.Row="1" x:Name="FirstNameLabel" FontSize="Small"/>
+                    <Label Grid.Row="2" x:Name="MiddleNameLabel" FontSize="Small"/>
+                    <Label Grid.Row="3" x:Name="LastNameLabel" FontSize="Small"/>
+                    <Label Grid.Row="4" x:Name="DateOfBirthLabel" FontSize="Small"/>
+                </Grid>
+            </Frame>
 
             <!-- Account Status -->
-            <Label Text="Account Status:" FontSize="Medium" FontAttributes="Bold"/>
-            <Label x:Name="EmailConfirmedLabel" FontSize="Small"/>
-            <Label x:Name="PhoneNumberConfirmedLabel" FontSize="Small"/>
-            <Label x:Name="TwoFactorEnabledLabel" FontSize="Small"/>
+            <Frame Padding="10" CornerRadius="8" Grid.Row="4">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+                    <Label Grid.Row="0" Text="Account Status:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Grid.Row="1" x:Name="EmailConfirmedLabel" FontSize="Small"/>
+                    <Label Grid.Row="2" x:Name="PhoneNumberConfirmedLabel" FontSize="Small"/>
+                    <Label Grid.Row="3" x:Name="TwoFactorEnabledLabel" FontSize="Small"/>
+                </Grid>
+            </Frame>
 
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

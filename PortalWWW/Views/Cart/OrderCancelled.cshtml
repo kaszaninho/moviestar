@@ -17,11 +17,13 @@
 
                     <div class="mt-4">
                         <p>🆔 <strong>Invoice ID:</strong> <span class="highlight-text">@Model.InvoiceId</span></p>
-                        <p>💰 <strong>Total Sum:</strong> <span class="highlight-text">@Model.TotalSum PLN</span></p>
+                        <p>💰 <strong>Total Sum*:</strong> <span class="highlight-text">@Model.TotalSum PLN</span> </p>
                         <p>💳 <strong>Payment Method:</strong> <span class="highlight-text">@Model.PaymentMethod.Name</span></p>
                         <p>✅ <strong>Payment Status:</strong> <span class="highlight-text">@Model.PaymentStatus</span></p>
                         <p>📜 <strong>Order Status:</strong> <span class="highlight-text">@Model.OrderStatus</span></p>
                     </div>
+
+                    <h7>* without VAT</h7>
 
                     <div class="text-center mt-4">
                         <form asp-controller="Cart" asp-action="Index" method="get">

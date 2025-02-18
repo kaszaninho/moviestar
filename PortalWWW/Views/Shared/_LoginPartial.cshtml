@@ -6,11 +6,6 @@
 @{
     var registerTitle = User.IsInRole("Admin") ? "Account Creation" : "Register";
 }
-<li class="nav-item">
-    <form asp-area="Identity" asp-page="/Account/Register">
-        <button class="btn nav-link">@registerTitle</button>
-    </form>
-</li>
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item dropdown">
@@ -42,6 +37,11 @@
 }
 else
 {
+    <li class="nav-item">
+        <form asp-area="Identity" asp-page="/Account/Register">
+            <button class="btn nav-link">@registerTitle</button>
+        </form>
+    </li>
     <li class="nav-item">
         <form asp-area="Identity" asp-page="/Account/Login">
             <button class="btn nav-link">Login</button>
