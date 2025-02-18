@@ -73,7 +73,7 @@
                     </td>
                     <td>
                         <div class="form-floating mb-3">
-                            <input asp-for="DateOfBirth" class="form-controlX " id="floatingInput" value="@Model.DateOfBirth" readonly>
+                            <input class="form-controlX " id="floatingInput" value="@Model.DateOfBirth.ToShortDateString()" readonly>
                             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                         </div>
                     </td>
@@ -172,12 +172,12 @@
                     </tr>
                     <tr>
                         <td>
-                        <strong><label asp-for="Address.City" class="form-label">Country</label></strong>
+                            <strong><label asp-for="Address.Country.Name" class="form-label">Country</label></strong>
                     </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input asp-for="Address.City" class="form-controlX " id="floatingInput" value="@Model.Address.Country" readonly>
-                                <span asp-validation-for="Address.City" class="text-danger"></span>
+                                <input class="form-controlX " id="floatingInput" value="@Model.Address.Country.Name" readonly>
+                                <span asp-validation-for="Address.Country.Name" class="text-danger"></span>
                             </div>
                         </td>
                     </tr>

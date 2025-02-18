@@ -73,14 +73,13 @@
                     </div>
                     <div class="col-1">
 
-                        <div class="border p-1 m-2 text-center">
-                            <form asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id">
-                                <button class="btn btn-danger">
-                                    Details
-                                </button>
-                            </form>
+                        <div class="text-center">
+                            <a asp-controller="Movie" asp-action="ShowMovieDetails" asp-route-id="@movie.Id" class="btn btn-primary">
+                                Details
+                            </a>
                         </div>
                     </div>
+                    <hr>
                 </div>
                 <div class="row">
                     <strong><label class="form-label">Screenings</label></strong>

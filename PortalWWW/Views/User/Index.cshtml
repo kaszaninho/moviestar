@@ -70,15 +70,15 @@
                             var today = new Date().getTime();
                             var lockout = new Date(data.lockoutEnd).getTime();
                             var lockUnlockBtn = lockout > today
-                                ? `<a onClick=LockUnlock('${data.id}') class="btn btn-success btn-sm">Unlock</a>`
-                                : `<a onClick=LockUnlock('${data.id}') class="btn btn-danger btn-sm">Lock</a>`;
+                                ? `<a onClick=LockUnlock('${data.id}') class="btn btn-success btn-sm custom-btn">Unlock</a>`
+                                : `<a onClick=LockUnlock('${data.id}') class="btn btn-danger btn-sm custom-btn">Lock</a>`;
 
-                            return `<div class="text-center d-flex gap-2">
+                            return `<div class="text-center">
                                                 ${lockUnlockBtn}
-                                                <a href="/user/edit?id=${data.id}" class="btn btn-warning btn-sm">Edit</a>
-                                                <a href="/user/rolemanagement?id=${data.id}" class="btn btn-primary btn-sm">Roles</a>
-                                                <a onClick=Delete('/user/delete?id=${data.id}') class="btn btn-danger btn-sm">Delete</a>
-                                                <a href="/user/details?id=${data.id}" class="btn btn-info btn-sm">Details</a>
+                                                        <a href="/user/edit?id=${data.id}" class="btn btn-warning btn-sm custom-btn">Edit</a>
+                                                        <a href="/user/rolemanagement?id=${data.id}" class="btn btn-primary btn-sm custom-btn">Roles</a>
+                                                        <a onClick=Delete('/user/delete?id=${data.id}') class="btn btn-danger btn-sm custom-btn">Delete</a>
+                                                        <a href="/user/details?id=${data.id}" class="btn btn-info btn-sm custom-btn">Details</a>
                                             </div>`;
                         }
                     }
