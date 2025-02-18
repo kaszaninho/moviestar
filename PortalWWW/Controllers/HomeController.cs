@@ -146,6 +146,28 @@ namespace PortalWWW.Controllers
             return View();
         }
 
+        [HttpPost("AddCustomerQuery")]
+        public async Task<IActionResult> AddCustomerQuery(CustomerQuery entity)
+        {
+            if (entity != null)
+            {
+                entity.CreatedAt = DateTime.Now;
+                entity.ModifiedAt = DateTime.Now;
+                entity.IsActive = true;
+                entity.IsAnswered = false;
+                await dbContext.AddAsync(entity);
+                await dbContext.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Question was sent! Please await your response.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["FailedMessage"] = "There was problem with sending your query!";
+                return RedirectToAction("Index");
+            }
+        }
+
         [HttpPost("AddSubscriber")]
         public async Task<IActionResult> AddSubscriber(string email)
         {
