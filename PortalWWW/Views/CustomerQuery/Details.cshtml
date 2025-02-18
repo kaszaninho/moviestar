@@ -1,0 +1,92 @@
+﻿@using PortalWWW.Helpers
+@using static PortalWWW.Helpers.GenericCheck;
+@model DatabaseAPI.Models.General.CustomerQuery;
+
+@{
+    ViewData["Title"] = "Customer Query Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Query Details</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover custom-table">
+            <div class="table-responsive">
+                <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+                    <thead>
+                        <tr>
+                            <th>Query Details</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Name" class="form-label">First Name</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-controlX " id="floatingInput" value="@Model.Name" readonly>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Email" class="form-label">Email</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Email" class="form-controlX " id="floatingInput" value="@Model.Email" readonly>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="ContactNumber" class="form-label">Contact Number</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="ContactNumber" class="form-controlX " id="floatingInput" value="@Model.ContactNumber" readonly>
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="IsAnswered" class="form-label">Is Answered?</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input class="form-controlX " id="floatingInput" value="@(Model.IsAnswered ? "True" : "False")" readonly>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong><label asp-for="Description" class="form-label">Description of the query</label></strong>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Description" class="form-controlX " id="floatingInput" value="@Model.Description" readonly>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+﻿@using System.Linq;
+@using DatabaseAPI.Models.DictionaryModels;
+@using static PortalWWW.Helpers.GenericCheck;
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Importowanie stylów DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Customer Queries</h4>
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+        <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Is Answered?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["SuccessMessage"]';
+            if (message) {
+                toastr.success(message);
+            }
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
+        function loadDataTable() {
+            dataTable = $('#tblData').DataTable({
+                "ajax": { url: '/customerquery/getall' },
+                "columns": [
+                    { "data": "name" },
+                    { "data": "email" },
+                    { "data": "contactNumber" },
+                    { "data": "isAnswered" },
+                    {
+                        "data": { id: "id", isAnswered: "isAnswered" },
+                        "render": function (data) {
+                            var trueFalseButton = data.isAnswered
+                                ? `<a onClick=TrueFalse('${data.id}') class="btn btn-success btn-sm">Mark as Undone</a>`
+                                : `<a onClick=TrueFalse('${data.id}') class="btn btn-danger btn-sm">Mark as Done</a>`;
+
+                            return `<div class="text-center d-flex gap-2">
+                                                                ${trueFalseButton}
+                                                                <a onClick=Delete('/customerquery/delete?id=${data.id}') class="btn btn-danger btn-sm">Delete</a>
+                                                                <a href="/customerquery/details?id=${data.id}" class="btn btn-info btn-sm">Details</a>
+                                                    </div>`;
+                        }
+                    }
+                ]
+            });
+        }
+
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            Swal.fire("Deleted!", "Your record has been deleted.", "success");
+                        },
+                        error: function (err) {
+                            Swal.fire("Error!", "Something went wrong.", "error");
+                        }
+                    });
+                }
+            });
+        }
+
+        function TrueFalse(id) {
+            $.ajax({
+                type: "POST",
+                url: 'TrueFalse',
+                data: JSON.stringify(id),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.success) {
+                        toastr.success(data.message);
+                        $('#tblData').DataTable().ajax.reload();
+                    }
+                }
+            });
+        }
+    </script>
+}
