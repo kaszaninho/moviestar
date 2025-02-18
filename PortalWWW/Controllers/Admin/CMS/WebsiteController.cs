@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PortalWWW.Controllers.Admin.CMS
 {
+    [Route("[controller]")]
     public class WebsiteController : Controller
     {
         private readonly DatabaseAPIContext context;
