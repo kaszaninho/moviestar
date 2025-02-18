@@ -12,16 +12,22 @@ public partial class LoginPage : ContentPage
 
     private async void BtnSignIn_Clicked(object sender, EventArgs e)
     {
-        var response = await IdentityApiService.LoginUser(EntEmail.Text, EntPassword.Text);
-
-        if (response)
+        try
         {
-            await DisplayAlert("", "Your are logged in", "OK");
-            Application.Current.MainPage = new AppShell();
+            var response = await IdentityApiService.LoginUser(EntEmail.Text, EntPassword.Text);
+            if (response)
+            {
+                await DisplayAlert("", "Your are logged in", "OK");
+                Application.Current.MainPage = new AppShell();
+            }
+            else
+            {
+                await DisplayAlert("Login failed", "Something went wrong", "Try again");
+            }
         }
-        else
+        catch (UnauthorizedAccessException ex)
         {
-            await DisplayAlert("Login failed", "Something went wrong", "Try again");
+            await DisplayAlert("Login failed", "Wrong credentials", "Try again");
         }
     }
 
