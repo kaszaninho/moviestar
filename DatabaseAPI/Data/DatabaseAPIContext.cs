@@ -57,6 +57,7 @@ namespace DatabaseAPI.Data
         public DbSet<FooterIcon>? FooterIcon { get; set; }
         public DbSet<CustomerQuery>? CustomerQuery { get; set; }
         public DbSet<Subscriber>? Subscriber { get; set; }
+        public DbSet<InvoiceTemplateInformation>? InvoiceTemplateInformation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -1016,6 +1017,31 @@ namespace DatabaseAPI.Data
                     Discount = 5,
                     Name = "MOVIE20",
                     Description = "Coupon for 20%"
+                });
+
+            builder.Entity<InvoiceTemplateInformation>().HasData(
+                new InvoiceTemplateInformation
+                {
+                    Id = 1,
+                    AddressStreet = "Biała 34",
+                    AddressCountry = "Polska",
+                    AddressCity = "Nowy Sącz",
+                    AddressZipCode = "33-300",
+                    AddressPhone = "+48 553432354",
+                    AddressCompanyName = "MovieStar",
+                    AddressState = "Małopolskie",
+                    AddressEmail = "info@gmail.com",
+                    Font = "Arial",
+                    HexHeaderColor = "#FFF544",
+                    SellerHeader = "Sprzedający",
+                    BuyerHeader = "Kupujący",
+                    ItemHeader = "Bilety",
+                    AlertWithoutItems = "Nie ma żadnych dodanych biletów!",
+                    AlertItemsHeader = "Brak biletów!",
+                    AlertWithoutPayments = "Nie ma żadnych dokonanych płatności!",
+                    AlertPaymentHeader = "Brak płatności!",
+                    PaymentHeader = "Płatności",
+                    FinalText = "Dziękujemy i zapraszamy ponownie!"
                 });
 
             // Customize the ASP.NET Identity model and override the defaults if needed.

@@ -147,7 +147,7 @@ namespace BusinessLogic
             return invoiceConfiguration.Build();
         }
 
-        public static Address generateAddressForCinema(string street, string country, string city, string zipCode, string phone, string companyName, string email)
+        public static Address generateAddressForCinema(string street, string country, string city, string zipCode, string phone, string companyName, string email, string state)
         {
             return new Address()
             {
@@ -157,7 +157,8 @@ namespace BusinessLogic
                 ZipCode = zipCode,
                 Phone = phone,
                 CompanyName = companyName,
-                Email = email
+                Email = email,
+                State = state
             };
         }
     }

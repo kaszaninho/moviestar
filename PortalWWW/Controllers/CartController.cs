@@ -162,6 +162,7 @@ namespace PortalWWW.Controllers
             //add invoice to db based on screeningseats -> movies
             //make screeningseats as TAKEN in DB
             //save db
+            var invoiceTemplateInfo = await dbContext.InvoiceTemplateInformation.FirstOrDefaultAsync();
 
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
             var user = this.dbContext.User.Include(u => u.Address).ThenInclude(u => u.Country).First(x => x.Email == this.HttpContext.User.Identity.Name);
@@ -179,7 +180,9 @@ namespace PortalWWW.Controllers
                 InvoiceCurrency = new InvoiceCurrencySymbol(InvoiceCurrency.Euro),
                 DueAt = DateTime.Now.AddDays(7),
                 IssuedAt = DateTime.Now,
-                SellerAddress = InvoiceGenerator.generateAddressForCinema(),
+                SellerAddress = InvoiceGenerator.generateAddressForCinema(invoiceTemplateInfo.AddressStreet, invoiceTemplateInfo.AddressCountry,
+                invoiceTemplateInfo.AddressCity, invoiceTemplateInfo.AddressZipCode, invoiceTemplateInfo.AddressPhone, invoiceTemplateInfo.AddressCompanyName,
+                invoiceTemplateInfo.AddressEmail, invoiceTemplateInfo.AddressState),
                 CustomerAddress = InvoiceGenerator.generateAddressForCustomer(user.Address.StreetName + " " + user.Address.HouseNumber,
                 user.Address.Country.Name, user.Address.City, user.Address.EirCode, user.PhoneNumber)
             };
@@ -325,7 +328,10 @@ namespace PortalWWW.Controllers
                 dbContext.SaveChanges();
                 IInvoiceRenderer rerer = new InvoiceRenderer();
                 string path2 = "wwwroot//reports//Invoice" + dbInvoice.Id + ".pdf";
-                rerer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Save(path2);
+                rerer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration(invoiceTemplateInfo.Font, invoiceTemplateInfo.HexHeaderColor,
+                    invoiceTemplateInfo.SellerHeader, invoiceTemplateInfo.BuyerHeader, invoiceTemplateInfo.ItemHeader, invoiceTemplateInfo.AlertWithoutItems,
+                    invoiceTemplateInfo.AlertItemsHeader, invoiceTemplateInfo.AlertWithoutPayments, invoiceTemplateInfo.AlertPaymentHeader, invoiceTemplateInfo.PaymentHeader,
+                    invoiceTemplateInfo.FinalText)).Save(path2);
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
             }
@@ -334,7 +340,10 @@ namespace PortalWWW.Controllers
 
             IInvoiceRenderer renderer = new InvoiceRenderer();
             string path = "wwwroot//reports//Invoice" + dbInvoice.Id + ".pdf";
-            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration("", "", "", "", "", "", "", "", "", "", "")).Save(path);
+            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration(invoiceTemplateInfo.Font, invoiceTemplateInfo.HexHeaderColor,
+                invoiceTemplateInfo.SellerHeader, invoiceTemplateInfo.BuyerHeader, invoiceTemplateInfo.ItemHeader, invoiceTemplateInfo.AlertWithoutItems,
+                invoiceTemplateInfo.AlertItemsHeader, invoiceTemplateInfo.AlertWithoutPayments, invoiceTemplateInfo.AlertPaymentHeader, invoiceTemplateInfo.PaymentHeader,
+                invoiceTemplateInfo.FinalText)).Save(path);
             return RedirectToAction("OrderConfirmed", new { invoiceId = dbInvoice.InvoiceId });
         }
 

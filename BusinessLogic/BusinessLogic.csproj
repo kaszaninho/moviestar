@@ -7,17 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="photos\LOGO.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="photos\LOGO.png">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="InvoiceSdk" Version="1.2.0" />
     <PackageReference Include="PdfSharpCore" Version="1.3.63" />
     <PackageReference Include="QRCoder" Version="1.6.0" />

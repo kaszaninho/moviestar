@@ -1,0 +1,263 @@
+﻿@model DatabaseAPI.Models.CMS.InvoiceTemplateInformation;
+@{
+    ViewData["Title"] = "Edit Invoice Template";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Edit Invoice Template</h4>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <form asp-action="Edit" method="post">
+            <table class="table table-bordered table-striped table-hover custom-table">
+                <input asp-for="Id" type="hidden" class="form-control" ) />
+
+                <div class="table-responsive">
+                    <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+                        <thead>
+                            <tr>
+                                <th>Edit</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressStreet" class="form-label">Address - Street</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressStreet" class="form-control " id="floatingInput" value="@(Model.AddressStreet ?? "")">
+                                <span asp-validation-for="AddressStreet" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressCountry" class="form-label">Address - Country</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                <input asp-for="AddressCountry" class="form-control " id="floatingInput" value="@(Model.AddressCountry ?? "")">
+                                <span asp-validation-for="AddressCountry" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressCity" class="form-label">Address - City</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressCity" class="form-control " id="floatingInput" value="@(Model.AddressCity ?? "")">
+                                <span asp-validation-for="AddressCity" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressZipCode" class="form-label">Address - ZipCode</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressZipCode" class="form-control " id="floatingInput" value="@(Model.AddressZipCode ?? "")">
+                                <span asp-validation-for="AddressZipCode" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressPhone" class="form-label">Address - Phone</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressPhone" class="form-control " id="floatingInput" value="@(Model.AddressPhone ?? "")">
+                                <span asp-validation-for="AddressPhone" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressEmail" class="form-label">Address - Email</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressEmail" class="form-control " id="floatingInput" value="@(Model.AddressEmail ?? "")">
+                                <span asp-validation-for="AddressEmail" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressCompanyName" class="form-label">Address - Company Name</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressCompanyName" class="form-control " id="floatingInput" value="@(Model.AddressCompanyName ?? "")">
+                                <span asp-validation-for="AddressCompanyName" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AddressState" class="form-label">Address - State</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AddressState" class="form-control " id="floatingInput" value="@(Model.AddressState ?? "")">
+                                <span asp-validation-for="AddressState" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="Font" class="form-label">Invoice Font</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Font" class="form-control " id="floatingInput" value="@(Model.Font ?? "")">
+                                <span asp-validation-for="Font" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="HexHeaderColor" class="form-label">Header Color in HEX</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="HexHeaderColor" class="form-control " id="floatingInput" value="@(Model.HexHeaderColor ?? "")">
+                                <span asp-validation-for="HexHeaderColor" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="SellerHeader" class="form-label">Seller's Header</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="SellerHeader" class="form-control " id="floatingInput" value="@(Model.SellerHeader ?? "")">
+                                <span asp-validation-for="SellerHeader" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="BuyerHeader" class="form-label">Buyer's Header</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="BuyerHeader" class="form-control " id="floatingInput" value="@(Model.BuyerHeader ?? "")">
+                                <span asp-validation-for="BuyerHeader" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="ItemHeader" class="form-label">Items' Header</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="ItemHeader" class="form-control " id="floatingInput" value="@(Model.ItemHeader ?? "")">
+                                <span asp-validation-for="ItemHeader" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AlertWithoutItems" class="form-label">Description of No Items alert</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AlertWithoutItems" class="form-control " id="floatingInput" value="@(Model.AlertWithoutItems ?? "")">
+                                <span asp-validation-for="AlertWithoutItems" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AlertItemsHeader" class="form-label">Header of No Items alert</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AlertItemsHeader" class="form-control " id="floatingInput" value="@(Model.AlertItemsHeader ?? "")">
+                                <span asp-validation-for="AlertItemsHeader" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AlertWithoutPayments" class="form-label">Description of No Payments alert</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AlertWithoutPayments" class="form-control " id="floatingInput" value="@(Model.AlertWithoutPayments ?? "")">
+                                <span asp-validation-for="AlertWithoutPayments" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="AlertPaymentHeader" class="form-label">Header of No Payments alert</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="AlertPaymentHeader" class="form-control " id="floatingInput" value="@(Model.AlertPaymentHeader ?? "")">
+                                <span asp-validation-for="AlertPaymentHeader" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="PaymentHeader" class="form-label">Payments' Header</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="PaymentHeader" class="form-control " id="floatingInput" value="@(Model.PaymentHeader ?? "")">
+                                <span asp-validation-for="PaymentHeader" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong><label asp-for="FinalText" class="form-label">Farewell text</label></strong>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="FinalText" class="form-control " id="floatingInput" value="@(Model.FinalText ?? "")">
+                                <span asp-validation-for="FinalText" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Update" class="btn btn-success m-2 custom-btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["SuccessMessage"]';
+            if (message) {
+                toastr.success(message);
+            }
+        });
+    </script>
+}

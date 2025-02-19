@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250219171156_addingInvoiceInfoTable")]
+    partial class addingInvoiceInfoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,9 +301,6 @@ namespace DatabaseAPI.Migrations
                     b.Property<string>("AddressCountry")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AddressEmail")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("AddressPhone")
                         .HasColumnType("nvarchar(max)");
 
@@ -313,67 +313,42 @@ namespace DatabaseAPI.Migrations
                     b.Property<string>("AddressZipCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AlertItemsHeader")
+                    b.Property<string>("alertItemsHeader")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AlertPaymentHeader")
+                    b.Property<string>("alertPaymentHeader")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AlertWithoutItems")
+                    b.Property<string>("alertWithoutItems")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AlertWithoutPayments")
+                    b.Property<string>("alertWithoutPayments")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BuyerHeader")
+                    b.Property<string>("buyerHeader")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FinalText")
+                    b.Property<string>("finalText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Font")
+                    b.Property<string>("font")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HexHeaderColor")
+                    b.Property<string>("hexHeaderColor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ItemHeader")
+                    b.Property<string>("itemHeader")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PaymentHeader")
+                    b.Property<string>("paymentHeader")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SellerHeader")
+                    b.Property<string>("sellerHeader")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("InvoiceTemplateInformation");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AddressCity = "Nowy Sącz",
-                            AddressCompanyName = "MovieStar",
-                            AddressCountry = "Polska",
-                            AddressEmail = "info@gmail.com",
-                            AddressPhone = "+48 553432354",
-                            AddressState = "Małopolskie",
-                            AddressStreet = "Biała 34",
-                            AddressZipCode = "33-300",
-                            AlertItemsHeader = "Brak biletów!",
-                            AlertPaymentHeader = "Brak płatności!",
-                            AlertWithoutItems = "Nie ma żadnych dodanych biletów!",
-                            AlertWithoutPayments = "Nie ma żadnych dokonanych płatności!",
-                            BuyerHeader = "Kupujący",
-                            FinalText = "Dziękujemy i zapraszamy ponownie!",
-                            Font = "Arial",
-                            HexHeaderColor = "#FFF544",
-                            ItemHeader = "Bilety",
-                            PaymentHeader = "Płatności",
-                            SellerHeader = "Sprzedający"
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Navbar", b =>

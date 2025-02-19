@@ -4,6 +4,7 @@ using DatabaseAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAPI.Migrations
 {
     [DbContext(typeof(DatabaseAPIContext))]
-    partial class DatabaseAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250219182453_addEmailToInvoiceInfo")]
+    partial class addEmailToInvoiceInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -349,31 +352,6 @@ namespace DatabaseAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InvoiceTemplateInformation");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AddressCity = "Nowy Sącz",
-                            AddressCompanyName = "MovieStar",
-                            AddressCountry = "Polska",
-                            AddressEmail = "info@gmail.com",
-                            AddressPhone = "+48 553432354",
-                            AddressState = "Małopolskie",
-                            AddressStreet = "Biała 34",
-                            AddressZipCode = "33-300",
-                            AlertItemsHeader = "Brak biletów!",
-                            AlertPaymentHeader = "Brak płatności!",
-                            AlertWithoutItems = "Nie ma żadnych dodanych biletów!",
-                            AlertWithoutPayments = "Nie ma żadnych dokonanych płatności!",
-                            BuyerHeader = "Kupujący",
-                            FinalText = "Dziękujemy i zapraszamy ponownie!",
-                            Font = "Arial",
-                            HexHeaderColor = "#FFF544",
-                            ItemHeader = "Bilety",
-                            PaymentHeader = "Płatności",
-                            SellerHeader = "Sprzedający"
-                        });
                 });
 
             modelBuilder.Entity("DatabaseAPI.Models.CMS.Navbar", b =>
