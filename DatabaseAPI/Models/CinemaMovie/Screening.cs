@@ -1,9 +1,8 @@
 ﻿using DatabaseAPI.Models.Abstract;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DatabaseAPI.Models.CinemaMovie
 {
+    // seans
     public class Screening : DictionaryTable
     {
         public int? ScreenId { get; set; }

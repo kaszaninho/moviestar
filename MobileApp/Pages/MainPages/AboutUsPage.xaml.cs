@@ -1,7 +1,6 @@
 using MobileApp.Pages.AboutUs;
 using MobileApp.Services;
 using MobileApp.ViewModels.AboutUs;
-using System.Collections.ObjectModel;
 
 namespace MobileApp.Pages;
 
@@ -24,7 +23,7 @@ public partial class AboutUsPage : ContentPage
     {
         if (sender is Button button)
         {
-            var websiteId = (int) button.CommandParameter;
+            var websiteId = (int)button.CommandParameter;
             var website = WebsitePages.First(x => x.Id == websiteId);
             var navParams = new Dictionary<string, object>
             {

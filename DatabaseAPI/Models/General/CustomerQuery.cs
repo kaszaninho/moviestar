@@ -1,5 +1,4 @@
 ﻿using DatabaseAPI.Models.Abstract;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DatabaseAPI.Models.General
 {

@@ -9,6 +9,7 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
+            // needed change to have updated fonts in the MAUI
             GlobalFontSettings.FontResolver = new CustomFontResolver();
 
             var accesstoken = SecureStorage.GetAsync("accesstoken").GetAwaiter().GetResult();
@@ -21,6 +22,8 @@ namespace MobileApp
                 MainPage = new AppShell();
             }
         }
+
+        // needed to have customized size of the window.
         protected override Window CreateWindow(IActivationState? activationState)
         {
             const int newHeight = 800;

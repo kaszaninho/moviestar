@@ -1,6 +1,5 @@
 ﻿using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Models.General;
-using DatabaseAPI.Models.People;
 
 namespace DatabaseAPI.Models.CinemaMovie
 {

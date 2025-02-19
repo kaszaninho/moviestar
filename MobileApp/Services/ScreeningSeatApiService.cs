@@ -1,10 +1,4 @@
 using MobileApp.Helpers;
-using MobileApp.Models;
-using MobileApp.ViewModels.Invoice;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 public static class ScreeningSeatApiService
 {

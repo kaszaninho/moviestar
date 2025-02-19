@@ -1,7 +1,6 @@
 ﻿using DatabaseAPI.Data;
 using DatabaseAPI.Models.Abstract;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DatabaseAPI.Repository
 {
@@ -58,7 +57,7 @@ namespace DatabaseAPI.Repository
         public async Task<int> DeleteEntityAsync(int id)
         {
             var entity = dbSet.Find(id);
-            if(entity != null)
+            if (entity != null)
             {
                 dbSet.Remove(entity);
             }

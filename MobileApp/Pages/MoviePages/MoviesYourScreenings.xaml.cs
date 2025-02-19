@@ -9,16 +9,16 @@ public partial class MoviesYourScreenings : ContentPage
     private IEnumerable<Screening> allScreenings; // Stores full data
     private ObservableCollection<Screening> displayedScreenings = new ObservableCollection<Screening>(); // For UI
     public MoviesYourScreenings()
-	{
-		InitializeComponent();
-		LoadScreeningsData();
-	}
+    {
+        InitializeComponent();
+        LoadScreeningsData();
+    }
 
-	private async void LoadScreeningsData()
-	{
+    private async void LoadScreeningsData()
+    {
         var userId = await SecureStorage.GetAsync("userid");
-		if (userId != null)
-		{
+        if (userId != null)
+        {
             allScreenings = await MovieApiService.GetScreeningsForUser(userId);
             displayedScreenings = new ObservableCollection<Screening>(allScreenings);
             CvAllScreenings.ItemsSource = displayedScreenings;

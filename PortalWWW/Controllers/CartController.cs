@@ -106,7 +106,7 @@ namespace PortalWWW.Controllers
             {
                 CartElements = await cartBusinessLogic.GetCartElements(),
                 PriceTotal = await cartBusinessLogic.CalculateSum(),
-                Coupon = cartBusinessLogic.CheckCoupon()
+                Coupon = await cartBusinessLogic.CheckCoupon()
             };
             if (cartInformation.Coupon != null)
             {
@@ -171,7 +171,7 @@ namespace PortalWWW.Controllers
             {
                 CartElements = await cartBusinessLogic.GetCartElements(),
                 PriceTotal = await cartBusinessLogic.CalculateSum(),
-                Coupon = cartBusinessLogic.CheckCoupon()
+                Coupon = await cartBusinessLogic.CheckCoupon()
             };
             var invoice = new Invoice()
             {

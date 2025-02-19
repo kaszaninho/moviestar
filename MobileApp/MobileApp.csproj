@@ -141,8 +141,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Resources\Reports\" />
-	</ItemGroup>
-
 </Project>

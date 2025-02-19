@@ -1,6 +1,4 @@
-﻿
-
-namespace MobileApp.Helpers
+﻿namespace MobileApp.Helpers
 {
     public class TicketInvoiceModel
     {

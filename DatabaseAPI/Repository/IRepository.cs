@@ -1,5 +1,4 @@
-﻿using DatabaseAPI.Models.Abstract;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseAPI.Repository
 {

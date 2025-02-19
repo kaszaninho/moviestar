@@ -1,7 +1,6 @@
 ﻿using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.DictionaryModels;
-using DatabaseAPI.Models.General;
 
 namespace DatabaseAPI.Models.People
 {

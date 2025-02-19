@@ -1,5 +1,4 @@
-﻿using DatabaseAPI.Models.Abstract;
-using DatabaseAPI.Models.CinemaMovie;
+﻿using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.General;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,6 +19,6 @@ namespace DatabaseAPI.Models.People
         public List<Movie> FavouriteMovies { get; set; }
         public List<Actor> FavouriteActors { get; set; }
         [NotMapped]
-        public string Role { get; set; }
+        public string? Role { get; set; }
     }
 }

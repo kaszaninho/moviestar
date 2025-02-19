@@ -6,6 +6,5 @@ namespace DatabaseAPI.Models.DictionaryModels
     public class Genre : DictionaryTable
     {
         public ICollection<Movie>? Movies { get; set; }
-
     }
 }

@@ -1,9 +1,7 @@
 ﻿using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.DictionaryModels;
-using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.People;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DatabaseAPI.Models.CinemaMovie

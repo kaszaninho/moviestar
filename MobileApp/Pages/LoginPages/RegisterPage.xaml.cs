@@ -1,7 +1,5 @@
-using Microsoft.Maui.ApplicationModel.Communication;
 using MobileApp.Services;
 using MobileApp.ViewModels.Identity;
-using PdfSharp.Drawing.BarCodes;
 using System.Collections.ObjectModel;
 using static MobileApp.Services.AppSettings;
 

@@ -1,4 +1,3 @@
-using Microsoft.Maui.Controls;
 using MobileApp.Models;
 using MobileApp.Services;
 
@@ -74,4 +73,4 @@ namespace MobileApp.Pages.MoviePages
             }
         }
     }
-} 
+}

@@ -11,10 +11,10 @@ public partial class MoviesList : ContentPage
     private ObservableCollection<MovieInfoResponse> displayedMovies = new ObservableCollection<MovieInfoResponse>(); // For UI
 
     public MoviesList()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         LoadAllMovies();
-	}
+    }
 
     private async void LoadAllMovies()
     {

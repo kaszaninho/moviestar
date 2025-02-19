@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using Microsoft.Maui.Controls;
 using MobileApp.Models;
-using MobileApp.Services;
 
 namespace MobileApp.Pages.MoviePages
 {
@@ -49,4 +43,4 @@ namespace MobileApp.Pages.MoviePages
             }
         }
     }
-} 
+}

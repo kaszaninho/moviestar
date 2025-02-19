@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using DatabaseAPI.Data;
+using DatabaseAPI.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DatabaseAPI.Data;
-using DatabaseAPI.Models.General;
-using DatabaseAPI.Models.CMS;
 
 namespace DatabaseAPI.Controllers
 {

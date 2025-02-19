@@ -53,7 +53,7 @@
                             </Border>
 
                             <VerticalStackLayout>
-                            <!-- Movie Info -->
+                                <!-- Movie Info -->
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Title}" 
                                FontSize="Medium" 

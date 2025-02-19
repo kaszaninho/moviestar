@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DatabaseAPI.Data;
+﻿using DatabaseAPI.Data;
+using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.General;
-using DatabaseAPI.Models.People;
 using DatabaseAPI.ViewModels;
 using HelperProject;
-using DatabaseAPI.Models.CinemaMovie;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseAPI.Controllers
 {
@@ -93,7 +87,7 @@ namespace DatabaseAPI.Controllers
             return invoiceViewModel;
         }
 
-        
+
         // POST: api/Invoice
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -106,6 +100,10 @@ namespace DatabaseAPI.Controllers
 
             var screeningSeats = await _context.ScreeningSeat.Where(x => invoiceRequest.ScreeningSeatIds.Contains(x.Id)).ToListAsync();
 
+            if (!screeningSeats.Any())
+            {
+                return BadRequest("No seats were chosen!");
+            }
             if (screeningSeats.Any(x => x.IsTaken ?? false))
             {
                 return BadRequest("Some of the seats are already taken!");
@@ -113,7 +111,7 @@ namespace DatabaseAPI.Controllers
 
             screeningSeats.ForEach(x => x.IsTaken = true);
 
-            var tickets = invoiceRequest.ScreeningSeatIds.Select(x => new Ticket
+            var tickets = invoiceRequest.ScreeningSeatIds?.Select(x => new Ticket
             {
                 CreatedAt = DateTime.Now,
                 ModifiedAt = DateTime.Now,
@@ -139,8 +137,8 @@ namespace DatabaseAPI.Controllers
             };
 
             _context.UpdateRange(screeningSeats);
-            _context.AddRangeAsync(tickets);
-            _context.AddAsync(invoice);
+            await _context.AddRangeAsync(tickets);
+            await _context.AddAsync(invoice);
 
             await _context.SaveChangesAsync();
 

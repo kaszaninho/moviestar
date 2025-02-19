@@ -1,7 +1,5 @@
 ﻿using DatabaseAPI.Data;
-using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatabaseAPI.Controllers

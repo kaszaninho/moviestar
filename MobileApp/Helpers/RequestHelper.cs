@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using static MobileApp.Services.AppSettings;
 
 namespace MobileApp.Helpers
@@ -16,8 +11,10 @@ namespace MobileApp.Helpers
             {
                 BaseAddress = new(API_URL)
             };
+
             HttpResponseMessage response;
             HttpRequestMessage message = new(method, url);
+
             if (token != null)
             {
                 message.Headers.Authorization = new("Bearer", token);
@@ -26,12 +23,15 @@ namespace MobileApp.Helpers
             {
                 message.Content = new StringContent(JsonSerializer.Serialize(request), System.Text.Encoding.UTF8, "application/json");
             }
+
             response = await client.SendAsync(message);
             string responseString = await response.Content.ReadAsStringAsync();
+
             if (response.IsSuccessStatusCode)
             {
                 return JsonSerializer.Deserialize<ResponseType>(responseString) ?? throw new ArgumentException(responseString);
             }
+
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 throw new UnauthorizedAccessException(responseString);
@@ -49,8 +49,10 @@ namespace MobileApp.Helpers
             {
                 BaseAddress = new(API_URL)
             };
+
             HttpResponseMessage response;
             HttpRequestMessage message = new(method, url);
+
             if (token != null)
             {
                 message.Headers.Authorization = new("Bearer", token);
@@ -59,7 +61,9 @@ namespace MobileApp.Helpers
             {
                 message.Content = new StringContent(JsonSerializer.Serialize(request), System.Text.Encoding.UTF8, "application/json");
             }
+
             response = await client.SendAsync(message);
+
             if (!response.IsSuccessStatusCode)
             {
                 string responseString = await response.Content.ReadAsStringAsync();
@@ -82,14 +86,18 @@ namespace MobileApp.Helpers
             {
                 BaseAddress = new(API_URL)
             };
+
             HttpResponseMessage response;
             HttpRequestMessage message = new(method, url);
+
             if (token != null)
             {
                 message.Headers.Authorization = new("Bearer", token);
             }
+
             response = await client.SendAsync(message);
             string responseString = await response.Content.ReadAsStringAsync();
+
             if (!response.IsSuccessStatusCode)
             {
 
@@ -103,6 +111,7 @@ namespace MobileApp.Helpers
                 }
                 throw new Exception(responseString);
             }
+
             return JsonSerializer.Deserialize<ResponseType>(responseString) ?? throw new ArgumentException(responseString);
         }
     }

@@ -1,16 +1,14 @@
 using MobileApp.Services;
-using MobileApp.ViewModels.Invoice;
 using MobileApp.ViewModels.Movie;
-using System.Collections.ObjectModel;
 
 namespace MobileApp.Pages.ProfilePages;
 
 public partial class ProfileInvoices : ContentPage
 {
-    private IEnumerable<Invoice> allInvoices; // Stores full data
+    private IEnumerable<Invoice>? allInvoices; // Stores full data
     public ProfileInvoices()
-	{
-		InitializeComponent(); 
+    {
+        InitializeComponent();
         LoadAllInvoices();
     }
 

@@ -1,6 +1,5 @@
 ﻿using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Models.DictionaryModels;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 
 namespace DatabaseAPI.Models.General

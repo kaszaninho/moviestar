@@ -16,7 +16,7 @@ public class ScreeningSeatResponse
     public int ScreeningId { get; set; }
 
     [JsonPropertyName("ticketPrice")]
-    public decimal TicketPrice{ get; set; }
+    public decimal TicketPrice { get; set; }
 
     // View data
     private bool isSelected;
@@ -39,4 +39,4 @@ public class ScreeningSeatResponse
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-} 
+}

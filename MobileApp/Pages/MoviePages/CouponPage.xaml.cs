@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
 using MobileApp.Models;
 using MobileApp.Services;
 
@@ -36,7 +33,7 @@ namespace MobileApp.Pages.MoviePages
                 }
                 purchaseState.CouponCode = couponCode;
                 purchaseState.CouponId = coupon.CouponId;
-                purchaseState.DiscountedPrice = purchaseState.TicketsPrice * ( coupon.Discount / 100m);
+                purchaseState.DiscountedPrice = purchaseState.TicketsPrice * (coupon.Discount / 100m);
                 purchaseState.TotalPrice = purchaseState.TicketsPrice - purchaseState.DiscountedPrice;
                 DiscountLabel.Text = $"Discount applied: {coupon.Discount}% off";
                 DiscountLabel.IsVisible = true;

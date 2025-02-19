@@ -1,5 +1,4 @@
 using DatabaseAPI.Data;
-using DatabaseAPI.Models.People;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

@@ -5,7 +5,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="15" Padding="20">
             <Label Text="Select Seats" FontSize="Large"/>
-            
+
             <CollectionView x:Name="SeatsCollection"
                           SelectionMode="Multiple">
                 <CollectionView.ItemsLayout>
@@ -14,7 +14,7 @@
                                    HorizontalItemSpacing="5"
                                    VerticalItemSpacing="5"/>
                 </CollectionView.ItemsLayout>
-                
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Margin="2" Padding="10"

@@ -4,13 +4,13 @@ namespace MobileApp.Pages;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
-	{
-		InitializeComponent();
-	}
+    public ProfilePage()
+    {
+        InitializeComponent();
+    }
 
-	private void Logout_Clicked(object sender, EventArgs e)
-	{
+    private void Logout_Clicked(object sender, EventArgs e)
+    {
         SecureStorage.RemoveAll();
         Application.Current.MainPage = new NavigationPage(new LoginPage());
     }

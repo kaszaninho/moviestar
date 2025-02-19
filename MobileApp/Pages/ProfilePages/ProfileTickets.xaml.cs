@@ -6,27 +6,35 @@ namespace MobileApp.Pages.ProfilePages;
 
 public partial class ProfileTickets : ContentPage
 {
-    private IEnumerable<TicketResponse> allTickets; // Stores full data
+    private IEnumerable<TicketResponse>? allTickets;
+
     public ProfileTickets()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         LoadAllTickets();
     }
 
     private async void LoadAllTickets()
     {
         var userId = await SecureStorage.GetAsync("userid");
-        allTickets = await TicketApiService.GetScreeningsForUser(userId);
-        CvAllTickets.ItemsSource = allTickets;
+        if (userId != null)
+        {
+            allTickets = await TicketApiService.GetScreeningsForUser(userId);
+            CvAllTickets.ItemsSource = allTickets;
+        }
+        else
+        {
+            await DisplayAlert("Error", $"No user in Storage", "OK");
+        }
     }
+
     private async void OnGeneratePDFClicked(object sender, EventArgs e)
     {
         if (sender is Button button)
         {
             try
             {
-
-                int ticketId = (int) button.CommandParameter;
+                int ticketId = (int)button.CommandParameter;
                 var ticketModel = allTickets.First(tic => tic.TicketId == ticketId);
                 var ticketInvoice = new TicketInvoiceModel
                 {
@@ -42,7 +50,6 @@ public partial class ProfileTickets : ContentPage
 
                 await DisplayAlert("Success", $"PDF saved at:\n{pdfPath}", "OK");
 
-                // Optionally, open the PDF
                 await Launcher.OpenAsync(new OpenFileRequest
                 {
                     File = new ReadOnlyFile(pdfPath)

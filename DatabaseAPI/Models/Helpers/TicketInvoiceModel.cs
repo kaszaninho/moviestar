@@ -1,7 +1,4 @@
-﻿using DatabaseAPI.Models.CinemaMovie;
-using DatabaseAPI.Models.General;
-
-namespace DatabaseAPI.Models.Helpers
+﻿namespace DatabaseAPI.Models.Helpers
 {
     public class TicketInvoiceModel
     {

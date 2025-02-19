@@ -1,5 +1,6 @@
 using MobileApp.Services;
 using static MobileApp.Services.AppSettings;
+
 namespace MobileApp.Pages;
 
 public partial class LoginPage : ContentPage

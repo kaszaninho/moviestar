@@ -11,19 +11,19 @@
     <Color x:Key="PrimaryDark">#b30d02</Color>
     <Color x:Key="Secondary">#191a1d</Color>
     <Color x:Key="SecondaryDark">#27292d</Color>
-    
+
     <!-- Background Colors -->
     <Color x:Key="AppBackground">#010102</Color>
     <Color x:Key="SurfaceBackground">#191a1d</Color>
-    
+
     <!-- Text Colors -->
     <Color x:Key="PrimaryText">#ffffff</Color>
     <Color x:Key="SecondaryText">#f4f4f4</Color>
     <Color x:Key="SubtleText">#abb0bf</Color>
-    
+
     <!-- Border Colors -->
     <Color x:Key="BorderColor">#27292d</Color>
-    
+
     <!-- Link Colors -->
     <Color x:Key="LinkNormal">#ffffff</Color>
     <Color x:Key="LinkHover">#de1002</Color>
@@ -62,7 +62,6 @@
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
 
-    <!-- Add these after the existing color definitions -->
     <Color x:Key="PickerBackground">#27292d</Color>
     <Color x:Key="PickerText">#ffffff</Color>
     <Color x:Key="PickerPlaceholder">#abb0bf</Color>

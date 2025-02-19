@@ -1,34 +1,27 @@
 ﻿using PdfSharp.Fonts;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MobileApp.Helpers
 {
     public class CustomFontResolver : IFontResolver
     {
-
         private Hashtable hashtable = new Hashtable
         {
-
             { "OpenSansRegular", "OpenSans-Regular.ttf"},
             { "OpenSansSemibold", "OpenSans-Semibold.ttf"},
-                    { "Arial", "Arial.ttf" },
-                    { "RajdhaniBold", "Rajdhani-Bold.ttf"},
-                    { "RajdhaniLight", "Rajdhani-Light.ttf" },
-                    { "RajdhaniMedium", "Rajdhani-Medium.ttf"},
-                    { "Rajdhani", "Rajdhani-Regular.ttf"},
-                    { "RajdhaniSemiBold", "Rajdhani-SemiBold.ttf"}
+            { "Arial", "Arial.ttf" },
+            { "RajdhaniBold", "Rajdhani-Bold.ttf"},
+            { "RajdhaniLight", "Rajdhani-Light.ttf" },
+            { "RajdhaniMedium", "Rajdhani-Medium.ttf"},
+            { "Rajdhani", "Rajdhani-Regular.ttf"},
+            { "RajdhaniSemiBold", "Rajdhani-SemiBold.ttf"}
         };
+
         public byte[] GetFont(string faceName)
         {
             if (hashtable.ContainsKey(faceName))
             {
-                var fontStream = FileSystem.OpenAppPackageFileAsync((string) hashtable[faceName]).GetAwaiter().GetResult();
+                var fontStream = FileSystem.OpenAppPackageFileAsync((string)hashtable[faceName]).GetAwaiter().GetResult();
                 using (var memoryStream = new MemoryStream())
                 {
                     fontStream.CopyTo(memoryStream);

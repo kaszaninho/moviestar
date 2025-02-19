@@ -7,10 +7,7 @@ using DatabaseAPI.Models.General.DictionaryModels;
 using DatabaseAPI.Models.People;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using System.Numerics;
-using System.Reflection.Emit;
 
 namespace DatabaseAPI.Data
 {
@@ -64,10 +61,10 @@ namespace DatabaseAPI.Data
             base.OnModelCreating(builder);
 
             builder.Entity<ScreeningSeat>()
-        .HasOne(ss => ss.Screening)  // Navigation property
-        .WithMany(s => s.ScreeningSeats)  // Assuming Screening has a list of seats
-        .HasForeignKey(ss => ss.ScreeningId) // Foreign key property
-        .OnDelete(DeleteBehavior.Cascade); // Enables Cascade Delete
+        .HasOne(ss => ss.Screening)
+        .WithMany(s => s.ScreeningSeats)
+        .HasForeignKey(ss => ss.ScreeningId)
+        .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<AgeRating>().HasData(
                 new AgeRating { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "+12", Name = "+12" },

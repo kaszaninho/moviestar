@@ -1,6 +1,4 @@
-﻿
-
-namespace BusinessLogic.Helpers
+﻿namespace BusinessLogic.Helpers
 {
     public class TicketInvoiceModel
     {

@@ -2,7 +2,6 @@ using MobileApp.ViewModels.AboutUs;
 
 namespace MobileApp.Pages.AboutUs;
 
-
 public partial class WebsiteDetailPage : ContentPage
 {
     private WebsiteResponse websiteData;

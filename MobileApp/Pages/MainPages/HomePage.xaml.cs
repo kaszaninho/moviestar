@@ -1,4 +1,3 @@
-
 using MobileApp.Pages.MoviePages;
 using MobileApp.Pages.ProfilePages;
 using MobileApp.Services;
@@ -40,7 +39,6 @@ public partial class HomePage : ContentPage
             }
         }
     }
-
 
     private async Task GetUserProfile()
     {

@@ -4,10 +4,10 @@ namespace MobileApp.Pages;
 
 public partial class MoviesPage : ContentPage
 {
-	public MoviesPage()
-	{
-		InitializeComponent();
-	}
+    public MoviesPage()
+    {
+        InitializeComponent();
+    }
 
     private async void BtnMoviesList_Clicked(object sender, EventArgs e)
     {
