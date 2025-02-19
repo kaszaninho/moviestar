@@ -2,6 +2,7 @@
 using BusinessLogic.Helpers;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
+using HelperProject;
 using InvoiceSdk.Models;
 using InvoiceSdk.Models.Payments;
 using InvoiceSdk.Renderer;
@@ -9,13 +10,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using OfficeOpenXml.ConditionalFormatting.Contracts;
 using PortalWWW.Models;
 using ServiceStack;
-using Stripe;
 using Stripe.Checkout;
-using InvoiceItem = InvoiceSdk.Models.InvoiceItem;
 using static PortalWWW.Helpers.StripeHelper;
+using InvoiceItem = InvoiceSdk.Models.InvoiceItem;
 
 namespace PortalWWW.Controllers
 {
@@ -173,7 +172,7 @@ namespace PortalWWW.Controllers
                 PriceTotal = await cartBusinessLogic.CalculateSum(),
                 Coupon = cartBusinessLogic.CheckCoupon()
             };
-            var invoice = new InvoiceSdk.Models.Invoice()
+            var invoice = new Invoice()
             {
                 Id = Guid.NewGuid(),
                 Number = new Random().Next(0, int.MaxValue),
@@ -335,7 +334,7 @@ namespace PortalWWW.Controllers
 
             IInvoiceRenderer renderer = new InvoiceRenderer();
             string path = "wwwroot//reports//Invoice" + dbInvoice.Id + ".pdf";
-            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration()).Save(path);
+            renderer.RenderInvoice(invoice, InvoiceGenerator.generateConfiguration("", "", "", "", "", "", "", "", "", "", "")).Save(path);
             return RedirectToAction("OrderConfirmed", new { invoiceId = dbInvoice.InvoiceId });
         }
 

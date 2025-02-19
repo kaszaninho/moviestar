@@ -1,4 +1,5 @@
 ﻿using MobileApp.Helpers;
+using MobileApp.Models;
 using MobileApp.ViewModels.Invoice;
 using MobileApp.ViewModels.Movie;
 using System;
@@ -18,6 +19,26 @@ namespace MobileApp.Services
         public static async Task<InvoiceResponse> GetInvoice(string invoiceId)
         {
             return await RequestHelper.SendRequestAsync<InvoiceResponse>("api/Invoice/" + invoiceId, HttpMethod.Get, null);
+        }
+
+        public static async Task<bool> CompleteTransaction(TicketPurchaseState purchaseState, string userId)
+        {
+            if (purchaseState == null || userId == null)
+            {
+                return false;
+            }
+            var requestBody = new InvoiceTransactionCreateRequest
+            {
+                CouponDiscount = purchaseState.DiscountedPrice,
+                CouponId = purchaseState.CouponId,
+                InvoiceId = Guid.NewGuid(),
+                PaymentMethodId = purchaseState.PaymentMethodId,
+                TicketSum = purchaseState.TicketsPrice,
+                TotalSum = purchaseState.TotalPrice,
+                UserId = userId,
+                ScreeningSeatIds = purchaseState.SelectedSeatIds
+            };
+            return await RequestHelper.SendRequestAsync($"api/invoice", HttpMethod.Post, requestBody, null);
         }
     }
 }

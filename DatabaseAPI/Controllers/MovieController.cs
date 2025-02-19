@@ -82,7 +82,8 @@ namespace DatabaseAPI.Controllers
                 {
                     EndDate = scr.EndDate,
                     StartDate = scr.StartDate,
-                    MovieId = movie.Id
+                    MovieId = movie.Id,
+                    ScreeningId = scr.Id
                 }).ToList()
             };
             return movieViewModel;

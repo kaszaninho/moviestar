@@ -84,6 +84,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
 		<ProjectReference Include="..\DatabaseAPI\DatabaseAPI.csproj" />
+		<ProjectReference Include="..\HelperProject\HelperProject.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

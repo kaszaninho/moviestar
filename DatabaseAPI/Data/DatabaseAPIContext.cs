@@ -39,12 +39,8 @@ namespace DatabaseAPI.Data
         public DbSet<Seat>? Seat { get; set; }
         public DbSet<Ticket>? Ticket { get; set; }
         public DbSet<PaymentMethod>? PaymentMethod { get; set; }
-        public DbSet<WorkPosition>? WorkPosition { get; set; }
         public DbSet<Address>? Address { get; set; }
-        public DbSet<BankAccount>? BankAccount { get; set; }
         public DbSet<OpeningHour>? OpeningHour { get; set; }
-        public DbSet<Photo>? Photo { get; set; }
-        public DbSet<WorkSchedule>? WorkSchedule { get; set; }
         public DbSet<Actor>? Actor { get; set; }
         public DbSet<User>? User { get; set; }
         public DbSet<UserLevel>? UserLevel { get; set; }
@@ -121,11 +117,6 @@ namespace DatabaseAPI.Data
                 new PaymentMethod { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Cash", Name = "Cash" },
                 new PaymentMethod { Id = 2, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Credit Card", Name = "Credit Card" },
                 new PaymentMethod { Id = 3, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Stripe", Name = "Stripe" }
-                );
-            builder.Entity<WorkPosition>().HasData(
-                new WorkPosition { Id = 1, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "General Assistant", Name = "General Assistant" },
-                new WorkPosition { Id = 2, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Floor Manager", Name = "Floor Manager" },
-                new WorkPosition { Id = 3, CreatedAt = new DateTime(2025, 2, 2), ModifiedAt = new DateTime(2025, 2, 2), IsActive = true, Description = "Cleaner", Name = "Cleaner" }
                 );
 
             builder.Entity<UserLevel>().HasData(

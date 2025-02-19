@@ -39,4 +39,12 @@ public partial class MovieDetails : ContentPage
             ScreeningsCollectionView.ItemsSource = new ObservableCollection<MiniScreeningResponse>();
         }
     }
+
+    private async void BtnBuyTickets_Clicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.CommandParameter is int screeningId)
+        {
+            await Navigation.PushAsync(new SeatSelectionPage(screeningId));
+        }
+    }
 }

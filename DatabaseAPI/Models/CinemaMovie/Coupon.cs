@@ -4,7 +4,7 @@ namespace DatabaseAPI.Models.CinemaMovie
 {
     public class Coupon : DictionaryTable
     {
-        public int Discount { get; set; } //discount w procentach
+        public int Discount { get; set; } 
 
     }
 }

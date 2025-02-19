@@ -2,11 +2,11 @@ using BusinessLogic;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
+using HelperProject;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using PortalWWW.Helpers;
 using Stripe;
 

@@ -1,20 +1,16 @@
-﻿using BusinessLogic;
-using DatabaseAPI.Data;
+﻿using DatabaseAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using NuGet.Packaging;
 using OfficeOpenXml;
 using ServiceStack;
-using ServiceStack.Text;
 using System.Collections;
 using System.ComponentModel;
 using System.Data;
-using LicenseContext = OfficeOpenXml.LicenseContext;
-using static BusinessLogic.Constans;
 using System.Diagnostics;
 using Xceed.Words.NET;
+using static HelperProject.Constans;
+using LicenseContext = OfficeOpenXml.LicenseContext;
 
 namespace PortalWWW.Controllers.Admin.Report
 {

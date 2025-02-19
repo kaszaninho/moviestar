@@ -4,6 +4,7 @@ using InvoiceSdk.Models.Payments;
 using InvoiceSdk.Renderer.Configuration;
 using InvoiceSdk.Renderer.Internal;
 using Mono.TextTemplating;
+using ServiceStack;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -48,7 +49,7 @@ namespace BusinessLogic
         {
             return new Address()
             {
-                CompanyName = "MovieStart",
+                CompanyName = "MovieStar",
                 Street = "Łazienki 123",
                 Country = "Poland",
                 City = "Nowy Sącz",
@@ -80,6 +81,83 @@ namespace BusinessLogic
                 Method = new() { Name = paymentMethod  },
                 PaidAt = DateTime.Now,
                 Status = PaymentStatus.Paid
+            };
+        }
+
+        public static InvoiceConfiguration generateConfiguration(string font, string hexColor, string sellerHeader, string buyerHeader, string itemHeader,
+            string alertWithoutItems, string alertItemsHeader, string alertWithoutPayments, string alertPaymentHeader, string paymentHeader, string finalText)
+        {
+            var invoiceConfiguration = InvoiceConfigurationFactory.CreateConfiguration();
+
+            if (!string.IsNullOrEmpty(font))
+            {
+                invoiceConfiguration.WithGlobalFont(new Font(font));
+            }
+            if (!string.IsNullOrEmpty(hexColor))
+            {
+                invoiceConfiguration
+                .ConfigureHeader()
+                .WithTextColor(hexColor);
+            }
+            if (!string.IsNullOrEmpty(sellerHeader) && !string.IsNullOrEmpty(buyerHeader))
+            {
+                invoiceConfiguration
+                .ConfigureAddress()
+                .WithHeaders(sellerHeader, buyerHeader)
+                .ThatDoesNotShowLabels();
+            }
+            if (!string.IsNullOrEmpty(itemHeader))
+            {
+                invoiceConfiguration
+                .ConfigureItemTable()
+                .ThatDoesNotDisplayItemDescriptions()
+                .WithHeader(itemHeader);
+            }
+            if (!string.IsNullOrEmpty(alertItemsHeader) && !string.IsNullOrEmpty(alertWithoutItems))
+            {
+                invoiceConfiguration
+                .ConfigureItemTable()
+                .ThatShowsAlertWithoutItems(alertItemsHeader, alertWithoutItems);
+            }
+            if (!string.IsNullOrEmpty(paymentHeader))
+            {
+                invoiceConfiguration
+                .ConfigurePaymentTable()
+                .WithHeader(paymentHeader);
+            }
+            if (!string.IsNullOrEmpty(alertPaymentHeader) && !string.IsNullOrEmpty(alertWithoutPayments))
+            {
+                invoiceConfiguration
+                .ConfigurePaymentTable()
+                .ThatShowsAlertWithoutItems(alertPaymentHeader, alertWithoutPayments);
+            }
+            if (!string.IsNullOrEmpty(finalText))
+            {
+                invoiceConfiguration
+                .ConfigureFooter()
+                .WithText(finalText);
+            }
+
+            if (!string.IsNullOrEmpty(hexColor))
+            {
+                invoiceConfiguration
+                .ConfigureFooter()
+                .WithTextColor(hexColor);
+            }
+            return invoiceConfiguration.Build();
+        }
+
+        public static Address generateAddressForCinema(string street, string country, string city, string zipCode, string phone, string companyName, string email)
+        {
+            return new Address()
+            {
+                Street = street,
+                Country = country,
+                City = city,
+                ZipCode = zipCode,
+                Phone = phone,
+                CompanyName = companyName,
+                Email = email
             };
         }
     }

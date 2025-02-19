@@ -13,5 +13,7 @@ namespace DatabaseAPI.ViewModels
         public DateTime? EndDate { get; set; }
         public decimal? TicketPrice { get; set; }
         public int? TicketId { get; set; }
+        public string? MovieDate {  get; set; }
+        public int? ScreenNumber { get; set; }
     }
 }

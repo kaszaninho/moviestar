@@ -49,6 +49,11 @@
                             <VerticalStackLayout>
                                 <Label Text="{Binding StartDate, StringFormat='Start: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
                                 <Label Text="{Binding EndDate, StringFormat='End: {0:MMM dd, yyyy HH:mm}'}" FontSize="Small"/>
+                                <Button Text="Buy Tickets"
+                                x:Name="BtnBuyTickets"
+                                Clicked="BtnBuyTickets_Clicked"
+                                CommandParameter="{Binding ScreeningId}"
+                                Margin="0,10,0,0"/>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

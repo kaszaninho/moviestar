@@ -1,16 +1,16 @@
 using BusinessLogic;
+using BusinessLogic.Helpers;
 using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.General;
-using InvoiceSdk.Models.Payments;
-using Microsoft.AspNetCore.Http;
+using DatabaseAPI.ViewModels;
+using HelperProject;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PortalWWW.Models;
 using ServiceStack;
-using System.Collections;
 using System.Diagnostics;
 
 namespace PortalWWW.Controllers
@@ -193,6 +193,77 @@ namespace PortalWWW.Controllers
                 TempData["SuccessMessage"] = "Email subscribed!";
                 return RedirectToAction("Index");
             }
+        }
+
+        [HttpGet("TicketReportForUser")]
+        public async Task<IActionResult> TicketsReportForUser()
+        {
+            return View();
+        }
+
+        [HttpGet("GetTicketsReportForUser")]
+        public async Task<IActionResult> GetTicketsReportForUser()
+        {
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Json(new { success = false, message = "User is not logged in" });
+            }
+            var ticketList = dbContext.Ticket
+                .Include(x => x.Invoice)
+                .Include(x => x.ScreeningSeat)
+                .ThenInclude(x => x.Screening)
+                .ThenInclude(x => x.Movie)
+                .Include(x => x.ScreeningSeat)
+                .ThenInclude(x => x.Screening)
+                .ThenInclude(x => x.Screen)
+                .Where(x => x.Invoice.UserId == user.Id)
+                .AsEnumerable()
+                .Select(x =>
+                {
+                    var startDate = x.ScreeningSeat.Screening.StartDate ?? DateTime.Now;
+                    var endDate = x.ScreeningSeat.Screening.EndDate ?? DateTime.Now;
+                    return new TicketViewModel
+                    {
+                        StartDate = startDate,
+                        EndDate = endDate,
+                        MovieId = x.ScreeningSeat.Screening.MovieId,
+                        MovieName = x.ScreeningSeat.Screening.Movie.Name,
+                        SeatNumber = x.ScreeningSeat.Name,
+                        TicketId = x.Id,
+                        TicketPrice = x.ScreeningSeat.Screening.Movie.TicketPrice,
+                        MovieDate = $"{startDate.ToShortDateString()}, {startDate.TimeOfDay} - {endDate.TimeOfDay}",
+                        ScreenNumber = x.ScreeningSeat.Screening.Screen.RoomNumber
+                    };
+                });
+            return Json(new { data = ticketList });
+        }
+
+        [HttpPost("GenerateTicket")]
+        public async Task<IActionResult> GenerateTicket([FromBody] int ticketId)
+        {
+            var ticket = dbContext.Ticket
+                .Include(x => x.ScreeningSeat)
+                .ThenInclude(x => x.Screening)
+                .ThenInclude(x => x.Movie)
+                .Include(x => x.ScreeningSeat)
+                .ThenInclude(x => x.Screening)
+                .ThenInclude(x => x.Screen)
+                .First(x => x.Id == ticketId);
+            if (ticket == null)
+            {
+                return Json(new { success = false, message = "Ticket not found" });
+            }
+            var ticketInvoiceModel = new TicketInvoiceModel
+            {
+                Id = ticket.Id,
+                MovieName = ticket.ScreeningSeat.Screening.Movie.Name,
+                RoomNumber = ticket.ScreeningSeat.Screening.Screen.RoomNumber,
+                seatCode = ticket.ScreeningSeat.Name,
+                StartDate = ticket.ScreeningSeat.Screening.StartDate
+            };
+            TicketGenerator.GenerateTicket(ticketInvoiceModel, null);
+            return Json(new { success = true, message = "Ticket was generated" });
         }
     }
 }

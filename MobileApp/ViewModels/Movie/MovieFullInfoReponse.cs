@@ -60,5 +60,8 @@ namespace MobileApp.ViewModels.Movie
 
         [JsonPropertyName("movieId")]
         public int MovieId { get; set; }
+
+        [JsonPropertyName("screeningId")]
+        public int? ScreeningId { get; set; }
     }
 }

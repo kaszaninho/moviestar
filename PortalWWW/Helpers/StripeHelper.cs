@@ -1,11 +1,6 @@
-﻿using BusinessLogic;
-using DatabaseAPI.Models.CinemaMovie;
+﻿using DatabaseAPI.Models.CinemaMovie;
+using HelperProject;
 using Stripe.Checkout;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PortalWWW.Helpers
 {

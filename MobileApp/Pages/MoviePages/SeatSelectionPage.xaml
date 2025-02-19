@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.MoviePages.SeatSelectionPage">
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <Label Text="Select Seats" FontSize="Large"/>
+            
+            <CollectionView x:Name="SeatsCollection"
+                          SelectionMode="Multiple">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                   Span="5"
+                                   HorizontalItemSpacing="5"
+                                   VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="2" Padding="10"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               BackgroundColor="{StaticResource PrimaryDark}"
+                               >
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <Label Text="{Binding SeatNumber}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource PrimaryText}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="TotalPriceLabel" 
+                   Text="Total: PLN 0.00" 
+                   FontSize="Medium"/>
+
+            <Button Text="Continue to Coupon"
+                    x:Name="ContinueButton"
+                    Clicked="OnContinueClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage> 

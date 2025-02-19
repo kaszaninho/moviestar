@@ -1,0 +1,94 @@
+﻿@using System.Linq;
+@using DatabaseAPI.Models.DictionaryModels;
+@using static PortalWWW.Helpers.GenericCheck;
+@{
+    ViewData["Title"] = "Invoices Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Importowanie stylów DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h3 class="text-primary">Your tickets</h3>
+        </div>
+    </div>
+
+    <br>
+    <div class="table-responsive">
+        <table id="tblData" class="table table-bordered table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Movie</th>
+                    <th>Seat Number</th>
+                    <th>Date</th>
+                    <th>Ticket Price (PLN)</th>
+                    <th>Screen Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
+        function loadDataTable() {
+            dataTable = $('#tblData').DataTable({
+                "ajax": {
+                    url: '/GetTicketsReportForUser',
+                    type: 'GET',
+                },
+                "columns": [
+                    { "data": "ticketId" },
+                    { "data": "movieName" },
+                    { "data": "seatNumber" },
+                    { "data": "movieDate" },
+                    { "data": "ticketPrice" },
+                    { "data": "screenNumber" },
+                    {
+                        "data": 'ticketId',
+                        "render": function (data) {
+                            return `<div class="text-center">
+                                       <a onClick=GenerateTicket('${data}') class="btn btn-primary btn-sm custom-btn">Generate</a>
+                                    </div>`;
+                        }
+                    }
+                ]
+            })
+        }
+
+
+
+        function GenerateTicket(id) {
+            $.ajax({
+                type: "POST",
+                url: 'GenerateTicket',
+                data: JSON.stringify(id),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.success) {
+                        toastr.success(data.message);
+                    } else {
+                        toastr.error(data.message);
+                    }
+                },
+                error: function (err) {
+                    toastr.error(data.message);
+                }
+            });
+        }
+    </script>
+}

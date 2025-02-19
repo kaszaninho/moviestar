@@ -9,6 +9,8 @@ using DatabaseAPI.Data;
 using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.People;
 using DatabaseAPI.ViewModels;
+using HelperProject;
+using DatabaseAPI.Models.CinemaMovie;
 
 namespace DatabaseAPI.Controllers
 {
@@ -91,67 +93,58 @@ namespace DatabaseAPI.Controllers
             return invoiceViewModel;
         }
 
-        // PUT: api/Invoice/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutInvoice(int id, Invoice invoice)
-        {
-            if (id != invoice.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(invoice).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!InvoiceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
+        
         // POST: api/Invoice
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Invoice>> PostInvoice(Invoice invoice)
+        public async Task<ActionResult<bool>> PostInvoice([FromBody] InvoiceCreationViewModel invoiceRequest)
         {
-            _context.Invoice.Add(invoice);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetInvoice", new { id = invoice.Id }, invoice);
-        }
-
-        // DELETE: api/Invoice/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInvoice(int id)
-        {
-            var invoice = await _context.Invoice.FindAsync(id);
-            if (invoice == null)
+            if (invoiceRequest == null)
             {
-                return NotFound();
+                return BadRequest("Empty request!");
             }
 
-            _context.Invoice.Remove(invoice);
+            var screeningSeats = await _context.ScreeningSeat.Where(x => invoiceRequest.ScreeningSeatIds.Contains(x.Id)).ToListAsync();
+
+            if (screeningSeats.Any(x => x.IsTaken ?? false))
+            {
+                return BadRequest("Some of the seats are already taken!");
+            }
+
+            screeningSeats.ForEach(x => x.IsTaken = true);
+
+            var tickets = invoiceRequest.ScreeningSeatIds.Select(x => new Ticket
+            {
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+                InvoiceId = invoiceRequest.InvoiceId,
+                ScreeningSeatId = x
+            }).ToList();
+
+            var invoice = new Invoice
+            {
+                UserId = invoiceRequest.UserId,
+                InvoiceId = invoiceRequest.InvoiceId,
+                CouponId = invoiceRequest.CouponId,
+                CouponDiscount = invoiceRequest.CouponDiscount,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+                IsActive = true,
+                OrderStatus = Constans.OrderStatus_Retrieved,
+                PaymentStatus = Constans.PaymentStatus_Approved,
+                TicketSum = invoiceRequest.TicketSum,
+                TotalSum = invoiceRequest.TotalSum,
+                PaymentMethodId = invoiceRequest.PaymentMethodId,
+                Tickets = tickets
+            };
+
+            _context.UpdateRange(screeningSeats);
+            _context.AddRangeAsync(tickets);
+            _context.AddAsync(invoice);
+
             await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
-
-        private bool InvoiceExists(int id)
-        {
-            return _context.Invoice.Any(e => e.Id == id);
+            return true;
         }
     }
 }

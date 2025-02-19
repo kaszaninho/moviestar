@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.MoviePages.CouponPage">
+    <VerticalStackLayout Spacing="15" Padding="20">
+        <Label Text="Apply Coupon" FontSize="Large"/>
+        
+        <Frame Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="{Binding OriginalPrice, StringFormat='Original Price: PLN {0:F2}'}"
+                       FontSize="Medium"/>
+                
+                <Entry x:Name="CouponEntry" 
+                       Placeholder="Enter Coupon Code"/>
+                
+                <Button Text="Apply Coupon"
+                        x:Name="ApplyCouponButton"
+                        Clicked="OnApplyCouponClicked"/>
+                
+                <Label x:Name="DiscountLabel" 
+                       IsVisible="False"
+                       TextColor="Green"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button Text="Continue to Payment"
+                x:Name="ContinueButton"
+                Clicked="OnContinueClicked"/>
+    </VerticalStackLayout>
+</ContentPage> 

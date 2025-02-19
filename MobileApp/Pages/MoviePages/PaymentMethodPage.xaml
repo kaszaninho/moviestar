@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.MoviePages.PaymentMethodPage">
+    <VerticalStackLayout Spacing="15" Padding="20">
+        <Label Text="Select Payment Method" FontSize="Large"/>
+
+        <Frame Padding="10">
+            <VerticalStackLayout Spacing="10" x:Name="PaymentMethodsContainer">
+                <Label Text="{Binding FinalPrice, StringFormat='Total to Pay: PLN {0:F2}'}"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+
+                <!-- Payment methods will be added here dynamically -->
+
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button Text="Complete Purchase"
+                x:Name="CompleteButton"
+                Clicked="OnCompletePurchaseClicked"
+                IsEnabled="False"/>
+    </VerticalStackLayout>
+</ContentPage> 
