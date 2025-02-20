@@ -13,7 +13,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-            width: 100%; /* Ensure full width */
+            width: 100%;
         }
 
         .screening {
@@ -23,9 +23,9 @@
             justify-content: center;
             text-align: center;
             width: 100%;
-            max-width: 900px; /* Limit width */
+            max-width: 900px;
             margin: auto;
-            padding-bottom: 50px; /* Prevent footer overlap */
+            padding-bottom: 50px; 
         }
 
         .screen {
@@ -41,18 +41,18 @@
 
         .seats-container {
             display: flex;
-            flex-wrap: wrap; /* Prevents seats from overflowing */
+            flex-wrap: wrap;
             justify-content: center;
             gap: 8px;
-            max-width: 500px; /* Prevents spreading too far */
+            max-width: 500px;
             padding: 20px;
         }
 
         .row {
             display: flex;
             justify-content: center;
-            width: 100%; /* Ensure rows align correctly */
-            flex-wrap: nowrap; /* Keep seats in a single line */
+            width: 100%;
+            flex-wrap: nowrap;
         }
 
         .seat {
@@ -117,6 +117,7 @@
         <button id="submitSeats" class="btn btn-danger">Confirm Selection</button>
     </div>
 </div>
+
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', () => {

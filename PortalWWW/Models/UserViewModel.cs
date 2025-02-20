@@ -3,7 +3,7 @@
 namespace PortalWWW.Models
 {
     public class UserViewModel
-    { 
+    {
         public string Id { get; set; }
 
         [Required]

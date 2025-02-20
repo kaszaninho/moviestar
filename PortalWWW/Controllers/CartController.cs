@@ -49,13 +49,13 @@ namespace PortalWWW.Controllers
         }
 
         [Route("[controller]/AddToCart")]
-        public ActionResult AddToCart(string[] screeningSeats)
+        public async Task<ActionResult> AddToCart(string[] screeningSeats)
         {
-            var seats = dbContext.ScreeningSeat.Include(x => x.Screening).ThenInclude(x => x.Movie).Where(item => screeningSeats.Contains(item.Id.ToString())).ToList();
+            var seats = await dbContext.ScreeningSeat.Include(x => x.Screening).ThenInclude(x => x.Movie).Where(item => screeningSeats.Contains(item.Id.ToString())).ToListAsync();
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(dbContext, this.HttpContext);
             foreach (var seat in seats)
             {
-                cartBusinessLogic.AddToCart(seat);
+                await cartBusinessLogic.AddToCart(seat);
             }
             return RedirectToAction("Index");
         }
@@ -79,19 +79,19 @@ namespace PortalWWW.Controllers
         {
             if (!couponName.IsNullOrEmpty())
             {
-                var coupon = dbContext.Coupon.Where(item => item.Name == couponName).ToList();
+                var coupon = await dbContext.Coupon.Where(item => item.Name == couponName).ToListAsync();
                 if (coupon.Any())
                 {
                     CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
-                    var couponVal = cartBusinessLogic.CheckCoupon();
+                    var couponVal = await cartBusinessLogic.CheckCoupon();
                     if (couponVal == null)
                     {
-                        dbContext.CartElement.Add(new CartElement
+                        await dbContext.CartElement.AddAsync(new CartElement
                         {
                             Coupon = coupon.FirstOrDefault(),
                             SessionId = cartBusinessLogic.GetSessionId()
                         });
-                        dbContext.SaveChanges();
+                        await dbContext.SaveChangesAsync();
                     }
                 }
             }
@@ -158,10 +158,6 @@ namespace PortalWWW.Controllers
         [HttpPost("ProcessPayment")]
         public async Task<ActionResult> ProcessPayment(int paymentMethodId)
         {
-            //add tickets to db based on screeningseats
-            //add invoice to db based on screeningseats -> movies
-            //make screeningseats as TAKEN in DB
-            //save db
             var invoiceTemplateInfo = await dbContext.InvoiceTemplateInformation.FirstOrDefaultAsync();
 
             CartBusinessLogic cartBusinessLogic = new CartBusinessLogic(this.dbContext, this.HttpContext);
@@ -358,7 +354,6 @@ namespace PortalWWW.Controllers
             {
                 invoice.StripePaymentIntentId = stripePaymentIntentId;
                 invoice.ModifiedAt = DateTime.Now;
-                // TODO: dodac payment date
             }
         }
         private void UpdateStatus(Guid invoiceId, string orderStatus, string? paymentStatus = null)

@@ -1,7 +1,5 @@
-﻿using DatabaseAPI.Models.CinemaMovie;
-using DatabaseAPI.Models.DictionaryModels;
+﻿using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.General;
-using DatabaseAPI.Models.General.DictionaryModels;
 using DatabaseAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,9 +10,9 @@ namespace PortalWWW.Controllers.Admin.General
     public class AddressController : BaseDictionaryController<Address>
     {
         public AddressController(IRepository<Address> repository) : base(repository)
-    {
-        }
+        {
 
+        }
 
         override public async Task<IActionResult> Index()
         {

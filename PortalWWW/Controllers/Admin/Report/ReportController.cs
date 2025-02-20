@@ -172,7 +172,6 @@ namespace PortalWWW.Controllers.Admin.Report
             {
                 using (var package = new ExcelPackage())
                 {
-
                     // List of statuses you want to include in the Excel file
                     var statuses = new[] { "all", PaymentStatus_Approved, PaymentStatus_Pending, PaymentStatus_Rejected };
 

@@ -351,7 +351,7 @@ namespace DatabaseAPI.Data
                     IsActive = true,
                     Description = "",
                     Name = "Mail with button",
-                    Content = "\r\n<div class=\"input-group\">\r\n    <input type=\"text\" class=\"form-control bg-black\" placeholder=\"Email\">\r\n    <span class=\"input-group-btn\">\r\n        <button class=\"btn btn text-white bg_red rounded-0 border-0\" type=\"button\">\r\n            Subscribe\r\n        </button>\r\n    </span>\r\n</div>",
+                    Content = "<div class=\"input-group\">\r\n    <form method=\"post\" action=\"~/AddSubscriber\">\r\n        <input type=\"text\" name=\"email\" class=\"form-control bg-black\" placeholder=\"Email\">\r\n        <span class=\"input-group-btn\">\r\n            <button class=\"btn btn text-white bg_red rounded-0 border-0\" type=\"submit\">\r\n                Subscribe\r\n            </button>\r\n        </span>\r\n    </form>\r\n</div>",
                     Position = 3
                 });
 
@@ -1011,7 +1011,7 @@ namespace DatabaseAPI.Data
                     CreatedAt = new DateTime(2025, 2, 7),
                     ModifiedAt = new DateTime(2025, 2, 7),
                     IsActive = true,
-                    Discount = 5,
+                    Discount = 20,
                     Name = "MOVIE20",
                     Description = "Coupon for 20%"
                 });
@@ -1030,15 +1030,15 @@ namespace DatabaseAPI.Data
                     AddressEmail = "info@gmail.com",
                     Font = "Arial",
                     HexHeaderColor = "#FFF544",
-                    SellerHeader = "Sprzedający",
-                    BuyerHeader = "Kupujący",
-                    ItemHeader = "Bilety",
-                    AlertWithoutItems = "Nie ma żadnych dodanych biletów!",
-                    AlertItemsHeader = "Brak biletów!",
-                    AlertWithoutPayments = "Nie ma żadnych dokonanych płatności!",
-                    AlertPaymentHeader = "Brak płatności!",
-                    PaymentHeader = "Płatności",
-                    FinalText = "Dziękujemy i zapraszamy ponownie!"
+                    SellerHeader = "Beneficiary",
+                    BuyerHeader = "Recipent",
+                    ItemHeader = "Tickets",
+                    AlertWithoutItems = "There is no added tickets!",
+                    AlertItemsHeader = "No tickets!",
+                    AlertWithoutPayments = "There are no made payments!",
+                    AlertPaymentHeader = "No payments!",
+                    PaymentHeader = "Payments",
+                    FinalText = "Thank you and come back soon!"
                 });
 
             // Customize the ASP.NET Identity model and override the defaults if needed.

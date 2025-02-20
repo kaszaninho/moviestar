@@ -1,5 +1,4 @@
 using DatabaseAPI.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PortalWWW.Controllers.Admin.CMS
@@ -60,6 +59,7 @@ namespace PortalWWW.Controllers.Admin.CMS
                 return Json(new { success = true, message = "Delete Successful" });
             }
         }
+
         [HttpGet("Edit")]
         public IActionResult Edit(int id)
         {
@@ -80,6 +80,7 @@ namespace PortalWWW.Controllers.Admin.CMS
             var entities = context.Website.ToList();
             return Json(new { data = entities });
         }
+
         [HttpGet("More")]
         public IActionResult More(int id)
         {
@@ -89,8 +90,7 @@ namespace PortalWWW.Controllers.Admin.CMS
                 return NotFound();
             }
 
-            ViewBag.WebsiteList = context.Website.ToList(); // Przekazanie listy do ViewBag
-            return View(entity); // Przekazanie modelu do widoku
+            return View(entity);
         }
 
     }

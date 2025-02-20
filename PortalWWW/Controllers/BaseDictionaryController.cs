@@ -1,9 +1,6 @@
-﻿using DatabaseAPI.Data;
-using DatabaseAPI.Models.Abstract;
+﻿using DatabaseAPI.Models.Abstract;
 using DatabaseAPI.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace PortalWWW.Controllers
 {

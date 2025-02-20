@@ -1,14 +1,11 @@
-﻿using DatabaseAPI.Data;
-using DatabaseAPI.Models.CinemaMovie;
+﻿using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Models.CinemaMovie.DictionaryModels;
 using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ServiceStack;
 
 namespace PortalWWW.Controllers.Admin.CinemaMovie
 {
@@ -18,6 +15,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         private string IMAGE_PATH = @"http://localhost/images/";
         protected readonly IRepository<Movie> repository;
         protected readonly IWebHostEnvironment webHostEnvironment;
+
         public MovieAdminController(IRepository<Movie> repository, IWebHostEnvironment webHostEnvironment)
         {
             this.repository = repository;
@@ -31,7 +29,6 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             ViewData["entityEndpoint"] = "movieadmin";
             return View();
         }
-
 
         [HttpGet("Create")]
         public async Task<IActionResult> Create()
@@ -119,6 +116,37 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditConfirmed(Movie entity, IFormFile? file)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewData["type"] = typeof(Movie);
+                return View(entity);
+            }
+            var movie = await repository.GetDbSet<Movie>()
+                .Include(movie => movie.Actors)
+                .Include(movie => movie.Awards)
+                .Include(movie => movie.Directors)
+                .Include(movie => movie.Languages)
+                .Include(movie => movie.MovieKeywords)
+                .Include(movie => movie.Subtitles)
+            .FirstOrDefaultAsync(m => m.Id == entity.Id);
+            var selectedActors = await repository.GetDbSet<Actor>().Where(x => entity.SelectedActors.Contains(x.Id)).ToListAsync();
+            var selectedAwards = await repository.GetDbSet<Award>().Where(x => entity.SelectedAwards.Contains(x.Id)).ToListAsync();
+            var selectedDirectors = await repository.GetDbSet<Director>().Where(x => entity.SelectedDirectors.Contains(x.Id)).ToListAsync();
+            var selectedLanguages = await repository.GetDbSet<Languages>().Where(x => entity.SelectedLanguages.Contains(x.Id)).ToListAsync();
+            var selectedMovieKeywords = await repository.GetDbSet<MovieKeywords>().Where(x => entity.SelectedMovieKeywords.Contains(x.Id)).ToListAsync();
+            var selectedSubtitles = await repository.GetDbSet<Subtitles>().Where(x => entity.SelectedSubtitles.Contains(x.Id)).ToListAsync();
+
+            entity.Actors = selectedActors;
+            entity.Awards = selectedAwards;
+            entity.Directors = selectedDirectors;
+            entity.Languages = selectedLanguages;
+            entity.MovieKeywords = selectedMovieKeywords;
+            entity.Subtitles = selectedSubtitles;
+            entity.ModifiedAt = DateTime.Now;
+            foreach (var item in movie.GetType().GetProperties())
+            {
+                item.SetValue(movie, item.GetValue(entity, null));
+            }
             if (file != null)
             {
                 string xamppPath = @"C:\xampp\htdocs\images\";
@@ -145,40 +173,12 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
                 {
                     file.CopyTo(fileStream);
                 }
-                entity.imageUrl = @"\photos\" + file.FileName;
+                movie.imageUrl = @"\photos\" + file.FileName;
             }
-            if (!ModelState.IsValid)
-            {
-                ViewData["type"] = typeof(Movie);
-                return View(entity);
-            }
-            var movie = await repository.GetDbSet<Movie>()
-                .Include(movie => movie.Actors)
-                .Include(movie => movie.Awards)
-                .Include(movie => movie.Directors)
-                .Include(movie => movie.Languages)
-                .Include(movie => movie.MovieKeywords)
-                .Include(movie => movie.Subtitles)
-            .FirstOrDefaultAsync(m => m.Id == entity.Id);
-            var selectedActors = await repository.GetDbSet<Actor>().Where(x => entity.SelectedActors.Contains(x.Id)).ToListAsync();
-            var selectedAwards = await repository.GetDbSet<Award>().Where(x => entity.SelectedAwards.Contains(x.Id)).ToListAsync();
-            var selectedDirectors = await repository.GetDbSet<Director>().Where(x => entity.SelectedDirectors.Contains(x.Id)).ToListAsync();
-            var selectedLanguages = await repository.GetDbSet<Languages>().Where(x => entity.SelectedLanguages.Contains(x.Id)).ToListAsync();
-            var selectedMovieKeywords = await repository.GetDbSet<MovieKeywords>().Where(x => entity.SelectedMovieKeywords.Contains(x.Id)).ToListAsync();
-            var selectedSubtitles = await repository.GetDbSet<Subtitles>().Where(x => entity.SelectedSubtitles.Contains(x.Id)).ToListAsync();
-
-            movie.Actors = selectedActors;
-            movie.Awards = selectedAwards;
-            movie.Directors = selectedDirectors;
-            movie.Languages = selectedLanguages;
-            movie.MovieKeywords = selectedMovieKeywords;
-            movie.Subtitles = selectedSubtitles;
-            movie.ModifiedAt = DateTime.Now;
             await repository.UpdateEntityAsync(movie);
             TempData["SuccessMessage"] = "Record updated successfully!";
             return RedirectToAction(nameof(Index));
         }
-
 
         [HttpGet("DeleteImage")]
         public async Task<IActionResult> DeleteImage(int id)
@@ -201,7 +201,6 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             TempData["SuccessMessage"] = "Image delete successfully!";
             return RedirectToAction(nameof(Index));
         }
-
 
         [HttpPost("CreateConfirmed")]
         virtual public async Task<IActionResult> CreateConfirmed(Movie entity, IFormFile? file)
@@ -239,7 +238,6 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             TempData["SuccessMessage"] = "Record created successfully!";
             return RedirectToAction("Index");
         }
-
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()

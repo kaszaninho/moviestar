@@ -7,7 +7,9 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
     public class CouponController : BaseDictionaryController<Coupon>
     {
         public CouponController(IRepository<Coupon> repository) : base(repository)
-        { }
+        {
+
+        }
 
         public override Task<IActionResult> CreateConfirmed(Coupon entity)
         {

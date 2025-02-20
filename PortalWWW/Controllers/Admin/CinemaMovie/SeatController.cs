@@ -1,6 +1,5 @@
 ﻿using DatabaseAPI.Models.CinemaMovie;
 using DatabaseAPI.Repository;
-using Microsoft.AspNetCore.Mvc;
 
 namespace PortalWWW.Controllers.Admin.CinemaMovie
 {

@@ -102,7 +102,7 @@ namespace PortalWWW.Helpers
 
         public static string GetNameFromPropertyOfObject(PropertyInfo propertyInfo, object item)
         {
-            return ((DictionaryTable) propertyInfo.GetValue(item))?.Name;
+            return ((DictionaryTable)propertyInfo.GetValue(item))?.Name;
         }
     }
 }

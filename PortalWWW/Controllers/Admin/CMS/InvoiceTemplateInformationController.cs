@@ -8,7 +8,7 @@ namespace PortalWWW.Controllers.Admin.CMS
     [Route("[controller]")]
     public class InvoiceTemplateInformationController : Controller
     {
-        
+
         private readonly DatabaseAPIContext context;
 
         public InvoiceTemplateInformationController(DatabaseAPIContext context)

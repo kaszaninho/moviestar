@@ -10,6 +10,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
     {
         public ScreeningController(IRepository<Screening> repository) : base(repository)
         {
+
         }
 
         override public async Task<IActionResult> CreateConfirmed(Screening entity)
@@ -35,6 +36,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
             entity.ScreeningSeats = screeningSeats;
             return await base.CreateConfirmed(entity);
         }
+
         override public async Task<IActionResult> Index()
         {
             var entities = await repository.getDbSet()

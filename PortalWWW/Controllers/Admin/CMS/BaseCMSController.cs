@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore;
 namespace PortalWWW.Controllers.Admin.CMS
 {
     [Route("[controller]")]
-    public class BaseCMSController<T> : Controller  where T : AbstractCMSDatatable
+    public class BaseCMSController<T> : Controller where T : AbstractCMSDatatable
     {
-
         private readonly DatabaseAPIContext context;
 
         public BaseCMSController(DatabaseAPIContext context)
         {
             this.context = context;
         }
+
         [HttpGet("Index")]
         public IActionResult Index()
         {
@@ -119,12 +119,6 @@ namespace PortalWWW.Controllers.Admin.CMS
             var entity = context.Set<T>().FirstOrDefault(w => w.Id == id);
             return View(entity);
         }
-
-        //public IActionResult Delete(int id)
-        //{
-        //    var entity = context.Set<T>().FirstOrDefault(w => w.Id == id);
-        //    return View(entity);
-        //}
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()

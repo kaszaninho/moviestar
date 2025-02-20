@@ -1,6 +1,5 @@
 ﻿using DatabaseAPI.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace PortalWWW.Controllers.Admin.General
 {
@@ -19,6 +18,7 @@ namespace PortalWWW.Controllers.Admin.General
         {
             return View();
         }
+
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {

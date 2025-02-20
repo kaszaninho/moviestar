@@ -1,8 +1,6 @@
-﻿using DatabaseAPI.Models.CinemaMovie;
-using DatabaseAPI.Models.DictionaryModels;
+﻿using DatabaseAPI.Models.DictionaryModels;
 using DatabaseAPI.Models.People;
 using DatabaseAPI.Repository;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +11,7 @@ namespace PortalWWW.Controllers.Admin.People
     {
         public ActorController(IRepository<Actor> repository) : base(repository)
         { }
+
         override public async Task<IActionResult> Index()
         {
             var entities = await repository.getDbSet()

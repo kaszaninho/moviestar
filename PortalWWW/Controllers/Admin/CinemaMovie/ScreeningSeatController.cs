@@ -14,7 +14,7 @@ namespace PortalWWW.Controllers.Admin.CinemaMovie
         {
             var entities = await repository.getDbSet()
                 .Include(screeningSeat => screeningSeat.Screening)
-                .ThenInclude(screening =>  screening.Movie)
+                .ThenInclude(screening => screening.Movie)
                 .ToListAsync();
             ViewData["type"] = typeof(ScreeningSeat);
             return View(entities);

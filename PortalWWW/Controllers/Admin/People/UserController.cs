@@ -1,15 +1,9 @@
 ﻿using DatabaseAPI.Data;
-using DatabaseAPI.Models.CinemaMovie;
-using DatabaseAPI.Models.General;
 using DatabaseAPI.Models.People;
-using DatabaseAPI.Repository;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using NuGet.Protocol.Core.Types;
 using PortalWWW.Models;
 
 namespace PortalWWW.Controllers.Admin.People
@@ -35,13 +29,13 @@ namespace PortalWWW.Controllers.Admin.People
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            var entities = context.User.ToList();
+            var entities = context.User?.ToList();
             var userRoles = context.UserRoles.ToList();
             var roles = context.Roles.ToList();
 
             foreach (var user in entities)
             {
-                var roleId = userRoles.FirstOrDefault(u => u.UserId == user.Id).RoleId;
+                var roleId = userRoles.FirstOrDefault(u => u.UserId == user.Id)?.RoleId;
                 var roleName = roles.FirstOrDefault(r => r.Id == roleId)?.Name;
                 user.Role = roleName;
             }
@@ -78,14 +72,14 @@ namespace PortalWWW.Controllers.Admin.People
         }
 
         [HttpPost("LockUnlock")]
-        public IActionResult LockUnlock([FromBody]string id) 
-        { 
+        public IActionResult LockUnlock([FromBody] string id)
+        {
             var user = context.User.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 return Json(new { success = false, message = "Error while locking/unlocking" });
             }
-            if(user.LockoutEnd != null && user.LockoutEnd > DateTime.Now)
+            if (user.LockoutEnd != null && user.LockoutEnd > DateTime.Now)
             {
                 user.LockoutEnd = DateTime.Now;
             }
@@ -103,7 +97,7 @@ namespace PortalWWW.Controllers.Admin.People
             string RoleID = context.UserRoles.FirstOrDefault(u => u.UserId == id).RoleId;
             RoleManagementVM RoleVM = new RoleManagementVM()
             {
-                User =  context.User.First(us => us.Id == id),
+                User = context.User.First(us => us.Id == id),
                 RoleList = context.Roles.Select(i => new SelectListItem
                 {
                     Text = i.Name,
@@ -121,7 +115,7 @@ namespace PortalWWW.Controllers.Admin.People
             string RoleID = context.UserRoles.FirstOrDefault(u => u.UserId == roleVM.User.Id).RoleId;
             string oldRole = context.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
 
-            if(roleVM.User.Role != oldRole) 
+            if (roleVM.User.Role != oldRole)
             {
                 User user = context.User.FirstOrDefault(u => u.Id == roleVM.User.Id);
                 await userManager.RemoveFromRoleAsync(user, oldRole);

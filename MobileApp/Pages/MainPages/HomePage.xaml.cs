@@ -21,28 +21,38 @@ public partial class HomePage : ContentPage
 
     private async void GetMovieAllInfo()
     {
-        var userId = await SecureStorage.GetAsync("userid");
-        if (userId != null)
+        try
         {
-            var movieListViewModel = await MovieApiService.GetMovieAllInfo(userId);
-            if (movieListViewModel != null)
+            var userId = await SecureStorage.GetAsync("userid");
+            if (userId != null)
             {
-                CvUpcomingScreenings.ItemsSource = movieListViewModel.EarliestScreeningsWithMovies;
+                var movieListViewModel = await MovieApiService.GetMovieAllInfo(userId);
+                if (movieListViewModel != null)
+                {
+                    CvUpcomingScreenings.ItemsSource = movieListViewModel.EarliestScreeningsWithMovies;
 
-                InvoiceNumber.Text = movieListViewModel.LatestInvoiceWithTickets.InvoiceId.ToString();
-                InvoiceDate.Text = movieListViewModel.LatestInvoiceWithTickets.CreatedAt.ToShortDateString();
-                InvoiceAmount.Text = $"PLN {movieListViewModel.LatestInvoiceWithTickets.TotalSum:F2}";
-                InvoiceOrderStatus.Text = movieListViewModel.LatestInvoiceWithTickets.OrderStatus;
-                InvoicePaymentStatus.Text = movieListViewModel.LatestInvoiceWithTickets.PaymentStatus;
-                // Set CommandParameter in code
-                ButtonInvoiceDetails.CommandParameter = movieListViewModel.LatestInvoiceWithTickets.InvoiceId;
+                    InvoiceNumber.Text = movieListViewModel.LatestInvoiceWithTickets.InvoiceId.ToString();
+                    InvoiceDate.Text = movieListViewModel.LatestInvoiceWithTickets.CreatedAt.ToShortDateString();
+                    InvoiceAmount.Text = $"PLN {movieListViewModel.LatestInvoiceWithTickets.TotalSum:F2}";
+                    InvoiceOrderStatus.Text = movieListViewModel.LatestInvoiceWithTickets.OrderStatus;
+                    InvoicePaymentStatus.Text = movieListViewModel.LatestInvoiceWithTickets.PaymentStatus;
+                    // Set CommandParameter in code
+                    ButtonInvoiceDetails.CommandParameter = movieListViewModel.LatestInvoiceWithTickets.InvoiceId;
+                }
             }
         }
+        catch (Exception)
+        {
+            await DisplayAlert("Error", $"Error when loading Movie/Invoice information.", "OK");
+        }
+
     }
 
     private async Task GetUserProfile()
     {
-        var name = await SecureStorage.GetAsync("name");
+        try
+        {
+            var name = await SecureStorage.GetAsync("name");
 
         if (name == null)
         {
@@ -67,8 +77,14 @@ public partial class HomePage : ContentPage
         else
         {
             LblUserName.Text = "Hi " + name;
+            }
+        }
+        catch (Exception)
+        {
+            await DisplayAlert("Error", $"Error when fetching user information.", "OK");
         }
     }
+
     private async void OnMovieTapped(object sender, TappedEventArgs e)
     {
         int movieId = Convert.ToInt32(e.Parameter);

@@ -1,11 +1,8 @@
 ﻿using DatabaseAPI.Data;
 using DatabaseAPI.Models.CinemaMovie;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PortalWWW.Models;
-using ServiceStack;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PortalWWW.Controllers
 {
@@ -35,7 +32,7 @@ namespace PortalWWW.Controllers
         [HttpPost("IndexWithScreenings")]
         public ActionResult IndexWithScreenings(string? selectedDate)
         {
-            if(selectedDate == null)
+            if (selectedDate == null)
             {
                 return RedirectToAction("Index");
             }
@@ -70,44 +67,6 @@ namespace PortalWWW.Controllers
                 .Include(mov => mov.MovieProductionCompany)
                 .FirstOrDefault(mov => mov.Id == id);
             return View(entity);
-        }
-
-        [HttpPost("ChooseMovieBasedOnDate")]
-        public ActionResult ChooseMovieBasedOnDate(string selectedDate)
-        {
-            var properDate = DateTime.ParseExact(selectedDate, DATE_FORMAT, null).Date;
-            List<Movie> movies = dbContext.Movie.ToList();
-            Dictionary<Movie, List<Screening>> moviesWithScreenings = new Dictionary<Movie, List<Screening>>();
-
-            foreach (Movie movie in movies)
-            {
-                var screeningsWithinDate = dbContext.Screening.Where(item => item.MovieId == movie.Id).Where(item => item.StartDate.Value.Date <= properDate).ToList();
-                // I need to think about null exception pointer here - when can happen? If in real-time scenario can happen? If yes, how to deal with it?
-                //List<Screening> screeningsForMovie = dbContext.Movie.First(item => item.Id == movie.Id).Screenings
-                //    .Where(screening => screening.StartDate.GetValueOrDefault().Date == date.Date).ToList();
-                if (screeningsWithinDate.Count > 0)
-                {
-                    moviesWithScreenings.Add(movie, screeningsWithinDate);
-                }
-            }
-            ViewBag.Movies = movies;
-            ViewBag.MoviesWithScreenings = moviesWithScreenings;
-
-            return View();
-        }
-
-        [HttpGet("ShowScreeningsForMovie")]
-        public async Task<IActionResult> ShowScreeningsForMovie()
-        {
-            //TODO: I'll have to include more information when it'll be added (.Inlude(screening...))
-            return View(await dbContext.Movie.Include(item => item.Screenings.OrderBy(item => item.StartDate)).ToListAsync());
-        }
-
-        [HttpPost("GetScreenings")]
-        public ActionResult GetScreenings(int movieId, DateTime date)
-        {
-            return PartialView("ScreeningsForMovie", dbContext.Screening
-                .Where(item => item.MovieId == movieId && item.StartDate.Value.Date.Equals(date.Date)).ToList());
         }
 
         [HttpPost("ChooseSeats")]
